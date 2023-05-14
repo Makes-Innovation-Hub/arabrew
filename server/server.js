@@ -2,14 +2,18 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import pino from "pino";
-
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 import allRoutes from "./routes.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 dotenv.config({
-  path: "/home/code-grinder/Documents/Makes Internship may-juni-23/Projects/Arabrew-chatapp/arabrew-repo/server/config/config.env",
+  path: `${__dirname}/config/config.env`,
 });
 
 connectDB();
