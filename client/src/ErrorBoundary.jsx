@@ -1,22 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-class ErrorBoundary extends React.Component {
-  state = {hasError: false}
+const ErrorBoundary = ({ fallback, children }) => {
+  const [isError, setIsError] = useState(false);
 
-  static getDerivedStateFromError(error){
-    return {hasError: true}
+  const componentDidCatch = (error, info) => {
+    console.error(error, info);
+    setIsError(true);
+  };
+
+  if (isError) {
+    return fallback;
   }
+  return children;
+};
 
-  componentDidCatch(error, info){
-    console.log(error, info)
-  }
-
-  render(){
-    if (this.state.hasError){
-      return this.props.fallback
-    }
-    return this.props.children
-  }
-}
-
-export default ErrorBoundary
+export default ErrorBoundary;
