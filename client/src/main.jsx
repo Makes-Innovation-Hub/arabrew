@@ -1,13 +1,15 @@
+"use client"
+
+import { ErrorBoundary } from "react-error-boundary";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import {store} from './app/store.jsx'
 import { Provider } from "react-redux";
-import ErrorBoundary from "./ErrorBoundary.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ErrorBoundary fallback="Error">
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Provider store={store}>
     <App />
     </Provider>
