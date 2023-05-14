@@ -1,8 +1,8 @@
 import express from "express";
-import userRouter from "./api/user/user.routes";
-import chatRouter from "./api/chat/chat.routes";
-import messageRouter from "./api/message/message.routes";
-import translationRouter from "./api/translation/translation.routes";
+import userRouter from "./api/user/user.routes.js";
+import chatRouter from "./api/chat/chat.routes.js";
+import messageRouter from "./api/message/message.routes.js";
+import translationRouter from "./api/translation/translation.routes.js";
 
 
 const router=express.Router();

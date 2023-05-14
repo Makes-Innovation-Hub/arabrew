@@ -8,6 +8,8 @@ const connectDB = async () => {
     });
     console.log(`🙃🙃 Mogbo DB is connected ${conn.connection.host} 🙃🙃`);
   } catch (Error) {
+    console.log("$$$$$$$$$$",process.env.MONGO_URI)
+
     console.log(`🏮🏮🏮 ${Error} 🏮🏮🏮`);
   }
 };
