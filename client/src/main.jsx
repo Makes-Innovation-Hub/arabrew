@@ -1,3 +1,4 @@
+"use client";
 import { ErrorBoundary } from "react-error-boundary";
 import React from "react";
 import ReactDOM from "react-dom/client";
