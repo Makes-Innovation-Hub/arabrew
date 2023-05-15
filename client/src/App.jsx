@@ -1,7 +1,9 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import Intro from './pages/Intro';
+
 
 const router = createBrowserRouter([
-  {path: "/", element: <>arabrew</>, errorElement: <>Error...</>}
+  {path: "/", element: <Intro/>, errorElement: <>Error...</>}
 ])
 
 function App() {
