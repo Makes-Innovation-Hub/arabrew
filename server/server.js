@@ -4,6 +4,7 @@ import cors from "cors";
 import pino from "pino";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 
@@ -45,5 +46,9 @@ const server = app.listen(
 
 process.on("unhandledRejection", (err, promise) => {
   console.log(`😡😡 Error: ${err.message} 😡😡`);
-  server.close(() => process.exit(1));
+
+  mongoose.disconnect(()=>{
+    server.close(() => process.exit(1));
+  })
+  
 });
