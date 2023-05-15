@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components"
-import Glass from "../assets/glass"
+import Glass from "../assets/Glass"
 import { Flex } from "../components/styles/Flex"
 
 const theme = {
