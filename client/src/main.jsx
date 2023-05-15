@@ -11,7 +11,7 @@ import Error from "./components/Error.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GlobalStyles />
+    <GlobalStyles/>
     <ErrorBoundary fallback={<Error/>}>
     <Provider store={store}>
     <App />
