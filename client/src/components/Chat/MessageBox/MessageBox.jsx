@@ -2,10 +2,9 @@ export default function MessageBox({ message }) {
   return (
     <div
       style={{
-        padding: "1rem",
+        padding: "0.5rem",
         margin: "1rem",
-        width: "80%",
-        textIndent: "10px",
+        width: "70%",
         alignSelf: message.sender === "User1" ? "flex-end" : "flex-start",
         borderRadius:
           message.sender === "User1"

@@ -19,7 +19,7 @@ export const ImageWrapper = styled.div`
     height: 3rem;
     border-radius: 6249.938rem;
     overflow: hidden;
-    margin: 0 1.5rem;
+    margin: 0 0.6rem;
     background-color: #ffffff;
   }
 `;

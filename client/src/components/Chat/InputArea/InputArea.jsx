@@ -12,12 +12,12 @@ export default function InputArea() {
     <InputWrapper>
       <InputAreaContainer>
         <RecommendedButton>
-          <FiCoffee size="1.2em" color="white" />
+          <FiCoffee size="2rem" color="white" />
         </RecommendedButton>
         <InputComponent placeholder="Start typing..." />
         <IoSend
           style={{
-            color: "#50924E",
+            color: "#276749",
           }}
           size="1.5rem"
         />
