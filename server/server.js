@@ -7,7 +7,6 @@ import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
-
 import allRoutes from "./routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,10 +26,6 @@ if (process.env.NODE_ENV !== "production") {
   app.use(pino);
 }
 
-app.get("/", (req, res) => {
-  res.send("Server is ACTIVE  ");
-});
-
 app.use("/arabrew/v1", allRoutes);
 
 app.use(errorHandler);
@@ -47,8 +42,7 @@ const server = app.listen(
 process.on("unhandledRejection", (err, promise) => {
   console.log(`😡😡 Error: ${err.message} 😡😡`);
 
-  mongoose.disconnect(()=>{
+  mongoose.disconnect(() => {
     server.close(() => process.exit(1));
-  })
-  
+  });
 });
