@@ -1,3 +1,4 @@
+import "./App.css";
 import Chat from "./pages/Chat/Chat";
 
 function App() {
