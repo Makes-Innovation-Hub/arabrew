@@ -5,9 +5,3 @@ export default function LogoSvg() {
     </svg>
   )
 }
-
-
-
-
-
-

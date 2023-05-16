@@ -6,7 +6,3 @@ export default function HamburgerSvg() {
       </SvgStyle>
     )
   }
-
-
-
-

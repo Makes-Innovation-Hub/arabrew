@@ -13,7 +13,7 @@ font-family: 'poppins';
 font-weight: 500;
 font-size:  1.125rem;
 color: #FFFFFF;
+position: relative;
 @media (min-width:700px) {
     padding: 3rem;
-}
-`;
+}`;
