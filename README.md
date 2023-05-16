@@ -25,3 +25,9 @@ commit and push often.
 - [ ] go over the task definition again and make sure you did everything.
 - [ ] pull from main/dev and resolve merge conflicts
 - [ ] before sending the PR in github, go over the code in the PR and make sure there are no weird stuff that don’t belong there.
+
+.env file should be created with this environment variables:
+```
+MONGO_URI=<YOUR_MONGO_DB_CONNECTION_STRING>
+OPEN_AI_API_KEY=<YOUR_OPEN_AI_API_KEY>
+```
