@@ -14,6 +14,6 @@ export const Input = styled.input`
   background-color: #fafafa;
 
   opacity: 0.5;
-  font-size: 150%;
+  font-size: 230%;
   text-align: center;
 `;
