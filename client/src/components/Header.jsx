@@ -4,28 +4,15 @@ export default function Header({leftIcon, midIcon, rightIcon}) {
     return (
       <>
       <HeaderStyle>
-        <div>
-        {leftIcon}
-        </div>
-      
-    <div>{midIcon}</div>
-    <div>{rightIcon}</div>
+        <div>{leftIcon}</div>
+        <div>{midIcon}</div>
+        <div>{rightIcon}</div>
     
       </HeaderStyle>
-        {/* <div className="presentCrud">
           <li>
-            <NavLink to="/">Create</NavLink>
+            <NavLink to="/">you are on page 1</NavLink>
+            <NavLink to="/Two">click me to try pass to page 2</NavLink>
           </li>
-          <li>
-            <NavLink to="/Read">Read</NavLink>
-          </li>
-          <li>
-            <NavLink to="/Update">Update</NavLink>
-          </li>
-          <li>
-            <NavLink to="/Delete">Delete</NavLink>
-          </li>
-        </div> */}
       </>
     );
   }

@@ -1,0 +1,3 @@
+-[]- I have no the icon of the coffee from Tommer- just need to complete it.
+-[]- I didnt add font-family or some font design to the header because i understood that Sean had this design for all the body
+-[]- The only section at this task from github i didnt do is the search bar i didnt find in the Figma- i just need understand what is it talked about 
