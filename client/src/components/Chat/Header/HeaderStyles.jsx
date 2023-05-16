@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 0 0 1.2rem;
+    padding: 0.5rem 0 0.5rem 1.2rem;
     margin: 1rem 0;
   }
 `;
