@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../components/styles/Occupation.css";
 import { Global } from "../components/styles/Global";
 import { Navbar } from "../components/styles/Navbar";
@@ -13,7 +13,7 @@ import { Label } from "../components/styles/Label";
 import { ButtonDiv } from "../components/styles/ButtonDiv";
 import { Button } from "../components/styles/Button";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUserDataField } from "../features/userDataSlice";
 
 const Occupation = () => {
@@ -23,11 +23,6 @@ const Occupation = () => {
   });
 
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.userData);
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   return (
     <Global>
