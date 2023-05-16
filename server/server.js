@@ -1,18 +1,19 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 
 import { WebSocket, WebSocketServer } from "ws";
+import { fileURLToPath } from "url";
 
-const wss = new WebSocketServer({ port: 3005 });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-dotenv.config();
+const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
+
+dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Server is ACTIVE  ");
-});
 
 const rooms = {};
 
@@ -46,7 +47,8 @@ const server = app.listen(
   )
 );
 
-process.on("unhandledRejection", (err, promise) => {
+process.on("unhandledRejection", async (err, promise) => {
   console.log(`Error: ${err.message}`);
   server.close(() => process.exit(1));
+  await wss.close();
 });
