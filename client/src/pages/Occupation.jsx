@@ -1,8 +1,9 @@
 import "../components/styles/Occupation.css";
+import { OccupationPage } from "../components/styles/OccupationPage";
 
 const Occupation = () => {
   return (
-    <div className="occupation-page">
+    <OccupationPage>
       <div className="navbar">
         <div className="back">{"<"}</div>
         <div className="page-title">Add Occupation</div>
@@ -22,7 +23,7 @@ const Occupation = () => {
           <button>Save & Next</button>
         </div>
       </div>
-    </div>
+    </OccupationPage>
   );
 };
 export default Occupation;
