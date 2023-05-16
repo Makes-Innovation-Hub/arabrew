@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import "../components/styles/Occupation.css";
 import { Global } from "../components/styles/Global";
 import { Navbar } from "../components/styles/Navbar";
@@ -12,14 +13,21 @@ import { Label } from "../components/styles/Label";
 import { ButtonDiv } from "../components/styles/ButtonDiv";
 import { Button } from "../components/styles/Button";
 
-import { useDispatch } from "react-redux";
-import { addUserData } from "../features/userDataSlice";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserDataField } from "../features/userDataSlice";
 
 const Occupation = () => {
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState({
+    value: "",
+    dataField: "occupation",
+  });
 
   const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.userData);
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   return (
     <Global>
@@ -32,7 +40,9 @@ const Occupation = () => {
         <Upper>
           <ContentTitle>Add your Occupation</ContentTitle>
           <Input
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={(e) =>
+              setUserInput({ ...userInput, value: e.target.value })
+            }
             type="text"
             maxLength={30}
             placeholder="Write Here...For example: Doctor"
@@ -40,7 +50,7 @@ const Occupation = () => {
           <Label>30 Character</Label>
         </Upper>
         <ButtonDiv>
-          <Button onClick={() => dispatch(addUserData(userInput))}>
+          <Button onClick={() => dispatch(addUserDataField(userInput))}>
             Save & Next
           </Button>
         </ButtonDiv>
