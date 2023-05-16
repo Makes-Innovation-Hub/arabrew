@@ -10,6 +10,7 @@ export default function Header({leftIcon, midIcon, rightIcon}) {
     
       </HeaderStyle>
           <li>
+            {/* complete the right paths */}
             <NavLink to="/">you are on page 1</NavLink>
             <NavLink to="/Two">click me to try pass to page 2</NavLink>
           </li>

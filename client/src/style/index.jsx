@@ -1,3 +1,3 @@
-import { HeaderStyle } from "./Header_style";
-import { SvgStyle } from "./svg_style";
+import { HeaderStyle } from "./HeaderStyle";
+import { SvgStyle } from "./svgStyle";
 export {HeaderStyle, SvgStyle};

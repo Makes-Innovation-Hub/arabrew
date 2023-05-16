@@ -1,5 +1,3 @@
-
-
 import styled from "styled-components";
 import "./index";
 export const HeaderStyle = styled.div`
@@ -11,12 +9,10 @@ width:100%;
  background:#50924E;
 align-items:center;
 justify-content:space-between;
-font-size: 'poppins';
+font-family: 'poppins';
 font-weight: 500;
-font-size: 1.5rem;
+font-size:  1.125rem;
 color: #FFFFFF;
-
-
 @media (min-width:700px) {
     padding: 3rem;
 }

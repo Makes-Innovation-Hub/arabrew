@@ -1,23 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./components/Root.jsx";
-import Error from "./pages/Error.page.jsx";
-import "./App.css";
-import PageOne from "./pages/PageOne.page.jsx";
-import PageTwo from "./pages/PageTwo.page.jsx";
 function App() {
   const router = createBrowserRouter(
-    [
-      {
+    [{
         path: "/",
         element: <RootLayout />,
-        errorElement: <Error />,
+        errorElement: <div name="errorPage"/>,
         children: [
-          { path: "/", element: <PageOne/> },
-          { path: "/Two", element: <PageTwo/> },
-        
-        ],
-      },
-    ],
+          { path: "/", element: <div name="firstPage"/> },
+          { path: "/Two", element: <div name="secondPage"/> },
+        ],},],
     <require to="/" />
   );
   return <RouterProvider router={router}></RouterProvider>;
