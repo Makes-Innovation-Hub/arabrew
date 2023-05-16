@@ -4,5 +4,5 @@ export const PageTitle = styled.div`
   font-family: "Poppins", sans-serif;
 
   color: #fff;
-  font-size: 200%;
+  font-size: 250%;
 `;

@@ -4,7 +4,7 @@ export const Input = styled.input`
   font-family: "Poppins", sans-serif;
 
   margin-top: 5%;
-  width: 80%;
+  width: 100%;
   padding: 1rem 3rem;
 
   align-self: center;
