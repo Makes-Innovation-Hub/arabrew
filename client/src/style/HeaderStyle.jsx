@@ -3,7 +3,7 @@ import "./index";
 export const HeaderStyle = styled.div`
 margin-top:0; 
 width:100%;
- height:13rem;
+ height:7rem;
  display:flex;
  padding:1rem;
  background:#50924E;
