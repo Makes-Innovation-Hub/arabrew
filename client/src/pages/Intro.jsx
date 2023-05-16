@@ -2,9 +2,10 @@ import { ThemeProvider } from "styled-components"
 import Glass from "../assets/Glass"
 import { Flex } from "../styles/Flex"
 import StyledButton from "../styles/StyledButton"
-import { TitleWrapper } from "../styles/PageLayoutStyles"
 import { StyledTitle } from "../styles/StyledTitle"
 import { StyledSpan } from "../styles/StyledSpan"
+import { StyledMargin } from "../styles/StyledMargin"
+import { StyledParagraph } from "../styles/StyledParahraph"
 
 const theme = {
   colors: {
@@ -18,13 +19,15 @@ const Intro = () => {
     <ThemeProvider theme={theme}>
     <Flex direction="column">
       <Glass/>
+      <StyledMargin direction='vertical' margin='2rem'/>
       <StyledTitle>AraBrew</StyledTitle>
+      <StyledMargin direction='vertical' margin='2rem'/>
       <StyledSpan>Hi!</StyledSpan>
-      <p>
+      <StyledParagraph>
       Please answer some quick<br/>
       question so we can find you<br/>
       relevant people to chat with 
-      </p>
+      </StyledParagraph>
       <StyledButton children={"Lets Do It"}/>
     </Flex>
     </ThemeProvider>
