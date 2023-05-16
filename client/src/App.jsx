@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./components/Root.jsx";
+import Intro from "./pages/Intro";
 function App() {
   const router = createBrowserRouter(
     [{
@@ -7,7 +8,7 @@ function App() {
         element: <RootLayout />,
         errorElement: <div name="errorPage"/>,
         children: [
-          { path: "/", element: <div/> },
+          { path: "/", element: <Intro />, errorElement: <>Error...</> },
         ],},],
     <require to="/" />
   );
