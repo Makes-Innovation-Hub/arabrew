@@ -1,12 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Interests } from "./pages/exports.js";
 import Intro from "./pages/Intro";
-
-const router = createBrowserRouter([
-  { path: "/", element: <Intro />, errorElement: <>Error...</> },
-]);
+import SharedLayout from "./components/SharedLayout.jsx";
+import Error from "./components/Error.jsx";
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Intro />} />
+          <Route path="interests" element={<Interests />} />
+        </Route>
+
+        <Route path="*" element={<Error text="URL Error" />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
