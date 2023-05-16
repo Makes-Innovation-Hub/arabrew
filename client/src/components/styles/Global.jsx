@@ -1,15 +1,11 @@
-* {
+import styled from "styled-components";
+
+export const Global = styled.div`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
 
-html {
   font-size: 62.5%;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
   font-family: "Poppins", sans-serif;
 
   width: 100vw;
@@ -17,4 +13,4 @@ body {
 
   background-color: #50924e;
   color: #fff;
-}
+`;
