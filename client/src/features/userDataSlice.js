@@ -10,7 +10,6 @@ export const userDataSlice = createSlice({
   reducers: {
     addUserDataField: (state, action) => {
       const { dataField, value } = action.payload;
-      console.log("value", value);
       state.userData[dataField] = value;
     },
   },
