@@ -1,13 +1,12 @@
-import "./App.css";
-import PageLayout from "./components/PageLayout/PageLayout";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Intro from "./pages/Intro";
+
+const router = createBrowserRouter([
+  { path: "/", element: <Intro />, errorElement: <>Error...</> },
+]);
 
 function App() {
-  return (
-    <div>
-      <PageLayout />
-      {/* <Chat /> */}
-    </div>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
