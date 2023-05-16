@@ -7,12 +7,11 @@ export default function Header({leftIcon, midIcon, rightIcon}) {
         <div>{leftIcon}</div>
         <div>{midIcon}</div>
         <div>{rightIcon}</div>
-    
-      </HeaderStyle>
+          </HeaderStyle>
           <li>
-            {/* complete the right paths */}
-            <NavLink to="/">you are on page 1</NavLink>
-            <NavLink to="/Two">click me to try pass to page 2</NavLink>
+            {/* complete the right paths from App.jsx */}
+            <NavLink to="/"></NavLink>
+            <NavLink to="/Two"></NavLink>
           </li>
       </>
     );
