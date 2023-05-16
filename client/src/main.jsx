@@ -1,7 +1,6 @@
 "use client";
 import { ErrorBoundary } from "react-error-boundary";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App.jsx";
 import { store } from "./app/store.jsx";
 import { Provider } from "react-redux";
