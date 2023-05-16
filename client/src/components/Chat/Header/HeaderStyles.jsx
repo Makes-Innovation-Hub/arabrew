@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0.5rem 0 0.5rem 1.2rem;
+    padding: 1.2rem 2rem 1.2rem 1.5rem;
     margin: 1rem 0;
   }
 `;
@@ -19,7 +19,7 @@ export const ImageWrapper = styled.div`
     height: 3rem;
     border-radius: 6249.938rem;
     overflow: hidden;
-    margin: 0 0.6rem;
+    margin: 0 1.5rem 0 1rem;
     background-color: #ffffff;
   }
 `;

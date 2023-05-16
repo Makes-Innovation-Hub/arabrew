@@ -13,7 +13,7 @@ export default function Header() {
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </ImageWrapper>
-      <label style={{ color: "#FFFFFF", fontWeight: "800" }}>John Doe</label>
+      <label style={{ color: "#FFFFFF", fontWeight: "1000" }}>John Doe</label>
     </HeaderWrapper>
   );
 }
