@@ -2,6 +2,7 @@
   "name": "arabrew",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "./server/server.js",
   "type": "module",
   "scripts": {
