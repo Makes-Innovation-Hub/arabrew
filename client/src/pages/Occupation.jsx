@@ -12,7 +12,15 @@ import { Label } from "../components/styles/Label";
 import { ButtonDiv } from "../components/styles/ButtonDiv";
 import { Button } from "../components/styles/Button";
 
+import { useDispatch } from "react-redux";
+import { addUserData } from "../features/userDataSlice";
+import { useState } from "react";
+
 const Occupation = () => {
+  const [userInput, setUserInput] = useState("");
+
+  const dispatch = useDispatch();
+
   return (
     <Global>
       <Navbar>
@@ -24,6 +32,7 @@ const Occupation = () => {
         <Upper>
           <ContentTitle>Add your Occupation</ContentTitle>
           <Input
+            onChange={(e) => setUserInput(e.target.value)}
             type="text"
             maxLength={30}
             placeholder="Write Here...For example: Doctor"
@@ -31,7 +40,9 @@ const Occupation = () => {
           <Label>30 Character</Label>
         </Upper>
         <ButtonDiv>
-          <Button onClick={""}>Save & Next</Button>
+          <Button onClick={() => dispatch(addUserData(userInput))}>
+            Save & Next
+          </Button>
         </ButtonDiv>
       </Content>
     </Global>
