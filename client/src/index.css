@@ -1,5 +1,8 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  @font-face {
+    font-family: "Poppins";
+    src: url("./fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  }
   line-height: 1.5;
   font-weight: 400;
 
