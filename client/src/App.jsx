@@ -7,8 +7,7 @@ function App() {
         element: <RootLayout />,
         errorElement: <div name="errorPage"/>,
         children: [
-          { path: "/", element: <div name="firstPage"/> },
-          { path: "/Two", element: <div name="secondPage"/> },
+          { path: "/", element: <div/> },
         ],},],
     <require to="/" />
   );
