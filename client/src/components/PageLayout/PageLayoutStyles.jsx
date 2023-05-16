@@ -26,8 +26,6 @@ export const Container = styled.div`
   @media (min-width: 350px) and (max-width: 700px) {
     background-color: #fafafa;
     border-radius: 2.5rem 2.5rem 0 0;
-    /* display: flex; */
-    /* flex-direction: column; */
     flex: 1 2 20%;
   }
 `;
@@ -49,3 +47,7 @@ export const PageTitle = styled.label`
     font-size: 1.125rem;
   }
 `;
+
+// --------------------------------------------------------
+
+// additional styles go here, do not change the above styles unless necessary

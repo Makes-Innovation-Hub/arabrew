@@ -17,9 +17,13 @@ export default function PageLayout() {
         <TitleWrapper>
           <PageTitle>Add Age</PageTitle>
         </TitleWrapper>
-        <div style={{ width: "20%" }}></div>
+        <div style={{ width: "20%" }}>
+          {/*  here you can add code for additional elements in the header */}
+        </div>
       </HeaderWrapper>
-      <Container></Container>
+      <Container>
+        {/* here you can add code for the container page */}
+      </Container>
     </BackLayout>
   );
 }
