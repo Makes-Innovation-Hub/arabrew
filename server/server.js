@@ -8,9 +8,9 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
-
 dotenv.config({ path: __dirname + "/.env" });
+
+const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
