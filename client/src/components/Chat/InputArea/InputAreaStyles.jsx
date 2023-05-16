@@ -23,6 +23,14 @@ export const RecommendedButton = styled.div`
     /* flex: 0.4; */
   }
 `;
+export const SendButton = styled.div`
+  @media (min-width: 350px) and (max-width: 700px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+`;
 
 export const InputComponent = styled.input`
   border-radius: 43px;

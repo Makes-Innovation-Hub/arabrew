@@ -15,9 +15,10 @@ export const HeaderWrapper = styled.div`
   @media (min-width: 350px) and (max-width: 700px) {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 0.5rem 0 0.5rem 1.2rem;
+    justify-content: space-between;
+    padding: 1.2rem 2rem 1.2rem 1.5rem;
     margin: 1rem 0;
+    box-sizing: border-box;
   }
 `;
 
@@ -28,5 +29,23 @@ export const Container = styled.div`
     /* display: flex; */
     /* flex-direction: column; */
     flex: 1 2 20%;
+  }
+`;
+
+export const TitleWrapper = styled.div`
+  @media (min-width: 350px) and (max-width: 700px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 50%;
+  }
+`;
+
+export const PageTitle = styled.label`
+  @media (min-width: 350px) and (max-width: 700px) {
+    font-weight: 1000;
+    color: #ffffff;
+    font-size: 1.125rem;
   }
 `;

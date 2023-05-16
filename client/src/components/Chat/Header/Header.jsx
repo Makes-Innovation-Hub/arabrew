@@ -1,12 +1,12 @@
-import { MdArrowBackIosNew } from "react-icons/md";
 import profileImg from "../../../assets/prf.webp";
 import { HeaderWrapper } from "./HeaderStyles";
 import { ImageWrapper } from "./HeaderStyles";
+import arrowIcon from "../../../assets/arrow.svg";
 
 export default function Header() {
   return (
     <HeaderWrapper>
-      <MdArrowBackIosNew size="1.5rem" color="#FFFFFF" />
+      <img src={arrowIcon} />
       <ImageWrapper>
         <img
           src={profileImg}

@@ -1,10 +1,11 @@
-import { IoSend } from "react-icons/io5";
-import { FiCoffee } from "react-icons/fi";
+import CoffeeMug from "../../../assets/CoffeeMugWithGreenBG.svg";
+import PaperPlane from "../../../assets/PaperPlane.svg";
 import {
   InputAreaContainer,
   RecommendedButton,
   InputComponent,
   InputWrapper,
+  SendButton,
 } from "./InputAreaStyles";
 
 export default function InputArea() {
@@ -12,15 +13,12 @@ export default function InputArea() {
     <InputWrapper>
       <InputAreaContainer>
         <RecommendedButton>
-          <FiCoffee size="2rem" color="white" />
+          <img src={CoffeeMug} />
         </RecommendedButton>
         <InputComponent placeholder="Start typing..." />
-        <IoSend
-          style={{
-            color: "#276749",
-          }}
-          size="1.5rem"
-        />
+        <SendButton>
+          <img src={PaperPlane} />
+        </SendButton>
       </InputAreaContainer>
     </InputWrapper>
   );
