@@ -12,6 +12,7 @@ import { Input } from "../components/styles/Input";
 import { Label } from "../components/styles/Label";
 import { ButtonDiv } from "../components/styles/ButtonDiv";
 import { Button } from "../components/styles/Button";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { addUserDataField } from "../features/userDataSlice";
@@ -21,6 +22,7 @@ const Occupation = () => {
     value: "",
     dataField: "occupation",
   });
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -45,7 +47,12 @@ const Occupation = () => {
           <Label>30 Character</Label>
         </Upper>
         <ButtonDiv>
-          <Button onClick={() => dispatch(addUserDataField(userInput))}>
+          <Button
+            onClick={() => {
+              dispatch(addUserDataField(userInput));
+              navigate("/bio");
+            }}
+          >
             Save & Next
           </Button>
         </ButtonDiv>
