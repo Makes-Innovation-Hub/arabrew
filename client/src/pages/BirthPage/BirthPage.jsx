@@ -6,7 +6,7 @@ import {
   Container,
 } from "../../components/PageLayout/PageLayoutStyles.jsx";
 import { Flex } from "../../components/styles/Flex.jsx";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -74,7 +74,32 @@ export default function BirthPage() {
               margin: "0.5rem 0",
             }}
           >
-            <select>
+            <select
+              style={{
+                appearance: "none",
+                width: "18rem",
+                //  -moz-appearance: "none",
+                // -webkit-appearance: "none";
+                background: "transparent",
+                padding: "0.55rem",
+                border: "1px solid #ccc",
+                borderRadius: "0.5rem",
+                height: "5rem",
+                fontSize: "16px",
+                lineHeight: "1.5",
+                textAlign: "center",
+                margin: "5rem 0",
+              }}
+            >
+              <option
+                value=""
+                disabled
+                selected
+                hidden
+                style={{ color: "rgba(124, 124, 124, 0.5)" }}
+              >
+                Year
+              </option>
               {years.map((year) => (
                 <option key={year} value={year}>
                   {year}
