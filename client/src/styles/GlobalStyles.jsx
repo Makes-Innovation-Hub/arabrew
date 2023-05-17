@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 @font-face {
     font-family: "Poppins";
-    src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+    src: url("/src/assets/fonts/Poppins-Medium.ttf") format("truetype");
   }
 
   * {
