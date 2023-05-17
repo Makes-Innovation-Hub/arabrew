@@ -52,7 +52,7 @@ export default function BioPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>Add your year of Birth</InstructionPrompt>
+            <InstructionPrompt>Add your Bio Description</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <StyledTextArea
