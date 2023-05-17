@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../../components/styles/Occupation.css";
 import { Global } from "../../components/styles/Global.jsx";
 import { Navbar } from "../../components/styles/Navbar.jsx";
@@ -24,10 +24,6 @@ const Occupation = () => {
   });
   const { value } = userInput;
   const { occupation } = useSelector((state) => state.userRegister);
-
-  useEffect(() => {
-    console.log(occupation);
-  }, [occupation]);
 
   return (
     <Global>

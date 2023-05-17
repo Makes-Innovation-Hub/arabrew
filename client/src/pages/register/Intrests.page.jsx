@@ -63,16 +63,16 @@ const Interests = () => {
     });
   };
 
+  const handleSave = () => {
+    dispatch(addDetail(selectedInterests));
+  };
   useEffect(() => {
-    console.log(interestsNumber);
     if (interestsNumber === 5) {
       return setDisableSaveBtn(false);
     }
     return setDisableSaveBtn(true);
   }, [interestsNumber]);
-  useEffect(() => {
-    console.log(interests);
-  }, [interests]);
+
   return (
     <Global>
       <Navbar>
@@ -117,10 +117,7 @@ const Interests = () => {
         </div>
 
         <ButtonDiv>
-          <Button
-            onClick={() => dispatch(addDetail(selectedInterests))}
-            disabled={disableSaveBtn}
-          >
+          <Button onClick={handleSave} disabled={disableSaveBtn}>
             Save & Next
           </Button>
         </ButtonDiv>
