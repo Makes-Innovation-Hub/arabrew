@@ -20,10 +20,10 @@ export default function MessageBox({ message }) {
       //     default: Date.now
       //   }
       // });
-      // could be sorted by time stamp before display -not added here-
       style={{
         padding: "0.5rem",
         margin: "1rem",
+        boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.15)",
         width: "70%",
         alignSelf: message.sender === "User1" ? "flex-end" : "flex-start",
         borderRadius:
@@ -34,8 +34,7 @@ export default function MessageBox({ message }) {
         color: message.sender === "User1" ? "white" : "#3D4260",
       }}
     >
-      <p>{`${message.sender}: ${message.message}`}</p>
-      {/* <p>{message.timestamp}</p> */}
+      <p>{`${message.message}`}</p>
     </div>
   );
 }
