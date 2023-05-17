@@ -32,6 +32,9 @@
 .env file should be created with this environment variables:
 
 ```
+PORT=<YOUR_PORT>
+NODE_ENV=<YOUR_NODE_ENV>
+WEB_SOCKET_PORT=<YOUR_WEB_SOCKET_PORT>
 MONGO_URI=<YOUR_MONGO_DB_CONNECTION_STRING>
 OPEN_AI_API_KEY=<YOUR_OPEN_AI_API_KEY>
 ```

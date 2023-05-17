@@ -1,6 +1,7 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
@@ -14,6 +15,7 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const rooms = {};
 
@@ -38,7 +40,11 @@ wss.on("connection", (ws) => {
   };
 });
 
-const PORT = process.env.PORT || 5005;
+app.post("/user-data", async (req, res) => {
+  const userData = req.body;
+});
+
+const PORT = process.env.PORT || 5010;
 
 const server = app.listen(
   PORT,
