@@ -6,10 +6,9 @@ import { store } from "./app/store.jsx";
 import { Provider } from "react-redux";
 import GlobalStyles from "./styles/GlobalStyles.jsx";
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GlobalStyles/>
+    <GlobalStyles />
     <Provider store={store}>
       <App />
     </Provider>

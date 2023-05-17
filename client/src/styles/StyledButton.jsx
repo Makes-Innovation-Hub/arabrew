@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Button = styled.button`
   border-radius: 0.6rem;
@@ -8,7 +8,7 @@ export const Button = styled.button`
   height: 5rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
   cursor: pointer;
-  background-color:#50924E;
+  background-color: #50924e;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -17,19 +17,16 @@ export const Button = styled.button`
   font-style: italic;
   transition: background-color 0.3s;
 
-  &:hover{
+  &:hover {
     background-color: #396d37;
   }
-  
-;
-`
+`;
 
-
-const StyledButton = ({to, children, ...rest}) => {
+const StyledButton = ({ to, children, ...rest }) => {
   return (
     <Link to={to}>
       <Button {...rest}>{children}</Button>
     </Link>
-  )
-}
-export default StyledButton
+  );
+};
+export default StyledButton;
