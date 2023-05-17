@@ -1,0 +1,6 @@
+:root{
+  @font-face {
+    font-family: "Poppins";
+    src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+  }
+}

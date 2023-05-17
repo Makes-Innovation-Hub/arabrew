@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+@font-face {
+    font-family: "Poppins";
+    src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+  }
 
   * {
     margin: 0;
@@ -9,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    
     font-size: 62.5%; 
     
   }

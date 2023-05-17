@@ -2,7 +2,7 @@ import Intro from "./pages/Intro";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Intro/>, errorElement: <>Error...</> },
+  { path: "/intro", element: <Intro/>, errorElement: <>Error...</> },
 ]);
 
 function App() {
