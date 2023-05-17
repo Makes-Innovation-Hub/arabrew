@@ -1,8 +1,9 @@
+import Intro from "./pages/Intro";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Occupation from "./pages/Occupation";
 
 const router = createBrowserRouter([
-  { path: "/occupation", element: <Occupation /> },
+  { path: "/intro", element: <Intro/>, errorElement: <>Error...</> },
 ]);
 
 function App() {
