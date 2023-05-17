@@ -7,12 +7,18 @@ import BioPage from "./pages/BioPage/BioPage";
 // import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NationalityPage from "./pages/NationalityPage/NationalityPage";
 
 const router = createBrowserRouter([
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
+  {
+    path: "/nationalityPage",
+    element: <NationalityPage />,
+    errorElement: <>Error...</>,
+  },
 ]);
 
 function App() {
