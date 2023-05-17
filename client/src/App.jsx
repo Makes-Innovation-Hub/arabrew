@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Intro />} />
+          <Route index element={<h1>LANDING PAGE</h1>} />
           <Route path="interests" element={<Interests />} />
           <Route path="occupation" element={<Occupation />} />
         </Route>
