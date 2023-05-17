@@ -1,15 +1,15 @@
 export const selectedBtn = {
   color: "white",
-  fontSize: "0.9rem",
+  fontSize: "1.2rem",
   backgroundColor: "#50924e",
   borderRadius: "4rem",
   border: "none",
-  padding: "1rem",
-  margin: "0 0.3rem",
+  padding: "0.7rem",
+  margin: "0.2rem 0.3rem",
 };
 
 export const listBtn = {
-  fontSize: "0.9rem",
+  fontSize: "1.2rem",
   backgroundColor: "#EDF2F7",
   borderRadius: "4rem",
   border: "none",
@@ -27,4 +27,5 @@ export const selectedContainer = {
   flexDirection: "row",
   justifyContent: "center",
   lineHeight: "1.6rem",
+  flexWrap: "wrap",
 };

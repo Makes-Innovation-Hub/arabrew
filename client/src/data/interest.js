@@ -18,7 +18,7 @@ export const interestsList = [
   "🎥 Movies",
   "🎧 Music",
   "🏃‍♂️ Running",
-  "✈️ Traveling",
+  "🚅 Traveling",
   "🐟 Fishing",
   "⚽️ Football",
   "🏀 Basketball",
@@ -27,7 +27,7 @@ export const interestsList = [
   "🪵 DIY",
   "📮 Stamps",
   "🎲 Board games",
-  "🦜 Bird-watching",
+  "🦜 Bird-fan",
   "🧵 Sewing",
-  "🫂 Volunteering",
+  "🫂 Volunteer",
 ];

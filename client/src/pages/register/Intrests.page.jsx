@@ -81,7 +81,14 @@ const Interests = () => {
         <EmptyDiv></EmptyDiv>
       </Navbar>
       <Content>
-        <div style={{ display: "flex", marginTop: "1 rem" }}>
+        <div
+          style={{
+            display: "flex",
+            margin: "3 rem 0",
+            fontSize: "0.8rem",
+            fontWeight: "500",
+          }}
+        >
           <ContentTitle>choose five interests </ContentTitle>
           <div style={{ width: "10rem" }} />
           <ContentTitle>{interestsNumber} of 5 </ContentTitle>
