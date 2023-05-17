@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import Glass from "../assets/Glass";
-// import { Flex } from "../components/styles/Flex"
+import { Flex } from "../components/styles/Flex";
 import { PagesStyle } from "../style";
 const theme = {
   colors: {},
@@ -10,9 +10,11 @@ const theme = {
 const Intro = () => {
   return (
     <ThemeProvider theme={theme}>
-      <PagesStyle>
-        <Glass />
-      </PagesStyle>
+      <Flex>
+        <PagesStyle>
+          <Glass />
+        </PagesStyle>
+      </Flex>
     </ThemeProvider>
   );
 };
