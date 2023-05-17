@@ -10,8 +10,17 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
+import { useState } from "react";
 
 export default function BioPage() {
+  const [text, setText] = useState("");
+
+  const handleChange = (event) => {
+    const inputValue = event.target.value;
+    setText(inputValue);
+  };
+  const characterCount = text.length;
+
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -47,10 +56,14 @@ export default function BioPage() {
           </Flex>
           <BioStyledDiv>
             <StyledTextArea
+              value={text}
+              onChange={handleChange}
               placeholder="Write here...For example: I'm John Doe and Cooking for me is a way of living."
               maxLength={500}
             ></StyledTextArea>
-            <StyledNumberOfCharLabel>500 character</StyledNumberOfCharLabel>
+            <StyledNumberOfCharLabel>
+              {500 - characterCount} character
+            </StyledNumberOfCharLabel>
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton>
