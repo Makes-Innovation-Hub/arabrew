@@ -1,5 +1,5 @@
-const dotenv = require("dotenv");
-const { Configuration, OpenAIApi } = require("openai");
+import dotenv from "dotenv";
+import { Configuration, OpenAIApi } from "openai";
 
 dotenv.config({ path: __dirname + "/../.env" });
 
