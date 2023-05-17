@@ -4,10 +4,12 @@ import Chat from "./pages/Chat/Chat";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Occupation from "./pages/Occupation";
+import BioPage from "./pages/BioPage/BioPage";
 
 const router = createBrowserRouter([
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
 ]);
 
 function App() {
