@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
     height: 5rem;
     padding: 1rem 0.5rem 1rem 0.5rem;
     cursor: pointer;
-    background-color:#50924E;
+    background-color: ${({bg}) => bg || "#50924E"};
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -18,7 +18,7 @@ import { Link } from "react-router-dom"
     transition: background-color 0.3s;
 
     &:hover{
-      background-color: #396d37;
+      background-color: ${({hoverBg}) => hoverBg || "#396d37"};
     }
     
   ;

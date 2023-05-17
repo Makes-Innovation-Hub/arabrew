@@ -33,23 +33,22 @@ import { addUserDataField } from "../features/userDataSlice"
             <Flex>
               <LanguageIcon letter="ع"/>
               <StyledMargin direction="horizontal" margin="0.9rem"/>
-            <StyledLanguageButton onClick={() => setLanguage({...language, value: "AR"})}>Arabic</StyledLanguageButton>
+            <StyledLanguageButton bg={language.value === "AR" ? "#50924E" : "#FFFFFF"} color={language.value === "AR" ? "#FFFFFF" : "#000000"} onClick={() => setLanguage({...language, value: "AR"})}>Arabic</StyledLanguageButton>
             </Flex>
             <StyledMargin direction="vertical" margin="3rem"/>
             <Flex>
               <LanguageIcon letter="ע"/>
               <StyledMargin direction="horizontal" margin="0.9rem"/>
-            <StyledLanguageButton onClick={() => setLanguage({...language, value: "HE"})}>Hebrew</StyledLanguageButton>
+            <StyledLanguageButton bg={language.value === "HE" ? "#50924E" : "#FFFFFF"} color={language.value === "HE" ? "#FFFFFF" : "#000000"} onClick={() => setLanguage({...language, value: "HE"})}>Hebrew</StyledLanguageButton>
             </Flex>
-            <StyledButton to="/intro" onClick={() => {
-              console.log(language)
+            <StyledButton to={language.value ? "/interests" : null} onClick={() => {
               if(!language.value){
                 return
               }
               dispatch(addUserDataField(language))
               setLanguage({...language, value: ""})
             }
-            } children={"Save & Next"}></StyledButton>
+            } bg={language.value ? "#50924E" : "#d7ddd6"} hoverBg={language.value ? "#396d37" : "#d7ddd6"} children={"Save & Next"}></StyledButton>
         </StyledPage>
 
     </div>
