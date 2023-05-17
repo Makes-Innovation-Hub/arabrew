@@ -10,7 +10,7 @@ import { StyledParagraph } from "../styles/StyledParahraph"
 
 const Intro = () => {
   return (
-    <Flex direction="column">
+    <Flex direction="column" height="100vh">
       <Glass/>
       <StyledMargin direction='vertical' margin='2rem'/>
       <StyledTitle>AraBrew</StyledTitle>

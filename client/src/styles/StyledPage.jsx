@@ -1,7 +1,7 @@
 import styled from "styled-components";
 // import "./index";
-export const StyledPage = styled.div`
-  height: 100vh;
+export const StyledPage = styled.div`  
+  height: ${({height}) => height};
   display: flex;
   justify-content: center;
   align-items: center;
