@@ -1,22 +1,22 @@
-import {
-  BackLayout,
-  HeaderWrapper,
-  TitleWrapper,
-  PageTitle,
-  Container,
-} from "../../components/PageLayout/PageLayoutStyles.jsx";
-import { Flex } from "../../components/styles/Flex.jsx";
-import React, { useState, useEffect, useRef } from "react";
+import { BackLayout } from "../../styles/PageLayout/BackLayout.jsx";
+import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
+import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
+import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
+import { Container } from "../../styles/PageLayout/Container.jsx";
+import { Flex } from "../../styles/Flex.jsx";
+import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
+import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
+import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
+import { StyledDropDown } from "../../styles/BirthPage/StyledDropDown.jsx";
+import { useState, useEffect } from "react";
 
-export default function BirthPage() {
+export default function BioPage() {
   const [startYear, setStartYear] = useState(1980);
-  const [endYear, setEndYear] = useState(new Date().getFullYear());
   const [years, setYears] = useState([]);
-
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const yearsArray = [];
-    for (let year = startYear; year <= currentYear; year++) {
+    for (let year = startYear; year <= currentYear - 4; year++) {
       yearsArray.push(year);
     }
     setYears(yearsArray);
@@ -38,11 +38,8 @@ export default function BirthPage() {
       </HeaderWrapper>
       <Container>
         {/* here you can add code for the container page */}
-        <div
+        <Flex
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             flexDirection: "column",
             height: "100%",
           }}
@@ -54,50 +51,11 @@ export default function BirthPage() {
               justifyContent: "flex-start",
             }}
           >
-            <h3
-              style={{
-                padding: "2rem 0 2rem 2rem",
-                boxSizing: "border-box",
-                fontSize: "2.06rem",
-                fontWeight: "1000",
-              }}
-            >
-              Add your year of Birth
-            </h3>
+            <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
           </Flex>
-          <Flex
-            style={{
-              height: "70%",
-              width: "100%",
-              justifyContent: "flex-start",
-              flexDirection: "column",
-              margin: "0.5rem 0",
-            }}
-          >
-            <select
-              style={{
-                appearance: "none",
-                width: "18rem",
-                //  -moz-appearance: "none",
-                // -webkit-appearance: "none";
-                background: "transparent",
-                padding: "0.55rem",
-                border: "1px solid #ccc",
-                borderRadius: "0.5rem",
-                height: "5rem",
-                fontSize: "16px",
-                lineHeight: "1.5",
-                textAlign: "center",
-                margin: "5rem 0",
-              }}
-            >
-              <option
-                value=""
-                disabled
-                selected
-                hidden
-                style={{ color: "rgba(124, 124, 124, 0.5)" }}
-              >
+          <BioStyledDiv>
+            <StyledDropDown>
+              <option value="" disabled selected hidden>
                 Year
               </option>
               {years.map((year) => (
@@ -105,23 +63,14 @@ export default function BirthPage() {
                   {year}
                 </option>
               ))}
-            </select>
-          </Flex>
+            </StyledDropDown>
+          </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <button
-              style={{
-                width: "90%",
-                height: "5rem",
-                margin: "0 auto 0.5rem auto",
-                backgroundColor: "#50924e",
-                borderRadius: "0.6rem",
-                border: "none",
-              }}
-            >
+            <StyledSaveAndNextButton>
               <i>Save & Next</i>
-            </button>
+            </StyledSaveAndNextButton>
           </Flex>
-        </div>
+        </Flex>
       </Container>
     </BackLayout>
   );
