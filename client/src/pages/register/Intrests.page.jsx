@@ -74,7 +74,7 @@ const Interests = () => {
   }, [interestsNumber]);
 
   return (
-    <Global>
+    <div>
       <Navbar>
         <Back>{"<"}</Back>
         <PageTitle>Add Interests</PageTitle>
@@ -84,7 +84,7 @@ const Interests = () => {
         <div
           style={{
             display: "flex",
-            margin: "3 rem 0",
+            margin: "3rem 0",
             fontSize: "0.8rem",
             fontWeight: "500",
           }}
@@ -129,7 +129,7 @@ const Interests = () => {
           </Button>
         </ButtonDiv>
       </Content>
-    </Global>
+    </div>
   );
 };
 
