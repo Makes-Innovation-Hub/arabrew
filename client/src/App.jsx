@@ -12,6 +12,11 @@ function App() {
         errorElement: <div name="errorPage" />,
         children: [
           { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
+          {
+            path: "/occupation",
+            element: <Occupation />,
+            errorElement: <>Error...</>,
+          },
         ],
       },
     ],
