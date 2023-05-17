@@ -7,7 +7,7 @@ const ws = new WebSocket(`ws://localhost:${port}`);
 const Chat = () => {
   const [msgText, setMsgText] = useState("");
 
-  //!will be refactored and replaced when rtk query is configured
+  //!MUST be refactored and replaced when rtk query and chatschema is configured
   const [messages, setMessages] = useState([]);
 
   const handleChange = (e) => setMsgText(e.target.value);
@@ -49,6 +49,8 @@ const Chat = () => {
         <input type="text" onChange={handleChange} value={msgText} />
         <button type="submit">Send Message</button>
       </form>
+
+      {/* The key={Math.random()} MUST be refactored and replaced when rtk query and chatschema is configuredwith chat.id  */}
       {messages.map((message) => (
         <h1 key={Math.random()}>{message}</h1>
       ))}
