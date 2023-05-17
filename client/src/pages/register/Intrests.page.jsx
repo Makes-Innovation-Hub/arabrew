@@ -2,9 +2,28 @@ import React, { useState, useEffect } from "react";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+
+import { Global } from "../../components/styles/Global.jsx";
+import { Navbar } from "../../components/styles/Navbar.jsx";
+import { Back } from "../../components/styles/Back.jsx";
+import { PageTitle } from "../../components/styles/PageTitle.jsx";
+import { EmptyDiv } from "../../components/styles/EmptyDiv.jsx";
+import { Content } from "../../components/styles/Content.jsx";
+import { Upper } from "../../components/styles/Upper.jsx";
+import { ContentTitle } from "../../components/styles/ContentTitle.jsx";
+import { Input } from "../../components/styles/Input.jsx";
+import { Label } from "../../components/styles/Label.jsx";
+import { ButtonDiv } from "../../components/styles/ButtonDiv.jsx";
+import { Button } from "../../components/styles/Button.jsx";
+import {
+  selectedBtn,
+  listBtn,
+  selectedContainer,
+} from "../../components/styles/Interests.style.jsx";
 const Interests = () => {
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
+  const [disableSaveBtn, setDisableSaveBtn] = useState(true);
   const [selectedInterests, setSelectedInterests] = useState({
     field: "interests",
     value: [],
@@ -16,14 +35,16 @@ const Interests = () => {
 
   const addInterests = (newInterest) => {
     let prevInterests = value;
-    const isSelected = prevInterests.indexOf(newInterest);
+    const newInterestNoEmoji = newInterest.split(" ")[1];
+    const isSelected = prevInterests.indexOf(newInterestNoEmoji);
     if (isSelected !== -1) {
       return;
     }
     if (value.length === 5) {
       return setIsError(true);
     }
-    const newInterestsArr = [...value, newInterest];
+
+    const newInterestsArr = [...value, newInterestNoEmoji];
     setSelectedInterests({
       ...selectedInterests,
       value: newInterestsArr,
@@ -43,48 +64,68 @@ const Interests = () => {
   };
 
   useEffect(() => {
+    console.log(interestsNumber);
+    if (interestsNumber === 5) {
+      return setDisableSaveBtn(false);
+    }
+    return setDisableSaveBtn(true);
+  }, [interestsNumber]);
+  useEffect(() => {
     console.log(interests);
   }, [interests]);
-
   return (
-    <div>
-      <h1>choose five interests {interestsNumber} of 5</h1>
-      {isError && (
-        <h3 style={{ color: "red" }}>* max Interests Number, were selected</h3>
-      )}
-      <div>
-        {selectedInterests.value.map((interest) => (
-          <button
-            style={{
-              backgroundColor: "green",
-              fontSize: "2rem",
-              borderRadius: "4rem",
-              padding: "0.4rem",
-              border: "none",
-              margin: "1rem",
-            }}
-            key={interest}
-            onClick={() => removeInterest(interest)}
-          >
-            {interest} X
-          </button>
-        ))}
-      </div>
-      <div>
-        {interestsList.map((interest) => (
-          <span key={interest}>
-            <button onClick={() => addInterests(interest)}>{interest}</button>
-            &nbsp;
-          </span>
-        ))}
-      </div>
-      <br />
-      <br />
+    <Global>
+      <Navbar>
+        <Back>{"<"}</Back>
+        <PageTitle>Add Interests</PageTitle>
+        <EmptyDiv></EmptyDiv>
+      </Navbar>
+      <Content>
+        <div style={{ display: "flex", marginTop: "1 rem" }}>
+          <ContentTitle>choose five interests </ContentTitle>
+          <div style={{ width: "10rem" }} />
+          <ContentTitle>{interestsNumber} of 5 </ContentTitle>
+        </div>
 
-      <button onClick={() => dispatch(addDetail(selectedInterests))}>
-        save & continue
-      </button>
-    </div>
+        {isError && (
+          <h1 style={{ color: "red" }}>
+            * max Interests Number, were selected
+          </h1>
+        )}
+
+        <div style={selectedContainer}>
+          {value.map((interest) => (
+            <button
+              style={selectedBtn}
+              key={interest}
+              onClick={() => removeInterest(interest)}
+            >
+              {interest}
+              <span> X</span>
+            </button>
+          ))}
+        </div>
+
+        <div>
+          {interestsList.map((interest) => (
+            <span key={interest}>
+              <button style={listBtn} onClick={() => addInterests(interest)}>
+                {interest}
+              </button>
+            </span>
+          ))}
+        </div>
+
+        <ButtonDiv>
+          <Button
+            onClick={() => dispatch(addDetail(selectedInterests))}
+            disabled={disableSaveBtn}
+          >
+            Save & Next
+          </Button>
+        </ButtonDiv>
+      </Content>
+    </Global>
   );
 };
 
