@@ -1,4 +1,4 @@
-import { SvgStyle } from "../style";
+import { SvgStyle } from "../styles";
 export default function HamburgerSvg() {
   return (
     <SvgStyle
