@@ -1,4 +1,3 @@
-import { ThemeProvider } from "styled-components"
 import Glass from "../assets/Glass"
 import { Flex } from "../styles/Flex"
 import StyledButton from "../styles/StyledButton"
@@ -8,16 +7,9 @@ import { StyledDiv } from "../styles/StyledDiv"
 import { StyledMargin } from "../styles/StyledMargin"
 import { StyledParagraph } from "../styles/StyledParahraph"
 
-const theme = {
-  colors: {
-
-  },
-  mobile: "798px"
-}
 
 const Intro = () => {
   return (
-    <ThemeProvider theme={theme}>
     <Flex direction="column">
       <Glass/>
       <StyledMargin direction='vertical' margin='2rem'/>
@@ -31,9 +23,8 @@ const Intro = () => {
       relevant people to chat with 
       </StyledParagraph>
       </StyledDiv>
-      <StyledButton children={"Lets Do It"}/>
+      <StyledButton to="/lang" children={"Lets Do It"}/>
     </Flex>
-    </ThemeProvider>
   )
 }
 export default Intro
