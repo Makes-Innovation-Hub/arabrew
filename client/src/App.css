@@ -1,12 +1,10 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"); */
-
-@font-face {
+/* @font-face {
   font-family: "Poppins";
   src: url("./assets/Poppins-Light.ttf");
 }
 
 * {
-  /* outline: dotted; */
+  outline: dotted;
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -16,4 +14,4 @@
 #root {
   height: 100%;
   width: 100%;
-}
+} */
