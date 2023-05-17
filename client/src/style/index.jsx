@@ -1,3 +1,4 @@
 import { HeaderStyle } from "./HeaderStyle";
 import { SvgStyle } from "./svgStyle";
-export {HeaderStyle, SvgStyle};
+import { PagesStyle } from "./PagesStyle";
+export { HeaderStyle, SvgStyle, PagesStyle };

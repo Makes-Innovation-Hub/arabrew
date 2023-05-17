@@ -1,21 +1,19 @@
-import { ThemeProvider } from "styled-components"
-import Glass from "../assets/Glass"
-import { Flex } from "../components/styles/Flex"
-
+import { ThemeProvider } from "styled-components";
+import Glass from "../assets/Glass";
+// import { Flex } from "../components/styles/Flex"
+import { PagesStyle } from "../style";
 const theme = {
-  colors: {
-
-  },
-  mobile: "798px"
-}
+  colors: {},
+  mobile: "798px",
+};
 
 const Intro = () => {
   return (
     <ThemeProvider theme={theme}>
-    <Flex>
-      <Glass/>
-    </Flex>
+      <PagesStyle>
+        <Glass />
+      </PagesStyle>
     </ThemeProvider>
-  )
-}
-export default Intro
+  );
+};
+export default Intro;
