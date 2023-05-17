@@ -1,6 +1,6 @@
 import chats from "../InputArea/chatsDummyDataGenerator.js";
-import { ChatsContainer } from "./ChatDisplayAreaStyles.jsx";
 import MessageBox from "../MessageBox/MessageBox.jsx";
+import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
 
 export default function ChatDisplayArea() {
   return (

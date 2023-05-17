@@ -1,7 +1,7 @@
 import profileImg from "../../../assets/prf.webp";
-import { HeaderWrapper } from "./HeaderStyles";
-import { ImageWrapper } from "./HeaderStyles";
 import arrowIcon from "../../../assets/arrow.svg";
+import { HeaderWrapper } from "../../../styles/Chat/Header/HeaderWrapper";
+import { ImageWrapper } from "../../../styles/Chat/Header/ImageWrapper";
 
 export default function Header() {
   return (
