@@ -18,8 +18,8 @@ app.use(express.json());
 app.use(cors());
 
 const rooms = {};
-
 const clients = [];
+const usersMap = new Map();
 
 wss.on("connection", (ws) => {
   clients.push({ room: ws.id, client: ws });
@@ -42,6 +42,7 @@ wss.on("connection", (ws) => {
 
 app.post("/user-data", async (req, res) => {
   const userData = req.body;
+  usersMap.set(userData.name, userData);
 });
 
 const PORT = process.env.PORT || 5010;
