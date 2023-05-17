@@ -1,11 +1,5 @@
-import Glass from "../assets/Glass"
-import { Flex } from "../styles/Flex"
-import StyledButton from "../styles/StyledButton"
-import { StyledTitle } from "../styles/StyledTitle"
-import { StyledSpan } from "../styles/StyledSpan"
-import { StyledDiv } from "../styles/StyledDiv"
-import { StyledMargin } from "../styles/StyledMargin"
-import { StyledParagraph } from "../styles/StyledParahraph"
+import { Glass } from "../assets"
+import { Flex, StyledButton, StyledTitle, StyledSpan, StyledDiv, StyledMargin, StyledParagraph  } from "../styles"
 
 
 const Intro = () => {
