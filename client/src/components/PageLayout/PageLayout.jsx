@@ -1,10 +1,9 @@
-import {
-  BackLayout,
-  HeaderWrapper,
-  TitleWrapper,
-  PageTitle,
-  Container,
-} from "./PageLayoutStyles.jsx";
+import { BackLayout } from "../../styles/PageLayout/BackLayout.jsx";
+import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
+import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
+import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
+import { Container } from "../../styles/PageLayout/Container.jsx";
+
 import arrowIcon from "../../assets/arrow.svg";
 
 export default function PageLayout() {
