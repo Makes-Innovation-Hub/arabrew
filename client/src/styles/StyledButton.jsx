@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
   export const Button = styled.button`
     border-radius: 0.6rem;
@@ -24,12 +24,11 @@ import { Link } from "react-router-dom"
   ;
   `
 
-
-const StyledButton = ({to, children, ...rest}) => {
+const StyledButton = ({ to, children, ...rest }) => {
   return (
     <Link to={to}>
       <Button {...rest}>{children}</Button>
     </Link>
-  )
-}
-export default StyledButton
+  );
+};
+export default StyledButton;
