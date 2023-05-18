@@ -22,14 +22,15 @@ const Interests = () => {
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
+
+  const { interests } = useSelector((state) => state.userRegister);
   const [selectedInterests, setSelectedInterests] = useState({
     field: "interests",
-    value: [],
-    interestsNumber: 0,
+    value: interests.length > 0 ? interests : [],
+    interestsNumber: interests.length > 0 ? interests.length : 0,
   });
 
   const { value, interestsNumber } = selectedInterests;
-  const { interests } = useSelector((state) => state.userRegister);
 
   const addInterests = (newInterest) => {
     let prevInterests = value;

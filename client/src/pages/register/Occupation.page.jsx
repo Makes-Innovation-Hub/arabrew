@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../../components/styles/Occupation.css";
 import { Global } from "../../components/styles/Global.jsx";
 import { Navbar } from "../../components/styles/Navbar.jsx";
@@ -15,12 +15,15 @@ import { Button } from "../../components/styles/Button.jsx";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Occupation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { occupation } = useSelector((state) => state.userRegister);
   const [userInput, setUserInput] = useState({
     field: "occupation",
-    value: "",
+    value: occupation.length > 0 ? occupation : "",
   });
   const { value } = userInput;
 
@@ -46,7 +49,11 @@ const Occupation = () => {
           <Label>30 Character</Label>
         </Upper>
         <ButtonDiv>
-          <Button onClick={() => dispatch(addDetail(userInput))}>
+          <Button
+            onClick={() => {
+              dispatch(addDetail(userInput));
+            }}
+          >
             Save & Next
           </Button>
         </ButtonDiv>
