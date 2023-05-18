@@ -28,17 +28,3 @@ function App() {
 }
 
 export default App;
-// (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={}>
-//           <Route index element={<Intro />} />
-//           <Route path="interests" element={<Interests />} />
-//           <Route path="occupation" element={<Occupation />} />
-
-//         </Route>
-
-//         <Route path="*" element={<Error text="URL Error" />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
