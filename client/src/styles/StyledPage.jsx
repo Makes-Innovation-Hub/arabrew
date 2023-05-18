@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import "./index";
+
 export const StyledPage = styled.div`  
   height: ${({height}) => height};
   display: flex;
