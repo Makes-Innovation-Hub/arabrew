@@ -23,7 +23,6 @@ const Occupation = () => {
     value: "",
   });
   const { value } = userInput;
-  const { occupation } = useSelector((state) => state.userRegister);
 
   return (
     <Global>
