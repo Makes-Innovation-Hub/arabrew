@@ -2,17 +2,12 @@ import React, { useState, useEffect } from "react";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
-
-import { Global } from "../../components/styles/Global.jsx";
 import { Navbar } from "../../components/styles/Navbar.jsx";
 import { Back } from "../../components/styles/Back.jsx";
 import { PageTitle } from "../../components/styles/PageTitle.jsx";
 import { EmptyDiv } from "../../components/styles/EmptyDiv.jsx";
 import { Content } from "../../components/styles/Content.jsx";
-import { Upper } from "../../components/styles/Upper.jsx";
 import { ContentTitle } from "../../components/styles/ContentTitle.jsx";
-import { Input } from "../../components/styles/Input.jsx";
-import { Label } from "../../components/styles/Label.jsx";
 import { ButtonDiv } from "../../components/styles/ButtonDiv.jsx";
 import { Button } from "../../components/styles/Button.jsx";
 import {
