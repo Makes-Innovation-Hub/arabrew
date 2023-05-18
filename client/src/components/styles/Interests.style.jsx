@@ -1,3 +1,11 @@
+export const wrapper = {
+  margin: 0,
+  padding: 0,
+  fontSize: "62.5%",
+  backgroundColor: " #50924e",
+  color: "#fff",
+};
+
 export const selectedBtn = {
   color: "white",
   fontSize: "1.2rem",

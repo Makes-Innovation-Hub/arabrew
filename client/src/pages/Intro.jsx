@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Glass from "../assets/Glass";
 import { Flex } from "../styles/Flex";
@@ -14,6 +15,7 @@ const theme = {
 };
 
 const Intro = () => {
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <Flex direction="column">
@@ -28,7 +30,7 @@ const Intro = () => {
             to chat with
           </StyledParagraph>
         </StyledDiv>
-        <StyledButton children={"Lets Do It"} />
+        <StyledButton to={"/register/interests"} children={"Lets Do It"} />
       </Flex>
     </ThemeProvider>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
@@ -14,8 +15,10 @@ import {
   selectedBtn,
   listBtn,
   selectedContainer,
+  wrapper,
 } from "../../components/styles/Interests.style.jsx";
 const Interests = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
@@ -60,6 +63,7 @@ const Interests = () => {
 
   const handleSave = () => {
     dispatch(addDetail(selectedInterests));
+    navigate("/register/occupation");
   };
   useEffect(() => {
     if (interestsNumber === 5) {
@@ -69,7 +73,7 @@ const Interests = () => {
   }, [interestsNumber]);
 
   return (
-    <div>
+    <div style={wrapper}>
       <Navbar>
         <Back>{"<"}</Back>
         <PageTitle>Add Interests</PageTitle>
