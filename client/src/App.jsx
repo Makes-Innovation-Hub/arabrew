@@ -1,7 +1,9 @@
 import Intro from "./pages/Intro";
 import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
+import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import HeaderLayout from "./components/HeaderLayout";
 
 const router = createBrowserRouter([
