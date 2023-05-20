@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 import allRoutes from "./routes.js";
+import { log } from "./helpers/logger.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
