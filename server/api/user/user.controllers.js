@@ -1,10 +1,15 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import User from "./user.js";
+import { log } from "../../helpers/logger.js";
 
 export const registerUser = asyncHandler(async (req, res, next) => {
-  console.log("reached here");
-  const userInfo = req.body;
+  //! all logger options use instead of console.log or console.lerror or etc...
+  log.info("log.info");
+  log.debug("log.debug");
+  log.warn(" log.warn");
+  log.error(" log.error");
 
+  const userInfo = req.body;
   const newUser = await User.create(userInfo);
   if (!newUser) {
     return next(new Error("error registering user", newUser));
