@@ -1,14 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import pino from "pino";
+import { httpLogger } from "./helpers/httpReqsLogger.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import connectDB from "./config/db.js";
 import errorHandler from "./middleware/errorHandler.js";
 import allRoutes from "./routes.js";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -22,9 +21,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// if (process.env.NODE_ENV !== "production") {
-//   app.use(pino);
-// }
+if (process.env.NODE_ENV !== "production") {
+  app.use(httpLogger);
+}
+//! for test and dev puposes - NOT PR!
 app.get("/", (req, res) => {
   res.send("DB CONNECTED");
 });
