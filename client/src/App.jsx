@@ -1,35 +1,32 @@
+import {
+  Intro,
+  LangSelection,
+  Interests,
+  Occupation,
+} from "./pages/exports.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Intro,Language, Interests, Occupation, } from "./pages/exports.js";
-import RootLayout from "./components/sharedLayouts/RootLayout.jsx";
-import RegisterLayout from "./components/sharedLayouts/RegisterLayout.jsx";
-import HeaderLayout from "./components/HeaderLayout.jsx";
-import Error from "./components/Error.jsx";
 
+import HeaderLayout from "./components/HeaderLayout";
 
-function App() {
-  const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
     {
       path: "/",
       element: <HeaderLayout />,
-      errorElement: <Error text="URL Error" />,
+      errorElement: <>Error...</>,
       children: [
-        { path: "/", element: <Intro /> },
-
-        {
-          path: "register",
-          element: <RegisterLayout />,
-          children: [
-            { path: "lang", element: <Language/>},
-            { path: "interests", element: <Interests /> },
-            { path: "occupation", element: <Occupation /> },
-          ],
-        },
-
+        { path: "lang", element: <LangSelection /> },
+        { path: "interests", element: <Interests /> },
+        { path: "occupation", element: <Occupation /> },
       ],
     },
-  ]);
+    { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
+  ],
+  <require to="/" />
+);
 
-  return <RouterProvider router={router} />;
+function App() {
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
