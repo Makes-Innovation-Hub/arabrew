@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
+import routes from "./routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +38,8 @@ wss.on("connection", (ws) => {
     console.log("Some Error ocurred ");
   };
 });
+
+app.use("/", routes);
 
 const PORT = process.env.PORT || 5050;
 

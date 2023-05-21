@@ -1,4 +1,5 @@
-const dotenv = require("dotenv");
+import path from "path";
+import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 import { fileURLToPath } from "url";
 
@@ -24,33 +25,37 @@ const openAiInit = async (openai, prompt) => {
 };
 
 const checkRTL = (question, parsableJSONresponse) => {
-  if (
-    question.includes("from english to hebrew") ||
-    question.includes("from english to arabic")
-  ) {
-    return parsableJSONresponse.split("").reverse().join("");
-  } else {
-    return parsableJSONresponse;
-  }
+  // if (
+  //   question.includes("from english to hebrew") ||
+  //   question.includes("from english to arabic")
+  // ) {
+  //   return parsableJSONresponse.split("").reverse().join("");
+  // } else {
+  // return JSON.stringify(parsableJSONresponse);
+  // }
 };
 
 const runPrompt = async (question, from, to) => {
   const openai = init();
-  const prompt = question;
+  const prompt = `is the text profanity: <text>${question}</text> answer only "true" or "false"`;
   const isProfanity = await openAiInit(
     openai,
-    `is the text profanity: <text>${prompt}</text> answer only "true" or "false"`
+    `is the text profanity? answer only "true" or "false" : ${prompt}`
   );
-  if (isProfanity === "true") {
+  // console.log(isProfanity.data.choices[0].text.toLowerCase());
+  if (isProfanity.data.choices[0].text.toLowerCase().includes("true")) {
     return "Profanity";
   }
+
   const response = await openAiInit(
     openai,
-    `translate from ${from} to ${to}: ${prompt}`
+    `translate from ${from} to ${to}: ${question}`
   );
   const parsableJSONresponse = response.data.choices[0].text;
 
-  return checkRTL(question, parsableJSONresponse);
+  return JSON.stringify(parsableJSONresponse.data);
+
+  // return checkRTL(response, parsableJSONresponse);
 };
 
 export default runPrompt;
