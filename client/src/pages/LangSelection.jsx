@@ -42,7 +42,7 @@ import { addUserDataField } from "../features/userDataSlice"
               dispatch(addUserDataField(language))
               setLanguage({...language, value: ""})
             }
-            } bg={language.value ? "#50924E" : "#d7ddd6"} hoverBg={language.value ? "#396d37" : "#d7ddd6"} children={"Save & Next"}></StyledButton>
+            } bg={language.value ? "#50924E" : "#d7ddd6"} hoverBg={language.value ? "#396d37" : "#d7ddd6"} text={"Save & Next"}></StyledButton>
         </StyledPage>
 
     </div>

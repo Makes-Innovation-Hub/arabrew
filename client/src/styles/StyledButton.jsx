@@ -24,10 +24,10 @@ import { Link } from "react-router-dom";
   ;
   `
 
-const StyledButton = ({ to, children, ...rest }) => {
+const StyledButton = ({ to, text, ...rest }) => {
   return (
     <Link to={to}>
-      <Button {...rest}>{children}</Button>
+      <Button {...rest}>{text}</Button>
     </Link>
   );
 };

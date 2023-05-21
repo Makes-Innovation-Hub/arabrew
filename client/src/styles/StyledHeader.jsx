@@ -16,9 +16,4 @@ export const StyledHeader = styled.div`
     padding: 3rem;
     height: 12.5rem;
   }
-`;
-
-
-
-
-
+  `

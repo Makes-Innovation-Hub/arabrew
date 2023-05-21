@@ -17,7 +17,7 @@ const Intro = () => {
       relevant people to chat with 
       </StyledParagraph>
       </StyledDiv>
-      <StyledButton to="/lang" children={"Lets Do It"}/>
+      <StyledButton to="/lang" text={"Lets Do It"}/>
     </Flex>
   )
 }
