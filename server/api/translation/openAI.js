@@ -24,17 +24,6 @@ const openAiInit = async (openai, prompt) => {
   });
 };
 
-const checkRTL = (question, parsableJSONresponse) => {
-  // if (
-  //   question.includes("from english to hebrew") ||
-  //   question.includes("from english to arabic")
-  // ) {
-  //   return parsableJSONresponse.split("").reverse().join("");
-  // } else {
-  // return JSON.stringify(parsableJSONresponse);
-  // }
-};
-
 const runPrompt = async (question, from, to) => {
   const openai = init();
   const prompt = `is the text profanity: <text>${question}</text> answer only "true" or "false"`;
@@ -42,7 +31,6 @@ const runPrompt = async (question, from, to) => {
     openai,
     `is the text profanity? answer only "true" or "false" : ${prompt}`
   );
-  // console.log(isProfanity.data.choices[0].text.toLowerCase());
   if (isProfanity.data.choices[0].text.toLowerCase().includes("true")) {
     return "Profanity";
   }
@@ -53,9 +41,7 @@ const runPrompt = async (question, from, to) => {
   );
   const parsableJSONresponse = response.data.choices[0].text;
 
-  return JSON.stringify(parsableJSONresponse.data);
-
-  // return checkRTL(response, parsableJSONresponse);
+  return parsableJSONresponse;
 };
 
 export default runPrompt;
