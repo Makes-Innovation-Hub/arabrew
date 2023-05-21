@@ -5,6 +5,14 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Poppins";
     src: url("/src/assets/fonts/Poppins-Medium.ttf") format("truetype");
   }
+@font-face {
+    font-family: "Mulish";
+    src: url("/src/assets/fonts/Mulish-Regular.ttf") format("truetype");
+  }
+@font-face {
+    font-family: "ABeeZee";
+    src: url("/src/assets/fonts/ABeeZee-Regular.ttf") format("truetype");
+  }
 
   * {
     margin: 0;
