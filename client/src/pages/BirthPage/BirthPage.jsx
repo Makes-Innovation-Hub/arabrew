@@ -54,7 +54,7 @@ export default function BioPage() {
             <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            <StyledDropDown>
+            {/* <StyledDropDown>
               <option value="" disabled selected hidden>
                 Year
               </option>
@@ -63,7 +63,7 @@ export default function BioPage() {
                   {year}
                 </option>
               ))}
-            </StyledDropDown>
+            </StyledDropDown> */}
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton>

@@ -16,6 +16,7 @@ export const StyledDropDown = styled.select`
     text-align: center;
     margin: 5rem 0;
     color: #7c7c7c;
+    overflow: scroll;
 
     :focus {
       outline: none;
