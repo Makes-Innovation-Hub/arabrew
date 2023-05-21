@@ -1,10 +1,23 @@
 import Intro from "./pages/Intro";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LangSelection from "./pages/LangSelection";
+import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import HeaderLayout from "./components/HeaderLayout";
 
 const router = createBrowserRouter([
-  { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
-]);
+  {path: "/",
+   element: <HeaderLayout/>,
+   errorElement: <>Error...</>,
+   children: [
+      { path: "/lang", element: <LangSelection/>},
+      { path: "/interests", element: <Interest/>},
+     ]},
+  {path: "/intro", element: <Intro/>, errorElement: <>Error...</>},
+  
+
+], <require to="/"/>);
 
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
