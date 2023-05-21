@@ -8,7 +8,7 @@ export const Button = styled.button`
   height: 5rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
   cursor: pointer;
-  background-color: #50924e;
+  background-color: ${({ bg }) => bg || "#50924E"};
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -18,14 +18,14 @@ export const Button = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #396d37;
+    background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
 
-const StyledButton = ({ to, children, ...rest }) => {
+const StyledButton = ({ to, text, ...rest }) => {
   return (
     <Link to={to}>
-      <Button {...rest}>{children}</Button>
+      <Button {...rest}>{text}</Button>
     </Link>
   );
 };
