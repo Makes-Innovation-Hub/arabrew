@@ -13,7 +13,7 @@ import arrowIcon from "../../assets/arrow.svg";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUserDataField } from "../../features/userDataSlice.js";
+import { addUserDataField } from "../../features/userDataSlice.jsx";
 
 export default function BioPage() {
   const [text, setText] = useState({
