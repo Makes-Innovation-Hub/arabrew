@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../components/styles/Occupation.css";
 import { Global } from "../../components/styles/Global.jsx";
 import { Navbar } from "../../components/styles/Navbar.jsx";
@@ -27,7 +27,7 @@ const Occupation = () => {
     value: occupation.length > 0 ? occupation : "",
   });
   const { value } = userInput;
-
+  useEffect(() => console.log(inittest), [inittest]);
   return (
     <Global>
       <Navbar>
@@ -53,7 +53,6 @@ const Occupation = () => {
           <Button
             onClick={() => {
               dispatch(addDetail(userInput));
-              console.log(inittest);
             }}
           >
             Save & Next
