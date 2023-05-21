@@ -1,6 +1,5 @@
 import Intro from "./pages/Intro";
 import Chat from "./pages/Chat/Chat";
-// import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Occupation from "./pages/Occupation";
