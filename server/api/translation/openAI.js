@@ -1,5 +1,9 @@
 const dotenv = require("dotenv");
-const { Configuration, OpenAIApi } = require("openai");
+import { Configuration, OpenAIApi } from "openai";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/../.env" });
 
@@ -30,13 +34,23 @@ const checkRTL = (question, parsableJSONresponse) => {
   }
 };
 
-const runPrompt = async (question) => {
+const runPrompt = async (question, from, to) => {
   const openai = init();
   const prompt = question;
-  const response = await openAiInit(openai, prompt);
+  const isProfanity = await openAiInit(
+    openai,
+    `is the text profanity: <text>${prompt}</text> answer only "true" or "false"`
+  );
+  if (isProfanity === "true") {
+    return "Profanity";
+  }
+  const response = await openAiInit(
+    openai,
+    `translate from ${from} to ${to}: ${prompt}`
+  );
   const parsableJSONresponse = response.data.choices[0].text;
 
   return checkRTL(question, parsableJSONresponse);
 };
 
-module.exports = runPrompt;
+export default runPrompt;

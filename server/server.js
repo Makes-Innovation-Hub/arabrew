@@ -38,7 +38,7 @@ wss.on("connection", (ws) => {
   };
 });
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 5050;
 
 const server = app.listen(
   PORT,
