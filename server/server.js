@@ -6,8 +6,9 @@ import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
-import userRoutes from "./api/user/user.routes.js";
+import routes from "./routes.js";
 import errorHandler from "./middleware/errorHandler.js";
+import { registerUser } from "./api/user/user.controllers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,7 +45,7 @@ wss.on("connection", (ws) => {
   };
 });
 
-app.use("/user-data", userRoutes);
+app.use("/arabrew", routes);
 
 app.use(errorHandler);
 
