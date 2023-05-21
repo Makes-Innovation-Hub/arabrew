@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 const Occupation = () => {
   const dispatch = useDispatch();
+  const inittest = useSelector((state) => state.userRegister);
   const navigate = useNavigate();
   const { occupation } = useSelector((state) => state.userRegister);
   const [userInput, setUserInput] = useState({
@@ -52,6 +53,7 @@ const Occupation = () => {
           <Button
             onClick={() => {
               dispatch(addDetail(userInput));
+              console.log(inittest);
             }}
           >
             Save & Next
