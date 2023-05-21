@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
@@ -11,14 +11,14 @@ import {
   StyledPageTitle,
 } from "../../styles";
 import { ArrowLeft, LanguageIcon } from "../../assets";
-import { addUserDataField } from "../../features/userDataSlice";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 
-const Language = () => {
+const LangSelection = () => {
   const dispatch = useDispatch();
+  const { lang } = useSelector((state) => state.userRegister);
   const [language, setLanguage] = useState({
-    field: "language",
-    value: "",
+    field: "lang",
+    value: lang.length > 0 ? lang : [],
   });
   const { value } = language;
   const handleClick = () => {
@@ -81,4 +81,4 @@ const Language = () => {
     </div>
   );
 };
-export default Language;
+export default LangSelection;
