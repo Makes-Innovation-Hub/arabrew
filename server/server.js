@@ -5,6 +5,8 @@ import cors from "cors";
 
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
+import connectDB from "./config/db.js";
+import { registerUser } from "./api/user/user.controllers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +21,8 @@ app.use(cors());
 
 const rooms = {};
 const clients = [];
-const usersMap = new Map();
+
+connectDB();
 
 wss.on("connection", (ws) => {
   clients.push({ room: ws.id, client: ws });
@@ -41,8 +44,7 @@ wss.on("connection", (ws) => {
 });
 
 app.post("/user-data", async (req, res) => {
-  const userData = req.body;
-  usersMap.set(userData.name, userData);
+  registerUser(req, res);
 });
 
 const PORT = process.env.PORT || 5010;
