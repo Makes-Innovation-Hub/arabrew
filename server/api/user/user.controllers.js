@@ -2,7 +2,6 @@ import asyncHandler from "../../middleware/asyncHandler.js";
 import User from "./user.js";
 
 export const registerUser = asyncHandler(async (req, res, next) => {
-  console.log("inside user controller");
   const userInfo = req.body;
   const newUser = await User.create(userInfo);
   if (!newUser) {
