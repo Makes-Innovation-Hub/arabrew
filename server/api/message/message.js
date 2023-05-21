@@ -1,1 +1,85 @@
-//test
+// import mongoose from "mongoose";
+
+// const MSG_EXP_IN_SEC = 2_592_000;
+
+// const MessageSchema = new mongoose.Schema(
+//   {
+//     chatId: {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: "ChatModel",
+//       required: [true, "message is not assigned to chat "],
+//     },
+//     sender: {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: "userModel",
+//       require: [true, "provide a sender Id "],
+//     },
+//     content: {
+//       type: String,
+//       required: [true, "empty Content!"],
+//     },
+//     expiresAt: {
+//       type: Date,
+//       expires: MSG_EXP_IN_SEC,
+//     },
+//   },
+//   {
+//     versionKey: false,
+//     toJSON: {
+//       transform: function (doc, ret) {
+//         ret.id=ret._id
+//         delete ret._id;
+//       },
+//     },
+//     toObject: {
+//       transform: function (doc, ret) {
+//         ret.id=ret._id
+//         delete ret._id;
+//       },
+//     },
+//   }
+// );
+// const MessageModel = mongoose.model("MessageModel", MessageSchema);
+// export default MessageModel;
+
+import mongoose from "mongoose";
+
+const MSG_EXP_IN_SEC = 2_592_000;
+
+const MessageSchema = new mongoose.Schema(
+  {
+    chatId: {
+      type: String,
+      required: [true, "message is not assigned to chat "],
+    },
+    sender: {
+      type: String,
+      require: [true, "provide a sender Id "],
+    },
+    content: {
+      type: String,
+      required: [true, "empty Content!"],
+    },
+    expiresAt: {
+      type: Date,
+      expires: MSG_EXP_IN_SEC,
+    },
+  },
+  {
+    versionKey: false,
+    toJSON: {
+      transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+      },
+    },
+    toObject: {
+      transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+      },
+    },
+  }
+);
+const MessageModel = mongoose.model("MessageModel", MessageSchema);
+export default MessageModel;
