@@ -6,7 +6,8 @@ import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
-import { registerUser } from "./api/user/user.controllers.js";
+import userRoutes from "./api/user/user.routes.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,11 +44,11 @@ wss.on("connection", (ws) => {
   };
 });
 
-app.post("/user-data", async (req, res) => {
-  registerUser(req, res);
-});
+app.use("/user-data", userRoutes);
 
-const PORT = process.env.PORT || 5010;
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5012;
 
 const server = app.listen(
   PORT,

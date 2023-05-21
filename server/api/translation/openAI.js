@@ -1,5 +1,9 @@
-const dotenv = require("dotenv");
-const { Configuration, OpenAIApi } = require("openai");
+import dotenv from "dotenv";
+import { Configuration, OpenAIApi } from "openai";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/../.env" });
 
@@ -39,4 +43,4 @@ const runPrompt = async (question) => {
   return checkRTL(question, parsableJSONresponse);
 };
 
-module.exports = runPrompt;
+export default runPrompt;
