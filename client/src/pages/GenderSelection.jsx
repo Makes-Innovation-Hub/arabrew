@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import Header from "../components/Header"
-import {Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle } from "../styles"
+import { Header } from "../components"
+import { Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle } from "../styles"
 import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets"
 import { addUserDataField } from "../features/userDataSlice"
 
@@ -14,6 +14,8 @@ const GenderSelection = () => {
     })
 
     const dispatch = useDispatch()
+    const { value } = gender
+
   return (
     <div>
       <Header leftIcon={<Link to="/location"><ArrowLeft/></Link>} title={"Add Gender"} />
@@ -26,28 +28,29 @@ const GenderSelection = () => {
             <Flex>
               <MaleIcon/>
               <StyledMargin direction="horizontal" margin="0.9rem"/>
-              <StyledLanguageButton bg={gender.value === "Male" ? "#50924E" : "#FFFFFF"} color={gender.value === "Male" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Male"})}>Male</StyledLanguageButton>
+              <StyledLanguageButton bg={value === "Male" ? "#50924E" : "#FFFFFF"} color={value === "Male" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Male"})}>Male</StyledLanguageButton>
             </Flex>
             <StyledMargin direction="vertical" margin="3rem"/>
             <Flex>
-              <MaleIcon/>
+              <FemaleIcon/>
               <StyledMargin direction="horizontal" margin="0.9rem"/>
-              <StyledLanguageButton bg={gender.value === "Female" ? "#50924E" : "#FFFFFF"} color={gender.value === "Female" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Female"})}>Female</StyledLanguageButton>
+              <StyledLanguageButton bg={value === "Female" ? "#50924E" : "#FFFFFF"} color={value === "Female" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Female"})}>Female</StyledLanguageButton>
             </Flex>
             <StyledMargin direction="vertical" margin="3rem"/>
             <Flex>
-            <MaleIcon/>
+            <StyledMargin direction='horizontal' margin="3rem"/>
             <StyledMargin direction="horizontal" margin="0.9rem"/>
-            <StyledLanguageButton bg={gender.value === "Other" ? "#50924E" : "#FFFFFF"} color={gender.value === "Other" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Other"})}>Other</StyledLanguageButton>
+            <StyledLanguageButton bg={value === "Other" ? "#50924E" : "#FFFFFF"} color={value === "Other" ? "#FFFFFF" : "#000000"} onClick={() => setGender({...gender, value: "Other"})}>Other</StyledLanguageButton>
             </Flex>
-            <StyledButton to={gender.value ? "/occupation" : null} onClick={() => {
-              if(!gender.value){
+            <StyledButton to={value ? "/occupation" : null} onClick={() => {
+              if(!value){
                 return
               }
+              console.log(value)
               dispatch(addUserDataField(gender))
               setGender({...gender, value: ""})
             }
-            } bg={gender.value ? "#50924E" : "#d7ddd6"} hoverBg={gender.value ? "#396d37" : "#d7ddd6"} children={"Save & Next"}></StyledButton>
+            } bg={value ? "#50924E" : "#d7ddd6"} hoverBg={value ? "#396d37" : "#d7ddd6"} children={"Save & Next"}></StyledButton>
       </StyledPage>
     </div>
   )
