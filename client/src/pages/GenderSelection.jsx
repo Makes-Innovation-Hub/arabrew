@@ -50,7 +50,7 @@ const GenderSelection = () => {
               dispatch(addUserDataField(gender))
               setGender({...gender, value: ""})
             }
-            } bg={value ? "#50924E" : "#d7ddd6"} hoverBg={value ? "#396d37" : "#d7ddd6"} children={"Save & Next"}></StyledButton>
+            } bg={value ? "#50924E" : "#d7ddd6"} hoverBg={value ? "#396d37" : "#d7ddd6"} text={"Save & Next"}></StyledButton>
       </StyledPage>
     </div>
   )
