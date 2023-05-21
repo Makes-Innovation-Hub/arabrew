@@ -16,9 +16,7 @@ const GenderSelection = () => {
     const dispatch = useDispatch()
   return (
     <div>
-       <StyledMargin direction="vertical" margin="5%">
       <Header leftIcon={<Link to="/location"><ArrowLeft/></Link>} title={"Add Gender"} />
-      </StyledMargin>
       <StyledPage>
          <StyledMargin direction="vertical" margin="1.75rem"/>
             <StyledMargin direction="horizontal" margin="35rem">
