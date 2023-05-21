@@ -25,6 +25,7 @@ app.use(cors());
 if (process.env.NODE_ENV !== "production") {
   app.use(httpLogger);
 }
+
 //! for test and dev puposes - NOT PR!
 app.get("/", (req, res) => {
   res.send("DB CONNECTED");
