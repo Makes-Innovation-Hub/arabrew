@@ -28,7 +28,7 @@ const CustomDropdown = ({
       isSearchable={isSearchable}
       placeholder={placeHolder}
       components={{
-        options: customOptions ? customOptions : "none",
+        option: customOptions ? customOptions : null,
       }}
     />
   );
