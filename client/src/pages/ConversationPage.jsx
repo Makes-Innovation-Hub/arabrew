@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom"
 import Header from "../components/Header"
 import {Flex, StyledPage, StyledMargin,NoConversationStyle,ContentConversationPage,ConversationPageStyle,ButtonConversation} from "../styles"
 import { SmallGlass, Hamburger } from "../assets"
