@@ -3,19 +3,13 @@ import Chat from "./pages/Chat/Chat";
 import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
-
-import LangSelection from "./pages/LangSelection";
-import Interest from "./pages/Interest";
-import Occupation from "./pages/Occupation";
 
 import HeaderLayout from "./components/HeaderLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter(
   [
-    { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
     { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
     { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
 
