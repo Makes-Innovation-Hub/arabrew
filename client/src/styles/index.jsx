@@ -8,5 +8,6 @@ import {StyledDiv} from "../styles/StyledDiv"
 import {StyledParagraph} from "../styles/StyledParagraph"
 import {StyledSpan} from "../styles/StyledSpan"
 import {StyledTitle} from "../styles/StyledTitle"
+import { StyledInput } from "./StyledInput"
 
-export {Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle, StyledDiv, StyledParagraph, StyledSpan, StyledTitle}
+export {Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle, StyledDiv, StyledParagraph, StyledSpan, StyledTitle, StyledInput}

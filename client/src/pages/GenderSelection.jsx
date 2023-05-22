@@ -46,7 +46,6 @@ const GenderSelection = () => {
               if(!value){
                 return
               }
-              console.log(value)
               dispatch(addUserDataField(gender))
               setGender({...gender, value: ""})
             }
