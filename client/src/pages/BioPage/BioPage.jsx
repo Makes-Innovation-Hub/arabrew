@@ -10,16 +10,28 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
+
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUserDataField } from "../../features/userDataSlice.jsx";
+import { useSelector } from "react-redux";
+import { useSendUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState({
+    value: "",
+    dataField: "bio",
+  });
+  const userData = useSelector((state) => state.userData);
+  const [sendUserData] = useSendUserDataMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
-    setText(inputValue);
+    setText({ ...text, value: inputValue });
   };
-  const characterCount = text.length;
+  const characterCount = text.value.length;
+
+  const dispatch = useDispatch();
 
   return (
     <BackLayout>
@@ -56,7 +68,7 @@ export default function BioPage() {
           </Flex>
           <BioStyledDiv>
             <StyledTextArea
-              value={text}
+              value={text.value}
               onChange={handleChange}
               placeholder="Write here...For example: I'm John Doe and Cooking for me is a way of living."
               maxLength={500}
@@ -66,8 +78,13 @@ export default function BioPage() {
             </StyledNumberOfCharLabel>
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton>
-              <i>Save & Next</i>
+            <StyledSaveAndNextButton
+              onClick={() => {
+                dispatch(addUserDataField(text));
+                sendUserData(userData);
+              }}
+            >
+              <i>Save & Finish</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

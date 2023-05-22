@@ -1,27 +1,37 @@
-import styled from "styled-components";
+import { useState } from "react";
+import Select from "react-select";
+import MyCustomStyles from "./DropDownCustomStyles.jsx";
 
-export const StyledDropDown = styled.select`
-  @media (min-width: 350px) and (max-width: 700px) {
-    width: 18rem;
-    appearance: none;
-    -moz-appearance: "none";
-    -webkit-appearance: "none";
-    background: transparent;
-    padding: 0.55rem;
-    border: 0.063rem solid #ccc;
-    border-radius: 0%.5rem;
-    height: 5rem;
-    font-size: 1.8rem;
-    line-height: 1.5;
-    text-align: center;
-    margin: 5rem 0;
-    color: #7c7c7c;
-    overflow: scroll;
+const customStyles = MyCustomStyles;
 
-    :focus {
-      outline: none;
-      border-color: #1e75e5;
-      box-shadow: 0 0 5px #1e75e5;
-    }
-  }
-`;
+const CustomDropdown = ({
+  optionsArray,
+  placeHolder,
+  selectedYear,
+  setSelectedYear,
+  isSearchable,
+  customOptions,
+}) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelectChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setSelectedYear({ ...selectedYear, value: selectedOption });
+  };
+
+  return (
+    <Select
+      options={optionsArray}
+      value={selectedOption}
+      onChange={handleSelectChange}
+      styles={customStyles}
+      isSearchable={isSearchable}
+      placeholder={placeHolder}
+      components={{
+        options: customOptions ? customOptions : "none",
+      }}
+    />
+  );
+};
+
+export default CustomDropdown;
