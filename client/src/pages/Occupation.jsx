@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
+import { ArrowLeft } from "../assets";
 import "../components/styles/Occupation.css";
 import { Global } from "../components/styles/Global";
 import { Navbar } from "../components/styles/Navbar";
@@ -15,6 +17,7 @@ import { Button } from "../components/styles/Button";
 
 import { useDispatch } from "react-redux";
 import { addUserDataField } from "../features/userDataSlice";
+import { Header } from "../components";
 
 const Occupation = () => {
   const [userInput, setUserInput] = useState({
@@ -26,11 +29,7 @@ const Occupation = () => {
 
   return (
     <Global>
-      <Navbar>
-        <Back>{"<"}</Back>
-        <PageTitle>Add Occupation</PageTitle>
-        <EmptyDiv></EmptyDiv>
-      </Navbar>
+      <Header leftIcon={<Link to="/gender"><ArrowLeft/></Link>} title={"Add Occupation"} />
       <Content>
         <Upper>
           <ContentTitle>Add your Occupation</ContentTitle>

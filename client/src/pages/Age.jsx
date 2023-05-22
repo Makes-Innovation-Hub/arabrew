@@ -3,14 +3,14 @@ import { Header } from "../components"
 import { ArrowLeft  } from "../assets"
 import { StyledPage, StyledButton } from "../styles"
 
-const Nationality = () => {
+const Age = () => {
    return (
     <div>
-      <Header leftIcon={<Link to="/age"><ArrowLeft/></Link>} title={"Add Nationality"} />
+      <Header leftIcon={<Link to="/interests"><ArrowLeft/></Link>} title={"Add Age"} />
       <StyledPage>
-        <StyledButton to={"/location"} text={"Save & Next"}></StyledButton>
+        <StyledButton to={"/nationality"} text={"Save & Next"}></StyledButton>
       </StyledPage>
     </div>
   )
 }
-export default Nationality
+export default Age
