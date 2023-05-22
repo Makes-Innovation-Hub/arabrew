@@ -1,5 +1,5 @@
-import Error from "./Error"
-import Header from "./Header"
-import HeaderLayout from "./HeaderLayout"
+import Error from "./Error";
+import Header from "./Header";
+import HeaderLayout from "./HeaderLayout";
 
-export {Error, Header, HeaderLayout};
+export { Error, Header, HeaderLayout };
