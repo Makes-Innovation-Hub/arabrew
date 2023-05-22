@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
+import connectDB from "./config/db.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,6 +16,8 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
+
+connectDB();
 
 const rooms = {};
 
@@ -39,7 +42,7 @@ wss.on("connection", (ws) => {
   };
 });
 
-app.use("/", routes);
+app.use("/arabrew", routes);
 
 const PORT = process.env.PORT || 5050;
 

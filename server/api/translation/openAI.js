@@ -41,7 +41,7 @@ const runPrompt = async (question, from, to) => {
   );
   const parsableJSONresponse = response.data.choices[0].text;
 
-  return parsableJSONresponse;
+  return parsableJSONresponse.replace(/\n/g, "");
 };
 
 export default runPrompt;
