@@ -5,7 +5,13 @@ import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
+
+import LangSelection from "./pages/LangSelection";
+import Interest from "./pages/Interest";
+import Occupation from "./pages/Occupation";
+
 import HeaderLayout from "./components/HeaderLayout";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter(
   [
