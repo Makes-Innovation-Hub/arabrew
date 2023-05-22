@@ -7,7 +7,6 @@ import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-// import { StyledDropDown } from "../../styles/BirthPage/StyledDropDown.jsx";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
 
@@ -21,6 +20,12 @@ export default function BirthPage() {
     value: "",
     dataField: "year",
   });
+
+  const CustomOptions = (props) => {
+    // Custom options component implementation
+
+    return <div>{/* Custom options rendering */}</div>;
+  };
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
@@ -70,6 +75,7 @@ export default function BirthPage() {
               placeHolder="Year"
               selectedYear={selectedYear}
               setSelectedYear={setSelectedYear}
+              isSearchable={false}
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
