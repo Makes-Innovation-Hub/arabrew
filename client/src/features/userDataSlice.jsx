@@ -8,13 +8,12 @@ export const userDataSlice = createSlice({
   name: "userData",
   initialState,
   reducers: {
-    addUserDataField: (state, action) => {
-      const { dataField, value } = action.payload;
+    addUserDataField: (state, { payload }) => {
+      const { dataField, value } = payload;
       state.userData[dataField] = value;
     },
   },
 });
 
 export const { addUserDataField } = userDataSlice.actions;
-
 export default userDataSlice.reducer;
