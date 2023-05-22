@@ -3,7 +3,7 @@ import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import ConversationPage from "./pages/ConversationPage"
 import HeaderLayout from "./components/HeaderLayout";
 
 const router = createBrowserRouter([
@@ -15,6 +15,7 @@ const router = createBrowserRouter([
       { path: "/interests", element: <Interest/>},
      ]},
   {path: "/intro", element: <Intro/>, errorElement: <>Error...</>},
+  {path: "/conversation", element: < ConversationPage/>},
   
 
 ], <require to="/"/>);
