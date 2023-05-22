@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const PROFANITY_MSG = `ההודעה שלך נחסמה, נא שמור על שיח נימוסי ומתקשר تم حظر رسالتك ، يرجى إبقاء المحادثة مهذبة ومتصلة`;
+
 dotenv.config({ path: __dirname + "/../.env" });
 
 const init = () => {
@@ -16,32 +18,31 @@ const init = () => {
 };
 
 const openAiInit = async (openai, prompt) => {
-  return await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: prompt,
-    max_tokens: 2048,
-    temperature: 1,
+  return await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: prompt }],
   });
 };
 
-const runPrompt = async (question, from, to) => {
+const runPrompt = async (prompt, from, to) => {
   const openai = init();
-  const prompt = `is the text profanity: <text>${question}</text> answer only "true" or "false"`;
   const isProfanity = await openAiInit(
     openai,
     `is the text profanity? answer only "true" or "false" : ${prompt}`
   );
-  if (isProfanity.data.choices[0].text.toLowerCase().includes("true")) {
-    return "Profanity";
+
+  if (
+    isProfanity.data.choices[0].message.content.toLowerCase().includes("true")
+  ) {
+    return PROFANITY_MSG;
   }
 
   const response = await openAiInit(
     openai,
-    `translate from ${from} to ${to}: ${question}`
+    `translate from ${from} to ${to}: ${prompt}`
   );
-  const parsableJSONresponse = response.data.choices[0].text;
 
-  return parsableJSONresponse.replace(/\n/g, "");
+  return response.data.choices[0].message.content;
 };
 
 export default runPrompt;
