@@ -4,12 +4,13 @@ export const fetchCountryData = (setCountries) => {
     .then((data) => {
       // Map over the country data to create dropdown options
       const dropdownOptions = data.map((country) => ({
-        name: country.name.common,
-        flag: country.flags.svg, // or country.flags.png for PNG flags
+        label: country.name.common,
+        value: country.name.common,
+        image: country.flags.svg, // or country.flags.png for PNG flags
       }));
       // sort the data alphabetically
       dropdownOptions.sort((a, b) => {
-        return a.name.localeCompare(b.name);
+        return a.label.localeCompare(b.label);
       });
       setCountries(dropdownOptions);
     })

@@ -7,15 +7,19 @@ import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import { StyledDropDown } from "../../styles/BirthPage/StyledDropDown.jsx";
 import { fetchCountryData } from "../../features/CountriesApi.js";
+import arrowIcon from "../../assets/arrow.svg";
 import { useState, useEffect } from "react";
+import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 
 export default function NationalityPage() {
   const [countries, setCountries] = useState([]);
+  const [selectedNationality, setSelectedNationality] = useState({
+    value: "",
+    dataField: "nationality",
+  });
 
   useEffect(() => {
-    // Fetch country data when the component mounts
     fetchCountryData(setCountries);
   }, []);
 
@@ -23,7 +27,9 @@ export default function NationalityPage() {
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
-        <div style={{ width: "20%" }}></div>
+        <div style={{ width: "20%" }}>
+          <img src={arrowIcon} />
+        </div>
         <TitleWrapper>
           <PageTitle>Add Nationality</PageTitle>
         </TitleWrapper>
@@ -51,16 +57,13 @@ export default function NationalityPage() {
             <InstructionPrompt>Add your Nationality</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            {/* <StyledDropDown>
-              <option value="" disabled selected hidden>
-                Select
-              </option>
-              {countries.map((country) => (
-                <option key={country.name} value={country.name}>
-                  {country.name}
-                </option>
-              ))}
-            </StyledDropDown> */}
+            <CustomDropdown
+              optionsArray={countries}
+              placeHolder="Select"
+              selectedYear={selectedNationality}
+              setSelectedYear={setSelectedNationality}
+              isSearchable={false}
+            />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton>
