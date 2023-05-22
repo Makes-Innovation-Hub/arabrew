@@ -51,7 +51,7 @@ export default function NationalityPage() {
             <InstructionPrompt>Add your Nationality</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            <StyledDropDown>
+            {/* <StyledDropDown>
               <option value="" disabled selected hidden>
                 Select
               </option>
@@ -60,7 +60,7 @@ export default function NationalityPage() {
                   {country.name}
                 </option>
               ))}
-            </StyledDropDown>
+            </StyledDropDown> */}
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton>

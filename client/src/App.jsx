@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
 import HeaderLayout from "./components/HeaderLayout";
 import BirthPage from "./pages/BirthPage/BirthPage";
+import NationalityPage from "./pages/NationalityPage/NationalityPage";
 const router = createBrowserRouter(
   [
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
