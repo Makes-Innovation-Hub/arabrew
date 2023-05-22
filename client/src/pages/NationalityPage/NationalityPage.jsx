@@ -11,6 +11,7 @@ import { fetchCountryData } from "../../features/CountriesApi.js";
 import arrowIcon from "../../assets/arrow.svg";
 import { useState, useEffect } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
+import CountriesCustomOption from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
 
 export default function NationalityPage() {
   const [countries, setCountries] = useState([]);
@@ -63,6 +64,7 @@ export default function NationalityPage() {
               selectedYear={selectedNationality}
               setSelectedYear={setSelectedNationality}
               isSearchable={false}
+              customOptions={CountriesCustomOption}
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>

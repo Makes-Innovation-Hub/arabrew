@@ -28,7 +28,7 @@ const CustomDropdown = ({
       isSearchable={isSearchable}
       placeholder={placeHolder}
       components={{
-        option: customOptions ? customOptions : "none",
+        option: customOptions ? customOptions : null,
       }}
       getOptionLabel={(option) => option.label} // Specify the label key in the option object
       getOptionValue={(option) => option.value} // Specify the value key in the option object
