@@ -107,28 +107,17 @@ const customStyles = {
   }),
 };
 
-const CustomDropdown = ({ optionsArray, placeHolder, setSelectedYear }) => {
+const CustomDropdown = ({
+  optionsArray,
+  placeHolder,
+  selectedYear,
+  setSelectedYear,
+}) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all?fields=name,flags")
-      .then((response) => response.json())
-      .then((data) => {
-        const options = data.map((country) => ({
-          label: country.name.common,
-          value: country.name.common,
-          image: country.flags.svg,
-        }));
-        setCountries(options);
-      })
-      .catch((error) => {
-        console.error("Error fetching country data:", error);
-      });
-  }, []);
 
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
+    setSelectedYear({ ...selectedYear, value: selectedOption });
   };
 
   return (

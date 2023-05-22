@@ -11,10 +11,17 @@ import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
 
+import { useDispatch } from "react-redux";
+import { addUserDataField } from "../../features/userDataSlice.jsx";
+
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState();
+  const [selectedYear, setSelectedYear] = useState({
+    value: "",
+    dataField: "year",
+  });
+
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const yearsArray = [];
@@ -23,6 +30,8 @@ export default function BirthPage() {
     }
     setYears(yearsArray);
   }, [startYear]);
+
+  const dispatch = useDispatch();
 
   return (
     <BackLayout>
@@ -56,24 +65,19 @@ export default function BirthPage() {
             <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            {/* <StyledDropDown>
-              <option value="" disabled selected hidden>
-                Year
-              </option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </StyledDropDown> */}
             <CustomDropdown
               optionsArray={years}
               placeHolder="Year"
+              selectedYear={selectedYear}
               setSelectedYear={setSelectedYear}
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton>
+            <StyledSaveAndNextButton
+              onClick={() => {
+                dispatch(addUserDataField(selectedYear));
+              }}
+            >
               <i>Save & Next</i>
             </StyledSaveAndNextButton>
           </Flex>
