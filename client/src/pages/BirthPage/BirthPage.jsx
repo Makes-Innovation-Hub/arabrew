@@ -7,17 +7,19 @@ import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import { StyledDropDown } from "../../styles/BirthPage/StyledDropDown.jsx";
+// import { StyledDropDown } from "../../styles/BirthPage/StyledDropDown.jsx";
+import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
 
-export default function BioPage() {
+export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
   const [years, setYears] = useState([]);
+  const [selectedYear, setSelectedYear] = useState();
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const yearsArray = [];
     for (let year = startYear; year <= currentYear - 4; year++) {
-      yearsArray.push(year);
+      yearsArray.push({ label: year, value: year });
     }
     setYears(yearsArray);
   }, [startYear]);
@@ -54,7 +56,7 @@ export default function BioPage() {
             <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            <StyledDropDown>
+            {/* <StyledDropDown>
               <option value="" disabled selected hidden>
                 Year
               </option>
@@ -63,7 +65,12 @@ export default function BioPage() {
                   {year}
                 </option>
               ))}
-            </StyledDropDown>
+            </StyledDropDown> */}
+            <CustomDropdown
+              optionsArray={years}
+              placeHolder="Year"
+              setSelectedYear={setSelectedYear}
+            />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton>

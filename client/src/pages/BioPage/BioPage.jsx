@@ -14,12 +14,16 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUserDataField } from "../../features/userDataSlice.jsx";
+import { useSelector } from "react-redux";
+import { useSendUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const [text, setText] = useState({
     value: "",
     dataField: "bio",
   });
+  const userData = useSelector((state) => state.userData);
+  const [sendUserData] = useSendUserDataMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -75,7 +79,10 @@ export default function BioPage() {
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
-              onClick={() => dispatch(addUserDataField(text))}
+              onClick={() => {
+                dispatch(addUserDataField(text));
+                sendUserData(userData);
+              }}
             >
               <i>Save & Finish</i>
             </StyledSaveAndNextButton>

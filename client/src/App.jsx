@@ -6,7 +6,7 @@ import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
 import HeaderLayout from "./components/HeaderLayout";
-
+import BirthPage from "./pages/BirthPage/BirthPage";
 const router = createBrowserRouter(
   [
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
