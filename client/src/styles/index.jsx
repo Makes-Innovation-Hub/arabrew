@@ -8,5 +8,15 @@ import {StyledDiv} from "../styles/StyledDiv"
 import {StyledParagraph} from "../styles/StyledParagraph"
 import {StyledSpan} from "../styles/StyledSpan"
 import {StyledTitle} from "../styles/StyledTitle"
-
-export {Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle, StyledDiv, StyledParagraph, StyledSpan, StyledTitle}
+import { DisplayChatsStyle } from "./DIsplayChatsStyle"
+import { ProfileChat } from "./PrifileChat"
+import { ContentChat } from "./ContentChat"
+import {NoConversationStyle} from "./NoConversationStyle";
+import { ContentConversationPage } from "./ContentConversationPage";
+import { ButtonConversation } from "./ButtonConversation"
+import { ConversationPageStyle } from "./ConversationPageStyle"
+import { ConversationNoData } from "./ConversationNoData"
+import { ChatsDisplay } from "./ChatsDisplay"
+import { ButtonForChats } from "./ButtonForChats"
+import { BlockDiv } from "./BlockDiv"
+export {Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle, StyledDiv, StyledParagraph, StyledSpan, StyledTitle, ContentConversationPage,ConversationPageStyle,ButtonConversation,DisplayChatsStyle, ProfileChat, ContentChat, NoConversationStyle,ConversationNoData,ChatsDisplay, ButtonForChats, BlockDiv}

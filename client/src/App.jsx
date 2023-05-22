@@ -3,9 +3,10 @@ import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import ConversationPage from "./pages/ConversationPage"
 import HeaderLayout from "./components/HeaderLayout";
-
+import img from "./assets/photo.webp"
+let prevConversation=[{profile:img , name:'mika', lastCon:'hey'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'},{profile:img , name:'Yishai', lastCon:'Hello'}];
 const router = createBrowserRouter([
   {path: "/",
    element: <HeaderLayout/>,
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
       { path: "/interests", element: <Interest/>},
      ]},
   {path: "/intro", element: <Intro/>, errorElement: <>Error...</>},
-  
+  {path: "/conversation", element: < ConversationPage prevConversation={prevConversation}/>},
 
 ], <require to="/"/>);
 
