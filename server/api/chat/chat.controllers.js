@@ -2,35 +2,11 @@ import { User, Chat, Message, log, asyncHandler } from "../index.js";
 
 export const createChat = asyncHandler(async (req, res, next) => {
   const { senderId, friendId } = req.params;
-  const content = req.body.content || null;
   const users = { users: [senderId, friendId] };
-  const newChatDoc = content
-    ? {
-        ...users,
-        latestMessage: content,
-      }
-    : users;
-  // log.error(newChatDoc)
-  const newChat = await Chat.create(newChatDoc);
+
+  const newChat = await Chat.create(users);
   if (!newChat) {
     return next(new Error("failed to create new chat "));
-  }
-  const { id } = newChat;
-  if (newChat && content) {
-    const { content } = req.body;
-    const messageDoc = {
-      chatId: id,
-      content: content,
-      sender: senderId,
-    };
-    const newMessage = await Message.create(messageDoc);
-    return res.status(200).json({
-      success: true,
-      data: {
-        chat: newChat,
-        message: newMessage,
-      },
-    });
   }
   res.status(200).json({
     success: true,
@@ -41,39 +17,44 @@ export const createChat = asyncHandler(async (req, res, next) => {
 });
 
 export const getUserChats = asyncHandler(async (req, res, next) => {
-  const { userId } = req.param;
-  const userChats = await Chat.findOne({
-    field: { $in: [userId] },
+  const { userId } = req.params;
+  const userChats = await Chat.find({
+    users: { $in: [userId] },
   })
+    .populate({
+      path: "users",
+      select: "name id",
+    })
     .populate({
       path: "latestMessage",
       select: " content",
     })
-    .populate({
-      path: "users",
-      select: "name",
-    })
-    .exec((err, doc) => {
-      if (err) return next(new Error(err));
-      const { users } = doc;
-      const userFriend = users.map((user) =>
-        user.id !== userId ? user.name : null
-      );
-      return userFriend[0];
-    });
-
-  // const reciever=userChats.users.map((user)=>user.id!==userId?user.name:null);
+    .sort({ updatedAt: -1 });
 
   if (!userChats) {
     return next(new Error(`no chats for user with id ${userId}`));
   }
-  log.debug(userChats);
+  const allchats = userChats.map((chat) => {
+    const { users, updatedAt, chatId } = chat;
+    let lastMsg = { lastMsg: chat.latestMessage } || {};
+    const friend = users.filter((user) => user.id !== userId)[0].name;
+
+    return {
+      chatId: chatId,
+      friend: friend,
+      ...lastMsg,
+      updatedAt: updatedAt.toLocaleString("en-US", {
+        timeZone: "Asia/Jerusalem",
+        hour12: false,
+      }),
+    };
+  });
+
+  if (!allchats)
+    return next(new Error("failed preparing chatslist response object "));
+  log.debug(allchats);
   res.status(200).json({
     success: true,
-    data: userChats,
+    data: allchats,
   });
 });
-//! this function response =>
-// 1.friendsnames
-// 2.lastmessage was sent
-// 3. const userChats should be in descending order
