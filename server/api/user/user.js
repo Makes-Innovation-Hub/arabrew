@@ -65,11 +65,13 @@ const UserSchema = new mongoose.Schema(
     versionKey: false,
     toJSON: {
       transform: function (doc, ret) {
+        ret.id = ret._id;
         delete ret._id;
       },
     },
     toObject: {
       transform: function (doc, ret) {
+        ret.id = ret._id;
         delete ret._id;
       },
     },
