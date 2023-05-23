@@ -2,7 +2,6 @@ import path from "path";
 import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 import { fileURLToPath } from "url";
-import { PROFANITY_MSG_HE, PROFANITY_MSG_AR } from "../../utils/constants.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
