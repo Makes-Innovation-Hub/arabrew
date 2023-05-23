@@ -7,7 +7,6 @@ import {
   NoConversationStyle,
   ContentConversationPage,
   ConversationPageStyle,
-  ConversationNoData,
   ChatsDisplay,
   ButtonForChats,
   BlockDiv,
@@ -29,7 +28,7 @@ const ConversationPage = ({ prevConversation }) => {
       </StyledMargin>
       <StyledPage>
         {prevConversation.length !== 0 ? (
-          <ConversationNoData>
+          <ConversationPageStyle>
             <div>Conversation</div>
             <ChatsDisplay>
               {prevConversation.map((chat, i) => {
@@ -45,7 +44,7 @@ const ConversationPage = ({ prevConversation }) => {
             </ChatsDisplay>
             <BlockDiv />
             <ButtonForChats>Search for friends to chat</ButtonForChats>
-          </ConversationNoData>
+          </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
             <NoConversationStyle>No Conversation</NoConversationStyle>
