@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 export const ButtonForChats = styled.button`
   border-radius: 0.6rem;
   border: none;
@@ -17,9 +16,7 @@ export const ButtonForChats = styled.button`
   transform: translateX(-50%);
   bottom: 4rem;
   z-index: 2;
-
   &:hover {
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
-export default StyledButton;

@@ -5,8 +5,10 @@ export const ConversationNoData = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   padding-bottom: 10rem;
+  position: fixed;
+  top: 8rem;
   @media (min-width: 700px) {
     width: 100vw;
   }

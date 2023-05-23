@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const ChatsDisplay = styled.div`
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 4rem;
-  
- 
+  padding-top: 3rem;
+  overflow-y: scroll;
 `;

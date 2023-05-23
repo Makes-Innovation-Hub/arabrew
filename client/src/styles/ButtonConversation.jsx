@@ -16,4 +16,3 @@ export const ButtonConversation = styled.button`
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
-export default StyledButton;

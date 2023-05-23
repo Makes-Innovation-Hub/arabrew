@@ -15,7 +15,6 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
-import { Button } from "../styles/StyledButton";
 const ConversationPage = ({ prevConversation }) => {
   return (
     <div>
