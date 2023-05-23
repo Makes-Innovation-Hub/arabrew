@@ -81,6 +81,7 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addUserDataField(text));
+                console.log(userData);
                 sendUserData(userData);
               }}
             >
