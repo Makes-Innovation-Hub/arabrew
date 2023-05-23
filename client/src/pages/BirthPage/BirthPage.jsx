@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { addUserDataField } from "../../features/userDataSlice.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -21,11 +22,7 @@ export default function BirthPage() {
     dataField: "year",
   });
 
-  const CustomOptions = (props) => {
-    // Custom options component implementation
-
-    return <div>{/* Custom options rendering */}</div>;
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
@@ -73,8 +70,8 @@ export default function BirthPage() {
             <CustomDropdown
               optionsArray={years}
               placeHolder="Year"
-              selectedYear={selectedYear}
-              setSelectedYear={setSelectedYear}
+              selected={selectedYear}
+              setSelected={setSelectedYear}
               isSearchable={false}
             />
           </BioStyledDiv>
@@ -82,6 +79,7 @@ export default function BirthPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addUserDataField(selectedYear));
+                navigate("/nationalityPage");
               }}
             >
               <i>Save & Next</i>

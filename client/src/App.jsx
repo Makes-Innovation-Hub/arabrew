@@ -5,12 +5,12 @@ import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
+
 import HeaderLayout from "./components/HeaderLayout";
 import BirthPage from "./pages/BirthPage/BirthPage";
 import NationalityPage from "./pages/NationalityPage/NationalityPage";
 const router = createBrowserRouter(
   [
-    { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
     { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
     { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
     { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },

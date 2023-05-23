@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Select from "react-select";
+import Select, { components } from "react-select";
 import MyCustomStyles from "./DropDownCustomStyles.jsx";
 
 const customStyles = MyCustomStyles;
@@ -7,16 +7,22 @@ const customStyles = MyCustomStyles;
 const CustomDropdown = ({
   optionsArray,
   placeHolder,
-  selectedYear,
-  setSelectedYear,
+  selected,
+  setSelected,
   isSearchable,
-  customOptions,
+  customOption,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
+  const DefaultOption = (props) => {
+    const { label, value, data } = props;
+    return <components.Option {...props}>{label}</components.Option>;
+  };
+
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    setSelectedYear({ ...selectedYear, value: selectedOption });
+    console.log(selected);
+    setSelected({ ...selected, value: selectedOption.value });
   };
 
   return (
@@ -28,7 +34,7 @@ const CustomDropdown = ({
       isSearchable={isSearchable}
       placeholder={placeHolder}
       components={{
-        option: customOptions ? customOptions : null,
+        option: customOption ? customOption : DefaultOption,
       }}
       getOptionLabel={(option) => option.label} // Specify the label key in the option object
       getOptionValue={(option) => option.value} // Specify the value key in the option object
