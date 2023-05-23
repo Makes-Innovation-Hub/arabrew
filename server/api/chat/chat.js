@@ -5,9 +5,8 @@ const chatSchema = new mongoose.Schema(
     users: {
       type: [
         {
-          // type: mongoose.Schema.Types.ObjectId,
-          type: String,
-          // ref: "userModel",
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "userModel",
         },
       ],
       validate: [
@@ -17,10 +16,10 @@ const chatSchema = new mongoose.Schema(
     },
 
     latestMessage: {
-      // type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       type: String,
 
-      // ref: "messageModel",
+      ref: "messageModel",
     },
   },
   {
@@ -28,11 +27,13 @@ const chatSchema = new mongoose.Schema(
     versionKey: false,
     toJSON: {
       transform: function (doc, ret) {
+        ret.chatId = ret._id;
         delete ret._id;
       },
     },
     toObject: {
       transform: function (doc, ret) {
+        ret.chatId = ret._id;
         delete ret._id;
       },
     },
@@ -48,8 +49,6 @@ async function checkUsers(usersArr) {
     const isChatSwitched = await ChatModel.find({
       users: { $all: [usersArr[1], usersArr[0]] },
     });
-
-    log.info(isChatSwitched);
 
     // if(usersArr.length<2) throw new Error(`cannot open a chat with one user`);
     // if(isChat.length!==0) throw new Error(`a chat between ${usersArr} already exists`);
