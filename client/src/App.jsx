@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Intro from "./pages/Intro";
 import Chat from "./pages/Chat/Chat";
 
