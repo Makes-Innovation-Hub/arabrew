@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import prevConversation from "../pages/DemoArrChatsData";
 export const ButtonForChats = styled.button`
   border-radius: 0.6rem;
   border: none;
@@ -11,11 +12,11 @@ export const ButtonForChats = styled.button`
   color: #fff;
   font-style: italic;
   transition: background-color 0.3s;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 4rem;
-  z-index: 2;
+  position: ${prevConversation.length !== 0 && "fixed"};
+  left: ${prevConversation.length !== 0 && "50%"};
+  transform: ${prevConversation.length !== 0 && "translateX(-50%)"};
+  bottom: ${prevConversation.length !== 0 && "4rem"};
+  z-index: ${prevConversation.length !== 0 && "2"};
   &:hover {
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }

@@ -7,7 +7,6 @@ import {
   NoConversationStyle,
   ContentConversationPage,
   ConversationPageStyle,
-  ButtonConversation,
   ConversationNoData,
   ChatsDisplay,
   ButtonForChats,
@@ -54,7 +53,7 @@ const ConversationPage = ({ prevConversation }) => {
               Add some friends and start chatting with them, Your conversations
               will show up here.
             </ContentConversationPage>
-            <ButtonConversation>Search for friends to chat</ButtonConversation>
+            <ButtonForChats>Search for friends to chat</ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>
