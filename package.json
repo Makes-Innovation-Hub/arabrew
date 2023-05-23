@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "npx mocha",
+    "test": "npx mocha ./server/api/translation/openAI.test.js",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js"
