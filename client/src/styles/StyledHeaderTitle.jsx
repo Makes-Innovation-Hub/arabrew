@@ -6,5 +6,5 @@ export const StyledHeaderTitle = styled.h5`
   font-size: 1.8rem;
   line-height: 1.8;
   text-align: center;
-  color: #FFFFFF;
-`
+  color: #ffffff;
+`;

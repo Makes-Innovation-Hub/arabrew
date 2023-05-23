@@ -1,4 +1,6 @@
 import Intro from "./pages/Intro";
+import Chat from "./pages/Chat/Chat";
+
 import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interests";
 import GenderSelection from "./pages/GenderSelection";
@@ -19,7 +21,8 @@ const router = createBrowserRouter([
       { path: "/occupation", element: <Occupation/>},
       { path: "/location", element: <Location/>},
      ]},
-  {path: "/intro", element: <Intro/>, errorElement: <>Error...</>},
+  { path: "/intro", element: <Intro/>, errorElement: <>Error...</> },
+  { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> }
 ]);
 
 function App() {
