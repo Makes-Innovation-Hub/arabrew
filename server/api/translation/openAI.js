@@ -15,7 +15,7 @@ const sendPromptToOpenAi = async (openai, prompt) => {
   });
 };
 
-export const checkProfanity = async (msg, original_lang, target_lang) => {
+export const checkProfanity = async (msg) => {
   const openai = new OpenAIApi(
     new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
   );
@@ -39,7 +39,7 @@ export const translateMsg = async (msg, original_lang, target_lang) => {
   );
   const response = await sendPromptToOpenAi(
     openai,
-    `translate from ${from} to ${to}: ${msg}`
+    `translate from ${original_lang} to ${target_lang}: ${msg}`
   );
 
   return response.data.choices[0].message.content;

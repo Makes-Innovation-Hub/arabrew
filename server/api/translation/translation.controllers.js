@@ -8,16 +8,15 @@ import {
 import { saveMsgToDB } from "./utils.js";
 
 export const messageController = asyncHandler(async (req, res, next) => {
-  const isProfanity = await checkProfanity(
-    req.body.data,
-    req.params.original_lang,
-    req.params.target_lang
-  );
+  const isProfanity = await checkProfanity(req.body.data);
 
   if (isProfanity) {
     return res.status(200).json({
       success: true,
-      data: original_lang === "hebrew" ? PROFANITY_MSG_HE : PROFANITY_MSG_AR,
+      data:
+        req.params.original_lang === "hebrew"
+          ? PROFANITY_MSG_HE
+          : PROFANITY_MSG_AR,
     });
   }
 
@@ -32,7 +31,7 @@ export const messageController = asyncHandler(async (req, res, next) => {
     req.params.user1,
     req.params.user2,
     req.body.data,
-    translated
+    translatedMsg
   );
 
   return res.status(200).json({
