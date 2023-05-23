@@ -1,5 +1,6 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import runPrompt from "./openAI.js";
+import { PROFANITY_MSG_HE, PROFANITY_MSG_AR } from "../../utils/constants.js";
 
 export const translateMsg = asyncHandler(async (req, res, next) => {
   let translated = await runPrompt(
@@ -9,7 +10,6 @@ export const translateMsg = asyncHandler(async (req, res, next) => {
   );
 
   const url = "http://localhost:5050/arabrew/chat";
-  const body = { key1: "value1", key2: "value2" };
 
   const saveMsgToDB = async () => {
     const response = await fetch(
@@ -25,10 +25,12 @@ export const translateMsg = asyncHandler(async (req, res, next) => {
     );
 
     const data = await response.json();
-    console.log(data);
   };
 
-  if (!translated.includes("ההודעה שלך נחסמה")) {
+  if (
+    !translated.includes(PROFANITY_MSG_HE) &&
+    !translated.includes(PROFANITY_MSG_AR)
+  ) {
     saveMsgToDB();
   }
 

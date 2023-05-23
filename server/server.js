@@ -42,7 +42,7 @@ wss.on("connection", (ws) => {
   };
 });
 
-app.use("/arabrew", routes);
+app.use("/api", routes);
 
 const PORT = process.env.PORT || 5050;
 
