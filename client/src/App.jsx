@@ -3,10 +3,10 @@ import {
   LangSelection,
   Interests,
   Occupation,
-  ConversationPage
+  ConversationPage,
+  Chat,
 } from "./pages/exports.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ConversationPage from "./pages/ConversationPage";
 import HeaderLayout from "./components/HeaderLayout";
 const router = createBrowserRouter(
   [
@@ -18,11 +18,10 @@ const router = createBrowserRouter(
       errorElement: <>Error...</>,
       children: [
         { path: "/lang", element: <LangSelection /> },
-        { path: "/interests", element: <Interest /> },
-        { path: "occupation", element: <Occupation /> }
+        { path: "/interests", element: <Interests /> },
+        { path: "occupation", element: <Occupation /> },
       ],
     },
-    { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
     { path: "/conversation", element: <ConversationPage /> },
   ],
   <require to="/" />
