@@ -1,1 +1,3 @@
-//test
+const User = () => {};
+
+export default User;
