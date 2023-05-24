@@ -8,6 +8,7 @@ import BioPage from "./pages/BioPage/BioPage";
 
 import HeaderLayout from "./components/HeaderLayout";
 import BirthPage from "./pages/BirthPage/BirthPage";
+import ConversationPage from "./pages/ConversationPage";
 const router = createBrowserRouter(
   [
     { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
@@ -24,12 +25,11 @@ const router = createBrowserRouter(
       ],
     },
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
+    { path: "/conversation", element: <ConversationPage /> },
   ],
   <require to="/" />
 );
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
-
 export default App;
