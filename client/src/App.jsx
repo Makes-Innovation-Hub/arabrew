@@ -7,6 +7,7 @@ import Occupation from "./pages/Occupation";
 import BioPage from "./pages/BioPage/BioPage";
 
 import HeaderLayout from "./components/HeaderLayout";
+import BirthPage from "./pages/BirthPage/BirthPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ConversationPage from "./pages/ConversationPage";
 const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
     { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
     { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
     { path: "/conversation", element: <ConversationPage /> },
+    { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
     {
       path: "/occupation",
       element: <Occupation />,
