@@ -1,4 +1,4 @@
-import { User, Chat, Message, log, asyncHandler } from "../index.js";
+import { Chat, asyncHandler } from "../index.js";
 
 export const createChat = asyncHandler(async (req, res, next) => {
   const { senderId, friendId } = req.params;
@@ -27,20 +27,22 @@ export const getUserChats = asyncHandler(async (req, res, next) => {
     })
     .populate({
       path: "latestMessage",
-      select: " content",
+      select: " content ",
     })
     .sort({ updatedAt: -1 });
 
   if (!userChats) {
     return next(new Error(`no chats for user with id ${userId}`));
   }
-  const allchats = userChats.map((chat) => {
-    const { users, updatedAt, chatId } = chat;
-    let lastMsg = { lastMsg: chat.latestMessage } || {};
-    const friend = users.filter((user) => user.id !== userId)[0].name;
 
+  const allchats = userChats.map((chat) => {
+    const { users, updatedAt, id, latestMessage } = chat;
+    const msgContent = latestMessage?.content;
+    let lastMsg = msgContent ? { lastMsg: msgContent } : {};
+    console.log("hh", userChats);
+    const friend = users.filter((user) => user.id !== userId)[0].name;
     return {
-      chatId: chatId,
+      chatId: id,
       friend: friend,
       ...lastMsg,
       updatedAt: updatedAt.toLocaleString("en-US", {
@@ -52,7 +54,6 @@ export const getUserChats = asyncHandler(async (req, res, next) => {
 
   if (!allchats)
     return next(new Error("failed preparing chatslist response object "));
-  log.debug(allchats);
   res.status(200).json({
     success: true,
     data: allchats,
