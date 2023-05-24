@@ -1,4 +1,5 @@
 import path from "path";
+import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 
@@ -16,6 +17,7 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 connectDB();
 
@@ -44,7 +46,7 @@ wss.on("connection", (ws) => {
 
 app.use("/api", routes);
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(
   PORT,
