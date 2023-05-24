@@ -42,7 +42,7 @@ const MyCustomStyles = {
   menu: (provided) => ({
     ...provided,
     width: "21rem", // Adjust the width as needed
-    // maxHeight: "200rem", // Adjust the max height as needed
+    // maxHeight: "20rem", // Adjust the max height as needed
     overflowY: "auto",
     scrollbarWidth: "none",
     margin: "1rem 3.5rem",
