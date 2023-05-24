@@ -1,7 +1,7 @@
 import User from "./user.js";
 import { asyncHandler } from "../index.js";
 
-Array.prototype.sortRandomly = function () {
+Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);
 };
 
@@ -56,7 +56,7 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
         ...user,
       };
     })
-    .sortRandomly();
+    .sortByMatching();
   sorted_matchingUsers.forEach((user) => {
     delete user.sortBy;
   });
