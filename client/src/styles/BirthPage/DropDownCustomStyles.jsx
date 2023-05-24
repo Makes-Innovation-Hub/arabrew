@@ -34,14 +34,15 @@ const MyCustomStyles = {
     color: state.isSelected ? "#06110A" : "#7c7c7c",
     cursor: "pointer",
     textAlign: "center",
-    width: "17rem",
+    width: "19rem",
     margin: "auto",
+    borderRadius: "0.313rem",
   }),
 
   menu: (provided) => ({
     ...provided,
-    width: "20rem", // Adjust the width as needed
-    // maxHeight: "200rem", // Adjust the max height as needed
+    width: "21rem", // Adjust the width as needed
+    // maxHeight: "20rem", // Adjust the max height as needed
     overflowY: "auto",
     scrollbarWidth: "none",
     margin: "1rem 4rem",
@@ -51,7 +52,7 @@ const MyCustomStyles = {
   }),
   menuList: (provided) => ({
     ...provided,
-    width: "20rem",
+    width: "21rem",
     maxHeight: "20rem",
     overflowY: "scroll",
     scrollbarWidth: "none",
