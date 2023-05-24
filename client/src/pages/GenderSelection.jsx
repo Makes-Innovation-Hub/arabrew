@@ -1,24 +1,37 @@
-import { useDispatch } from "react-redux"
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { Header } from "../components"
-import { Flex, StyledPage, StyledMargin, StyledButton, StyledLanguageButton, StyledPageTitle } from "../styles"
-import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets"
-import { addUserDataField } from "../features/userDataSlice"
-
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Header } from "../components";
+import {
+  Flex,
+  StyledPage,
+  StyledMargin,
+  StyledButton,
+  StyledLanguageButton,
+  StyledPageTitle,
+} from "../styles";
+import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets";
+import { addUserDataField } from "../features/userDataSlice";
 
 const GenderSelection = () => {
-      const [gender, setGender] = useState({
-      value: "",
-      dataField: "Gender"
-    })
+  const [gender, setGender] = useState({
+    value: "",
+    dataField: "Gender",
+  });
 
-    const dispatch = useDispatch()
-    const { value } = gender
+  const dispatch = useDispatch();
+  const { value } = gender;
 
   return (
     <div>
-      <Header leftIcon={<Link to="/location"><ArrowLeft/></Link>} title={"Add Gender"} />
+      <Header
+        leftIcon={
+          <Link to="/location">
+            <ArrowLeft />
+          </Link>
+        }
+        title={"Add Gender"}
+      />
       <StyledPage>
          <StyledMargin direction="vertical" margin="1.75rem"/>
             <StyledMargin direction="horizontal" margin="35rem">
@@ -49,9 +62,13 @@ const GenderSelection = () => {
               dispatch(addUserDataField(gender))
               setGender({...gender, value: ""})
             }
-            } bg={value ? "#50924E" : "#d7ddd6"} hoverBg={value ? "#396d37" : "#d7ddd6"} text={"Save & Next"}></StyledButton>
+           }
+          bg={value ? "#50924E" : "#d7ddd6"}
+          hoverBg={value ? "#396d37" : "#d7ddd6"}
+          text={"Save & Next"}
+        ></StyledButton>
       </StyledPage>
     </div>
-  )
-}
-export default GenderSelection
+  );
+};
+export default GenderSelection;
