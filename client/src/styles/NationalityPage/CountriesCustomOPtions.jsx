@@ -1,20 +1,23 @@
 import { components } from "react-select";
+import { Flex } from "../Flex";
 
 const Option = (props) => {
   const { label, value, data } = props;
   return (
     <components.Option {...props}>
-      <img
-        src={data.image}
-        alt={label}
-        style={{
-          marginRight: "0.5rem",
-          width: "3.125rem",
-          borderRadius: "2rem",
-          margin: "0 1rem 0 0",
-        }}
-      />
-      {label}
+      <Flex style={{ justifyContent: "flex-start", width: "100%" }}>
+        <img
+          src={data.image}
+          alt={label}
+          style={{
+            marginRight: "0.5rem",
+            width: "3.125rem",
+            borderRadius: "2rem",
+            margin: "0 1rem 0 0",
+          }}
+        />
+        {label}
+      </Flex>
     </components.Option>
   );
 };
