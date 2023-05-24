@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
-
+import allRoutes from "./routes.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -18,6 +18,7 @@ app.use(express.json());
 const rooms = {};
 
 const clients = [];
+app.use("/api/v1/arabrew", allRoutes);
 
 wss.on("connection", (ws) => {
   clients.push({ room: ws.id, client: ws });
@@ -52,3 +53,55 @@ process.on("unhandledRejection", async (err, promise) => {
   server.close(() => process.exit(1));
   await wss.close();
 });
+// import express from "express";
+// import dotenv from "dotenv";
+// import cors from "cors";
+// import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import mongoose from "mongoose";
+// import connectDB from "./config/db.js";
+// import errorHandler from "./middleware/errorHandler.js";
+// import allRoutes from "./routes.js";
+// import { log } from "./helpers/logger.js";
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+// dotenv.config({
+//   path: `${__dirname}/config/config.env`,
+// });
+
+// connectDB();
+
+// const app = express();
+// app.use(express.json("application/json"));
+// app.use(cors());
+
+// //! for test and dev puposes - NOT PR!
+// app.get("/", (req, res) => {
+//   res.send("DB CONNECTED");
+// });
+
+// app.use("/api/v1/arabrew", allRoutes);
+
+// app.use(errorHandler);
+
+// const PORT = process.env.PORT || 5000;
+
+// const server = app.listen(
+//   PORT,
+
+//   // //! Just for DEV {NOT PR}
+//   // "192.168.1.33",
+
+//   console.log(
+//     ` ⭐⭐server is running in ${process.env.NODE_ENV} Mode, & made on port ${PORT} ⭐⭐`
+//   )
+// );
+
+// process.on("unhandledRejection", (err, promise) => {
+//   console.log(`😡😡 Error: ${err.message} 😡😡`);
+
+//   mongoose.disconnect(() => {
+//     server.close(() => process.exit(1));
+//   });
+// });
