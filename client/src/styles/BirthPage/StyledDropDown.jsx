@@ -21,7 +21,6 @@ const CustomDropdown = ({
 
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    console.log(selected);
     setSelected({ ...selected, value: selectedOption.value });
   };
 
