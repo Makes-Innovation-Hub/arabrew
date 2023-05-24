@@ -9,5 +9,4 @@ router.use("/user", userRouter);
 router.use("/chat", chatRouter);
 router.use("/message", messageRouter);
 router.use("/translation", translationRouter);
-
 export default router;
