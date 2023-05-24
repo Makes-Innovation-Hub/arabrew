@@ -4,7 +4,9 @@ import dotenv from "dotenv";
 
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
+import connectDB from "./config/db.js";
 import allRoutes from "./routes.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -14,6 +16,8 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
+
+connectDB();
 
 const rooms = {};
 
@@ -39,7 +43,9 @@ wss.on("connection", (ws) => {
   };
 });
 
-const PORT = process.env.PORT || 5005;
+app.use("/api", routes);
+
+const PORT = process.env.PORT || 5050;
 
 const server = app.listen(
   PORT,

@@ -2,10 +2,11 @@
   "name": "arabrew",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "./server/server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx mocha ./server/api/translation/openAI.test.js",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js"
@@ -24,8 +25,10 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "assert": "^2.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "pino": "^8.14.1",
     "pino-http": "^8.3.3",
