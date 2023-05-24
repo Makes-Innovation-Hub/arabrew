@@ -1,6 +1,5 @@
 import BioPage from "./pages/BioPage/BioPage";
 
-import BirthPage from "./pages/BirthPage/BirthPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HeaderLayout } from "./components"
 import {Intro, LangSelection, Interests, Nationality, Location, GenderSelection, Occupation } from "./pages"
@@ -24,7 +23,6 @@ const router = createBrowserRouter([
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/conversation", element: <ConversationPage /> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
-  { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
 
 ]);
 
