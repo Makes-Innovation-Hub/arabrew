@@ -55,8 +55,10 @@ const UserSchema = new mongoose.Schema(
     },
     friends: [
       {
-        // type: mongoose.Schema.Types.ObjectId,
         type: String,
+
+        //! must use the following when add friend func is implemented
+        // type: mongoose.Schema.Types.ObjectId,
         // ref: "userModel",
       },
     ],
