@@ -5,15 +5,15 @@ export const StyledHeader = styled.div`
   height: 10rem;
   display: flex;
   padding: 1rem;
-  background: #50924E;
+  background: #50924e;
   align-items: center;
   justify-content: space-between;
   font-weight: 500;
   font-size: 1.125rem;
-  color: #FFFFFF;
+  color: #ffffff;
   position: absolute;
   @media (min-width: 700px) {
     padding: 3rem;
     height: 12.5rem;
   }
-  `
+`;
