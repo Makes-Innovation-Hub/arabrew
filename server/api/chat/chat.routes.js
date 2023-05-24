@@ -4,5 +4,4 @@ const router = express.Router();
 
 router.route("/all-chats/:userId").get(getUserChats);
 router.route("/new/:senderId/:friendId").post(createChat);
-
 export default router;
