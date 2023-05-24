@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx mocha ./server/api/translation/openAI.test.js",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js"
@@ -24,8 +24,10 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "assert": "^2.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "prettier": "2.8.8"
   },

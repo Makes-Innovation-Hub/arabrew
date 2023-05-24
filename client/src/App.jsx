@@ -5,15 +5,15 @@ import Bio from "./pages/Bio";
 import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
-
-import HeaderLayout from "./components/HeaderLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import ConversationPage from "./pages/ConversationPage";
+import HeaderLayout from "./components/HeaderLayout";
 const router = createBrowserRouter(
   [
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
     { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
     { path: "/bio", element: <Bio />, errorElement: <>Error...</> },
+    { path: "/conversation", element: <ConversationPage /> },
     {
       path: "/occupation",
       element: <Occupation />,
@@ -31,9 +31,7 @@ const router = createBrowserRouter(
   ],
   <require to="/" />
 );
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
-
 export default App;
