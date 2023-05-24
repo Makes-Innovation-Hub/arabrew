@@ -1,14 +1,22 @@
-import React from "react";
+import { components } from "react-select";
 
-const CountriesCustomOption = ({ innerProps, label, data }) => {
-  // You can access the option's label and data here
-  // Customize the rendering of the option as needed
+const Option = (props) => {
+  const { label, value, data } = props;
   return (
-    <div {...innerProps}>
-      <img src={data.image} alt={label} />
-      <span>{label}</span>
-    </div>
+    <components.Option {...props}>
+      <img
+        src={data.image}
+        alt={label}
+        style={{
+          marginRight: "0.5rem",
+          width: "3.125rem",
+          borderRadius: "2rem",
+          margin: "0 1rem 0 0",
+        }}
+      />
+      {label}
+    </components.Option>
   );
 };
 
-export default CountriesCustomOption;
+export default Option;

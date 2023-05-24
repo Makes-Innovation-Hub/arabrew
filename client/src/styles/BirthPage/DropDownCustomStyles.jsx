@@ -25,7 +25,7 @@ const MyCustomStyles = {
     ...provided,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     background: state.isFocused
       ? "#f2f2f2"
       : state.isSelected

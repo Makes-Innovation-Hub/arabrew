@@ -27,17 +27,14 @@ const CustomDropdown = ({
 
   return (
     <Select
+      closeMenuOnSelect={true}
+      components={{ Option: customOption ? customOption : DefaultOption }}
       options={optionsArray}
       value={selectedOption}
       onChange={handleSelectChange}
-      styles={customStyles}
       isSearchable={isSearchable}
       placeholder={placeHolder}
-      components={{
-        option: customOption ? customOption : DefaultOption,
-      }}
-      getOptionLabel={(option) => option.label} // Specify the label key in the option object
-      getOptionValue={(option) => option.value} // Specify the value key in the option object
+      styles={customStyles}
     />
   );
 };

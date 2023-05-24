@@ -7,23 +7,23 @@ import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import { fetchCountryData } from "../../features/CountriesApi.js";
 import arrowIcon from "../../assets/arrow.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
-import CountriesCustomOption from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
+import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
+import countries from "../../assets/countriesAndFlags/index.json";
+
+import { useDispatch } from "react-redux";
+import { addUserDataField } from "../../features/userDataSlice.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function NationalityPage() {
-  const [countries, setCountries] = useState([]);
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
     dataField: "nationality",
   });
-
-  useEffect(() => {
-    fetchCountryData(setCountries);
-  }, []);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -61,14 +61,18 @@ export default function NationalityPage() {
             <CustomDropdown
               optionsArray={countries}
               placeHolder="Select"
-              selectedYear={selectedNationality}
-              setSelectedYear={setSelectedNationality}
+              selected={selectedNationality}
+              setSelected={setSelectedNationality}
               isSearchable={false}
-              customOptions={CountriesCustomOption}
+              customOption={Option}
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton>
+            <StyledSaveAndNextButton
+              onClick={() => {
+                dispatch(addUserDataField(selectedNationality));
+              }}
+            >
               <i>Save & Next</i>
             </StyledSaveAndNextButton>
           </Flex>
