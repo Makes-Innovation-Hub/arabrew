@@ -17,9 +17,7 @@ const chatSchema = new mongoose.Schema(
 
     latestMessage: {
       type: mongoose.Schema.Types.ObjectId,
-      type: String,
-
-      ref: "messageModel",
+      ref: "MessageModel",
     },
   },
   {
@@ -27,22 +25,21 @@ const chatSchema = new mongoose.Schema(
     versionKey: false,
     toJSON: {
       transform: function (doc, ret) {
-        ret.chatId = ret._id;
+        ret.id = ret._id;
         delete ret._id;
+        delete ret.__v;
       },
     },
     toObject: {
       transform: function (doc, ret) {
-        ret.chatId = ret._id;
+        ret.id = ret._id;
         delete ret._id;
+        delete ret.__v;
       },
     },
   }
 );
-// chatSchema.index(
-//   { users: 1 },
-//   { unique: true}
-// );
+
 async function checkUsers(usersArr) {
   try {
     const isChat = await ChatModel.find({ users: { $all: usersArr } });
