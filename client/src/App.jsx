@@ -3,12 +3,12 @@ import Chat from "./pages/Chat/Chat";
 import LangSelection from "./pages/LangSelection";
 import Interest from "./pages/Interest";
 import Occupation from "./pages/Occupation";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BioPage from "./pages/BioPage/BioPage";
 
 import HeaderLayout from "./components/HeaderLayout";
 import BirthPage from "./pages/BirthPage/BirthPage";
 import NationalityPage from "./pages/NationalityPage/NationalityPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ConversationPage from "./pages/ConversationPage";
 const router = createBrowserRouter(
   [
