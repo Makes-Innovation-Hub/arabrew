@@ -39,7 +39,6 @@ export const getUserChats = asyncHandler(async (req, res, next) => {
     const { users, updatedAt, id, latestMessage } = chat;
     const msgContent = latestMessage?.content;
     let lastMsg = msgContent ? { lastMsg: msgContent } : {};
-    console.log("hh", userChats);
     const friend = users.filter((user) => user.id !== userId)[0].name;
     return {
       chatId: id,
