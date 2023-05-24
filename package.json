@@ -28,6 +28,7 @@
     "lint-staged": "^13.2.2",
     "nodemon": "^2.0.22",
     "pino": "^8.14.1",
+    "pino-http": "^8.3.3",
     "pino-pretty": "^10.0.0",
     "prettier": "2.8.8"
   },
