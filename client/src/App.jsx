@@ -1,11 +1,5 @@
-import Intro from "./pages/Intro";
-import Chat from "./pages/Chat/Chat";
-import LangSelection from "./pages/LangSelection";
-import Interests from "./pages/Interests";
-import Occupation from "./pages/Occupation";
 import BioPage from "./pages/BioPage/BioPage";
 
-import HeaderLayout from "./components/HeaderLayout";
 import BirthPage from "./pages/BirthPage/BirthPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HeaderLayout } from "./components"
