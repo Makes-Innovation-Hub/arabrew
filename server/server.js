@@ -29,7 +29,7 @@ connectDB();
 const rooms = {};
 
 const clients = [];
-app.use("/api/v1/arabrew", allRoutes);
+app.use("/api", allRoutes);
 app.use(errorHandler);
 wss.on("connection", (ws) => {
   clients.push({ room: ws.id, client: ws });
