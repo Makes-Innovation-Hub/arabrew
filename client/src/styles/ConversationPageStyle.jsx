@@ -8,4 +8,5 @@ export const ConversationPageStyle = styled.div`
   justify-content: center;
   @media (min-width: 700px) {
     width: 100vw;
-  }`;
+  }
+`;
