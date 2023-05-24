@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HeaderLayout } from "./components"
 import {Intro, LangSelection, Interests, Nationality, Location, GenderSelection, Occupation } from "./pages"
+import Chat from "./pages/Chat/Chat";
+import ConversationPage from "./pages/ConversationPage";
+
 
 const router = createBrowserRouter([
   {path: "/",
@@ -14,11 +17,13 @@ const router = createBrowserRouter([
       { path: "/gender", element: <GenderSelection/>},
       { path: "/occupation", element: <Occupation/>},
      ]},
-  {path: "/intro", element: <Intro/>, errorElement: <>Error...</>},
+  { path: "/intro", element: <Intro/>, errorElement: <>Error...</> },
+  { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/conversation", element: <ConversationPage /> },
+
 ]);
 
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
-
 export default App;
