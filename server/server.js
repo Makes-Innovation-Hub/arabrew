@@ -44,6 +44,14 @@ wss.on("connection", (ws) => {
 
 app.use("/api", routes);
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
+
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 const PORT = process.env.PORT || 5050;
 
 const server = app.listen(
