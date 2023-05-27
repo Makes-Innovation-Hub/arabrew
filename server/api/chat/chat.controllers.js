@@ -93,7 +93,6 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
       }),
     };
   });
-
   userChat.messagesHistory = messagesTimeToLocal;
   res.status(200).json(userChat);
 });
