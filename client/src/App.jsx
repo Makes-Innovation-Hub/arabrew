@@ -1,14 +1,17 @@
-import Intro from "./pages/Intro";
-import Chat from "./pages/Chat/Chat";
-import LangSelection from "./pages/LangSelection";
-import Interests from "./pages/Interests";
+import {
+  Intro,
+  LangSelection,
+  Interests,
+  Occupation,
+  ConversationPage,
+  Chat,
+} from "./pages/exports.js";
 import GenderSelection from "./pages/GenderSelection";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HeaderLayout from "./components/HeaderLayout";
 import Location from "./pages/Location";
-import Occupation from "./pages/Occupation";
-import ConversationPage from "./pages/ConversationPage";
 
 const router = createBrowserRouter([
   {

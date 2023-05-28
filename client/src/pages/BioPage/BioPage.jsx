@@ -13,14 +13,14 @@ import arrowIcon from "../../assets/arrow.svg";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUserDataField } from "../../features/userDataSlice.jsx";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useSendUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const [text, setText] = useState({
     value: "",
-    dataField: "bio",
+    field: "bio",
   });
   const userData = useSelector((state) => state.userData);
   const [sendUserData] = useSendUserDataMutation();
@@ -80,7 +80,7 @@ export default function BioPage() {
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
-                dispatch(addUserDataField(text));
+                dispatch(addDetail(text));
                 console.log(userData);
                 sendUserData(userData);
               }}
