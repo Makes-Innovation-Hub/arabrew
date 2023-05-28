@@ -1,10 +1,19 @@
-import BioPage from "./pages/BioPage/BioPage";
+import {
+  Intro,
+  LangSelection,
+  Interests,
+  Occupation,
+  ConversationPage,
+  Chat,
+  Nationality,
+} from "./pages/exports.js";
+import GenderSelection from "./pages/GenderSelection";
+import BioPage from "./pages/BioPage/BioPage.jsx"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HeaderLayout } from "./components"
-import {Intro, LangSelection, Interests, Nationality, Location, GenderSelection, Occupation } from "./pages"
-import Chat from "./pages/Chat/Chat";
-import ConversationPage from "./pages/ConversationPage";
+
+import HeaderLayout from "./components/HeaderLayout";
+import Location from "./pages/Location";
 
 
 const router = createBrowserRouter([

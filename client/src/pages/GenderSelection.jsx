@@ -11,12 +11,12 @@ import {
   StyledPageTitle,
 } from "../styles";
 import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets";
-import { addUserDataField } from "../features/userDataSlice";
+import { addDetail } from "../features/userRegister/userRegisterSlice";
 
 const GenderSelection = () => {
   const [gender, setGender] = useState({
     value: "",
-    dataField: "Gender",
+    field: "gender",
   });
 
   const dispatch = useDispatch();

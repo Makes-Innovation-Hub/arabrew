@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import {
   Flex,
   StyledPage,
@@ -9,16 +9,26 @@ import {
   StyledButton,
   StyledLanguageButton,
   StyledPageTitle,
-} from "../styles";
-import { ArrowLeft, LanguageIcon } from "../assets";
-import { addDetail } from "../features/userRegister/userRegisterSlice.jsx";
-const LangSelection = () => {
-  const [language, setLanguage] = useState({
-    value: "",
-    field: "Language",
-  });
+} from "../../styles";
+import { ArrowLeft, LanguageIcon } from "../../assets";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 
+const LangSelection = () => {
   const dispatch = useDispatch();
+  const { lang } = useSelector((state) => state.userRegister);
+  const [language, setLanguage] = useState({
+    field: "lang",
+    value: lang.length > 0 ? lang : [],
+  });
+  const { value } = language;
+  const handleClick = () => {
+    if (!value) {
+      return;
+    }
+    dispatch(addDetail(language));
+    setLanguage({ ...language, value: "" });
+  };
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -41,8 +51,8 @@ const LangSelection = () => {
           <LanguageIcon letter="ع" />
           <StyledMargin direction="horizontal" margin="0.9rem" />
           <StyledLanguageButton
-            bg={language.value === "AR" ? "#50924E" : "#FFFFFF"}
-            color={language.value === "AR" ? "#FFFFFF" : "#000000"}
+            bg={value === "AR" ? "#50924E" : "#FFFFFF"}
+            color={value === "AR" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "AR" })}
           >
             Arabic
@@ -53,24 +63,18 @@ const LangSelection = () => {
           <LanguageIcon letter="ע" />
           <StyledMargin direction="horizontal" margin="0.9rem" />
           <StyledLanguageButton
-            bg={language.value === "HE" ? "#50924E" : "#FFFFFF"}
-            color={language.value === "HE" ? "#FFFFFF" : "#000000"}
+            bg={value === "HE" ? "#50924E" : "#FFFFFF"}
+            color={value === "HE" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "HE" })}
           >
             Hebrew
           </StyledLanguageButton>
         </Flex>
         <StyledButton
-          to={language.value ? "/interests" : null}
-          onClick={() => {
-            if (!language.value) {
-              return;
-            }
-            dispatch(addDetail(language));
-            setLanguage({ ...language, value: "" });
-          }}
-          bg={language.value ? "#50924E" : "#d7ddd6"}
-          hoverBg={language.value ? "#396d37" : "#d7ddd6"}
+          to={value ? "/interests" : null}
+          onClick={handleClick}
+          bg={value ? "#50924E" : "#d7ddd6"}
+          hoverBg={value ? "#396d37" : "#d7ddd6"}
           text={"Save & Next"}
         ></StyledButton>
       </StyledPage>
