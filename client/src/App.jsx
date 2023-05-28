@@ -4,6 +4,7 @@ import {
   Interests,
   Occupation,
   ConversationPage,
+  BirthPage,
   Chat,
 } from "./pages/exports.js";
 import GenderSelection from "./pages/GenderSelection";
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
   },
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/conversation", element: <ConversationPage /> },
 ]);
 
