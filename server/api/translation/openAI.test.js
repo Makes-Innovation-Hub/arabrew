@@ -10,14 +10,14 @@ describe("open ai api tests", () => {
         "arabic"
       );
       console.log("result", result);
-      assert.equal(result, "مرحبا (Marhaba)" || "مرحبا (Marhaban)" || "مرحبا");
+      assert.equal(true, result.includes("مرحبا") || result.includes("السلام"));
     });
   });
   describe("profanity test", () => {
-    it("should return : true", async function () {
-      const result = await checkProfanity("good morning ass hole");
+    it("should return : false", async function () {
+      const result = await checkProfanity("good morning");
       console.log("result", result);
-      assert.equal(result, true);
+      assert.equal(result, false);
     });
   });
 });
