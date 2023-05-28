@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Header } from "../components"
 import { StyledPage, StyledMargin, StyledButton, StyledPageTitle, StyledInput } from "../styles"
 import { ArrowLeft } from "../assets"
-import { addUserDataField } from "../features/userDataSlice"
+import { addDetail } from "../features/userRegister/userRegisterSlice"
 
 
 
@@ -32,7 +32,7 @@ const Location = () => {
               if(!value){
                 return
               }
-              dispatch(addUserDataField(location))
+              dispatch(addDetail(location))
               setLocation({...location, value: ""})
             }
             } bg={value ? "#50924E" : "#d7ddd6"} hoverBg={value ? "#396d37" : "#d7ddd6"} text={"Save & Next"}></StyledButton>
