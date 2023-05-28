@@ -27,7 +27,7 @@ const Location = () => {
             <StyledPageTitle>Add your Location</StyledPageTitle>
             </StyledMargin>
             <StyledMargin direction="vertical" margin="9.25rem"/>
-            <StyledInput type="text" value={value} onChange={(e) => setLocation({...location, value: e.target.value})} />
+            <StyledInput type="text" value={value} onChange={(e) => setLocation({...location, value: e.target.value})} placeholder="Add Location" />
             <StyledButton to={value ? "/gender" : null} onClick={() => {
               if(!value){
                 return
