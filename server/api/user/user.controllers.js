@@ -5,6 +5,9 @@ Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);
 };
 
+//$ @desc    register new User
+//$ @route   POST /api/user/register
+//! @access  NOT SET YET
 export const registerUser = asyncHandler(async (req, res, next) => {
   const userInfo = req.body;
   const newUser = await User.create(userInfo);
@@ -17,6 +20,9 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   });
 });
 
+//$ @desc    find friends by interests Array, (user id to execlude him )
+//$ @route   GET /api/user/:subId/get-users?interests=Dancing,Gaming...
+//! @access  NOT SET YET
 export const getUsersByInterests = asyncHandler(async (req, res, next) => {
   if (!req.interests) return next();
   const { subId } = req.params;
@@ -55,8 +61,10 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
   });
 });
 
+//$ @desc    get all users in random order (execlude the logged user)
+//$ @route   GET /api/user/:subId/get-users
+//! @access  NOT SET YET
 export const getAllUsers = asyncHandler(async (req, res, next) => {
-  console.log("its me again&&");
   const { subId } = req.params;
   let allUsers = await User.find({
     subId: { $ne: subId },
