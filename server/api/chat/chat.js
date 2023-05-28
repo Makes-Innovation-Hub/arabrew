@@ -23,7 +23,6 @@ const chatSchema = new mongoose.Schema(
 
         createdAt: {
           type: String,
-          // default:,
         },
       },
     ],
