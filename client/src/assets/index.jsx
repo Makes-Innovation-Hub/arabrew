@@ -6,5 +6,12 @@ import SmallGlass from "./SmallGlass";
 import MaleIcon from "./MaleIcon";
 import FemaleIcon from "./FemaleIcon";
 
-
-export {Hamburger, ArrowLeft, Glass, LanguageIcon, SmallGlass, MaleIcon, FemaleIcon};
+export {
+  Hamburger,
+  ArrowLeft,
+  Glass,
+  LanguageIcon,
+  SmallGlass,
+  MaleIcon,
+  FemaleIcon,
+};
