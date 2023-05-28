@@ -1,3 +1,4 @@
+import path from "path";
 import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 import { fileURLToPath } from "url";
@@ -5,42 +6,41 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: __dirname + "/../.env" });
+dotenv.config({ path: __dirname + "/../../.env" });
 
-const init = () => {
-  const config = new Configuration({
-    apiKey: process.env.OPEN_AI_API_KEY,
-  });
-  return new OpenAIApi(config);
-};
-
-const openAiInit = async (openai, prompt) => {
-  return await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: prompt,
-    max_tokens: 2048,
-    temperature: 1,
+const sendPromptToOpenAi = async (openai, prompt) => {
+  return await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: prompt }],
   });
 };
 
-const checkRTL = (question, parsableJSONresponse) => {
+export const checkProfanity = async (msg) => {
+  const openai = new OpenAIApi(
+    new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
+  );
+  const isProfanity = await sendPromptToOpenAi(
+    openai,
+    `is the text profanity? answer only "true" or "false" : ${msg}`
+  );
+
   if (
-    question.includes("from english to hebrew") ||
-    question.includes("from english to arabic")
+    isProfanity.data.choices[0].message.content.toLowerCase().includes("true")
   ) {
-    return parsableJSONresponse.split("").reverse().join("");
+    return true;
   } else {
-    return parsableJSONresponse;
+    return false;
   }
 };
 
-const runPrompt = async (question) => {
-  const openai = init();
-  const prompt = question;
-  const response = await openAiInit(openai, prompt);
-  const parsableJSONresponse = response.data.choices[0].text;
+export const translateMsg = async (msg, original_lang, target_lang) => {
+  const openai = new OpenAIApi(
+    new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
+  );
+  const response = await sendPromptToOpenAi(
+    openai,
+    `translate from ${original_lang} to ${target_lang}: ${msg}`
+  );
 
-  return checkRTL(question, parsableJSONresponse);
+  return response.data.choices[0].message.content;
 };
-
-export default runPrompt;
