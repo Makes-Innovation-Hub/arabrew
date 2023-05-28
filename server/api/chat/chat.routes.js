@@ -4,7 +4,7 @@ import {
   addMessageToChat,
   createChat,
   getChatByNames,
-  getUserChats,
+  getUserChatsList,
 } from "./chat.controllers.js";
 
 const router = express.Router();
@@ -15,6 +15,6 @@ router
   .get(deleteOldMessages, getChatByNames)
   .put(addMessageToChat);
 
-router.route("/logged/:loggedUser_name/").get(getUserChats);
+router.route("/logged/user/:loggedUser_name").get(getUserChatsList);
 
 export default router;
