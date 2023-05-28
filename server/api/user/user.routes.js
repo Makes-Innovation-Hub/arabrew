@@ -11,5 +11,4 @@ router.route("/register").post(registerUser);
 router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);
-
 export default router;
