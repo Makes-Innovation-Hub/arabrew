@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { ArrowLeft } from "../../assets";
+import { StyledPage, StyledMargin, StyledPageTitle } from "../../styles";
 import {
-  Navbar,
-  Back,
-  PageTitle,
-  EmptyDiv,
   Content,
-  ContentTitle,
   ButtonDiv,
   Button,
-} from "../../components/index.js";
-
-import {
+  Header,
   selectedBtn,
   listBtn,
   selectedContainer,
   wrapper,
-} from "../../components/styles/Interests.style.jsx";
+} from "../../components/index.js";
 
 const Interests = () => {
   const navigate = useNavigate();
@@ -67,7 +62,7 @@ const Interests = () => {
   };
 
   const handleSave = () => {
-    // dispatch(addDetail(selectedInterests));
+    dispatch(addDetail(selectedInterests));
     navigate("/occupation");
   };
   useEffect(() => {
@@ -81,60 +76,58 @@ const Interests = () => {
   }, [selectedInterests]);
   return (
     <div style={wrapper}>
-      <Navbar>
-        <Back>{"<"}</Back>
-        <PageTitle>Add Interests</PageTitle>
-        <EmptyDiv></EmptyDiv>
-      </Navbar>
-      <Content>
-        <div
-          style={{
-            display: "flex",
-            margin: "3rem 0",
-            fontSize: "0.8rem",
-            fontWeight: "500",
-          }}
-        >
-          <ContentTitle>choose five interests </ContentTitle>
-          <div style={{ width: "10rem" }} />
-          <ContentTitle>{interestsNumber} of 5 </ContentTitle>
-        </div>
+      <Header
+        leftIcon={
+          <Link to="/lang">
+            <ArrowLeft />
+          </Link>
+        }
+        title={"Add Language"}
+      />
+      <StyledPage>
+        <StyledMargin direction="horizontal" margin="35rem">
+          <StyledPageTitle style={{ marginTop: "2rem" }}>
+            Choose five interests &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp; &nbsp; {interestsNumber} of 5{" "}
+          </StyledPageTitle>
+        </StyledMargin>
+        <Content>
+          {isError && (
+            <h1 style={{ color: "red" }}>
+              * max Interests Number, were selected
+            </h1>
+          )}
 
-        {isError && (
-          <h1 style={{ color: "red" }}>
-            * max Interests Number, were selected
-          </h1>
-        )}
-
-        <div style={selectedContainer}>
-          {value.map((interest) => (
-            <button
-              style={selectedBtn}
-              key={interest}
-              onClick={() => removeInterest(interest)}
-            >
-              {interest}
-              <span> X</span>
-            </button>
-          ))}
-        </div>
-
-        <div>
-          {interestsList.map((interest) => (
-            <span key={interest}>
-              <button style={listBtn} onClick={() => addInterests(interest)}>
+          <div style={selectedContainer}>
+            {value.map((interest) => (
+              <button
+                style={selectedBtn}
+                key={interest}
+                onClick={() => removeInterest(interest)}
+              >
                 {interest}
+                <span> X</span>
               </button>
-            </span>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <ButtonDiv>
-          <Button onClick={handleSave} disabled={disableSaveBtn}>
-            Save & Next
-          </Button>
-        </ButtonDiv>
-      </Content>
+          <div>
+            {interestsList.map((interest) => (
+              <span key={interest}>
+                <button style={listBtn} onClick={() => addInterests(interest)}>
+                  {interest}
+                </button>
+              </span>
+            ))}
+          </div>
+
+          <ButtonDiv>
+            <Button onClick={handleSave} disabled={disableSaveBtn}>
+              Save & Next
+            </Button>
+          </ButtonDiv>
+        </Content>
+      </StyledPage>
     </div>
   );
 };

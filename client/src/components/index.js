@@ -6,7 +6,13 @@ import { Content } from "./styles/Content.jsx";
 import { ContentTitle } from "./styles/ContentTitle.jsx";
 import { ButtonDiv } from "./styles/ButtonDiv.jsx";
 import { Button } from "./styles/Button.jsx";
-
+import Header from "./Header.jsx";
+import {
+  selectedBtn,
+  listBtn,
+  wrapper,
+  selectedContainer,
+} from "./styles/Interests.style.jsx";
 export {
   Navbar,
   Back,
@@ -16,4 +22,9 @@ export {
   ContentTitle,
   ButtonDiv,
   Button,
+  selectedBtn,
+  listBtn,
+  wrapper,
+  selectedContainer,
+  Header,
 };
