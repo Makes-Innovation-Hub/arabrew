@@ -11,8 +11,8 @@ import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
-import { addUserDataField } from "../../features/userDataSlice.jsx";
 import { useNavigate } from "react-router-dom";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -78,7 +78,7 @@ export default function BirthPage() {
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
-                dispatch(addUserDataField(selectedYear));
+                dispatch(addDetail(selectedYear));
                 // navigate("/nationalityPage");
               }}
             >
