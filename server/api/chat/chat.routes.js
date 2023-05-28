@@ -1,8 +1,17 @@
 import express from "express";
-
-import { saveChatMsg } from "./chat.controllers.js";
+import { deleteOldMessages } from "./chat.middleware.js";
+import {
+  addMessageToChat,
+  createChat,
+  getChatByNames,
+} from "./chat.controllers.js";
 
 const router = express.Router();
-router.route("/:id_from/:id_to").post(saveChatMsg);
+
+router
+  .route("/:user1_name/:user2_name")
+  .post(createChat)
+  .get(deleteOldMessages, getChatByNames)
+  .put(addMessageToChat);
 
 export default router;
