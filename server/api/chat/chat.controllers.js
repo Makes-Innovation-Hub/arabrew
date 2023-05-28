@@ -96,3 +96,15 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
   userChat.messagesHistory = messagesTimeToLocal;
   res.status(200).json(userChat);
 });
+
+//$ @desc    get user Chats list with names and last message
+//$ @route   GET /api/chat/logged/:loggedUser_name
+//! @access  NOT SET YET
+export const getUserChats = asyncHandler(async (req, res, next) => {
+  const { loggedUser_name: name } = req.params;
+  let userChats = await Chat.find({
+    users: { $in: [name] },
+  });
+  if (!userChats) return next(new Error("failed retrieving"));
+  res.status(200).json(userChats);
+});
