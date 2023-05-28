@@ -5,6 +5,7 @@ import Occupation from "./register/Occupation.page.jsx";
 import ConversationPage from "./ConversationPage.jsx";
 import BirthPage from "./BirthPage/BirthPage.jsx";
 import Chat from "./Chat/Chat.jsx";
+import Nationality from "./Nationality.jsx";
 export {
   Intro,
   BirthPage,
@@ -12,5 +13,6 @@ export {
   Interests,
   Occupation,
   ConversationPage,
+  Nationality,
   Chat,
 };

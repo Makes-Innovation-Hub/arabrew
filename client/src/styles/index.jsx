@@ -8,6 +8,7 @@ import { StyledDiv } from "../styles/StyledDiv";
 import { StyledParagraph } from "../styles/StyledParagraph";
 import { StyledSpan } from "../styles/StyledSpan";
 import { StyledTitle } from "../styles/StyledTitle";
+import { StyledInput } from "../styles/StyledInput" 
 import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";
 import { ButtonConversation } from "./ButtonConversation";
@@ -23,6 +24,7 @@ export {
   StyledParagraph,
   StyledSpan,
   StyledTitle,
+  StyledInput,
   NoConversationStyle,
   ContentConversationPage,
   ConversationPageStyle,
