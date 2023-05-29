@@ -19,8 +19,8 @@ import { useSendUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const [text, setText] = useState({
-    value: "",
     field: "bio",
+    value: "",
   });
   const userData = useSelector((state) => state.userRegister);
   const [sendUserData] = useSendUserDataMutation();
@@ -82,7 +82,9 @@ export default function BioPage() {
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
+                console.log(text);
                 dispatch(addDetail(text));
+                console.log(JSON.stringify(userData));
                 sendUserData(userData);
                 navigate("/conversation");
               }}

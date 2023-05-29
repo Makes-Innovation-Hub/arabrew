@@ -4,7 +4,12 @@ import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { ArrowLeft } from "../../assets";
-import { StyledPage, StyledMargin, StyledPageTitle, StyledButton } from "../../styles";
+import {
+  StyledPage,
+  StyledMargin,
+  StyledPageTitle,
+  StyledButton,
+} from "../../styles";
 import {
   Content,
   ButtonDiv,
@@ -22,7 +27,7 @@ const Interests = () => {
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
 
-  const { interests } = useSelector((state) => state.userRegister);
+  const { interests } = useSelector((state) => state.userRegister.userDetails);
   const [selectedInterests, setSelectedInterests] = useState({
     field: "interests",
     value: interests.length > 0 ? interests : [],

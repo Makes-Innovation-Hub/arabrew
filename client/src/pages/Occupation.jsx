@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { ArrowLeft } from "../assets";
 import "../components/styles/Occupation.css";
 import { Global } from "../components/styles/Global";
@@ -22,14 +22,21 @@ import { Header } from "../components";
 const Occupation = () => {
   const [userInput, setUserInput] = useState({
     value: "",
-    dataField: "occupation",
+    field: "occupation",
   });
 
   const dispatch = useDispatch();
 
   return (
     <Global>
-      <Header leftIcon={<Link to="/gender"><ArrowLeft/></Link>} title={"Add Occupation"} />
+      <Header
+        leftIcon={
+          <Link to="/gender">
+            <ArrowLeft />
+          </Link>
+        }
+        title={"Add Occupation"}
+      />
       <Content>
         <Upper>
           <ContentTitle>Add your Occupation</ContentTitle>

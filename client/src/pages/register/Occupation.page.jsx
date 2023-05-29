@@ -21,7 +21,7 @@ const Occupation = () => {
   const dispatch = useDispatch();
   const inittest = useSelector((state) => state.userRegister);
   const navigate = useNavigate();
-  const { occupation } = useSelector((state) => state.userRegister);
+  const { occupation } = useSelector((state) => state.userRegister.userDetails);
   const [userInput, setUserInput] = useState({
     field: "occupation",
     value: occupation.length > 0 ? occupation : "",
@@ -53,7 +53,7 @@ const Occupation = () => {
           <Button
             onClick={() => {
               dispatch(addDetail(userInput));
-              navigate("/bio")
+              navigate("/bio");
             }}
           >
             Save & Next

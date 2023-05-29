@@ -20,7 +20,7 @@ export default function BirthPage() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState({
     value: "",
-    dataField: "year",
+    field: "yearOfBirth",
   });
 
   const navigate = useNavigate();
@@ -80,6 +80,7 @@ export default function BirthPage() {
             {/* <StyledRouterLink to={"/nationality"}> */}
             <StyledSaveAndNextButton
               onClick={() => {
+                console.log(selectedYear);
                 dispatch(addDetail(selectedYear));
                 navigate("/nationality");
               }}
