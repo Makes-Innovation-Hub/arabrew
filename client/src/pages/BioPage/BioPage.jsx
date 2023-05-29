@@ -11,28 +11,31 @@ import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfChar
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
-import { useSendUserDataMutation } from "../../features/userDataApi.js";
+import { useRegisterUserMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
+  const dispatch = useDispatch();
   const [text, setText] = useState({
     value: "",
     field: "bio",
   });
-  const userData = useSelector((state) => state.userData);
-  const [sendUserData] = useSendUserDataMutation();
+  const userDetailsObj = useSelector((state) => state.userRegister);
+  const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
-
-  const dispatch = useDispatch();
-
+  useEffect(() => {
+    if (isSuccess) {
+      console.log(data);
+    }
+  }, [isSuccess]);
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -81,8 +84,7 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                console.log(userData);
-                sendUserData(userData);
+                registerUser(userDetailsObj);
               }}
             >
               <i>Save & Finish</i>
