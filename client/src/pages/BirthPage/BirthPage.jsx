@@ -3,6 +3,7 @@ import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
 import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
 import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
 import { Container } from "../../styles/PageLayout/Container.jsx";
+import { StyledRouterLink } from "../../styles/StyledRouterLink.jsx";
 import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
@@ -76,14 +77,16 @@ export default function BirthPage() {
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
+            {/* <StyledRouterLink to={"/nationality"}> */}
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(selectedYear));
-                // navigate("/nationalityPage");
+                navigate("/nationality");
               }}
             >
               <i>Save & Next</i>
             </StyledSaveAndNextButton>
+            {/* </StyledRouterLink> */}
           </Flex>
         </Flex>
       </Container>

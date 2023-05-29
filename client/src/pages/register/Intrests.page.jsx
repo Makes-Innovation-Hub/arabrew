@@ -63,7 +63,7 @@ const Interests = () => {
 
   const handleSave = () => {
     dispatch(addDetail(selectedInterests));
-    navigate("/occupation");
+    navigate("/age");
   };
   useEffect(() => {
     if (interestsNumber === 5) {
@@ -122,11 +122,9 @@ const Interests = () => {
           </div>
 
           <ButtonDiv>
-            <Link to={"/age"}>
             <Button onClick={handleSave} disabled={disableSaveBtn}>
               Save & Next
             </Button>
-            </Link>
           </ButtonDiv>
         </Content>
       </StyledPage>
