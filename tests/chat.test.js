@@ -6,12 +6,12 @@ describe("save message in db test", () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var body = JSON.stringify({
+    const body = JSON.stringify({
       originalMsg: "mocha test",
       translatedMsg: "בדיקת מוקה",
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: body,
@@ -21,7 +21,6 @@ describe("save message in db test", () => {
       "http://localhost:5050/api/chat/6469fe15a7083dcee2aa6908/646a044b706f6f3052b38045",
       requestOptions
     );
-    console.log(res);
     assert.strictEqual(res.status, 200);
   });
 });
