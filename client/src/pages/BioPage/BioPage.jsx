@@ -10,7 +10,7 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
@@ -22,7 +22,7 @@ export default function BioPage() {
     value: "",
     field: "bio",
   });
-  const userData = useSelector((state) => state.userData);
+  const userData = useSelector((state) => state.userRegister);
   const [sendUserData] = useSendUserDataMutation();
 
   const handleChange = (event) => {
@@ -32,6 +32,8 @@ export default function BioPage() {
   const characterCount = text.value.length;
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   return (
     <BackLayout>
@@ -81,8 +83,8 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                console.log(userData);
                 sendUserData(userData);
+                navigate("/chatPage");
               }}
             >
               <i>Save & Finish</i>
