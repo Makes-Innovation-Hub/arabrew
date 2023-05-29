@@ -21,6 +21,7 @@ describe("save message in db test", () => {
       "http://localhost:5050/api/chat/6469fe15a7083dcee2aa6908/646a044b706f6f3052b38045",
       requestOptions
     );
+    console.log(res);
     assert.strictEqual(res.status, 200);
   });
 });
