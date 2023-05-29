@@ -7,14 +7,14 @@ import {
   BirthPage,
   Chat,
   Nationality,
+  BioPage,
+  Location,
+  GenderSelection,
 } from "./pages/exports.js";
-import GenderSelection from "./pages/GenderSelection";
-import BioPage from "./pages/BioPage/BioPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HeaderLayout from "./components/HeaderLayout";
-import Location from "./pages/Location";
 
 const router = createBrowserRouter([
   {
