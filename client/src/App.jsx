@@ -30,11 +30,11 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/occupation", element: <Occupation /> },
-  { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
-  { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/conversation", element: <ConversationPage /> },
+  { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
 ]);
 
 function App() {
