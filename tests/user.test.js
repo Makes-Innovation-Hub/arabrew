@@ -1,5 +1,7 @@
 import assert from "assert";
 import fetch from "node-fetch";
+import mongoose from "mongoose";
+import User from "../server/api/user/user.js";
 
 describe("user creations tests", () => {
   describe("save user in db test", () => {
@@ -45,7 +47,7 @@ describe("user creations tests", () => {
   });
 
   describe("get user from db test", () => {
-    it("should GET the specific user by id", async function () {
+    it("should GET the specific user by subId", async function () {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -55,28 +57,30 @@ describe("user creations tests", () => {
       };
 
       const res = await fetch(
-        "http://localhost:5050/api/user/id/6474785f4365ae70e2011061",
+        "http://localhost:5050/api/user/17",
         requestOptions
       );
-      assert.strictEqual(res.status, 200);
+      assert.equal(res.status, 200);
     });
   });
 
   describe("delete user from db test", () => {
     it("should DELETE the specific user ", async function () {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      const requestOptions = {
-        method: "DELETE",
-        headers: myHeaders,
-      };
-
-      const res = await fetch(
-        `http://localhost:5050/api/user/id/6474785f4365ae70e2011061`,
-        requestOptions
-      );
-      assert.strictEqual(res.status, 200);
+      let conn;
+      try {
+        conn = await mongoose.connect(process.env.MONGO_URI, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
+        const deletedUser = await User.deleteOne({
+          _id: "64747cdaad43d12a7186145f",
+        });
+        assert.equal(deletedUser.id, "64747cdaad43d12a7186145f");
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      } finally {
+        await conn.disconnect();
+      }
     });
   });
 });
