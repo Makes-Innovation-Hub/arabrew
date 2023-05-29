@@ -84,7 +84,7 @@ export default function BioPage() {
               onClick={() => {
                 dispatch(addDetail(text));
                 sendUserData(userData);
-                navigate("/chatPage");
+                navigate("/conversation");
               }}
             >
               <i>Save & Finish</i>
