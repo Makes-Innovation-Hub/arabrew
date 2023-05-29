@@ -5,31 +5,33 @@ import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
 import { Container } from "../../styles/PageLayout/Container.jsx";
 import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
-import { StyledTextArea } from "../../styles/BioPage/StyledTextArea.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
-import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import arrowIcon from "../../assets/arrow.svg";
+import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
+import { useState, useEffect } from "react";
 
-import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
-import { useSelector } from "react-redux";
-import { useSendUserDataMutation } from "../../features/userDataApi.js";
 
-export default function BioPage() {
-  const [text, setText] = useState({
+export default function BirthPage() {
+  const [startYear, setStartYear] = useState(1980);
+  const [years, setYears] = useState([]);
+  const [selectedYear, setSelectedYear] = useState({
     value: "",
-    field: "bio",
+    dataField: "year",
   });
-  const userData = useSelector((state) => state.userData);
-  const [sendUserData] = useSendUserDataMutation();
 
-  const handleChange = (event) => {
-    const inputValue = event.target.value;
-    setText({ ...text, value: inputValue });
-  };
-  const characterCount = text.value.length;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const yearsArray = [];
+    for (let year = startYear; year <= currentYear - 4; year++) {
+      yearsArray.push({ label: year, value: year });
+    }
+    setYears(yearsArray);
+  }, [startYear]);
 
   const dispatch = useDispatch();
 
@@ -37,11 +39,9 @@ export default function BioPage() {
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
-        <div style={{ width: "20%" }}>
-          <img src={arrowIcon} />
-        </div>
+        <div style={{ width: "20%" }}></div>
         <TitleWrapper>
-          <PageTitle>Add Bio</PageTitle>
+          <PageTitle>Add Age</PageTitle>
         </TitleWrapper>
 
         {/* do not remove this div even if it is empty */}
@@ -64,28 +64,25 @@ export default function BioPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>Add your Bio Description</InstructionPrompt>
+            <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
-            <StyledTextArea
-              value={text.value}
-              onChange={handleChange}
-              placeholder="Write here...For example: I'm John Doe and Cooking for me is a way of living."
-              maxLength={500}
-            ></StyledTextArea>
-            <StyledNumberOfCharLabel>
-              {500 - characterCount} character
-            </StyledNumberOfCharLabel>
+            <CustomDropdown
+              optionsArray={years}
+              placeHolder="Year"
+              selected={selectedYear}
+              setSelected={setSelectedYear}
+              isSearchable={false}
+            />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
-                dispatch(addDetail(text));
-                console.log(userData);
-                sendUserData(userData);
+                dispatch(addDetail(selectedYear));
+                // navigate("/nationalityPage");
               }}
             >
-              <i>Save & Finish</i>
+              <i>Save & Next</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

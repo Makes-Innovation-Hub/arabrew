@@ -9,7 +9,9 @@
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",
-    "generate-env": "bash scripts/generateConfig.sh"
+    "generate-env": "bash scripts/generateConfig.sh",
+    "install-all": "npm install; npm install --prefix ./client",
+    "build-client": "npm run build --prefix ./client"
   },
   "repository": {
     "type": "git",

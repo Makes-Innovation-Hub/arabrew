@@ -26,8 +26,6 @@ connectDB();
 const rooms = {};
 const clients = [];
 
-connectDB();
-
 wss.on("connection", (ws) => {
   clients.push({ room: ws.id, client: ws });
   rooms[ws.id] = ws;
@@ -49,6 +47,11 @@ wss.on("connection", (ws) => {
 
 app.use("/api", routes);
 app.use(errorHandler);
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 const PORT = process.env.PORT || 5050;
 
