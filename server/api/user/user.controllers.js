@@ -12,3 +12,18 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     data: newUser,
   });
 });
+
+export const getUser = asyncHandler(async (req, res, next) => {
+  const { subId } = req.params;
+
+  const user = await User.findOne({ subId: subId });
+
+  if (!user) {
+    return next(new Error("User not found"));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
