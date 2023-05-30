@@ -27,14 +27,16 @@ const CustomDropdown = ({
   return (
     <Select
       closeMenuOnSelect={true}
-      components={{ Option: customOption ? customOption : DefaultOption }}
+      components={{
+        Option: customOption ? customOption : DefaultOption,
+      }}
       options={optionsArray}
       value={selectedOption}
       onChange={handleSelectChange}
       isSearchable={isSearchable}
       placeholder={placeHolder}
       styles={customStyles}
-    />
+    ></Select>
   );
 };
 

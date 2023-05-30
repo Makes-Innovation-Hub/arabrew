@@ -10,16 +10,11 @@ import {
 } from "./pages/exports.js";
 import GenderSelection from "./pages/GenderSelection";
 import BioPage from "./pages/BioPage/BioPage.jsx";
+import HeaderLayout from "./components/HeaderLayout";
+import Location from "./pages/Location";
+import NationalityPage from "./pages/NationalityPage/NationalityPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import HeaderLayout from "./components/HeaderLayout";
-import BirthPage from "./pages/BirthPage/BirthPage";
-import NationalityPage from "./pages/NationalityPage/NationalityPage";
-import ConversationPage from "./pages/ConversationPage";
-
-import Location from "./pages/Location";
-
 const router = createBrowserRouter([
   {
     path: "/",

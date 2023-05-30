@@ -2,13 +2,14 @@ import { components } from "react-select";
 import { Flex } from "../Flex";
 import LazyLoad from "react-lazy-load";
 import React from "react";
+import { Children } from "react";
 
 const Option = React.memo((props) => {
   const { label, value, data } = props;
   return (
-    <LazyLoad height={30} offset={300}>
-      <components.Option {...props}>
-        <Flex style={{ justifyContent: "flex-start", width: "100%" }}>
+    <components.Option {...props}>
+      <Flex style={{ justifyContent: "flex-start", width: "100%" }}>
+        <LazyLoad height={20} offset={300}>
           <img
             loading="lazy"
             src={data.image}
@@ -20,10 +21,10 @@ const Option = React.memo((props) => {
               margin: "0 1rem 0 0",
             }}
           />
-          {label}
-        </Flex>
-      </components.Option>
-    </LazyLoad>
+        </LazyLoad>
+        {label}
+      </Flex>
+    </components.Option>
   );
 });
 
