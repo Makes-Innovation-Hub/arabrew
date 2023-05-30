@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const StyledInput = styled.input`
   display: block;
@@ -6,15 +6,15 @@ export const StyledInput = styled.input`
   height: 4rem;
   padding: 0.75rem 0.625rem;
   border-radius: 0.8rem;
-  border: 0.1rem solid #1E75E5;
+  border: 0.1rem solid #1e75e5;
   font-family: "Poppins", sans-serif;
   font-size: 1.8rem;
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 
-  ::placeholder{
+  ::placeholder {
     color: rgba(124, 124, 124, 0.5);
   }
-`
+`;
