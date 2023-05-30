@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Select, { components } from "react-select";
+// import Select, { components } from "react-select";
+import Select, { components } from "react-windowed-select";
+import WindowedSelect from "react-windowed-select";
 import MyCustomStyles from "./DropDownCustomStyles.jsx";
 
 const customStyles = MyCustomStyles;
@@ -13,6 +15,30 @@ const CustomDropdown = ({
   customOption,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const CustomMenuList = (props) => {
+    return (
+      <components.MenuList
+        {...props}
+        styles={{
+          ...props.styles,
+          width: "21rem",
+          maxHeight: "50rem",
+          // height: "21rem",
+          overflowY: "scroll",
+          scrollbarWidth: "none",
+          margin: "50rem 0rem 1rem 0",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          "::-webkit-scrollbar": css`
+            width: 0;
+            background: transparent;
+            display: none;
+          `,
+        }}
+      />
+    );
+  };
 
   const DefaultOption = (props) => {
     const { label, value, data } = props;
@@ -29,6 +55,7 @@ const CustomDropdown = ({
       closeMenuOnSelect={true}
       components={{
         Option: customOption ? customOption : DefaultOption,
+        // MenuList: CustomMenuList,
       }}
       options={optionsArray}
       value={selectedOption}
@@ -36,7 +63,7 @@ const CustomDropdown = ({
       isSearchable={isSearchable}
       placeholder={placeHolder}
       styles={customStyles}
-    ></Select>
+    />
   );
 };
 
