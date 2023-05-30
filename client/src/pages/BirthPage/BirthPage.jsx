@@ -19,7 +19,7 @@ export default function BirthPage() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState({
     value: "",
-    dataField: "year",
+    field: "yearOfBirth",
   });
 
   const navigate = useNavigate();

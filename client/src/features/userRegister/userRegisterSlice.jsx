@@ -2,14 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   subId: "",
-  lang: "",
-  interests: [],
-  birthYear: "",
-  nationality: "",
-  location: "",
-  gender: "",
-  occupation: "",
-  bio: "",
+  name: "",
+  avatar: "",
+  userDetails: {
+    nativeLanguage: "",
+    interests: [],
+    yearOfBirth: "",
+    nationality: "",
+    address: "",
+    gender: "",
+    occupation: "",
+    bio: "",
+  },
 };
 
 export const userRegisterSlice = createSlice({
@@ -18,7 +22,7 @@ export const userRegisterSlice = createSlice({
   reducers: {
     addDetail: (state, action) => {
       const { field, value } = action.payload;
-      state[field] = value;
+      state.userDetails[field] = value;
     },
   },
 });
