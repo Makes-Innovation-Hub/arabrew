@@ -70,9 +70,6 @@ const MyCustomStyles = {
     overflowY: "scroll",
     scrollbarWidth: "none",
     margin: "1rem 0rem 1rem 0",
-    "&::scrollbars": {
-      width: "none",
-    },
 
     // "&::WebkitScrollbarThumb": {
     //   // backgroundColor: "#ccc", // Set the color of the scrollbar thumb

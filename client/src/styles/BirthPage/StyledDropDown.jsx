@@ -16,30 +16,6 @@ const CustomDropdown = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const CustomMenuList = (props) => {
-    return (
-      <components.MenuList
-        {...props}
-        styles={{
-          ...props.styles,
-          width: "21rem",
-          maxHeight: "50rem",
-          // height: "21rem",
-          overflowY: "scroll",
-          scrollbarWidth: "none",
-          margin: "50rem 0rem 1rem 0",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          "::-webkit-scrollbar": css`
-            width: 0;
-            background: transparent;
-            display: none;
-          `,
-        }}
-      />
-    );
-  };
-
   const DefaultOption = (props) => {
     const { label, value, data } = props;
     return <components.Option {...props}>{label}</components.Option>;
