@@ -13,5 +13,5 @@ router
   .post(createChat)
   .get(deleteOldMessages, getChatByNames)
   .put(addMessageToChat);
-router.route("/logged/user/:loggedUser_name").get(getUserChatsList);
+router.route("/logged/user/:user_name").get(getUserChatsList);
 export default router;
