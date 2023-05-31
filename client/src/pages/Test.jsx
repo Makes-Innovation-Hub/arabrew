@@ -3,7 +3,7 @@ import { useGetLoggedUserQuery } from "../features/userDataApi.js";
 import { useDispatch } from "react-redux";
 import { addAllDetails } from "../features/userRegister/userRegisterSlice";
 
-const Test = (/*{isConnectedUser, subId}*/) => {
+const Test = () => {
   const isConnectedUser = true;
   const subId = "201";
   const { data, isLoading, isError, isSuccess } = useGetLoggedUserQuery(subId);
