@@ -12,12 +12,15 @@ import { useState } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
 import countries from "../../assets/countriesAndFlags/index.json";
+import { useNavigate } from "react-router-dom";
 
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
     dataField: "nationality",
   });
+
+  const navigate = useNavigate();
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -62,7 +65,11 @@ export default function NationalityPage() {
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton>
+            <StyledSaveAndNextButton
+              onClick={() => {
+                navigate("/location");
+              }}
+            >
               <i>Save & Next</i>
             </StyledSaveAndNextButton>
           </Flex>
