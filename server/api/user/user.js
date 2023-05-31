@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
+    //* the unique subId that auth0 return after login/register
     subId: {
       type: String,
       unique: [true, "🥶🥶 id already exists in DB! 🥶🥶"],
@@ -64,12 +65,14 @@ const UserSchema = new mongoose.Schema(
     versionKey: false,
     toJSON: {
       transform: function (doc, ret) {
+        ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
       },
     },
     toObject: {
       transform: function (doc, ret) {
+        ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
       },
@@ -81,6 +84,6 @@ function isFive(intArr) {
   return intArr.length === 5;
 }
 
-const userModel = mongoose.model("userModel", UserSchema);
+const userCollection = mongoose.model("userCollection", UserSchema);
 
-export default userModel;
+export default userCollection;
