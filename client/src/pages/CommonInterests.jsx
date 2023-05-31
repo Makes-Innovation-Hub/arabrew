@@ -7,9 +7,8 @@ import {
   StyledPageTitle,
   StyledHobby,
   StyledHobbiesContainer,
-  StyledMsgButton,
 } from "../styles";
-import { ArrowLeft, SmallGlass, MessageIcon, HebrewIcon } from "../assets";
+import { ArrowLeft, SmallGlass } from "../assets";
 
 const CommonInterests = () => {
   const [hobbies, setHobbies] = useState([
