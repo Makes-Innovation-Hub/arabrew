@@ -2,10 +2,6 @@ import Chat from "./chat.js";
 import { asyncHandler } from "../index.js";
 import { newestMessage } from "./chat.utils.js";
 
-Array.prototype.sortNewestFirst = function () {
-  return this;
-};
-
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/:user1_name/:user2_name
 //! @access  NOT SET YET
@@ -60,7 +56,6 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
   messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
   messagesHistory.forEach((message) => {
     delete message._id;
-    return message;
   });
 
   res.status(200).json(updatedChat);
