@@ -8,6 +8,7 @@ import { StyledDiv } from "../styles/StyledDiv";
 import { StyledParagraph } from "../styles/StyledParagraph";
 import { StyledSpan } from "../styles/StyledSpan";
 import { StyledTitle } from "../styles/StyledTitle";
+import { StyledHeaderTitle } from "./StyledHeaderTitle";
 import { StyledInput } from "../styles/StyledInput";
 import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";
@@ -16,6 +17,7 @@ import { ConversationPageStyle } from "./ConversationPageStyle";
 import { StyledHobby } from "./StyledHobby";
 import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
 import { StyledMsgButton } from "./StyledMsgButton";
+import { StyledImage } from "./StyledImage";
 export {
   Flex,
   StyledPage,
@@ -27,10 +29,12 @@ export {
   StyledParagraph,
   StyledSpan,
   StyledTitle,
+  StyledHeaderTitle,
   StyledInput,
   StyledHobby,
   StyledHobbiesContainer,
   StyledMsgButton,
+  StyledImage,
   NoConversationStyle,
   ContentConversationPage,
   ConversationPageStyle,

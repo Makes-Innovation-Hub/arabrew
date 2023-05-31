@@ -5,6 +5,6 @@ export const StyledHobby = styled.button`
   background: #edf2f7;
   padding: 0.6rem 1.2rem;
   margin: 0.3rem 0.3rem;
-  border: none;
+  border: ${({ border }) => border || "none"};
   border-radius: 2.4rem;
 `;
