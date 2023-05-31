@@ -13,7 +13,7 @@ import {
 } from "./pages/exports.js";
 import HeaderLayout from "./components/HeaderLayout";
 import NationalityPage from "./pages/NationalityPage/NationalityPage.jsx";
-
+import prevConversation from "./pages/DemoArrChatsData";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
@@ -30,9 +30,12 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
+  {
+    path: "/conversation",
+    element: <ConversationPage prevConversation={prevConversation} />,
+  },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
-  { path: "/conversation", element: <ConversationPage /> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {
     path: "/nationalityPage",
