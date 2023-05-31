@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 export const ProfileTitle = styled.div`
   width: 100%;
   height: 6rem;
@@ -11,5 +10,6 @@ export const ProfileTitle = styled.div`
   font-weight: 600;
   font-size: 2rem;
   border-bottom: 0.2rem solid lightgray;
+  margin-bottom: 1rem;
 `;
 export default ProfileTitle;

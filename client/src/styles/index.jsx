@@ -16,7 +16,15 @@ import { ConversationPageStyle } from "./ConversationPageStyle";
 import { StyledProfilePage } from "./StyledProfilePage";
 import { ProfileImg } from "./ProfileImg";
 import { ProfileTitle } from "./ProfileTitle";
+import { ProfileName } from "./ProfileName";
+import { InterestTextStyle } from "./InterestTextStyle";
+import { HobbyBackground } from "./HobbyBackground";
+import { HobbiesDisplay } from "./HobbiesDisplay";
 export {
+  HobbiesDisplay,
+  HobbyBackground,
+  InterestTextStyle,
+  ProfileName,
   ProfileTitle,
   ProfileImg,
   Flex,

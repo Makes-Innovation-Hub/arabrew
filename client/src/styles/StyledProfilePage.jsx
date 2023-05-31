@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const StyledProfilePage = styled.div`
   padding: 1rem;
   display: flex;
