@@ -14,6 +14,7 @@ import {
 import HeaderLayout from "./components/HeaderLayout";
 import NationalityPage from "./pages/NationalityPage/NationalityPage.jsx";
 
+import prevConversation from "./pages/DemoArrChatsData";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
@@ -32,13 +33,17 @@ const router = createBrowserRouter([
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
-  { path: "/conversation", element: <ConversationPage /> },
+  {
+    path: "/conversation",
+    element: <ConversationPage prevConversation={prevConversation} />,
+  },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {
     path: "/nationalityPage",
     element: <NationalityPage />,
     errorElement: <>Error...</>,
   },
+  <require to="/" />,
 ]);
 
 function App() {
