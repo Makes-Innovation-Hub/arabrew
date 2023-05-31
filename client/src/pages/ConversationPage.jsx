@@ -10,6 +10,7 @@ import {
   ChatsDisplay,
   ButtonForChats,
   BlockDiv,
+  ButtonConversation,
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";

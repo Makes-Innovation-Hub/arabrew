@@ -1,7 +1,16 @@
-import Intro from "./pages/Intro";
-import LangSelection from "./pages/LangSelection";
-import Interest from "./pages/Interest";
-import Occupation from "./pages/Occupation";
+import {
+  Intro,
+  LangSelection,
+  Interests,
+  Occupation,
+  ConversationPage,
+  BirthPage,
+  Chat,
+  Nationality,
+  BioPage,
+  Location,
+  GenderSelection,
+} from "./pages/exports.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ConversationPage from "./pages/ConversationPage";
 import HeaderLayout from "./components/HeaderLayout";
@@ -14,7 +23,11 @@ const router = createBrowserRouter(
       errorElement: <>Error...</>,
       children: [
         { path: "/lang", element: <LangSelection /> },
-        { path: "/interests", element: <Interest /> },
+        { path: "/interests", element: <Interests /> },
+        { path: "/nationality", element: <Nationality /> },
+        { path: "/location", element: <Location /> },
+        { path: "/gender", element: <GenderSelection /> },
+        { path: "/occupation", element: <Occupation /> },
       ],
     },
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
@@ -22,12 +35,13 @@ const router = createBrowserRouter(
       path: "/conversation",
       element: <ConversationPage prevConversation={prevConversation} />,
     },
+    { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+    { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
+    { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   ],
   <require to="/" />
 );
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
-
 export default App;

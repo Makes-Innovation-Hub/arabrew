@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 export const Button = styled.button`
   border-radius: 0.6rem;
   border: none;
@@ -16,12 +15,10 @@ export const Button = styled.button`
   color: #fff;
   font-style: italic;
   transition: background-color 0.3s;
-
   &:hover {
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
-
 const StyledButton = ({ to, text, ...rest }) => {
   return (
     <Link to={to}>
