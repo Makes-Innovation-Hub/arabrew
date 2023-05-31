@@ -1,7 +1,7 @@
 [
   {
     "label": "Ascension Island",
-    "value": "Ascension Island",
+    "value": "AC",
     "code": "AC",
     "emoji": "🇦🇨",
     "unicode": "U+1F1E6 U+1F1E8",
@@ -9,7 +9,7 @@
   },
   {
     "label": "Andorra",
-    "value": "Andorra",
+    "value": "AD",
     "code": "AD",
     "emoji": "🇦🇩",
     "unicode": "U+1F1E6 U+1F1E9",
@@ -17,7 +17,7 @@
   },
   {
     "label": "United Arab Emirates",
-    "value": "United Arab Emirates",
+    "value": "AE",
     "code": "AE",
     "emoji": "🇦🇪",
     "unicode": "U+1F1E6 U+1F1EA",
@@ -25,7 +25,7 @@
   },
   {
     "label": "Afghanistan",
-    "value": "Afghanistan",
+    "value": "AF",
     "code": "AF",
     "emoji": "🇦🇫",
     "unicode": "U+1F1E6 U+1F1EB",
@@ -33,7 +33,7 @@
   },
   {
     "label": "Antigua & Barbuda",
-    "value": "Antigua & Barbuda",
+    "value": "AG",
     "code": "AG",
     "emoji": "🇦🇬",
     "unicode": "U+1F1E6 U+1F1EC",
@@ -41,7 +41,7 @@
   },
   {
     "label": "Anguilla",
-    "value": "Anguilla",
+    "value": "AI",
     "code": "AI",
     "emoji": "🇦🇮",
     "unicode": "U+1F1E6 U+1F1EE",
@@ -49,7 +49,7 @@
   },
   {
     "label": "Albania",
-    "value": "Albania",
+    "value": "AL",
     "code": "AL",
     "emoji": "🇦🇱",
     "unicode": "U+1F1E6 U+1F1F1",
@@ -57,7 +57,7 @@
   },
   {
     "label": "Armenia",
-    "value": "Armenia",
+    "value": "AM",
     "code": "AM",
     "emoji": "🇦🇲",
     "unicode": "U+1F1E6 U+1F1F2",
@@ -65,7 +65,7 @@
   },
   {
     "label": "Angola",
-    "value": "Angola",
+    "value": "AO",
     "code": "AO",
     "emoji": "🇦🇴",
     "unicode": "U+1F1E6 U+1F1F4",
@@ -73,7 +73,7 @@
   },
   {
     "label": "Antarctica",
-    "value": "Antarctica",
+    "value": "AQ",
     "code": "AQ",
     "emoji": "🇦🇶",
     "unicode": "U+1F1E6 U+1F1F6",
@@ -81,7 +81,7 @@
   },
   {
     "label": "Argentina",
-    "value": "Argentina",
+    "value": "AR",
     "code": "AR",
     "emoji": "🇦🇷",
     "unicode": "U+1F1E6 U+1F1F7",
@@ -89,7 +89,7 @@
   },
   {
     "label": "American Samoa",
-    "value": "American Samoa",
+    "value": "AS",
     "code": "AS",
     "emoji": "🇦🇸",
     "unicode": "U+1F1E6 U+1F1F8",
@@ -97,7 +97,7 @@
   },
   {
     "label": "Austria",
-    "value": "Austria",
+    "value": "AT",
     "code": "AT",
     "emoji": "🇦🇹",
     "unicode": "U+1F1E6 U+1F1F9",
@@ -105,7 +105,7 @@
   },
   {
     "label": "Australia",
-    "value": "Australia",
+    "value": "AU",
     "code": "AU",
     "emoji": "🇦🇺",
     "unicode": "U+1F1E6 U+1F1FA",
@@ -113,7 +113,7 @@
   },
   {
     "label": "Aruba",
-    "value": "Aruba",
+    "value": "AW",
     "code": "AW",
     "emoji": "🇦🇼",
     "unicode": "U+1F1E6 U+1F1FC",
@@ -121,7 +121,7 @@
   },
   {
     "label": "Åland Islands",
-    "value": "Åland Islands",
+    "value": "AX",
     "code": "AX",
     "emoji": "🇦🇽",
     "unicode": "U+1F1E6 U+1F1FD",
@@ -129,7 +129,7 @@
   },
   {
     "label": "Azerbaijan",
-    "value": "Azerbaijan",
+    "value": "AZ",
     "code": "AZ",
     "emoji": "🇦🇿",
     "unicode": "U+1F1E6 U+1F1FF",
@@ -137,7 +137,7 @@
   },
   {
     "label": "Bosnia & Herzegovina",
-    "value": "Bosnia & Herzegovina",
+    "value": "BA",
     "code": "BA",
     "emoji": "🇧🇦",
     "unicode": "U+1F1E7 U+1F1E6",
@@ -145,7 +145,7 @@
   },
   {
     "label": "Barbados",
-    "value": "Barbados",
+    "value": "BB",
     "code": "BB",
     "emoji": "🇧🇧",
     "unicode": "U+1F1E7 U+1F1E7",
@@ -153,7 +153,7 @@
   },
   {
     "label": "Bangladesh",
-    "value": "Bangladesh",
+    "value": "BD",
     "code": "BD",
     "emoji": "🇧🇩",
     "unicode": "U+1F1E7 U+1F1E9",
@@ -161,7 +161,7 @@
   },
   {
     "label": "Belgium",
-    "value": "Belgium",
+    "value": "BE",
     "code": "BE",
     "emoji": "🇧🇪",
     "unicode": "U+1F1E7 U+1F1EA",
@@ -169,7 +169,7 @@
   },
   {
     "label": "Burkina Faso",
-    "value": "Burkina Faso",
+    "value": "BF",
     "code": "BF",
     "emoji": "🇧🇫",
     "unicode": "U+1F1E7 U+1F1EB",
@@ -177,7 +177,7 @@
   },
   {
     "label": "Bulgaria",
-    "value": "Bulgaria",
+    "value": "BG",
     "code": "BG",
     "emoji": "🇧🇬",
     "unicode": "U+1F1E7 U+1F1EC",
@@ -185,7 +185,7 @@
   },
   {
     "label": "Bahrain",
-    "value": "Bahrain",
+    "value": "BH",
     "code": "BH",
     "emoji": "🇧🇭",
     "unicode": "U+1F1E7 U+1F1ED",
@@ -193,7 +193,7 @@
   },
   {
     "label": "Burundi",
-    "value": "Burundi",
+    "value": "BI",
     "code": "BI",
     "emoji": "🇧🇮",
     "unicode": "U+1F1E7 U+1F1EE",
@@ -201,7 +201,7 @@
   },
   {
     "label": "Benin",
-    "value": "Benin",
+    "value": "BJ",
     "code": "BJ",
     "emoji": "🇧🇯",
     "unicode": "U+1F1E7 U+1F1EF",
@@ -209,7 +209,7 @@
   },
   {
     "label": "St. Barthélemy",
-    "value": "St. Barthélemy",
+    "value": "BL",
     "code": "BL",
     "emoji": "🇧🇱",
     "unicode": "U+1F1E7 U+1F1F1",
@@ -217,7 +217,7 @@
   },
   {
     "label": "Bermuda",
-    "value": "Bermuda",
+    "value": "BM",
     "code": "BM",
     "emoji": "🇧🇲",
     "unicode": "U+1F1E7 U+1F1F2",
@@ -225,7 +225,7 @@
   },
   {
     "label": "Brunei",
-    "value": "Brunei",
+    "value": "BN",
     "code": "BN",
     "emoji": "🇧🇳",
     "unicode": "U+1F1E7 U+1F1F3",
@@ -233,7 +233,7 @@
   },
   {
     "label": "Bolivia",
-    "value": "Bolivia",
+    "value": "BO",
     "code": "BO",
     "emoji": "🇧🇴",
     "unicode": "U+1F1E7 U+1F1F4",
@@ -241,7 +241,7 @@
   },
   {
     "label": "Caribbean Netherlands",
-    "value": "Caribbean Netherlands",
+    "value": "BQ",
     "code": "BQ",
     "emoji": "🇧🇶",
     "unicode": "U+1F1E7 U+1F1F6",
@@ -249,7 +249,7 @@
   },
   {
     "label": "Brazil",
-    "value": "Brazil",
+    "value": "BR",
     "code": "BR",
     "emoji": "🇧🇷",
     "unicode": "U+1F1E7 U+1F1F7",
@@ -257,7 +257,7 @@
   },
   {
     "label": "Bahamas",
-    "value": "Bahamas",
+    "value": "BS",
     "code": "BS",
     "emoji": "🇧🇸",
     "unicode": "U+1F1E7 U+1F1F8",
@@ -265,7 +265,7 @@
   },
   {
     "label": "Bhutan",
-    "value": "Bhutan",
+    "value": "BT",
     "code": "BT",
     "emoji": "🇧🇹",
     "unicode": "U+1F1E7 U+1F1F9",
@@ -273,7 +273,7 @@
   },
   {
     "label": "Bouvet Island",
-    "value": "Bouvet Island",
+    "value": "BV",
     "code": "BV",
     "emoji": "🇧🇻",
     "unicode": "U+1F1E7 U+1F1FB",
@@ -281,7 +281,7 @@
   },
   {
     "label": "Botswana",
-    "value": "Botswana",
+    "value": "BW",
     "code": "BW",
     "emoji": "🇧🇼",
     "unicode": "U+1F1E7 U+1F1FC",
@@ -289,7 +289,7 @@
   },
   {
     "label": "Belarus",
-    "value": "Belarus",
+    "value": "BY",
     "code": "BY",
     "emoji": "🇧🇾",
     "unicode": "U+1F1E7 U+1F1FE",
@@ -297,7 +297,7 @@
   },
   {
     "label": "Belize",
-    "value": "Belize",
+    "value": "BZ",
     "code": "BZ",
     "emoji": "🇧🇿",
     "unicode": "U+1F1E7 U+1F1FF",
@@ -305,7 +305,7 @@
   },
   {
     "label": "Canada",
-    "value": "Canada",
+    "value": "CA",
     "code": "CA",
     "emoji": "🇨🇦",
     "unicode": "U+1F1E8 U+1F1E6",
@@ -313,7 +313,7 @@
   },
   {
     "label": "Cocos (Keeling) Islands",
-    "value": "Cocos (Keeling) Islands",
+    "value": "CC",
     "code": "CC",
     "emoji": "🇨🇨",
     "unicode": "U+1F1E8 U+1F1E8",
@@ -321,7 +321,7 @@
   },
   {
     "label": "Congo - Kinshasa",
-    "value": "Congo - Kinshasa",
+    "value": "CD",
     "code": "CD",
     "emoji": "🇨🇩",
     "unicode": "U+1F1E8 U+1F1E9",
@@ -329,7 +329,7 @@
   },
   {
     "label": "Central African Republic",
-    "value": "Central African Republic",
+    "value": "CF",
     "code": "CF",
     "emoji": "🇨🇫",
     "unicode": "U+1F1E8 U+1F1EB",
@@ -337,7 +337,7 @@
   },
   {
     "label": "Congo - Brazzaville",
-    "value": "Congo - Brazzaville",
+    "value": "CG",
     "code": "CG",
     "emoji": "🇨🇬",
     "unicode": "U+1F1E8 U+1F1EC",
@@ -345,7 +345,7 @@
   },
   {
     "label": "Switzerland",
-    "value": "Switzerland",
+    "value": "CH",
     "code": "CH",
     "emoji": "🇨🇭",
     "unicode": "U+1F1E8 U+1F1ED",
@@ -353,7 +353,7 @@
   },
   {
     "label": "Côte d’Ivoire",
-    "value": "Côte d’Ivoire",
+    "value": "CI",
     "code": "CI",
     "emoji": "🇨🇮",
     "unicode": "U+1F1E8 U+1F1EE",
@@ -361,7 +361,7 @@
   },
   {
     "label": "Cook Islands",
-    "value": "Cook Islands",
+    "value": "CK",
     "code": "CK",
     "emoji": "🇨🇰",
     "unicode": "U+1F1E8 U+1F1F0",
@@ -369,7 +369,7 @@
   },
   {
     "label": "Chile",
-    "value": "Chile",
+    "value": "CL",
     "code": "CL",
     "emoji": "🇨🇱",
     "unicode": "U+1F1E8 U+1F1F1",
@@ -377,7 +377,7 @@
   },
   {
     "label": "Cameroon",
-    "value": "Cameroon",
+    "value": "CM",
     "code": "CM",
     "emoji": "🇨🇲",
     "unicode": "U+1F1E8 U+1F1F2",
@@ -385,7 +385,7 @@
   },
   {
     "label": "China",
-    "value": "China",
+    "value": "CN",
     "code": "CN",
     "emoji": "🇨🇳",
     "unicode": "U+1F1E8 U+1F1F3",
@@ -393,7 +393,7 @@
   },
   {
     "label": "Colombia",
-    "value": "Colombia",
+    "value": "CO",
     "code": "CO",
     "emoji": "🇨🇴",
     "unicode": "U+1F1E8 U+1F1F4",
@@ -401,7 +401,7 @@
   },
   {
     "label": "Clipperton Island",
-    "value": "Clipperton Island",
+    "value": "CP",
     "code": "CP",
     "emoji": "🇨🇵",
     "unicode": "U+1F1E8 U+1F1F5",
@@ -409,7 +409,7 @@
   },
   {
     "label": "Costa Rica",
-    "value": "Costa Rica",
+    "value": "CR",
     "code": "CR",
     "emoji": "🇨🇷",
     "unicode": "U+1F1E8 U+1F1F7",
@@ -417,7 +417,7 @@
   },
   {
     "label": "Cuba",
-    "value": "Cuba",
+    "value": "CU",
     "code": "CU",
     "emoji": "🇨🇺",
     "unicode": "U+1F1E8 U+1F1FA",
@@ -425,7 +425,7 @@
   },
   {
     "label": "Cape Verde",
-    "value": "Cape Verde",
+    "value": "CV",
     "code": "CV",
     "emoji": "🇨🇻",
     "unicode": "U+1F1E8 U+1F1FB",
@@ -433,7 +433,7 @@
   },
   {
     "label": "Curaçao",
-    "value": "Curaçao",
+    "value": "CW",
     "code": "CW",
     "emoji": "🇨🇼",
     "unicode": "U+1F1E8 U+1F1FC",
@@ -441,7 +441,7 @@
   },
   {
     "label": "Christmas Island",
-    "value": "Christmas Island",
+    "value": "CX",
     "code": "CX",
     "emoji": "🇨🇽",
     "unicode": "U+1F1E8 U+1F1FD",
@@ -449,7 +449,7 @@
   },
   {
     "label": "Cyprus",
-    "value": "Cyprus",
+    "value": "CY",
     "code": "CY",
     "emoji": "🇨🇾",
     "unicode": "U+1F1E8 U+1F1FE",
@@ -457,7 +457,7 @@
   },
   {
     "label": "Czechia",
-    "value": "Czechia",
+    "value": "CZ",
     "code": "CZ",
     "emoji": "🇨🇿",
     "unicode": "U+1F1E8 U+1F1FF",
@@ -465,7 +465,7 @@
   },
   {
     "label": "Germany",
-    "value": "Germany",
+    "value": "DE",
     "code": "DE",
     "emoji": "🇩🇪",
     "unicode": "U+1F1E9 U+1F1EA",
@@ -473,7 +473,7 @@
   },
   {
     "label": "Diego Garcia",
-    "value": "Diego Garcia",
+    "value": "DG",
     "code": "DG",
     "emoji": "🇩🇬",
     "unicode": "U+1F1E9 U+1F1EC",
@@ -481,7 +481,7 @@
   },
   {
     "label": "Djibouti",
-    "value": "Djibouti",
+    "value": "DJ",
     "code": "DJ",
     "emoji": "🇩🇯",
     "unicode": "U+1F1E9 U+1F1EF",
@@ -489,7 +489,7 @@
   },
   {
     "label": "Denmark",
-    "value": "Denmark",
+    "value": "DK",
     "code": "DK",
     "emoji": "🇩🇰",
     "unicode": "U+1F1E9 U+1F1F0",
@@ -497,7 +497,7 @@
   },
   {
     "label": "Dominica",
-    "value": "Dominica",
+    "value": "DM",
     "code": "DM",
     "emoji": "🇩🇲",
     "unicode": "U+1F1E9 U+1F1F2",
@@ -505,7 +505,7 @@
   },
   {
     "label": "Dominican Republic",
-    "value": "Dominican Republic",
+    "value": "DO",
     "code": "DO",
     "emoji": "🇩🇴",
     "unicode": "U+1F1E9 U+1F1F4",
@@ -513,7 +513,7 @@
   },
   {
     "label": "Algeria",
-    "value": "Algeria",
+    "value": "DZ",
     "code": "DZ",
     "emoji": "🇩🇿",
     "unicode": "U+1F1E9 U+1F1FF",
@@ -521,7 +521,7 @@
   },
   {
     "label": "Ceuta & Melilla",
-    "value": "Ceuta & Melilla",
+    "value": "EA",
     "code": "EA",
     "emoji": "🇪🇦",
     "unicode": "U+1F1EA U+1F1E6",
@@ -529,7 +529,7 @@
   },
   {
     "label": "Ecuador",
-    "value": "Ecuador",
+    "value": "EC",
     "code": "EC",
     "emoji": "🇪🇨",
     "unicode": "U+1F1EA U+1F1E8",
@@ -537,7 +537,7 @@
   },
   {
     "label": "Estonia",
-    "value": "Estonia",
+    "value": "EE",
     "code": "EE",
     "emoji": "🇪🇪",
     "unicode": "U+1F1EA U+1F1EA",
@@ -545,7 +545,7 @@
   },
   {
     "label": "Egypt",
-    "value": "Egypt",
+    "value": "EG",
     "code": "EG",
     "emoji": "🇪🇬",
     "unicode": "U+1F1EA U+1F1EC",
@@ -553,7 +553,7 @@
   },
   {
     "label": "Western Sahara",
-    "value": "Western Sahara",
+    "value": "EH",
     "code": "EH",
     "emoji": "🇪🇭",
     "unicode": "U+1F1EA U+1F1ED",
@@ -561,7 +561,7 @@
   },
   {
     "label": "Eritrea",
-    "value": "Eritrea",
+    "value": "ER",
     "code": "ER",
     "emoji": "🇪🇷",
     "unicode": "U+1F1EA U+1F1F7",
@@ -569,7 +569,7 @@
   },
   {
     "label": "Spain",
-    "value": "Spain",
+    "value": "ES",
     "code": "ES",
     "emoji": "🇪🇸",
     "unicode": "U+1F1EA U+1F1F8",
@@ -577,7 +577,7 @@
   },
   {
     "label": "Ethiopia",
-    "value": "Ethiopia",
+    "value": "ET",
     "code": "ET",
     "emoji": "🇪🇹",
     "unicode": "U+1F1EA U+1F1F9",
@@ -585,7 +585,7 @@
   },
   {
     "label": "European Union",
-    "value": "European Union",
+    "value": "EU",
     "code": "EU",
     "emoji": "🇪🇺",
     "unicode": "U+1F1EA U+1F1FA",
@@ -593,7 +593,7 @@
   },
   {
     "label": "Finland",
-    "value": "Finland",
+    "value": "FI",
     "code": "FI",
     "emoji": "🇫🇮",
     "unicode": "U+1F1EB U+1F1EE",
@@ -601,7 +601,7 @@
   },
   {
     "label": "Fiji",
-    "value": "Fiji",
+    "value": "FJ",
     "code": "FJ",
     "emoji": "🇫🇯",
     "unicode": "U+1F1EB U+1F1EF",
@@ -609,7 +609,7 @@
   },
   {
     "label": "Falkland Islands",
-    "value": "Falkland Islands",
+    "value": "FK",
     "code": "FK",
     "emoji": "🇫🇰",
     "unicode": "U+1F1EB U+1F1F0",
@@ -617,7 +617,7 @@
   },
   {
     "label": "Micronesia",
-    "value": "Micronesia",
+    "value": "FM",
     "code": "FM",
     "emoji": "🇫🇲",
     "unicode": "U+1F1EB U+1F1F2",
@@ -625,7 +625,7 @@
   },
   {
     "label": "Faroe Islands",
-    "value": "Faroe Islands",
+    "value": "FO",
     "code": "FO",
     "emoji": "🇫🇴",
     "unicode": "U+1F1EB U+1F1F4",
@@ -633,7 +633,7 @@
   },
   {
     "label": "France",
-    "value": "France",
+    "value": "FR",
     "code": "FR",
     "emoji": "🇫🇷",
     "unicode": "U+1F1EB U+1F1F7",
@@ -641,7 +641,7 @@
   },
   {
     "label": "Gabon",
-    "value": "Gabon",
+    "value": "GA",
     "code": "GA",
     "emoji": "🇬🇦",
     "unicode": "U+1F1EC U+1F1E6",
@@ -649,7 +649,7 @@
   },
   {
     "label": "United Kingdom",
-    "value": "United Kingdom",
+    "value": "GB",
     "code": "GB",
     "emoji": "🇬🇧",
     "unicode": "U+1F1EC U+1F1E7",
@@ -657,7 +657,7 @@
   },
   {
     "label": "Grenada",
-    "value": "Grenada",
+    "value": "GD",
     "code": "GD",
     "emoji": "🇬🇩",
     "unicode": "U+1F1EC U+1F1E9",
@@ -665,7 +665,7 @@
   },
   {
     "label": "Georgia",
-    "value": "Georgia",
+    "value": "GE",
     "code": "GE",
     "emoji": "🇬🇪",
     "unicode": "U+1F1EC U+1F1EA",
@@ -673,7 +673,7 @@
   },
   {
     "label": "French Guiana",
-    "value": "French Guiana",
+    "value": "GF",
     "code": "GF",
     "emoji": "🇬🇫",
     "unicode": "U+1F1EC U+1F1EB",
@@ -681,7 +681,7 @@
   },
   {
     "label": "Guernsey",
-    "value": "Guernsey",
+    "value": "GG",
     "code": "GG",
     "emoji": "🇬🇬",
     "unicode": "U+1F1EC U+1F1EC",
@@ -689,7 +689,7 @@
   },
   {
     "label": "Ghana",
-    "value": "Ghana",
+    "value": "GH",
     "code": "GH",
     "emoji": "🇬🇭",
     "unicode": "U+1F1EC U+1F1ED",
@@ -697,7 +697,7 @@
   },
   {
     "label": "Gibraltar",
-    "value": "Gibraltar",
+    "value": "GI",
     "code": "GI",
     "emoji": "🇬🇮",
     "unicode": "U+1F1EC U+1F1EE",
@@ -705,7 +705,7 @@
   },
   {
     "label": "Greenland",
-    "value": "Greenland",
+    "value": "GL",
     "code": "GL",
     "emoji": "🇬🇱",
     "unicode": "U+1F1EC U+1F1F1",
@@ -713,7 +713,7 @@
   },
   {
     "label": "Gambia",
-    "value": "Gambia",
+    "value": "GM",
     "code": "GM",
     "emoji": "🇬🇲",
     "unicode": "U+1F1EC U+1F1F2",
@@ -721,7 +721,7 @@
   },
   {
     "label": "Guinea",
-    "value": "Guinea",
+    "value": "GN",
     "code": "GN",
     "emoji": "🇬🇳",
     "unicode": "U+1F1EC U+1F1F3",
@@ -729,7 +729,7 @@
   },
   {
     "label": "Guadeloupe",
-    "value": "Guadeloupe",
+    "value": "GP",
     "code": "GP",
     "emoji": "🇬🇵",
     "unicode": "U+1F1EC U+1F1F5",
@@ -737,7 +737,7 @@
   },
   {
     "label": "Equatorial Guinea",
-    "value": "Equatorial Guinea",
+    "value": "GQ",
     "code": "GQ",
     "emoji": "🇬🇶",
     "unicode": "U+1F1EC U+1F1F6",
@@ -745,7 +745,7 @@
   },
   {
     "label": "Greece",
-    "value": "Greece",
+    "value": "GR",
     "code": "GR",
     "emoji": "🇬🇷",
     "unicode": "U+1F1EC U+1F1F7",
@@ -753,7 +753,7 @@
   },
   {
     "label": "South Georgia & South Sandwich Islands",
-    "value": "South Georgia & South Sandwich Islands",
+    "value": "GS",
     "code": "GS",
     "emoji": "🇬🇸",
     "unicode": "U+1F1EC U+1F1F8",
@@ -761,7 +761,7 @@
   },
   {
     "label": "Guatemala",
-    "value": "Guatemala",
+    "value": "GT",
     "code": "GT",
     "emoji": "🇬🇹",
     "unicode": "U+1F1EC U+1F1F9",
@@ -769,7 +769,7 @@
   },
   {
     "label": "Guam",
-    "value": "Guam",
+    "value": "GU",
     "code": "GU",
     "emoji": "🇬🇺",
     "unicode": "U+1F1EC U+1F1FA",
@@ -777,7 +777,7 @@
   },
   {
     "label": "Guinea-Bissau",
-    "value": "Guinea-Bissau",
+    "value": "GW",
     "code": "GW",
     "emoji": "🇬🇼",
     "unicode": "U+1F1EC U+1F1FC",
@@ -785,7 +785,7 @@
   },
   {
     "label": "Guyana",
-    "value": "Guyana",
+    "value": "GY",
     "code": "GY",
     "emoji": "🇬🇾",
     "unicode": "U+1F1EC U+1F1FE",
@@ -793,7 +793,7 @@
   },
   {
     "label": "Hong Kong SAR China",
-    "value": "Hong Kong SAR China",
+    "value": "HK",
     "code": "HK",
     "emoji": "🇭🇰",
     "unicode": "U+1F1ED U+1F1F0",
@@ -801,7 +801,7 @@
   },
   {
     "label": "Heard & McDonald Islands",
-    "value": "Heard & McDonald Islands",
+    "value": "HM",
     "code": "HM",
     "emoji": "🇭🇲",
     "unicode": "U+1F1ED U+1F1F2",
@@ -809,7 +809,7 @@
   },
   {
     "label": "Honduras",
-    "value": "Honduras",
+    "value": "HN",
     "code": "HN",
     "emoji": "🇭🇳",
     "unicode": "U+1F1ED U+1F1F3",
@@ -817,7 +817,7 @@
   },
   {
     "label": "Croatia",
-    "value": "Croatia",
+    "value": "HR",
     "code": "HR",
     "emoji": "🇭🇷",
     "unicode": "U+1F1ED U+1F1F7",
@@ -825,7 +825,7 @@
   },
   {
     "label": "Haiti",
-    "value": "Haiti",
+    "value": "HT",
     "code": "HT",
     "emoji": "🇭🇹",
     "unicode": "U+1F1ED U+1F1F9",
@@ -833,7 +833,7 @@
   },
   {
     "label": "Hungary",
-    "value": "Hungary",
+    "value": "HU",
     "code": "HU",
     "emoji": "🇭🇺",
     "unicode": "U+1F1ED U+1F1FA",
@@ -841,7 +841,7 @@
   },
   {
     "label": "Canary Islands",
-    "value": "Canary Islands",
+    "value": "IC",
     "code": "IC",
     "emoji": "🇮🇨",
     "unicode": "U+1F1EE U+1F1E8",
@@ -849,7 +849,7 @@
   },
   {
     "label": "Indonesia",
-    "value": "Indonesia",
+    "value": "ID",
     "code": "ID",
     "emoji": "🇮🇩",
     "unicode": "U+1F1EE U+1F1E9",
@@ -857,7 +857,7 @@
   },
   {
     "label": "Ireland",
-    "value": "Ireland",
+    "value": "IE",
     "code": "IE",
     "emoji": "🇮🇪",
     "unicode": "U+1F1EE U+1F1EA",
@@ -865,7 +865,7 @@
   },
   {
     "label": "Israel",
-    "value": "Israel",
+    "value": "IL",
     "code": "IL",
     "emoji": "🇮🇱",
     "unicode": "U+1F1EE U+1F1F1",
@@ -873,7 +873,7 @@
   },
   {
     "label": "Isle of Man",
-    "value": "Isle of Man",
+    "value": "IM",
     "code": "IM",
     "emoji": "🇮🇲",
     "unicode": "U+1F1EE U+1F1F2",
@@ -881,7 +881,7 @@
   },
   {
     "label": "India",
-    "value": "India",
+    "value": "IN",
     "code": "IN",
     "emoji": "🇮🇳",
     "unicode": "U+1F1EE U+1F1F3",
@@ -889,7 +889,7 @@
   },
   {
     "label": "British Indian Ocean Territory",
-    "value": "British Indian Ocean Territory",
+    "value": "IO",
     "code": "IO",
     "emoji": "🇮🇴",
     "unicode": "U+1F1EE U+1F1F4",
@@ -897,7 +897,7 @@
   },
   {
     "label": "Iraq",
-    "value": "Iraq",
+    "value": "IQ",
     "code": "IQ",
     "emoji": "🇮🇶",
     "unicode": "U+1F1EE U+1F1F6",
@@ -905,7 +905,7 @@
   },
   {
     "label": "Iran",
-    "value": "Iran",
+    "value": "IR",
     "code": "IR",
     "emoji": "🇮🇷",
     "unicode": "U+1F1EE U+1F1F7",
@@ -913,7 +913,7 @@
   },
   {
     "label": "Iceland",
-    "value": "Iceland",
+    "value": "IS",
     "code": "IS",
     "emoji": "🇮🇸",
     "unicode": "U+1F1EE U+1F1F8",
@@ -921,7 +921,7 @@
   },
   {
     "label": "Italy",
-    "value": "Italy",
+    "value": "IT",
     "code": "IT",
     "emoji": "🇮🇹",
     "unicode": "U+1F1EE U+1F1F9",
@@ -929,7 +929,7 @@
   },
   {
     "label": "Jersey",
-    "value": "Jersey",
+    "value": "JE",
     "code": "JE",
     "emoji": "🇯🇪",
     "unicode": "U+1F1EF U+1F1EA",
@@ -937,7 +937,7 @@
   },
   {
     "label": "Jamaica",
-    "value": "Jamaica",
+    "value": "JM",
     "code": "JM",
     "emoji": "🇯🇲",
     "unicode": "U+1F1EF U+1F1F2",
@@ -945,7 +945,7 @@
   },
   {
     "label": "Jordan",
-    "value": "Jordan",
+    "value": "JO",
     "code": "JO",
     "emoji": "🇯🇴",
     "unicode": "U+1F1EF U+1F1F4",
@@ -953,7 +953,7 @@
   },
   {
     "label": "Japan",
-    "value": "Japan",
+    "value": "JP",
     "code": "JP",
     "emoji": "🇯🇵",
     "unicode": "U+1F1EF U+1F1F5",
@@ -961,7 +961,7 @@
   },
   {
     "label": "Kenya",
-    "value": "Kenya",
+    "value": "KE",
     "code": "KE",
     "emoji": "🇰🇪",
     "unicode": "U+1F1F0 U+1F1EA",
@@ -969,7 +969,7 @@
   },
   {
     "label": "Kyrgyzstan",
-    "value": "Kyrgyzstan",
+    "value": "KG",
     "code": "KG",
     "emoji": "🇰🇬",
     "unicode": "U+1F1F0 U+1F1EC",
@@ -977,7 +977,7 @@
   },
   {
     "label": "Cambodia",
-    "value": "Cambodia",
+    "value": "KH",
     "code": "KH",
     "emoji": "🇰🇭",
     "unicode": "U+1F1F0 U+1F1ED",
@@ -985,7 +985,7 @@
   },
   {
     "label": "Kiribati",
-    "value": "Kiribati",
+    "value": "KI",
     "code": "KI",
     "emoji": "🇰🇮",
     "unicode": "U+1F1F0 U+1F1EE",
@@ -993,7 +993,7 @@
   },
   {
     "label": "Comoros",
-    "value": "Comoros",
+    "value": "KM",
     "code": "KM",
     "emoji": "🇰🇲",
     "unicode": "U+1F1F0 U+1F1F2",
@@ -1001,7 +1001,7 @@
   },
   {
     "label": "St. Kitts & Nevis",
-    "value": "St. Kitts & Nevis",
+    "value": "KN",
     "code": "KN",
     "emoji": "🇰🇳",
     "unicode": "U+1F1F0 U+1F1F3",
@@ -1009,7 +1009,7 @@
   },
   {
     "label": "North Korea",
-    "value": "North Korea",
+    "value": "KP",
     "code": "KP",
     "emoji": "🇰🇵",
     "unicode": "U+1F1F0 U+1F1F5",
@@ -1017,7 +1017,7 @@
   },
   {
     "label": "South Korea",
-    "value": "South Korea",
+    "value": "KR",
     "code": "KR",
     "emoji": "🇰🇷",
     "unicode": "U+1F1F0 U+1F1F7",
@@ -1025,7 +1025,7 @@
   },
   {
     "label": "Kuwait",
-    "value": "Kuwait",
+    "value": "KW",
     "code": "KW",
     "emoji": "🇰🇼",
     "unicode": "U+1F1F0 U+1F1FC",
@@ -1033,7 +1033,7 @@
   },
   {
     "label": "Cayman Islands",
-    "value": "Cayman Islands",
+    "value": "KY",
     "code": "KY",
     "emoji": "🇰🇾",
     "unicode": "U+1F1F0 U+1F1FE",
@@ -1041,7 +1041,7 @@
   },
   {
     "label": "Kazakhstan",
-    "value": "Kazakhstan",
+    "value": "KZ",
     "code": "KZ",
     "emoji": "🇰🇿",
     "unicode": "U+1F1F0 U+1F1FF",
@@ -1049,7 +1049,7 @@
   },
   {
     "label": "Laos",
-    "value": "Laos",
+    "value": "LA",
     "code": "LA",
     "emoji": "🇱🇦",
     "unicode": "U+1F1F1 U+1F1E6",
@@ -1057,7 +1057,7 @@
   },
   {
     "label": "Lebanon",
-    "value": "Lebanon",
+    "value": "LB",
     "code": "LB",
     "emoji": "🇱🇧",
     "unicode": "U+1F1F1 U+1F1E7",
@@ -1065,7 +1065,7 @@
   },
   {
     "label": "St. Lucia",
-    "value": "St. Lucia",
+    "value": "LC",
     "code": "LC",
     "emoji": "🇱🇨",
     "unicode": "U+1F1F1 U+1F1E8",
@@ -1073,7 +1073,7 @@
   },
   {
     "label": "Liechtenstein",
-    "value": "Liechtenstein",
+    "value": "LI",
     "code": "LI",
     "emoji": "🇱🇮",
     "unicode": "U+1F1F1 U+1F1EE",
@@ -1081,7 +1081,7 @@
   },
   {
     "label": "Sri Lanka",
-    "value": "Sri Lanka",
+    "value": "LK",
     "code": "LK",
     "emoji": "🇱🇰",
     "unicode": "U+1F1F1 U+1F1F0",
@@ -1089,7 +1089,7 @@
   },
   {
     "label": "Liberia",
-    "value": "Liberia",
+    "value": "LR",
     "code": "LR",
     "emoji": "🇱🇷",
     "unicode": "U+1F1F1 U+1F1F7",
@@ -1097,7 +1097,7 @@
   },
   {
     "label": "Lesotho",
-    "value": "Lesotho",
+    "value": "LS",
     "code": "LS",
     "emoji": "🇱🇸",
     "unicode": "U+1F1F1 U+1F1F8",
@@ -1105,7 +1105,7 @@
   },
   {
     "label": "Lithuania",
-    "value": "Lithuania",
+    "value": "LT",
     "code": "LT",
     "emoji": "🇱🇹",
     "unicode": "U+1F1F1 U+1F1F9",
@@ -1113,7 +1113,7 @@
   },
   {
     "label": "Luxembourg",
-    "value": "Luxembourg",
+    "value": "LU",
     "code": "LU",
     "emoji": "🇱🇺",
     "unicode": "U+1F1F1 U+1F1FA",
@@ -1121,7 +1121,7 @@
   },
   {
     "label": "Latvia",
-    "value": "Latvia",
+    "value": "LV",
     "code": "LV",
     "emoji": "🇱🇻",
     "unicode": "U+1F1F1 U+1F1FB",
@@ -1129,7 +1129,7 @@
   },
   {
     "label": "Libya",
-    "value": "Libya",
+    "value": "LY",
     "code": "LY",
     "emoji": "🇱🇾",
     "unicode": "U+1F1F1 U+1F1FE",
@@ -1137,7 +1137,7 @@
   },
   {
     "label": "Morocco",
-    "value": "Morocco",
+    "value": "MA",
     "code": "MA",
     "emoji": "🇲🇦",
     "unicode": "U+1F1F2 U+1F1E6",
@@ -1145,7 +1145,7 @@
   },
   {
     "label": "Monaco",
-    "value": "Monaco",
+    "value": "MC",
     "code": "MC",
     "emoji": "🇲🇨",
     "unicode": "U+1F1F2 U+1F1E8",
@@ -1153,7 +1153,7 @@
   },
   {
     "label": "Moldova",
-    "value": "Moldova",
+    "value": "MD",
     "code": "MD",
     "emoji": "🇲🇩",
     "unicode": "U+1F1F2 U+1F1E9",
@@ -1161,7 +1161,7 @@
   },
   {
     "label": "Montenegro",
-    "value": "Montenegro",
+    "value": "ME",
     "code": "ME",
     "emoji": "🇲🇪",
     "unicode": "U+1F1F2 U+1F1EA",
@@ -1169,7 +1169,7 @@
   },
   {
     "label": "St. Martin",
-    "value": "St. Martin",
+    "value": "MF",
     "code": "MF",
     "emoji": "🇲🇫",
     "unicode": "U+1F1F2 U+1F1EB",
@@ -1177,7 +1177,7 @@
   },
   {
     "label": "Madagascar",
-    "value": "Madagascar",
+    "value": "MG",
     "code": "MG",
     "emoji": "🇲🇬",
     "unicode": "U+1F1F2 U+1F1EC",
@@ -1185,7 +1185,7 @@
   },
   {
     "label": "Marshall Islands",
-    "value": "Marshall Islands",
+    "value": "MH",
     "code": "MH",
     "emoji": "🇲🇭",
     "unicode": "U+1F1F2 U+1F1ED",
@@ -1193,7 +1193,7 @@
   },
   {
     "label": "North Macedonia",
-    "value": "North Macedonia",
+    "value": "MK",
     "code": "MK",
     "emoji": "🇲🇰",
     "unicode": "U+1F1F2 U+1F1F0",
@@ -1201,7 +1201,7 @@
   },
   {
     "label": "Mali",
-    "value": "Mali",
+    "value": "ML",
     "code": "ML",
     "emoji": "🇲🇱",
     "unicode": "U+1F1F2 U+1F1F1",
@@ -1209,7 +1209,7 @@
   },
   {
     "label": "Myanmar (Burma)",
-    "value": "Myanmar (Burma)",
+    "value": "MM",
     "code": "MM",
     "emoji": "🇲🇲",
     "unicode": "U+1F1F2 U+1F1F2",
@@ -1217,7 +1217,7 @@
   },
   {
     "label": "Mongolia",
-    "value": "Mongolia",
+    "value": "MN",
     "code": "MN",
     "emoji": "🇲🇳",
     "unicode": "U+1F1F2 U+1F1F3",
@@ -1225,7 +1225,7 @@
   },
   {
     "label": "Macao SAR China",
-    "value": "Macao SAR China",
+    "value": "MO",
     "code": "MO",
     "emoji": "🇲🇴",
     "unicode": "U+1F1F2 U+1F1F4",
@@ -1233,7 +1233,7 @@
   },
   {
     "label": "Northern Mariana Islands",
-    "value": "Northern Mariana Islands",
+    "value": "MP",
     "code": "MP",
     "emoji": "🇲🇵",
     "unicode": "U+1F1F2 U+1F1F5",
@@ -1241,7 +1241,7 @@
   },
   {
     "label": "Martinique",
-    "value": "Martinique",
+    "value": "MQ",
     "code": "MQ",
     "emoji": "🇲🇶",
     "unicode": "U+1F1F2 U+1F1F6",
@@ -1249,7 +1249,7 @@
   },
   {
     "label": "Mauritania",
-    "value": "Mauritania",
+    "value": "MR",
     "code": "MR",
     "emoji": "🇲🇷",
     "unicode": "U+1F1F2 U+1F1F7",
@@ -1257,7 +1257,7 @@
   },
   {
     "label": "Montserrat",
-    "value": "Montserrat",
+    "value": "MS",
     "code": "MS",
     "emoji": "🇲🇸",
     "unicode": "U+1F1F2 U+1F1F8",
@@ -1265,7 +1265,7 @@
   },
   {
     "label": "Malta",
-    "value": "Malta",
+    "value": "MT",
     "code": "MT",
     "emoji": "🇲🇹",
     "unicode": "U+1F1F2 U+1F1F9",
@@ -1273,7 +1273,7 @@
   },
   {
     "label": "Mauritius",
-    "value": "Mauritius",
+    "value": "MU",
     "code": "MU",
     "emoji": "🇲🇺",
     "unicode": "U+1F1F2 U+1F1FA",
@@ -1281,7 +1281,7 @@
   },
   {
     "label": "Maldives",
-    "value": "Maldives",
+    "value": "MV",
     "code": "MV",
     "emoji": "🇲🇻",
     "unicode": "U+1F1F2 U+1F1FB",
@@ -1289,7 +1289,7 @@
   },
   {
     "label": "Malawi",
-    "value": "Malawi",
+    "value": "MW",
     "code": "MW",
     "emoji": "🇲🇼",
     "unicode": "U+1F1F2 U+1F1FC",
@@ -1297,7 +1297,7 @@
   },
   {
     "label": "Mexico",
-    "value": "Mexico",
+    "value": "MX",
     "code": "MX",
     "emoji": "🇲🇽",
     "unicode": "U+1F1F2 U+1F1FD",
@@ -1305,7 +1305,7 @@
   },
   {
     "label": "Malaysia",
-    "value": "Malaysia",
+    "value": "MY",
     "code": "MY",
     "emoji": "🇲🇾",
     "unicode": "U+1F1F2 U+1F1FE",
@@ -1313,7 +1313,7 @@
   },
   {
     "label": "Mozambique",
-    "value": "Mozambique",
+    "value": "MZ",
     "code": "MZ",
     "emoji": "🇲🇿",
     "unicode": "U+1F1F2 U+1F1FF",
@@ -1321,7 +1321,7 @@
   },
   {
     "label": "Namibia",
-    "value": "Namibia",
+    "value": "NA",
     "code": "NA",
     "emoji": "🇳🇦",
     "unicode": "U+1F1F3 U+1F1E6",
@@ -1329,7 +1329,7 @@
   },
   {
     "label": "New Caledonia",
-    "value": "New Caledonia",
+    "value": "NC",
     "code": "NC",
     "emoji": "🇳🇨",
     "unicode": "U+1F1F3 U+1F1E8",
@@ -1337,7 +1337,7 @@
   },
   {
     "label": "Niger",
-    "value": "Niger",
+    "value": "NE",
     "code": "NE",
     "emoji": "🇳🇪",
     "unicode": "U+1F1F3 U+1F1EA",
@@ -1345,7 +1345,7 @@
   },
   {
     "label": "Norfolk Island",
-    "value": "Norfolk Island",
+    "value": "NF",
     "code": "NF",
     "emoji": "🇳🇫",
     "unicode": "U+1F1F3 U+1F1EB",
@@ -1353,7 +1353,7 @@
   },
   {
     "label": "Nigeria",
-    "value": "Nigeria",
+    "value": "NG",
     "code": "NG",
     "emoji": "🇳🇬",
     "unicode": "U+1F1F3 U+1F1EC",
@@ -1361,7 +1361,7 @@
   },
   {
     "label": "Nicaragua",
-    "value": "Nicaragua",
+    "value": "NI",
     "code": "NI",
     "emoji": "🇳🇮",
     "unicode": "U+1F1F3 U+1F1EE",
@@ -1369,7 +1369,7 @@
   },
   {
     "label": "Netherlands",
-    "value": "Netherlands",
+    "value": "NL",
     "code": "NL",
     "emoji": "🇳🇱",
     "unicode": "U+1F1F3 U+1F1F1",
@@ -1377,7 +1377,7 @@
   },
   {
     "label": "Norway",
-    "value": "Norway",
+    "value": "NO",
     "code": "NO",
     "emoji": "🇳🇴",
     "unicode": "U+1F1F3 U+1F1F4",
@@ -1385,7 +1385,7 @@
   },
   {
     "label": "Nepal",
-    "value": "Nepal",
+    "value": "NP",
     "code": "NP",
     "emoji": "🇳🇵",
     "unicode": "U+1F1F3 U+1F1F5",
@@ -1393,7 +1393,7 @@
   },
   {
     "label": "Nauru",
-    "value": "Nauru",
+    "value": "NR",
     "code": "NR",
     "emoji": "🇳🇷",
     "unicode": "U+1F1F3 U+1F1F7",
@@ -1401,7 +1401,7 @@
   },
   {
     "label": "Niue",
-    "value": "Niue",
+    "value": "NU",
     "code": "NU",
     "emoji": "🇳🇺",
     "unicode": "U+1F1F3 U+1F1FA",
@@ -1409,7 +1409,7 @@
   },
   {
     "label": "New Zealand",
-    "value": "New Zealand",
+    "value": "NZ",
     "code": "NZ",
     "emoji": "🇳🇿",
     "unicode": "U+1F1F3 U+1F1FF",
@@ -1417,7 +1417,7 @@
   },
   {
     "label": "Oman",
-    "value": "Oman",
+    "value": "OM",
     "code": "OM",
     "emoji": "🇴🇲",
     "unicode": "U+1F1F4 U+1F1F2",
@@ -1425,7 +1425,7 @@
   },
   {
     "label": "Panama",
-    "value": "Panama",
+    "value": "PA",
     "code": "PA",
     "emoji": "🇵🇦",
     "unicode": "U+1F1F5 U+1F1E6",
@@ -1433,7 +1433,7 @@
   },
   {
     "label": "Peru",
-    "value": "Peru",
+    "value": "PE",
     "code": "PE",
     "emoji": "🇵🇪",
     "unicode": "U+1F1F5 U+1F1EA",
@@ -1441,7 +1441,7 @@
   },
   {
     "label": "French Polynesia",
-    "value": "French Polynesia",
+    "value": "PF",
     "code": "PF",
     "emoji": "🇵🇫",
     "unicode": "U+1F1F5 U+1F1EB",
@@ -1449,7 +1449,7 @@
   },
   {
     "label": "Papua New Guinea",
-    "value": "Papua New Guinea",
+    "value": "PG",
     "code": "PG",
     "emoji": "🇵🇬",
     "unicode": "U+1F1F5 U+1F1EC",
@@ -1457,7 +1457,7 @@
   },
   {
     "label": "Philippines",
-    "value": "Philippines",
+    "value": "PH",
     "code": "PH",
     "emoji": "🇵🇭",
     "unicode": "U+1F1F5 U+1F1ED",
@@ -1465,7 +1465,7 @@
   },
   {
     "label": "Pakistan",
-    "value": "Pakistan",
+    "value": "PK",
     "code": "PK",
     "emoji": "🇵🇰",
     "unicode": "U+1F1F5 U+1F1F0",
@@ -1473,7 +1473,7 @@
   },
   {
     "label": "Poland",
-    "value": "Poland",
+    "value": "PL",
     "code": "PL",
     "emoji": "🇵🇱",
     "unicode": "U+1F1F5 U+1F1F1",
@@ -1481,7 +1481,7 @@
   },
   {
     "label": "St. Pierre & Miquelon",
-    "value": "St. Pierre & Miquelon",
+    "value": "PM",
     "code": "PM",
     "emoji": "🇵🇲",
     "unicode": "U+1F1F5 U+1F1F2",
@@ -1489,7 +1489,7 @@
   },
   {
     "label": "Pitcairn Islands",
-    "value": "Pitcairn Islands",
+    "value": "PN",
     "code": "PN",
     "emoji": "🇵🇳",
     "unicode": "U+1F1F5 U+1F1F3",
@@ -1497,7 +1497,7 @@
   },
   {
     "label": "Puerto Rico",
-    "value": "Puerto Rico",
+    "value": "PR",
     "code": "PR",
     "emoji": "🇵🇷",
     "unicode": "U+1F1F5 U+1F1F7",
@@ -1505,7 +1505,7 @@
   },
   {
     "label": "Palestinian Territories",
-    "value": "Palestinian Territories",
+    "value": "PS",
     "code": "PS",
     "emoji": "🇵🇸",
     "unicode": "U+1F1F5 U+1F1F8",
@@ -1513,7 +1513,7 @@
   },
   {
     "label": "Portugal",
-    "value": "Portugal",
+    "value": "PT",
     "code": "PT",
     "emoji": "🇵🇹",
     "unicode": "U+1F1F5 U+1F1F9",
@@ -1521,7 +1521,7 @@
   },
   {
     "label": "Palau",
-    "value": "Palau",
+    "value": "PW",
     "code": "PW",
     "emoji": "🇵🇼",
     "unicode": "U+1F1F5 U+1F1FC",
@@ -1529,7 +1529,7 @@
   },
   {
     "label": "Paraguay",
-    "value": "Paraguay",
+    "value": "PY",
     "code": "PY",
     "emoji": "🇵🇾",
     "unicode": "U+1F1F5 U+1F1FE",
@@ -1537,7 +1537,7 @@
   },
   {
     "label": "Qatar",
-    "value": "Qatar",
+    "value": "QA",
     "code": "QA",
     "emoji": "🇶🇦",
     "unicode": "U+1F1F6 U+1F1E6",
@@ -1545,7 +1545,7 @@
   },
   {
     "label": "Réunion",
-    "value": "Réunion",
+    "value": "RE",
     "code": "RE",
     "emoji": "🇷🇪",
     "unicode": "U+1F1F7 U+1F1EA",
@@ -1553,7 +1553,7 @@
   },
   {
     "label": "Romania",
-    "value": "Romania",
+    "value": "RO",
     "code": "RO",
     "emoji": "🇷🇴",
     "unicode": "U+1F1F7 U+1F1F4",
@@ -1561,7 +1561,7 @@
   },
   {
     "label": "Serbia",
-    "value": "Serbia",
+    "value": "RS",
     "code": "RS",
     "emoji": "🇷🇸",
     "unicode": "U+1F1F7 U+1F1F8",
@@ -1569,7 +1569,7 @@
   },
   {
     "label": "Russia",
-    "value": "Russia",
+    "value": "RU",
     "code": "RU",
     "emoji": "🇷🇺",
     "unicode": "U+1F1F7 U+1F1FA",
@@ -1577,7 +1577,7 @@
   },
   {
     "label": "Rwanda",
-    "value": "Rwanda",
+    "value": "RW",
     "code": "RW",
     "emoji": "🇷🇼",
     "unicode": "U+1F1F7 U+1F1FC",
@@ -1585,7 +1585,7 @@
   },
   {
     "label": "Saudi Arabia",
-    "value": "Saudi Arabia",
+    "value": "SA",
     "code": "SA",
     "emoji": "🇸🇦",
     "unicode": "U+1F1F8 U+1F1E6",
@@ -1593,7 +1593,7 @@
   },
   {
     "label": "Solomon Islands",
-    "value": "Solomon Islands",
+    "value": "SB",
     "code": "SB",
     "emoji": "🇸🇧",
     "unicode": "U+1F1F8 U+1F1E7",
@@ -1601,7 +1601,7 @@
   },
   {
     "label": "Seychelles",
-    "value": "Seychelles",
+    "value": "SC",
     "code": "SC",
     "emoji": "🇸🇨",
     "unicode": "U+1F1F8 U+1F1E8",
@@ -1609,7 +1609,7 @@
   },
   {
     "label": "Sudan",
-    "value": "Sudan",
+    "value": "SD",
     "code": "SD",
     "emoji": "🇸🇩",
     "unicode": "U+1F1F8 U+1F1E9",
@@ -1617,7 +1617,7 @@
   },
   {
     "label": "Sweden",
-    "value": "Sweden",
+    "value": "SE",
     "code": "SE",
     "emoji": "🇸🇪",
     "unicode": "U+1F1F8 U+1F1EA",
@@ -1625,7 +1625,7 @@
   },
   {
     "label": "Singapore",
-    "value": "Singapore",
+    "value": "SG",
     "code": "SG",
     "emoji": "🇸🇬",
     "unicode": "U+1F1F8 U+1F1EC",
@@ -1633,7 +1633,7 @@
   },
   {
     "label": "St. Helena",
-    "value": "St. Helena",
+    "value": "SH",
     "code": "SH",
     "emoji": "🇸🇭",
     "unicode": "U+1F1F8 U+1F1ED",
@@ -1641,7 +1641,7 @@
   },
   {
     "label": "Slovenia",
-    "value": "Slovenia",
+    "value": "SI",
     "code": "SI",
     "emoji": "🇸🇮",
     "unicode": "U+1F1F8 U+1F1EE",
@@ -1649,7 +1649,7 @@
   },
   {
     "label": "Svalbard & Jan Mayen",
-    "value": "Svalbard & Jan Mayen",
+    "value": "SJ",
     "code": "SJ",
     "emoji": "🇸🇯",
     "unicode": "U+1F1F8 U+1F1EF",
@@ -1657,7 +1657,7 @@
   },
   {
     "label": "Slovakia",
-    "value": "Slovakia",
+    "value": "SK",
     "code": "SK",
     "emoji": "🇸🇰",
     "unicode": "U+1F1F8 U+1F1F0",
@@ -1665,7 +1665,7 @@
   },
   {
     "label": "Sierra Leone",
-    "value": "Sierra Leone",
+    "value": "SL",
     "code": "SL",
     "emoji": "🇸🇱",
     "unicode": "U+1F1F8 U+1F1F1",
@@ -1673,7 +1673,7 @@
   },
   {
     "label": "San Marino",
-    "value": "San Marino",
+    "value": "SM",
     "code": "SM",
     "emoji": "🇸🇲",
     "unicode": "U+1F1F8 U+1F1F2",
@@ -1681,7 +1681,7 @@
   },
   {
     "label": "Senegal",
-    "value": "Senegal",
+    "value": "SN",
     "code": "SN",
     "emoji": "🇸🇳",
     "unicode": "U+1F1F8 U+1F1F3",
@@ -1689,7 +1689,7 @@
   },
   {
     "label": "Somalia",
-    "value": "Somalia",
+    "value": "SO",
     "code": "SO",
     "emoji": "🇸🇴",
     "unicode": "U+1F1F8 U+1F1F4",
@@ -1697,7 +1697,7 @@
   },
   {
     "label": "Surilabel",
-    "value": "Surilabel",
+    "value": "SR",
     "code": "SR",
     "emoji": "🇸🇷",
     "unicode": "U+1F1F8 U+1F1F7",
@@ -1705,7 +1705,7 @@
   },
   {
     "label": "South Sudan",
-    "value": "South Sudan",
+    "value": "SS",
     "code": "SS",
     "emoji": "🇸🇸",
     "unicode": "U+1F1F8 U+1F1F8",
@@ -1713,7 +1713,7 @@
   },
   {
     "label": "São Tomé & Príncipe",
-    "value": "São Tomé & Príncipe",
+    "value": "ST",
     "code": "ST",
     "emoji": "🇸🇹",
     "unicode": "U+1F1F8 U+1F1F9",
@@ -1721,7 +1721,7 @@
   },
   {
     "label": "El Salvador",
-    "value": "El Salvador",
+    "value": "SV",
     "code": "SV",
     "emoji": "🇸🇻",
     "unicode": "U+1F1F8 U+1F1FB",
@@ -1729,7 +1729,7 @@
   },
   {
     "label": "Sint Maarten",
-    "value": "Sint Maarten",
+    "value": "SX",
     "code": "SX",
     "emoji": "🇸🇽",
     "unicode": "U+1F1F8 U+1F1FD",
@@ -1737,7 +1737,7 @@
   },
   {
     "label": "Syria",
-    "value": "Syria",
+    "value": "SY",
     "code": "SY",
     "emoji": "🇸🇾",
     "unicode": "U+1F1F8 U+1F1FE",
@@ -1745,7 +1745,7 @@
   },
   {
     "label": "Eswatini",
-    "value": "Eswatini",
+    "value": "SZ",
     "code": "SZ",
     "emoji": "🇸🇿",
     "unicode": "U+1F1F8 U+1F1FF",
@@ -1753,7 +1753,7 @@
   },
   {
     "label": "Tristan da Cunha",
-    "value": "Tristan da Cunha",
+    "value": "TA",
     "code": "TA",
     "emoji": "🇹🇦",
     "unicode": "U+1F1F9 U+1F1E6",
@@ -1761,7 +1761,7 @@
   },
   {
     "label": "Turks & Caicos Islands",
-    "value": "Turks & Caicos Islands",
+    "value": "TC",
     "code": "TC",
     "emoji": "🇹🇨",
     "unicode": "U+1F1F9 U+1F1E8",
@@ -1769,7 +1769,7 @@
   },
   {
     "label": "Chad",
-    "value": "Chad",
+    "value": "TD",
     "code": "TD",
     "emoji": "🇹🇩",
     "unicode": "U+1F1F9 U+1F1E9",
@@ -1777,7 +1777,7 @@
   },
   {
     "label": "French Southern Territories",
-    "value": "French Southern Territories",
+    "value": "TF",
     "code": "TF",
     "emoji": "🇹🇫",
     "unicode": "U+1F1F9 U+1F1EB",
@@ -1785,7 +1785,7 @@
   },
   {
     "label": "Togo",
-    "value": "Togo",
+    "value": "TG",
     "code": "TG",
     "emoji": "🇹🇬",
     "unicode": "U+1F1F9 U+1F1EC",
@@ -1793,7 +1793,7 @@
   },
   {
     "label": "Thailand",
-    "value": "Thailand",
+    "value": "TH",
     "code": "TH",
     "emoji": "🇹🇭",
     "unicode": "U+1F1F9 U+1F1ED",
@@ -1801,7 +1801,7 @@
   },
   {
     "label": "Tajikistan",
-    "value": "Tajikistan",
+    "value": "TJ",
     "code": "TJ",
     "emoji": "🇹🇯",
     "unicode": "U+1F1F9 U+1F1EF",
@@ -1809,7 +1809,7 @@
   },
   {
     "label": "Tokelau",
-    "value": "Tokelau",
+    "value": "TK",
     "code": "TK",
     "emoji": "🇹🇰",
     "unicode": "U+1F1F9 U+1F1F0",
@@ -1817,7 +1817,7 @@
   },
   {
     "label": "Timor-Leste",
-    "value": "Timor-Leste",
+    "value": "TL",
     "code": "TL",
     "emoji": "🇹🇱",
     "unicode": "U+1F1F9 U+1F1F1",
@@ -1825,7 +1825,7 @@
   },
   {
     "label": "Turkmenistan",
-    "value": "Turkmenistan",
+    "value": "TM",
     "code": "TM",
     "emoji": "🇹🇲",
     "unicode": "U+1F1F9 U+1F1F2",
@@ -1833,7 +1833,7 @@
   },
   {
     "label": "Tunisia",
-    "value": "Tunisia",
+    "value": "TN",
     "code": "TN",
     "emoji": "🇹🇳",
     "unicode": "U+1F1F9 U+1F1F3",
@@ -1841,7 +1841,7 @@
   },
   {
     "label": "Tonga",
-    "value": "Tonga",
+    "value": "TO",
     "code": "TO",
     "emoji": "🇹🇴",
     "unicode": "U+1F1F9 U+1F1F4",
@@ -1849,7 +1849,7 @@
   },
   {
     "label": "Turkey",
-    "value": "Turkey",
+    "value": "TR",
     "code": "TR",
     "emoji": "🇹🇷",
     "unicode": "U+1F1F9 U+1F1F7",
@@ -1857,7 +1857,7 @@
   },
   {
     "label": "Trinidad & Tobago",
-    "value": "Trinidad & Tobago",
+    "value": "TT",
     "code": "TT",
     "emoji": "🇹🇹",
     "unicode": "U+1F1F9 U+1F1F9",
@@ -1865,7 +1865,7 @@
   },
   {
     "label": "Tuvalu",
-    "value": "Tuvalu",
+    "value": "TV",
     "code": "TV",
     "emoji": "🇹🇻",
     "unicode": "U+1F1F9 U+1F1FB",
@@ -1873,7 +1873,7 @@
   },
   {
     "label": "Taiwan",
-    "value": "Taiwan",
+    "value": "TW",
     "code": "TW",
     "emoji": "🇹🇼",
     "unicode": "U+1F1F9 U+1F1FC",
@@ -1881,7 +1881,7 @@
   },
   {
     "label": "Tanzania",
-    "value": "Tanzania",
+    "value": "TZ",
     "code": "TZ",
     "emoji": "🇹🇿",
     "unicode": "U+1F1F9 U+1F1FF",
@@ -1889,7 +1889,7 @@
   },
   {
     "label": "Ukraine",
-    "value": "Ukraine",
+    "value": "UA",
     "code": "UA",
     "emoji": "🇺🇦",
     "unicode": "U+1F1FA U+1F1E6",
@@ -1897,7 +1897,7 @@
   },
   {
     "label": "Uganda",
-    "value": "Uganda",
+    "value": "UG",
     "code": "UG",
     "emoji": "🇺🇬",
     "unicode": "U+1F1FA U+1F1EC",
@@ -1905,7 +1905,7 @@
   },
   {
     "label": "U.S. Outlying Islands",
-    "value": "U.S. Outlying Islands",
+    "value": "UM",
     "code": "UM",
     "emoji": "🇺🇲",
     "unicode": "U+1F1FA U+1F1F2",
@@ -1913,7 +1913,7 @@
   },
   {
     "label": "United Nations",
-    "value": "United Nations",
+    "value": "UN",
     "code": "UN",
     "emoji": "🇺🇳",
     "unicode": "U+1F1FA U+1F1F3",
@@ -1921,7 +1921,7 @@
   },
   {
     "label": "United States",
-    "value": "United States",
+    "value": "US",
     "code": "US",
     "emoji": "🇺🇸",
     "unicode": "U+1F1FA U+1F1F8",
@@ -1929,7 +1929,7 @@
   },
   {
     "label": "Uruguay",
-    "value": "Uruguay",
+    "value": "UY",
     "code": "UY",
     "emoji": "🇺🇾",
     "unicode": "U+1F1FA U+1F1FE",
@@ -1937,7 +1937,7 @@
   },
   {
     "label": "Uzbekistan",
-    "value": "Uzbekistan",
+    "value": "UZ",
     "code": "UZ",
     "emoji": "🇺🇿",
     "unicode": "U+1F1FA U+1F1FF",
@@ -1945,7 +1945,7 @@
   },
   {
     "label": "Vatican City",
-    "value": "Vatican City",
+    "value": "VA",
     "code": "VA",
     "emoji": "🇻🇦",
     "unicode": "U+1F1FB U+1F1E6",
@@ -1953,7 +1953,7 @@
   },
   {
     "label": "St. Vincent & Grenadines",
-    "value": "St. Vincent & Grenadines",
+    "value": "VC",
     "code": "VC",
     "emoji": "🇻🇨",
     "unicode": "U+1F1FB U+1F1E8",
@@ -1961,7 +1961,7 @@
   },
   {
     "label": "Venezuela",
-    "value": "Venezuela",
+    "value": "VE",
     "code": "VE",
     "emoji": "🇻🇪",
     "unicode": "U+1F1FB U+1F1EA",
@@ -1969,7 +1969,7 @@
   },
   {
     "label": "British Virgin Islands",
-    "value": "British Virgin Islands",
+    "value": "VG",
     "code": "VG",
     "emoji": "🇻🇬",
     "unicode": "U+1F1FB U+1F1EC",
@@ -1977,7 +1977,7 @@
   },
   {
     "label": "U.S. Virgin Islands",
-    "value": "U.S. Virgin Islands",
+    "value": "VI",
     "code": "VI",
     "emoji": "🇻🇮",
     "unicode": "U+1F1FB U+1F1EE",
@@ -1985,7 +1985,7 @@
   },
   {
     "label": "Vietnam",
-    "value": "Vietnam",
+    "value": "VN",
     "code": "VN",
     "emoji": "🇻🇳",
     "unicode": "U+1F1FB U+1F1F3",
@@ -1993,7 +1993,7 @@
   },
   {
     "label": "Vanuatu",
-    "value": "Vanuatu",
+    "value": "VU",
     "code": "VU",
     "emoji": "🇻🇺",
     "unicode": "U+1F1FB U+1F1FA",
@@ -2001,7 +2001,7 @@
   },
   {
     "label": "Wallis & Futuna",
-    "value": "Wallis & Futuna",
+    "value": "WF",
     "code": "WF",
     "emoji": "🇼🇫",
     "unicode": "U+1F1FC U+1F1EB",
@@ -2009,7 +2009,7 @@
   },
   {
     "label": "Samoa",
-    "value": "Samoa",
+    "value": "WS",
     "code": "WS",
     "emoji": "🇼🇸",
     "unicode": "U+1F1FC U+1F1F8",
@@ -2017,7 +2017,7 @@
   },
   {
     "label": "Kosovo",
-    "value": "Kosovo",
+    "value": "XK",
     "code": "XK",
     "emoji": "🇽🇰",
     "unicode": "U+1F1FD U+1F1F0",
@@ -2025,7 +2025,7 @@
   },
   {
     "label": "Yemen",
-    "value": "Yemen",
+    "value": "YE",
     "code": "YE",
     "emoji": "🇾🇪",
     "unicode": "U+1F1FE U+1F1EA",
@@ -2033,7 +2033,7 @@
   },
   {
     "label": "Mayotte",
-    "value": "Mayotte",
+    "value": "YT",
     "code": "YT",
     "emoji": "🇾🇹",
     "unicode": "U+1F1FE U+1F1F9",
@@ -2041,7 +2041,7 @@
   },
   {
     "label": "South Africa",
-    "value": "South Africa",
+    "value": "ZA",
     "code": "ZA",
     "emoji": "🇿🇦",
     "unicode": "U+1F1FF U+1F1E6",
@@ -2049,7 +2049,7 @@
   },
   {
     "label": "Zambia",
-    "value": "Zambia",
+    "value": "ZM",
     "code": "ZM",
     "emoji": "🇿🇲",
     "unicode": "U+1F1FF U+1F1F2",
@@ -2057,7 +2057,7 @@
   },
   {
     "label": "Zimbabwe",
-    "value": "Zimbabwe",
+    "value": "ZW",
     "code": "ZW",
     "emoji": "🇿🇼",
     "unicode": "U+1F1FF U+1F1FC",
@@ -2065,7 +2065,7 @@
   },
   {
     "label": "England",
-    "value": "England",
+    "value": "ENGLAND",
     "code": "ENGLAND",
     "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0065 U+E006E U+E0067 U+E007F",
@@ -2073,7 +2073,7 @@
   },
   {
     "label": "Scotland",
-    "value": "Scotland",
+    "value": "SCOTLAND",
     "code": "SCOTLAND",
     "emoji": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
     "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0073 U+E0063 U+E0074 U+E007F",
@@ -2081,7 +2081,7 @@
   },
   {
     "label": "Wales",
-    "value": "Wales",
+    "value": "WALES",
     "code": "WALES",
     "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
     "unicode": "U+1F3F4 U+E0067 U+E0062 U+E0077 U+E006C U+E0073 U+E007F",

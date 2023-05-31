@@ -11,8 +11,11 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useState } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
-import countries from "../../assets/countriesAndFlags/index.json";
+import countries from "../../assets/countriesAndFlags/countries.json";
 import { useNavigate } from "react-router-dom";
+
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { useDispatch } from "react-redux";
 
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
@@ -21,6 +24,8 @@ export default function NationalityPage() {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -67,6 +72,7 @@ export default function NationalityPage() {
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
+                dispatch(addDetail(selectedNationality));
                 navigate("/location");
               }}
             >

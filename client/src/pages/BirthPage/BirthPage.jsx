@@ -79,7 +79,7 @@ export default function BirthPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(selectedYear));
-                // navigate("/nationalityPage");
+                navigate("/nationalityPage");
               }}
             >
               <i>Save & Next</i>
