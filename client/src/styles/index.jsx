@@ -13,7 +13,6 @@ import { ConversationPageStyle } from "./ConversationPageStyle";
 import { DisplayChatsStyle } from "./DIsplayChatsStyle";
 import { ProfileChat } from "./PrifileChat";
 import { ContentChat } from "./ContentChat";
-import { NoConversationStyle } from "./NoConversationStyle";
 import { ChatsDisplay } from "./ChatsDisplay";
 import { ButtonForChats } from "./ButtonForChats";
 import { BlockDiv } from "./BlockDiv";
@@ -41,6 +40,5 @@ export {
   ButtonForChats,
   BlockDiv,
   StyledInput,
-  ContentConversationPage,
   ButtonConversation,
 };
