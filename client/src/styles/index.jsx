@@ -8,7 +8,7 @@ import { StyledDiv } from "../styles/StyledDiv";
 import { StyledParagraph } from "../styles/StyledParagraph";
 import { StyledSpan } from "../styles/StyledSpan";
 import { StyledTitle } from "../styles/StyledTitle";
-import { StyledInput } from "../styles/StyledInput"
+import { StyledInput } from "../styles/StyledInput";
 import { StyledRouterLink } from "./StyledRouterLink";
 import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";

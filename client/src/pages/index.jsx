@@ -8,5 +8,14 @@ import Location from "./Location";
 import Occupation from "./Occupation";
 import Bio from "./Bio";
 
-
-export {Intro, Interests, Age, GenderSelection, LangSelection, Location, Nationality, Occupation, Bio}
+export {
+  Intro,
+  Interests,
+  Age,
+  GenderSelection,
+  LangSelection,
+  Location,
+  Nationality,
+  Occupation,
+  Bio,
+};

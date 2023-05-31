@@ -1,19 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-//! this API slice is for all of our https Requests not just the userData...
 const userDataApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5050/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:5575/api",
+  }),
+
   endpoints: (builder) => ({
-    sendUserData: builder.mutation({
-      query: (userData) => ({
-        url: "/user/user-data",
+    registerUser: builder.mutation({
+      query: (userObj) => ({
+        url: "user/register",
         method: "POST",
-        body: JSON.stringify(userData),
+        headers: { "Content-Type": "application/json" },
+        body: userObj,
       }),
     }),
   }),
 });
 
-export const { useSendUserDataMutation } = userDataApi;
+export const { useRegisterUserMutation } = userDataApi;
 
 export default userDataApi;

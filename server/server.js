@@ -1,7 +1,7 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-
+import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
@@ -16,7 +16,7 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 connectDB();
 
 const rooms = {};
@@ -54,7 +54,7 @@ const PORT = process.env.PORT || 5050;
 const server = app.listen(
   PORT,
   console.log(
-    `server is running in ${process.env.NODE_ENV} Mode, & made on port ${PORT}`
+    `📶 server is running in ${process.env.NODE_ENV} Mode, & made on port ${PORT} 📶`
   )
 );
 
