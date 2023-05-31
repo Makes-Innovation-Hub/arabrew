@@ -13,7 +13,12 @@ import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";
 import { ButtonConversation } from "./ButtonConversation";
 import { ConversationPageStyle } from "./ConversationPageStyle";
+import { StyledProfilePage } from "./StyledProfilePage";
+import { ProfileImg } from "./ProfileImg";
+import { ProfileTitle } from "./ProfileTitle";
 export {
+  ProfileTitle,
+  ProfileImg,
   Flex,
   StyledPage,
   StyledMargin,
@@ -29,4 +34,5 @@ export {
   ContentConversationPage,
   ConversationPageStyle,
   ButtonConversation,
+  StyledProfilePage,
 };
