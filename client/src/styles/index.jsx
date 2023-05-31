@@ -13,6 +13,9 @@ import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";
 import { ButtonConversation } from "./ButtonConversation";
 import { ConversationPageStyle } from "./ConversationPageStyle";
+import { StyledHobby } from "./StyledHobby";
+import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
+import { StyledMsgButton } from "./StyledMsgButton";
 export {
   Flex,
   StyledPage,
@@ -25,6 +28,9 @@ export {
   StyledSpan,
   StyledTitle,
   StyledInput,
+  StyledHobby,
+  StyledHobbiesContainer,
+  StyledMsgButton,
   NoConversationStyle,
   ContentConversationPage,
   ConversationPageStyle,
