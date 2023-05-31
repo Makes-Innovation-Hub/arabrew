@@ -1,5 +1,7 @@
 import { useState } from "react";
-import Select, { components } from "react-select";
+// import Select, { components } from "react-select";
+import Select, { components } from "react-windowed-select";
+import WindowedSelect from "react-windowed-select";
 import MyCustomStyles from "./DropDownCustomStyles.jsx";
 
 const customStyles = MyCustomStyles;
@@ -26,15 +28,17 @@ const CustomDropdown = ({
 
   return (
     <Select
+      closeMenuOnSelect={true}
+      components={{
+        Option: customOption ? customOption : DefaultOption,
+        // MenuList: CustomMenuList,
+      }}
       options={optionsArray}
       value={selectedOption}
       onChange={handleSelectChange}
-      styles={customStyles}
       isSearchable={isSearchable}
       placeholder={placeHolder}
-      components={{
-        option: customOption ? customOption : DefaultOption,
-      }}
+      styles={customStyles}
     />
   );
 };
