@@ -10,6 +10,7 @@ import {
   BioPage,
   Location,
   GenderSelection,
+  SearchFriends,
 } from "./pages/exports.js";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/conversation", element: <ConversationPage /> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
+  {
+    path: "/search-friends",
+    element: <SearchFriends />,
+    errorElement: <>Error...</>,
+  },
 ]);
 
 function App() {
