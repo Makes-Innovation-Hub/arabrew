@@ -42,28 +42,43 @@ const MyCustomStyles = {
   menu: (provided) => ({
     ...provided,
     width: "21rem", // Adjust the width as needed
-    // maxHeight: "20rem", // Adjust the max height as needed
+    maxHeight: "22rem", // Adjust the max height as needed
     overflowY: "auto",
     scrollbarWidth: "none",
-    margin: "1rem 4rem",
+    margin: "1rem 3.5rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  }),
-  menuList: (provided) => ({
-    ...provided,
-    width: "21rem",
-    maxHeight: "20rem",
-    overflowY: "scroll",
-    scrollbarWidth: "none",
-    margin: "1rem 0rem 1rem 0",
-
     "&::-webkit-scrollbar": {
       width: "0", // Adjust the width of the scrollbar track
       background: "transparent", // Set the background color of the scrollbar track
       display: "none",
     },
     "&::-webkit-scrollbar-thumb": {
+      // backgroundColor: "#ccc", // Set the color of the scrollbar thumb
+      // borderRadius: "0.5rem", // Set the border radius of the scrollbar thumb
+      width: "0", // Adjust the width of the scrollbar track
+      background: "transparent", // Set the background color of the scrollbar track
+      display: "none",
+    },
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    width: "21rem",
+    // maxHeight: "20rem",
+    height: "21rem",
+    overflowY: "scroll",
+    scrollbarWidth: "none",
+    margin: "1rem 0rem 1rem 0",
+
+    // "&::WebkitScrollbarThumb": {
+    //   // backgroundColor: "#ccc", // Set the color of the scrollbar thumb
+    //   // borderRadius: "0.5rem", // Set the border radius of the scrollbar thumb
+    //   width: "0", // Adjust the width of the scrollbar track
+    //   background: "transparent", // Set the background color of the scrollbar track
+    //   display: "none",
+    // },
+    "&::WebkitScrollbar": {
       // backgroundColor: "#ccc", // Set the color of the scrollbar thumb
       // borderRadius: "0.5rem", // Set the border radius of the scrollbar thumb
       width: "0", // Adjust the width of the scrollbar track
