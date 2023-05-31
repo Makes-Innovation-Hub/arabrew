@@ -1,17 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
-  avatar: "",
-  subId: "",
-  lang: "",
-  interests: [],
-  birthYear: "",
-  nationality: "",
-  location: "",
-  gender: "",
-  occupation: "",
-  bio: "",
+  connectedUser: {
+    name: "",
+    avatar: "",
+    subId: "",
+    lang: "",
+    interests: [],
+    birthYear: "",
+    nationality: "",
+    location: "",
+    gender: "",
+    occupation: "",
+    bio: "",
+  },
+  selectedUserToChat: {
+    name: "",
+    avatar: "",
+    subId: "",
+    lang: "",
+    interests: [],
+    birthYear: "",
+    nationality: "",
+    location: "",
+    gender: "",
+    occupation: "",
+    bio: "",
+  },
 };
 
 export const userRegisterSlice = createSlice({
@@ -23,17 +38,20 @@ export const userRegisterSlice = createSlice({
       state[field] = value;
     },
     addAllDetails: (state, action) => {
-      state.name = action.payload.name;
-      state.avatar = action.payload.avatar;
-      state.subId = action.payload.subId;
-      state.lang = action.payload.userDetails.nativeLanguage;
-      state.interests = action.payload.userDetails.interests;
-      state.birthYear = action.payload.userDetails.yearOfBirth;
-      state.nationality = action.payload.userDetails.nationality;
-      state.location = action.payload.userDetails.address;
-      state.gender = action.payload.userDetails.gender;
-      state.occupation = action.payload.userDetails.occupation;
-      state.bio = action.payload.userDetails.bio;
+      const specificUser = action.payload.isConnectedUser
+        ? "connectedUser"
+        : "selectedUserToChat";
+      state[specificUser].name = action.payload.name;
+      state[specificUser].avatar = action.payload.avatar;
+      state[specificUser].subId = action.payload.subId;
+      state[specificUser].lang = action.payload.userDetails.nativeLanguage;
+      state[specificUser].interests = action.payload.userDetails.interests;
+      state[specificUser].birthYear = action.payload.userDetails.yearOfBirth;
+      state[specificUser].nationality = action.payload.userDetails.nationality;
+      state[specificUser].location = action.payload.userDetails.address;
+      state[specificUser].gender = action.payload.userDetails.gender;
+      state[specificUser].occupation = action.payload.userDetails.occupation;
+      state[specificUser].bio = action.payload.userDetails.bio;
     },
   },
 });

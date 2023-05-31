@@ -3,16 +3,17 @@ import { useGetLoggedUserQuery } from "../features/userDataApi.js";
 import { useDispatch } from "react-redux";
 import { addAllDetails } from "../features/userRegister/userRegisterSlice";
 
-const Test = () => {
-  const hardCodedSubId = "201";
-  const { data, isLoading, isError, isSuccess } =
-    useGetLoggedUserQuery(hardCodedSubId);
+const Test = (/*{isConnectedUser, subId}*/) => {
+  const isConnectedUser = true;
+  const subId = "201";
+  const { data, isLoading, isError, isSuccess } = useGetLoggedUserQuery(subId);
   const dispatch = useDispatch();
 
   const fillStore = async () => {
     if (await data) {
-      console.log("data", data);
-      dispatch(addAllDetails(data.data));
+      dispatch(
+        addAllDetails({ ...data.data, isConnectedUser: isConnectedUser })
+      );
     }
   };
 
@@ -28,7 +29,7 @@ const Test = () => {
     return <div>Error occurred while fetching user data.</div>;
   }
 
-  return <div>{JSON.stringify(data?.data)}</div>;
+  return <div></div>;
 };
 
 export default Test;
