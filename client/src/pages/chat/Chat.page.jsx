@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
-const port = import.meta.env.VITE_WEB_SOCKET_PORT;
+// const port = import.meta.env.VITE_WEB_SOCKET_PORT;
+const port = 3050;
 const ws = new WebSocket(`ws://localhost:${port}`);
+const sender = "Benny";
+const receiver = "Sean";
+const originalLang = "hebrew";
+const targetLang = "arabic";
 
 const Chat = () => {
   const [msgText, setMsgText] = useState("");
@@ -14,14 +19,22 @@ const Chat = () => {
   const handleSendMsg = (e) => {
     e.preventDefault();
 
-    ws.send(JSON.stringify(msgText));
+    // const stringMsg = JSON.stringify(msgText)
+    ws.send(
+      JSON.stringify({
+        sender: sender,
+        receiver: receiver,
+        originalLang: originalLang,
+        targetLang: targetLang,
+        msg: msgText,
+      })
+    );
     setMsgText("");
   };
 
   useEffect(() => {
     ws.onopen = (data) => {
-      console.log("🟢🟢🟢  user connected  🟢🟢🟢", data);
-      ws.send("user connected!");
+      console.log("data", data);
     };
 
     ws.onmessage = (e) => {

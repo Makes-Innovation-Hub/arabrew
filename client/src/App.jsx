@@ -6,6 +6,7 @@ import {
   ConversationPage,
   BirthPage,
   Chat,
+  ChatPage,
   Nationality,
   BioPage,
   Location,
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
-  { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/chat", element: <Chat />, errorElement: <>Error...</> },
+  { path: "/chatPage", element: <ChatPage />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {
