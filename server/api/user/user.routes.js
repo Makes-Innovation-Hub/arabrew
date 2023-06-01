@@ -1,10 +1,10 @@
 import express from "express";
-import { registerUser, getUser } from "./user.controllers.js";
 import { filterByInterests } from "./user.middleware.js";
 import {
   registerUser,
   getUsersByInterests,
   getAllUsers,
+  getUser,
 } from "./user.controllers.js";
 
 const router = express.Router();
