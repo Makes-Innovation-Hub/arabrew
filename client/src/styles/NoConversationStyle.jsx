@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const NoConversationStyle = styled.h1`
   width: 22rem;
   height: 2.5rem;
