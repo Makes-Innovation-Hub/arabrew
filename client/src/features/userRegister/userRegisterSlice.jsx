@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subId: "1850231",
+  subId: "208231",
   name: "Garry",
   avatar: "TEMP",
   userDetails: {
-    nativeLanguage: "HE",
-    interests: ["Photography", "Hiking", "instruments", "Yoga", "Chess"],
-    yearOfBirth: "1999",
+    nativeLanguage: "",
+    interests: [],
+    yearOfBirth: "",
     nationality: "Israel",
-    address: "London",
-    gender: "Male",
-    occupation: "Doctor",
+    address: "",
+    gender: "",
+    occupation: "",
     bio: "hi",
   },
 };

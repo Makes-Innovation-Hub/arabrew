@@ -23,19 +23,13 @@ export default function BioPage() {
     field: "bio",
   });
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
+  const [registerUser] = useRegisterUserMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
-    }
-  }, [isSuccess]);
 
   const dispatch = useDispatch();
 
@@ -89,9 +83,8 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                console.log(JSON.stringify(userData));
                 registerUser(userData);
-                // navigate("/intro");
+                navigate("/conversation");
               }}
             >
               <i>Save & Finish</i>
