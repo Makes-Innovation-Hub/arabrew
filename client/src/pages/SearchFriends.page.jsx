@@ -38,7 +38,11 @@ const SearchFriends = () => {
         data.map((user) => {
           const { avatar, name, userDetails, subId } = user;
           const { nationality, interests } = userDetails;
-          const roomId = [name.split(" "), userObj.name.split(" ")];
+          const roomId = `${name.replace(" ", "_")}-${userObj.name.replace(
+            " ",
+            "_"
+          )}`;
+          console.log(roomId);
           return (
             <div key={subId}>
               <div style={{ border: "solid red 3px", width: "fit-content" }}>
