@@ -38,11 +38,7 @@ const SearchFriends = () => {
         data.map((user) => {
           const { avatar, name, userDetails, subId } = user;
           const { nationality, interests } = userDetails;
-          const roomId = `${name.replace(" ", "_")}-${userObj.name.replace(
-            " ",
-            "_"
-          )}`;
-          console.log(roomId);
+
           return (
             <div key={subId}>
               <div style={{ border: "solid red 3px", width: "fit-content" }}>
@@ -65,7 +61,7 @@ const SearchFriends = () => {
                 ))}
                 <button
                   style={{ background: "grey", fontSize: "2.5rem" }}
-                  onClick={() => navigate(`/chatPage/${roomId}`)}
+                  onClick={() => navigate(`/chat-page/${userObj.name}/${name}`)}
                 >
                   💬
                 </button>
