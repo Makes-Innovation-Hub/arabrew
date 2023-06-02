@@ -1,19 +1,36 @@
 import { useState, useEffect } from "react";
-
+import { ChatLayout } from "../../styles/Chat/ChatLayout";
+import { InputArea } from "../../components/index.js";
+import { useParams } from "react-router-dom";
+import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
+import { genRoomId } from "../../utils/genRoomId";
 const port = import.meta.env.VITE_WEB_SOCKET_PORT;
 const ws = new WebSocket(`ws://localhost:${port}`);
 
 const Chat = () => {
   const [msgText, setMsgText] = useState("");
-
-  //!MUST be refactored and replaced when rtk query and chatschema is configured
   const [messages, setMessages] = useState([]);
+  const { user1_name, user2_name } = useParams();
+  const namesArr = [user1_name, user2_name];
+  const roomId = genRoomId(namesArr);
+  //!MUST be refactored and replaced when rtk query and chatschema is configured
 
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetChatByNamesQuery(namesArr);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+    if (isSuccess) {
+      console.log(data);
+      setMessages(data.messagesHistory);
+    }
+  }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = (e) => {
     e.preventDefault();
-
     ws.send(JSON.stringify(msgText));
     setMsgText("");
   };
@@ -21,7 +38,7 @@ const Chat = () => {
   useEffect(() => {
     ws.onopen = (data) => {
       console.log("🟢🟢🟢  user connected  🟢🟢🟢", data);
-      ws.send("user connected!");
+      ws.send(roomId);
     };
 
     ws.onmessage = (e) => {
@@ -43,17 +60,18 @@ const Chat = () => {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={handleSendMsg}>
-        <input type="text" onChange={handleChange} value={msgText} />
-        <button type="submit">Send Message</button>
-      </form>
-
-      {/* The key={Math.random()} MUST be refactored and replaced when rtk query and chatschema is configuredwith chat.id  */}
-      {messages.map((message) => (
+    <ChatLayout>
+      <Header />
+      <ChatDisplayArea messages={messages} />
+      {/* {messages.map((message) => (
         <h1 key={Math.random()}>{message}</h1>
-      ))}
-    </div>
+      ))} */}
+      <InputArea
+        typedMsg={msgText}
+        handleChange={handleChange}
+        handleSendMsg={handleSendMsg}
+      />
+    </ChatLayout>
   );
 };
 
