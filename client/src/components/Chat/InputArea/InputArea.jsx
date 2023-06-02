@@ -7,18 +7,23 @@ import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
 import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
 
-export default function InputArea() {
+const InputArea = ({ typedMsg, handleChange, handleSendMsg }) => {
   return (
     <InputWrapper>
       <InputAreaContainer>
         <RecommendedButton>
           <img src={CoffeeMug} />
         </RecommendedButton>
-        <InputComponent placeholder="Start typing..." />
-        <SendButton>
+        <InputComponent
+          value={typedMsg}
+          onChange={handleChange}
+          placeholder="Start typing..."
+        />
+        <SendButton onClick={handleSendMsg}>
           <img src={PaperPlane} />
         </SendButton>
       </InputAreaContainer>
     </InputWrapper>
   );
-}
+};
+export default InputArea;
