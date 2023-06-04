@@ -44,3 +44,17 @@ export const translateMsg = async (msg, original_lang, target_lang) => {
 
   return response.data.choices[0].message.content;
 };
+
+export const conversationGenerator = async (commonInterests) => {
+  const openai = new OpenAIApi(
+    new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
+  );
+  const response = await sendPromptToOpenAi(
+    openai,
+    `give me conversation subjects in json format like this: [{interest:..., subject:...},...] from this array of interests: ${JSON.stringify(
+      commonInterests
+    )}`
+  );
+
+  return response.data.choices[0].message.content;
+};

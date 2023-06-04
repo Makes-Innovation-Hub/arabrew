@@ -1,5 +1,6 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import User from "./user.js";
+import generateTopicsFromOpenAI from "./utils/generateTopicsFromOpenAI.js";
 
 Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);
@@ -79,5 +80,19 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     data: allUsers,
+  });
+});
+
+export const generateTopics = asyncHandler(async (req, res, next) => {
+  const { user1_name, user2_name } = req.params;
+
+  const user1 = await User.findOne({ name: user1_name });
+  const user2 = await User.findOne({ name: user2_name });
+
+  const jsonTopics = await generateTopicsFromOpenAI(user1, user2);
+
+  return res.status(200).json({
+    success: true,
+    data: JSON.parse(jsonTopics),
   });
 });
