@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHobbiesContainer = styled.div`
+  width: 100%;
   font-size: 1rem;
   padding: 0.4rem;
   border: none;

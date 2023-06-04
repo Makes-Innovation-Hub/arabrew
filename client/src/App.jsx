@@ -11,6 +11,7 @@ import {
   Location,
   GenderSelection,
   CommonInterests,
+  ParentComponent,
 } from "./pages/exports.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
         { path: "/location", element: <Location /> },
         { path: "/gender", element: <GenderSelection /> },
         { path: "/occupation", element: <Occupation /> },
-        { path: "/commoninterests", element: <CommonInterests /> },
+        { path: "/commoninterests", element: <ParentComponent /> },
       ],
     },
     { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
