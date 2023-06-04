@@ -20,7 +20,9 @@ import { ProfileName } from "./ProfileName";
 import { InterestTextStyle } from "./InterestTextStyle";
 import { HobbyBackground } from "./HobbyBackground";
 import { HobbiesDisplay } from "./HobbiesDisplay";
+import { CircleIcon } from "./CircleIcon";
 export {
+  CircleIcon,
   HobbiesDisplay,
   HobbyBackground,
   InterestTextStyle,

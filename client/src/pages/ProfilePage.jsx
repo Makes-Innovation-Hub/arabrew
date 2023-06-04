@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import userRegisterSlice from "../features/userRegister/userRegisterSlice";
 import {
   ProfileName,
   InterestTextStyle,
@@ -10,8 +11,9 @@ import {
   ProfileTitle,
   HobbyBackground,
   HobbiesDisplay,
+  CircleIcon,
 } from "../styles";
-import { ArrowLeft, LanguageIcon } from "../assets";
+import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
 import Profile from "../assets/prf.webp";
 const ProfilePage = () => {
   let myProfile = [
@@ -20,11 +22,11 @@ const ProfilePage = () => {
       img: Profile,
       lang: "Arabic",
       hobbies: [
-        "Beaches",
-        "Mountains",
-        "City sightseeing",
-        "international destinations",
-        "Road trips",
+        "🏖️ Beaches",
+        "⛰️ Mountains",
+        "🌆 City sightseeing",
+        "🌍 International destinations",
+        "🛣️ Road trips",
       ],
     },
   ];
@@ -39,9 +41,15 @@ const ProfilePage = () => {
           }
           title="Profile"
           rightIcon={
-            <Link to="/">
-              <ArrowLeft />
-            </Link>
+            <>
+              {userRegisterSlice.name !== "userRegister" && (
+                <CircleIcon>
+                  <Link to="/">
+                    <ChatIcon />
+                  </Link>
+                </CircleIcon>
+              )}
+            </>
           }
         />
       </StyledMargin>

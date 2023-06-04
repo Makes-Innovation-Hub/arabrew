@@ -5,6 +5,7 @@ import LanguageIcon from "./LanguageIcon";
 import SmallGlass from "./SmallGlass";
 import MaleIcon from "./MaleIcon";
 import FemaleIcon from "./FemaleIcon";
+import ChatIcon from "./chatIcon";
 
 export {
   Hamburger,
@@ -14,4 +15,5 @@ export {
   SmallGlass,
   MaleIcon,
   FemaleIcon,
+  ChatIcon,
 };
