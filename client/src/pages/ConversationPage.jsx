@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import SideBar from "../components/SideBar";
 import {
   Flex,
   StyledPage,
@@ -17,6 +18,7 @@ import ConversationDisplay from "../components/ConversationDisplay";
 const ConversationPage = ({ prevConversation }) => {
   return (
     <div>
+      <SideBar />
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={

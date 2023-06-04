@@ -5,7 +5,7 @@ import LanguageIcon from "./LanguageIcon";
 import SmallGlass from "./SmallGlass";
 import MaleIcon from "./MaleIcon";
 import FemaleIcon from "./FemaleIcon";
-
+import BlackArrowLeft from "./BlackArrowLeft";
 export {
   Hamburger,
   ArrowLeft,
@@ -14,4 +14,5 @@ export {
   SmallGlass,
   MaleIcon,
   FemaleIcon,
+  BlackArrowLeft,
 };

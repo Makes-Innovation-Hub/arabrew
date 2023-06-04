@@ -19,8 +19,11 @@ import { BlockDiv } from "./BlockDiv";
 import { StyledInput } from "../styles/StyledInput";
 import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ButtonConversation } from "./ButtonConversation";
+import { ModalSideBar } from "./ModalSideBar";
+import { StyledSideBar } from "./StyledSideBar";
 export {
   Flex,
+  ModalSideBar,
   StyledPage,
   StyledMargin,
   StyledButton,
@@ -41,4 +44,5 @@ export {
   BlockDiv,
   StyledInput,
   ButtonConversation,
+  StyledSideBar,
 };
