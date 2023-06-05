@@ -1,7 +1,18 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetUsersQuery } from "../features/userDataApi.js";
-
+import { useLazyGetUsersQuery } from "../features/userDataApi.js";
+import { FriendsList } from "../components/index.js";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Header, Friend } from "../components";
+import {
+  StyledPage,
+  StyledMargin,
+  StyledPageTitle,
+  StyledHobby,
+  StyledHobbiesContainer,
+} from "../styles";
+import { ArrowLeft, SmallGlass } from "../assets";
 const SearchFriends = () => {
   const navigate = useNavigate();
   //! hardcoded until benny finish the LOGGEDUSER slice in the store
@@ -12,66 +23,67 @@ const SearchFriends = () => {
     name: "Taufiq Zayyad",
   };
   //! ***************************************************************************
-
-  const { data, error, isError, isLoading, isSuccess } =
-    useGetUsersQuery(userObj);
+  const [selectedInterests, setSelectedInterests] = useState(userObj.interests);
+  const [getUsers, { data, error, isError, isLoading, isSuccess }] =
+    useLazyGetUsersQuery();
   useEffect(() => {
     if (isSuccess) {
       console.log(data);
     }
-
     if (isError) {
       console.log(error);
     }
-  }, [isError, isSuccess]);
+    getUsers({
+      subId: userObj.subId,
+      interests: selectedInterests,
+    });
+  }, [isError, isSuccess, selectedInterests]);
 
   if (isLoading) return <h1>is Loading...</h1>;
 
   return (
-    <div>
-      {userObj.interests.map((interest) => (
-        <button key={interest}>{interest}</button>
-      ))}
-      <br />
-      <br />
-      {isSuccess &&
-        data.map((user) => {
-          const { avatar, name, userDetails, subId } = user;
-          const { nationality, interests } = userDetails;
-
-          return (
-            <div key={subId}>
-              <div style={{ border: "solid red 3px", width: "fit-content" }}>
-                <h2> replace with {"<img src={avatar}>"}</h2>
-                <h2>{name.split(" ")[0]}</h2>
-                <h3>{nationality}</h3>
-                {interests.map((interest) => (
-                  <h6
-                    style={{
-                      backgroundColor: "green",
-                      margin: "5px",
-                      width: "fit-content",
-                      padding: "2px 4px",
-                      borderRadius: "40px",
-                    }}
-                    key={interest}
-                  >
-                    {interest}
-                  </h6>
-                ))}
-                <button
-                  style={{ background: "grey", fontSize: "2.5rem" }}
-                  onClick={() => navigate(`/chat-page/${userObj.name}/${name}`)}
-                >
-                  💬
-                </button>
-              </div>
-              <br />
-              <br />
-            </div>
-          );
-        })}
-    </div>
+    <>
+      <Header
+        leftIcon={
+          <Link to="/conversation">
+            <ArrowLeft />
+          </Link>
+        }
+        midIcon={<SmallGlass />}
+      />
+      <StyledPage>
+        <StyledMargin direction="vertical" margin="1.75rem" />
+        <StyledPageTitle>Search friends</StyledPageTitle>
+        <StyledMargin direction="vertical" margin="0.75rem" />
+        <StyledPageTitle>by common Interests</StyledPageTitle>
+        <StyledMargin direction="vertical" margin="2rem" />
+        <StyledHobbiesContainer>
+          {userObj.interests.map((interest) => (
+            <StyledHobby
+              border={
+                selectedInterests.includes(interest)
+                  ? "solid 1px #50924E"
+                  : null
+              }
+              key={interest}
+              onClick={() => {
+                if (!selectedInterests.includes(interest)) {
+                  setSelectedInterests([...selectedInterests, interest]);
+                } else {
+                  setSelectedInterests(
+                    selectedInterests.filter((item) => item !== interest)
+                  );
+                }
+              }}
+            >
+              {interest}
+            </StyledHobby>
+          ))}
+        </StyledHobbiesContainer>
+        <StyledMargin direction="vertical" margin="4rem" />
+        {isSuccess && <FriendsList friendsArr={data} />}
+      </StyledPage>
+    </>
   );
 };
 
