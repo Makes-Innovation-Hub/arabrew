@@ -34,7 +34,7 @@ const userDataApi = createApi({
 
 export const {
   useSendUserDataMutation,
-  useGetUsersQuery,
+  useLazyGetUsersQuery,
   useGetChatByNamesQuery,
 } = userDataApi;
 
