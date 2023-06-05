@@ -7,6 +7,7 @@ import {
   StyledHobby,
   StyledImage,
   StyledMargin,
+  StyledBorder,
 } from "../styles";
 
 const Friend = ({ name, flag, img, hobbies }) => {
@@ -20,9 +21,12 @@ const Friend = ({ name, flag, img, hobbies }) => {
         <img src={`https://flagsapi.com/${flag}/shiny/16.png`} />
         <StyledMargin direction="horizontal" margin="1rem" />
         <StyledHeaderTitle color="#161616">{name}</StyledHeaderTitle>
-        <Link>
-          <MessageIcon />
-        </Link>
+        <StyledBorder>
+          <Link>
+            <StyledMargin direction="vertical" margin="0.75rem" />
+            <MessageIcon />
+          </Link>
+        </StyledBorder>
       </Flex>
       <StyledHobbiesContainer>
         {hobbies.map((hobby) => (

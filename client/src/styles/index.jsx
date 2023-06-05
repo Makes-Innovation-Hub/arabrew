@@ -24,6 +24,7 @@ import { StyledHobby } from "./StyledHobby";
 import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
 import { StyledMsgButton } from "./StyledMsgButton";
 import { StyledImage } from "./StyledImage";
+import { StyledBorder } from "./StyledBorder";
 export {
   Flex,
   StyledPage,
@@ -41,6 +42,7 @@ export {
   StyledHobbiesContainer,
   StyledMsgButton,
   StyledImage,
+  StyledBorder,
   ContentConversationPage,
   ConversationPageStyle,
   DisplayChatsStyle,
