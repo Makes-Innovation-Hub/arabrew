@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 // const port = import.meta.env.VITE_WEB_SOCKET_PORT;
 const port = 3050;
 const ws = new WebSocket(`ws://localhost:${port}`);
-const sender = "Benny";
-const receiver = "Sean";
+const sender = "Arthur";
+const receiver = "Benny";
 const originalLang = "hebrew";
 const targetLang = "arabic";
 

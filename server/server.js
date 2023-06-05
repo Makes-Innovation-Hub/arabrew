@@ -102,6 +102,7 @@ wss.on("connection", (ws) => {
         } catch (error) {
           console.error("Error:", error);
         }
+        completeData["translated"] = translatedMsg;
         client.client.send(JSON.stringify(completeData));
       } else if (
         isSameRoom &&
