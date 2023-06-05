@@ -2,8 +2,18 @@ import assert from "assert";
 import fetch from "node-fetch";
 import mongoose from "mongoose";
 import User from "../server/api/user/user.js";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-describe("user creations tests", () => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: __dirname + "../.env" });
+const PORT = process.env.PORT;
+
+describe("user creations tests", function () {
+  this.timeout(10000);
   describe("save user in db test", () => {
     it("should return a 201 status code", async function () {
       const myHeaders = new Headers();
@@ -39,7 +49,7 @@ describe("user creations tests", () => {
       };
 
       const res = await fetch(
-        "http://localhost:5050/api/user/user-data",
+        `http://localhost:${PORT}/api/user/user-data`,
         requestOptions
       );
       assert.strictEqual(res.status, 201);
@@ -57,7 +67,7 @@ describe("user creations tests", () => {
       };
 
       const res = await fetch(
-        "http://localhost:5050/api/user/17",
+        `http://localhost:${PORT}/api/user/17`,
         requestOptions
       );
       assert.equal(res.status, 200);
