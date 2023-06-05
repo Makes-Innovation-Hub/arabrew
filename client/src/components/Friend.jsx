@@ -11,8 +11,6 @@ import {
 } from "../styles";
 
 const Friend = ({ name, flag, img, hobbies }) => {
-  console.log(hobbies);
-
   return (
     <>
       <Flex width="100%">
