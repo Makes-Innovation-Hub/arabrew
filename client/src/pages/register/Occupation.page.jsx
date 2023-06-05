@@ -17,7 +17,7 @@ import { addDetail } from "../../features/userRegister/userRegisterSlice";
 const Occupation = () => {
   const { occupation } = useSelector((state) => state.userRegister);
   const [userInput, setUserInput] = useState({
-    field: "Occupation",
+    field: "occupation",
     value: occupation.length > 0 ? occupation : "",
   });
 
@@ -57,11 +57,9 @@ const Occupation = () => {
           </StyledSpan>
         </Flex>
         <StyledButton
-          to={value ? "/bioPage" : null}
+          to={"/bioPage"}
+          disabled={!value}
           onClick={() => {
-            if (!value) {
-              return;
-            }
             dispatch(addDetail(userInput));
             setUserInput({ ...userInput, value: "" });
           }}
