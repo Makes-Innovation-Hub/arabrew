@@ -6,6 +6,9 @@ import SmallGlass from "./SmallGlass";
 import MaleIcon from "./MaleIcon";
 import FemaleIcon from "./FemaleIcon";
 import BlackArrowLeft from "./BlackArrowLeft";
+import HomeIcon from "./HomeIcon";
+import ProfileIcon from "./ProfileIcon";
+import USA from "./USA";
 export {
   Hamburger,
   ArrowLeft,
@@ -15,4 +18,7 @@ export {
   MaleIcon,
   FemaleIcon,
   BlackArrowLeft,
+  HomeIcon,
+  ProfileIcon,
+  USA,
 };

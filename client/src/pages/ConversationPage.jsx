@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
@@ -16,15 +17,28 @@ import {
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
 const ConversationPage = ({ prevConversation }) => {
+  const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
-      <SideBar />
+      {isSideBar && (
+        <div
+          onClick={() => {
+            setIsSideBar(false);
+          }}
+        >
+          <SideBar />{" "}
+        </div>
+      )}
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <div
+              onClick={() => {
+                setIsSideBar(true);
+              }}
+            >
               <Hamburger />
-            </Link>
+            </div>
           }
           title={<SmallGlass />}
         />
