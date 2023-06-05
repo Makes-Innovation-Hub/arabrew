@@ -81,7 +81,7 @@ const SearchFriends = () => {
           ))}
         </StyledHobbiesContainer>
         <StyledMargin direction="vertical" margin="4rem" />
-        {isSuccess && <FriendsList friendsArr={data} />}
+        {isSuccess && <FriendsList friendsArr={data} userName={userObj.name} />}
       </StyledPage>
     </>
   );

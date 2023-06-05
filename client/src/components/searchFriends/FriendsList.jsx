@@ -1,6 +1,6 @@
 import React from "react";
 import Friend from "../Friend.jsx";
-const FriendsList = ({ friendsArr }) => {
+const FriendsList = ({ friendsArr, userName }) => {
   return friendsArr.map((user) => {
     const { name, avatar, subId, userDetails } = user;
     const { nationality, interests } = userDetails;
@@ -11,6 +11,7 @@ const FriendsList = ({ friendsArr }) => {
         img={avatar}
         flag={nationality}
         hobbies={interests}
+        chatPage={`/chat-page/${userName}/${name}`}
       />
     );
   });
