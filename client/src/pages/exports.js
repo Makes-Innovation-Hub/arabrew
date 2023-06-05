@@ -10,6 +10,7 @@ import Nationality from "./Nationality.jsx";
 import GenderSelection from "./GenderSelection.jsx";
 import BioPage from "./BioPage/BioPage.jsx";
 import Location from "./Location.jsx";
+import CommonInterests from "./CommonInterests.jsx";
 import SearchFriends from "./SearchFriends.page.jsx";
 export {
   Intro,
@@ -24,4 +25,5 @@ export {
   BioPage,
   Location,
   SearchFriends,
+  CommonInterests,
 };

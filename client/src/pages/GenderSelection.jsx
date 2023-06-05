@@ -79,7 +79,7 @@ const GenderSelection = () => {
             if (!value) {
               return;
             }
-            dispatch(addUserDataField(gender));
+            dispatch(addDetail(gender));
             setGender({ ...gender, value: "" });
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
