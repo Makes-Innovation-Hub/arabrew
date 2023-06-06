@@ -13,7 +13,6 @@ import {
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import HeaderLayout from "./components/HeaderLayout";
 let myProfile = [
   {
@@ -51,7 +50,6 @@ const router = createBrowserRouter([
   { path: "/profile", element: <ProfilePage profileDate={myProfile[0]} /> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
 ]);
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }

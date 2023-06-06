@@ -5,8 +5,7 @@ import LanguageIcon from "./LanguageIcon";
 import SmallGlass from "./SmallGlass";
 import MaleIcon from "./MaleIcon";
 import FemaleIcon from "./FemaleIcon";
-import ChatIcon from "./chatIcon";
-
+import ChatIcon from "./ChatIcon";
 export {
   Hamburger,
   ArrowLeft,
