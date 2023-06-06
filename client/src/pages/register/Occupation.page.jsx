@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components";
 import {
   StyledPage,
@@ -15,13 +15,14 @@ import { ArrowLeft } from "../../assets";
 import { addDetail } from "../../features/userRegister/userRegisterSlice";
 
 const Occupation = () => {
-  const { occupation } = useSelector((state) => state.userRegister);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { occupation } = useSelector((state) => state.userRegister.userDetails);
   const [userInput, setUserInput] = useState({
     field: "occupation",
     value: occupation.length > 0 ? occupation : "",
   });
 
-  const dispatch = useDispatch();
   const { value } = userInput;
 
   return (
@@ -62,6 +63,7 @@ const Occupation = () => {
           onClick={() => {
             dispatch(addDetail(userInput));
             setUserInput({ ...userInput, value: "" });
+            navigate("/bioPage");
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}

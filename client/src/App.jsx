@@ -6,15 +6,15 @@ import {
   ConversationPage,
   BirthPage,
   Chat,
-  Nationality,
+  NationalityPage,
   BioPage,
   Location,
   GenderSelection,
 } from "./pages/exports.js";
 import HeaderLayout from "./components/HeaderLayout";
-import NationalityPage from "./pages/NationalityPage/NationalityPage.jsx";
 import prevConversation from "./pages/DemoArrChatsData";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +23,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/lang", element: <LangSelection /> },
       { path: "/interests", element: <Interests /> },
-      { path: "/nationality", element: <Nationality /> },
       { path: "/location", element: <Location /> },
       { path: "/gender", element: <GenderSelection /> },
       { path: "/occupation", element: <Occupation /> },
