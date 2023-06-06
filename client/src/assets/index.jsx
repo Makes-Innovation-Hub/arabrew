@@ -10,6 +10,9 @@ import HomeIcon from "./HomeIcon";
 import ProfileIcon from "./ProfileIcon";
 import USA from "./USA";
 import ArrowDown from "./ArrowDown";
+import ChatIcon from "./ChatIcon";
+import MessageIcon from "./MessageIcon";
+import HebrewIcon from "./HebrewIcon";
 export {
   Hamburger,
   ArrowLeft,
@@ -23,4 +26,7 @@ export {
   ProfileIcon,
   USA,
   ArrowDown,
+  ChatIcon,
+  MessageIcon,
+  HebrewIcon,
 };
