@@ -15,7 +15,21 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HeaderLayout from "./components/HeaderLayout";
-
+let myProfile = [
+  {
+    name: "Fatima",
+    img: Profile,
+    lang: "Arabic",
+    hobbies: [
+      "🏖️ Beaches",
+      "⛰️ Mountains",
+      "🌆 City sightseeing",
+      "🌍 International destinations",
+      "🛣️ Road trips",
+    ],
+  },
+];
+import Profile from "./assets/prf.webp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +48,7 @@ const router = createBrowserRouter([
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/conversation", element: <ConversationPage /> },
-  { path: "/profile", element: <ProfilePage /> },
+  { path: "/profile", element: <ProfilePage profileDate={myProfile[0]} /> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
 ]);
 

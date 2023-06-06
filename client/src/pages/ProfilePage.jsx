@@ -14,22 +14,7 @@ import {
   CircleIcon,
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
-import Profile from "../assets/prf.webp";
-const ProfilePage = () => {
-  let myProfile = [
-    {
-      name: "Fatima",
-      img: Profile,
-      lang: "Arabic",
-      hobbies: [
-        "🏖️ Beaches",
-        "⛰️ Mountains",
-        "🌆 City sightseeing",
-        "🌍 International destinations",
-        "🛣️ Road trips",
-      ],
-    },
-  ];
+const ProfilePage = ({ profileDate }) => {
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -55,14 +40,14 @@ const ProfilePage = () => {
       </StyledMargin>
       <StyledPage>
         <StyledProfilePage>
-          <ProfileImg src={myProfile[0].img} alt="profile" />
+          <ProfileImg src={profileDate.img} alt="profile" />
           <ProfileTitle>
-            <ProfileName>{myProfile[0].name}</ProfileName>
+            <ProfileName>{profileDate.name}</ProfileName>
             <LanguageIcon
               letter={
-                myProfile[0].lang === "Arabic"
+                profileDate.lang === "Arabic"
                   ? "ع"
-                  : myProfile.lang === "Hebrew"
+                  : profileDate.lang === "Hebrew"
                   ? "He"
                   : "En"
               }
@@ -71,7 +56,7 @@ const ProfilePage = () => {
           <InterestTextStyle>
             My Interest
             <HobbiesDisplay>
-              {myProfile[0].hobbies.map((hobby, i) => {
+              {profileDate.hobbies.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
               })}
             </HobbiesDisplay>
