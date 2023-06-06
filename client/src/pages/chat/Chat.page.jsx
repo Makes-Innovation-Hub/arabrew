@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 // const port = import.meta.env.VITE_WEB_SOCKET_PORT;
 const port = 3050;
 const ws = new WebSocket(`ws://localhost:${port}`);
-const sender = "Arthur";
-const receiver = "Benny";
-const originalLang = "hebrew";
-const targetLang = "arabic";
 
 const Chat = () => {
   const [msgText, setMsgText] = useState("");
+  const [sender, setSender] = useState("");
+  const [receiver, setReceiver] = useState("");
+  const [originalLang, setOriginalLang] = useState("");
+  const [targetLang, setTargetLang] = useState("");
 
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   const [messages, setMessages] = useState([]);
@@ -30,6 +30,18 @@ const Chat = () => {
       })
     );
     setMsgText("");
+  };
+
+  const firstTimeDataSendingHandler = () => {
+    ws.send(
+      JSON.stringify({
+        sender: sender,
+        receiver: receiver,
+        originalLang: originalLang,
+        targetLang: targetLang,
+        msg: "open room",
+      })
+    );
   };
 
   useEffect(() => {
@@ -57,6 +69,23 @@ const Chat = () => {
 
   return (
     <div>
+      <input placeholder="sender" onChange={(e) => setSender(e.target.value)} />
+      <input
+        placeholder="receiver"
+        onChange={(e) => setReceiver(e.target.value)}
+      />
+      <input
+        placeholder="originalLang"
+        onChange={(e) => setOriginalLang(e.target.value)}
+      />
+      <input
+        placeholder="targetLang"
+        onChange={(e) => setTargetLang(e.target.value)}
+      />
+      <button onClick={firstTimeDataSendingHandler}>
+        Automatic Details Sending to the server
+      </button>
+
       <form onSubmit={handleSendMsg}>
         <input type="text" onChange={handleChange} value={msgText} />
         <button type="submit">Send Message</button>
@@ -64,7 +93,7 @@ const Chat = () => {
 
       {/* The key={Math.random()} MUST be refactored and replaced when rtk query and chatschema is configuredwith chat.id  */}
       {messages.map((message) => (
-        <h1 key={Math.random()}>{message}</h1>
+        <h4 key={Math.random()}>{message}</h4>
       ))}
     </div>
   );

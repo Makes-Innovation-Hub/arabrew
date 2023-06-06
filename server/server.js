@@ -33,10 +33,26 @@ wss.on("connection", (ws) => {
   room++;
 
   clients.push({ room: ws.room, client: ws });
-  ws.send(JSON.stringify({ msg: "hello there , u are ONLINE" }));
   ws.on("message", async (dataBuffer) => {
     const data = JSON.parse(dataBuffer.toString());
-    if (typeof ws.room === "number") {
+
+    // console.log("before fetch");
+    const res = await fetch(
+      `http://localhost:5090/api/chat/${data.sender}/${data.receiver}`
+    );
+    // console.log("after fetch");
+
+    // console.log("res", res);
+    // const chatHistory = await res.json();
+    // console.log("typeof res.status", typeof res.status);
+
+    // console.log("chatHistory", chatHistory);
+    if (res.status === 200) {
+      //return to the client the message history array
+      const chat = await res.json();
+      const chatHistory = chat.messagesHistory;
+      ws.send(JSON.stringify(chatHistory));
+    } else if (typeof ws.room === "number" && data.msg === "open room") {
       ws.room = data.sender + "_" + data.receiver;
       clients.push({ room: ws.room, client: ws });
       //save chatting users in DB
@@ -55,67 +71,66 @@ wss.on("connection", (ws) => {
       } catch (error) {
         console.error("Error:", error);
       }
-    }
+    } else {
+      const completeData = { ...data, room: ws.room };
+      const originalMsg = completeData.msg;
+      const translatedMsg = await translateMsg(
+        completeData.msg,
+        completeData.originalLang,
+        completeData.targetLang
+      );
+      const isProfanity = await checkProfanity(completeData.msg);
 
-    const completeData = { ...data, room: ws.room };
+      console.log("originalMsg", originalMsg);
+      console.log("translatedMsg", translatedMsg);
+      console.log("isProfanity", isProfanity);
 
-    const originalMsg = completeData.msg;
-    const translatedMsg = await translateMsg(
-      completeData.msg,
-      completeData.originalLang,
-      completeData.targetLang
-    );
-    const isProfanity = await checkProfanity(completeData.msg);
+      clients.forEach(async (client) => {
+        const isSameRoom =
+          client.room === completeData.sender + "_" + completeData.receiver ||
+          client.room === completeData.receiver + "_" + completeData.sender;
+        if (
+          isSameRoom &&
+          !isProfanity &&
+          client.client.readyState === WebSocket.OPEN
+        ) {
+          //save originalMsg & translatedMsg in DB
+          const url = `http:localhost:${process.env.PORT}/api/chat/${completeData.sender}/${completeData.receiver}`;
+          const headers = {
+            "Content-Type": "application/json",
+          };
 
-    console.log("originalMsg", originalMsg);
-    console.log("translatedMsg", translatedMsg);
-    console.log("isProfanity", isProfanity);
+          const body = {
+            contentOriginal: originalMsg,
+            contentTranslated: translatedMsg,
+          };
 
-    clients.forEach(async (client) => {
-      const isSameRoom =
-        client.room === completeData.sender + "_" + completeData.receiver ||
-        client.room === completeData.receiver + "_" + completeData.sender;
-      if (
-        isSameRoom &&
-        !isProfanity &&
-        client.client.readyState === WebSocket.OPEN
-      ) {
-        //save originalMsg & translatedMsg in DB
-        const url = `http:localhost:${process.env.PORT}/api/chat/${completeData.sender}/${completeData.receiver}`;
-        const headers = {
-          "Content-Type": "application/json",
-        };
+          const options = {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify(body),
+          };
 
-        const body = {
-          contentOriginal: originalMsg,
-          contentTranslated: translatedMsg,
-        };
-
-        const options = {
-          method: "PUT",
-          headers: headers,
-          body: JSON.stringify(body),
-        };
-
-        try {
-          const response = await fetch(url, options);
-        } catch (error) {
-          console.error("Error:", error);
+          try {
+            const response = await fetch(url, options);
+          } catch (error) {
+            console.error("Error:", error);
+          }
+          completeData["translated"] = translatedMsg;
+          client.client.send(JSON.stringify(completeData));
+        } else if (
+          isSameRoom &&
+          isProfanity &&
+          client.client.readyState === WebSocket.OPEN
+        ) {
+          ws.send(
+            completeData.originalLang === "hebrew"
+              ? PROFANITY_MSG_HE
+              : PROFANITY_MSG_AR
+          );
         }
-        completeData["translated"] = translatedMsg;
-        client.client.send(JSON.stringify(completeData));
-      } else if (
-        isSameRoom &&
-        isProfanity &&
-        client.client.readyState === WebSocket.OPEN
-      ) {
-        ws.send(
-          completeData.originalLang === "hebrew"
-            ? PROFANITY_MSG_HE
-            : PROFANITY_MSG_AR
-        );
-      }
-    });
+      });
+    }
   });
   ws.on("close", () => {
     console.log(" User Disconnected ");

@@ -76,10 +76,13 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
   let userChat = await Chat.findOne({
     $or: [{ users: usersArr }, { users: usersArrSwitched }],
   }).lean();
-  if (!userChat)
-    return next(
-      new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
-    );
+  if (!userChat) {
+    res.status(200).json({ status: "chat not exist" });
+  }
+
+  // return next(
+  //   new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
+  // );
   let { messagesHistory } = userChat;
   delete userChat._id;
   messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
