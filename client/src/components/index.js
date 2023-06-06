@@ -7,6 +7,7 @@ import { ContentTitle } from "./styles/ContentTitle.jsx";
 import { ButtonDiv } from "./styles/ButtonDiv.jsx";
 import { Button } from "./styles/Button.jsx";
 import Header from "./Header.jsx";
+import Friend from "./Friend.jsx";
 import {
   selectedBtn,
   listBtn,
@@ -27,4 +28,5 @@ export {
   wrapper,
   selectedContainer,
   Header,
+  Friend,
 };

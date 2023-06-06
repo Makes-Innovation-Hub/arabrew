@@ -8,10 +8,7 @@ import { StyledDiv } from "../styles/StyledDiv";
 import { StyledParagraph } from "../styles/StyledParagraph";
 import { StyledSpan } from "../styles/StyledSpan";
 import { StyledTitle } from "../styles/StyledTitle";
-import { StyledInput } from "../styles/StyledInput";
-import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ContentConversationPage } from "./ContentConversationPage";
-import { ButtonConversation } from "./ButtonConversation";
 import { ConversationPageStyle } from "./ConversationPageStyle";
 import { StyledProfilePage } from "./StyledProfilePage";
 import { ProfileImg } from "./ProfileImg";
@@ -21,6 +18,22 @@ import { InterestTextStyle } from "./InterestTextStyle";
 import { HobbyBackground } from "./HobbyBackground";
 import { HobbiesDisplay } from "./HobbiesDisplay";
 import { CircleIcon } from "./CircleIcon";
+import { DisplayChatsStyle } from "./DIsplayChatsStyle";
+import { ProfileChat } from "./PrifileChat";
+import { ContentChat } from "./ContentChat";
+import { ChatsDisplay } from "./ChatsDisplay";
+import { ButtonForChats } from "./ButtonForChats";
+import { BlockDiv } from "./BlockDiv";
+import { StyledInput } from "../styles/StyledInput";
+import { StyledRouterLink } from "./StyledRouterLink";
+import { NoConversationStyle } from "../styles/NoConversationStyle";
+import { ButtonConversation } from "./ButtonConversation";
+import { StyledHeaderTitle } from "./StyledHeaderTitle";
+import { StyledHobby } from "./StyledHobby";
+import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
+import { StyledMsgButton } from "./StyledMsgButton";
+import { StyledImage } from "./StyledImage";
+import { StyledBorder } from "./StyledBorder";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -39,10 +52,22 @@ export {
   StyledParagraph,
   StyledSpan,
   StyledTitle,
+  StyledHeaderTitle,
   StyledInput,
-  NoConversationStyle,
+  StyledHobby,
+  StyledHobbiesContainer,
+  StyledMsgButton,
+  StyledImage,
+  StyledBorder,
   ContentConversationPage,
   ConversationPageStyle,
+  DisplayChatsStyle,
+  ProfileChat,
+  ContentChat,
+  NoConversationStyle,
+  ChatsDisplay,
+  ButtonForChats,
+  BlockDiv,
   ButtonConversation,
   StyledProfilePage,
 };
