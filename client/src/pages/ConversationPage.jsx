@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
-  Flex,
   StyledPage,
   StyledMargin,
   NoConversationStyle,
@@ -12,7 +11,6 @@ import {
   ChatsDisplay,
   ButtonForChats,
   BlockDiv,
-  ButtonConversation,
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
@@ -21,12 +19,8 @@ const ConversationPage = ({ prevConversation }) => {
   return (
     <div>
       {isSideBar && (
-        <div
-          onClick={() => {
-            setIsSideBar(false);
-          }}
-        >
-          <SideBar />{" "}
+        <div>
+          <SideBar a={setIsSideBar} />
         </div>
       )}
       <StyledMargin direction="vertical" margin="5%">

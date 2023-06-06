@@ -9,6 +9,7 @@ import BlackArrowLeft from "./BlackArrowLeft";
 import HomeIcon from "./HomeIcon";
 import ProfileIcon from "./ProfileIcon";
 import USA from "./USA";
+import ArrowDown from "./ArrowDown";
 export {
   Hamburger,
   ArrowLeft,
@@ -21,4 +22,5 @@ export {
   HomeIcon,
   ProfileIcon,
   USA,
+  ArrowDown,
 };

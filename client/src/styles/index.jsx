@@ -22,12 +22,14 @@ import { ButtonConversation } from "./ButtonConversation";
 import { ModalSideBar } from "./ModalSideBar";
 import { StyledSideBar } from "./StyledSideBar";
 import { GoBack } from "./GoBack";
-import { DisplayMe } from "./DisplatMe";
+import { DisplayMe } from "./DisplayMe";
 import { UlSideBar } from "./UlSideBar";
 import { LiSideBar } from "./LiSideBar";
 import { LinkSideBar } from "./LinksSideBars";
+import { FlagForLang } from "./FlagForLang";
 export {
   Flex,
+  FlagForLang,
   ModalSideBar,
   StyledPage,
   StyledMargin,

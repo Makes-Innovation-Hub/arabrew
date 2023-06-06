@@ -5,5 +5,7 @@ export const LiSideBar = styled.li`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 `;
 export default LiSideBar;
