@@ -10,9 +10,9 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
-
+import arrowIcon from "../../assets/arrow.svg";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 
 export default function BirthPage() {
@@ -40,7 +40,11 @@ export default function BirthPage() {
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
-        <div style={{ width: "20%" }}></div>
+        <div style={{ width: "20%" }}>
+          <Link to="/interests">
+            <img src={arrowIcon} />
+          </Link>
+        </div>
         <TitleWrapper>
           <PageTitle>Add Age</PageTitle>
         </TitleWrapper>
@@ -80,9 +84,19 @@ export default function BirthPage() {
             {/* <StyledRouterLink to={"/nationality"}> */}
             <StyledSaveAndNextButton
               onClick={() => {
-                console.log(selectedYear);
-                dispatch(addDetail(selectedYear));
-                navigate("/nationality");
+                if (
+                  selectedYear.value !== undefined &&
+                  selectedYear.value !== null
+                ) {
+                  console.log(selectedYear);
+                  dispatch(
+                    addDetail({
+                      field: selectedYear.field,
+                      value: selectedYear.value.toString(),
+                    })
+                  );
+                  navigate("/nationalityPage");
+                }
               }}
             >
               <i>Save & Next</i>

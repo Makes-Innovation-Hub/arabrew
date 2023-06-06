@@ -53,7 +53,7 @@ const Occupation = () => {
           <Button
             onClick={() => {
               dispatch(addDetail(userInput));
-              navigate("/bio");
+              navigate("/bioPage");
             }}
           >
             Save & Next

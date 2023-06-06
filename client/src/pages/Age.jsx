@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom"
-import { Header } from "../components"
-import { ArrowLeft  } from "../assets"
-import { StyledPage, StyledButton } from "../styles"
+import { Link } from "react-router-dom";
+import { Header } from "../components";
+import { ArrowLeft } from "../assets";
+import { StyledPage, StyledButton } from "../styles";
 
 const Age = () => {
-   return (
+  return (
     <div>
-      <Header leftIcon={<Link to="/interests"><ArrowLeft/></Link>} title={"Add Age"} />
+      <Header
+        leftIcon={
+          <Link to="/interests">
+            <ArrowLeft />
+          </Link>
+        }
+        title={"Add Age"}
+      />
       <StyledPage>
-        <StyledButton to={"/nationality"} text={"Save & Next"}></StyledButton>
+        <StyledButton to={"/interests"} text={"Save & Next"}></StyledButton>
       </StyledPage>
     </div>
-  )
-}
-export default Age
+  );
+};
+export default Age;

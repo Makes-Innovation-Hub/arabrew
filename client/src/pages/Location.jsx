@@ -25,7 +25,7 @@ const Location = () => {
     <div>
       <Header
         leftIcon={
-          <Link to="/nationality">
+          <Link to="/nationalityPage">
             <ArrowLeft />
           </Link>
         }

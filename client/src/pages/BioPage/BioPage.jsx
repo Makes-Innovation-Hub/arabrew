@@ -10,7 +10,7 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
@@ -22,8 +22,9 @@ export default function BioPage() {
     value: "",
     field: "bio",
   });
+  const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -35,12 +36,22 @@ export default function BioPage() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isDetailAdded) {
+      console.log(userData);
+      registerUser(userData);
+      navigate("/conversation");
+    }
+  }, [isDetailAdded]);
+
   return (
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <img src={arrowIcon} />
+          <Link to="/occupation">
+            <img src={arrowIcon} />
+          </Link>
         </div>
         <TitleWrapper>
           <PageTitle>Add Bio</PageTitle>
@@ -83,8 +94,7 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                registerUser(userData);
-                navigate("/conversation");
+                setIsDetailAdded(true);
               }}
             >
               <i>Save & Finish</i>

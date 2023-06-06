@@ -68,7 +68,7 @@ const Interests = () => {
 
   const handleSave = () => {
     dispatch(addDetail(selectedInterests));
-    navigate("/age");
+    navigate("/agePage");
   };
   useEffect(() => {
     if (interestsNumber === 5) {
