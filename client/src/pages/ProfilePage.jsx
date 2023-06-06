@@ -14,7 +14,7 @@ import {
   CircleIcon,
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
-const ProfilePage = ({ profileDate }) => {
+const ProfilePage = ({ profileData }) => {
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -40,14 +40,14 @@ const ProfilePage = ({ profileDate }) => {
       </StyledMargin>
       <StyledPage>
         <StyledProfilePage>
-          <ProfileImg src={profileDate.img} alt="profile" />
+          <ProfileImg src={profileData.img} alt="profile" />
           <ProfileTitle>
-            <ProfileName>{profileDate.name}</ProfileName>
+            <ProfileName>{profileData.name}</ProfileName>
             <LanguageIcon
               letter={
-                profileDate.lang === "Arabic"
+                profileData.lang === "Arabic"
                   ? "ع"
-                  : profileDate.lang === "Hebrew"
+                  : profileData.lang === "Hebrew"
                   ? "He"
                   : "En"
               }
@@ -56,7 +56,7 @@ const ProfilePage = ({ profileDate }) => {
           <InterestTextStyle>
             My Interest
             <HobbiesDisplay>
-              {profileDate.hobbies.map((hobby, i) => {
+              {profileData.hobbies.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
               })}
             </HobbiesDisplay>
