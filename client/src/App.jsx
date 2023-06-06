@@ -11,9 +11,10 @@ import {
   Location,
   GenderSelection,
 } from "./pages/exports.js";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
+  { path: "/profile", element: <ProfilePage /> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
@@ -42,7 +44,6 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
 ]);
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
