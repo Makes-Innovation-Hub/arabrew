@@ -38,7 +38,6 @@ export default function BioPage() {
 
   useEffect(() => {
     if (isDetailAdded) {
-      console.log(userData);
       registerUser(userData);
       navigate("/conversation");
     }

@@ -88,7 +88,6 @@ export default function BirthPage() {
                   selectedYear.value !== undefined &&
                   selectedYear.value !== null
                 ) {
-                  console.log(selectedYear);
                   dispatch(
                     addDetail({
                       field: selectedYear.field,
