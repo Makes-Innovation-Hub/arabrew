@@ -15,9 +15,7 @@ import countries from "../../assets/countriesAndFlags/countries.json";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
-//! 1. (MISSING) COUNTRY CODE is what we need countryName is USELESS \\!!
-//! 2. (MISSING) the choosen value should be added to the  the userRegister slice
-//! 3. (MISSING) returning the selected value if user go back to the page
+
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
