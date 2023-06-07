@@ -23,6 +23,7 @@ export const userRegisterSlice = createSlice({
     addDetail: (state, action) => {
       const { field, value } = action.payload;
       state.userDetails[field] = value;
+      state.userDetails[field] = value;
     },
   },
 });

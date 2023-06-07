@@ -10,8 +10,8 @@ import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextB
 import { StyledNumberOfCharLabel } from "../../styles/BioPage/StyledNumberOfCharLabel.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import arrowIcon from "../../assets/arrow.svg";
-
-import { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
@@ -23,7 +23,8 @@ export default function BioPage() {
     value: "",
     field: "bio",
   });
-  const userDetailsObj = useSelector((state) => state.userRegister);
+  const [isDetailAdded, setIsDetailAdded] = useState(false);
+  const userData = useSelector((state) => state.userRegister);
   const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
 
   const handleChange = (event) => {
@@ -31,17 +32,26 @@ export default function BioPage() {
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
+    if (isDetailAdded) {
+      registerUser(userData);
+      navigate("/conversation");
     }
-  }, [isSuccess]);
+  }, [isDetailAdded]);
+
   return (
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <img src={arrowIcon} />
+          <Link to="/occupation">
+            <img src={arrowIcon} />
+          </Link>
         </div>
         <TitleWrapper>
           <PageTitle>Add Bio</PageTitle>
@@ -84,7 +94,7 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                registerUser(userDetailsObj);
+                setIsDetailAdded(true);
               }}
             >
               <i>Save & Finish</i>
