@@ -202,23 +202,54 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
 export const getUserChatsList = asyncHandler(async (req, res, next) => {
   const { user_name: name } = req.params;
 
-  let userChats = await Chat.find({
-    users: { $all: [name] },
-  })
-    .sort({ updatedAt: -1 })
-    .lean();
-  if (!userChats) return next(new Error("failed retrieving"));
-  if (userChats.length > 0) {
-    userChats = userChats.map((chat) => {
-      const { users, messagesHistory } = chat;
-      const recieverName = users.filter((user) => user !== name)[0];
-      const lastMessage = newestMessage(messagesHistory);
-      return {
-        lastMessage: lastMessage,
-        recieverName: recieverName,
-      };
-    });
-  }
+  // Logging controller event
+  controllerLogger(
+    "getUserChatsList",
+    { userName: name },
+    "Retrieving user chats list"
+  );
+  const startTime = Date.now();
 
-  res.status(200).json(userChats);
+  try {
+    // Logging database query
+    databaseLogger(
+      "getUserChatsList, Find chat by user name",
+      { name },
+      "Getting chats list"
+    );
+    let userChats = await Chat.find({
+      users: { $all: [name] },
+    })
+      .sort({ updatedAt: -1 })
+      .lean();
+    if (!userChats) {
+      // Logging error
+      errorLogger("Failed to retrieve user chats list");
+      return next(new Error("failed retrieving"));
+    }
+    if (userChats.length > 0) {
+      userChats = userChats.map((chat) => {
+        const { users, messagesHistory } = chat;
+        const recieverName = users.filter((user) => user !== name)[0];
+        const lastMessage = newestMessage(messagesHistory);
+        return {
+          lastMessage: lastMessage,
+          recieverName: recieverName,
+        };
+      });
+    }
+
+    // Logging timing
+    timingLogger("getUserChatsList", startTime);
+
+    // Logging after the service ends successfully
+    successLogger("getUserChatsList", { userName: name, userChats });
+
+    res.status(200).json(userChats);
+  } catch (error) {
+    // Logging error
+    errorLogger(error);
+
+    next(error);
+  }
 });
