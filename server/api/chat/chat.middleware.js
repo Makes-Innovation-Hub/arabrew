@@ -23,7 +23,7 @@ export const deleteOldMessages = asyncHandler(async (req, res, next) => {
   try {
     // Logging database query
     databaseLogger(
-      "deleteOldMessages, Find chat by names",
+      "Service: deleteOldMessages, Find chat by names",
       { user1_name, user2_name },
       "Deleting old messages"
     );

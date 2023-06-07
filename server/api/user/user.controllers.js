@@ -62,7 +62,7 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
       : {};
 
     // Logging database query
-    databaseLogger("getUsersByInterests, Find by subId", req.params);
+    databaseLogger("Service: getUsersByInterests, Find by subId", req.params);
     const matchingUsers = await User.find({
       subId: { $ne: subId },
       ...usersInterests,
@@ -123,7 +123,7 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
     const { subId } = req.params;
 
     // Logging database query
-    databaseLogger("getAllUsers, User.find by subID", req.params);
+    databaseLogger("Service: getAllUsers, User.find by subID", req.params);
     let allUsers = await User.find({
       subId: { $ne: subId },
     }).lean();

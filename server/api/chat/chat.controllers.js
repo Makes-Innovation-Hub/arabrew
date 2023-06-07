@@ -22,7 +22,7 @@ export const createChat = asyncHandler(async (req, res, next) => {
   try {
     // Logging database query
     databaseLogger(
-      "createChat, Create new chat",
+      "Service: createChat, Create new chat",
       { users: [user1_name, user2_name] },
       "Creating new chat"
     );
@@ -82,7 +82,7 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
   try {
     // Logging database query
     databaseLogger(
-      "addMessageToChat, Find and update chat",
+      "Service: addMessageToChat, Find and update chat",
       { usersArr, usersArrSwitched },
       "Finding and updating chat"
     );
@@ -152,7 +152,7 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
   try {
     // Logging database query
     databaseLogger(
-      "getChatByNames, Find chat by names",
+      "Service: getChatByNames, Find chat by names",
       { user1_name, user2_name },
       "Getting chat info and messages history"
     );
@@ -213,7 +213,7 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
   try {
     // Logging database query
     databaseLogger(
-      "getUserChatsList, Find chat by user name",
+      "Service: getUserChatsList, Find chat by user name",
       { name },
       "Getting chats list"
     );
@@ -224,7 +224,7 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
       .lean();
     if (!userChats) {
       // Logging error
-      errorLogger("Failed to retrieve user chats list");
+      errorLogger("Failed to retrieve user chats list", req, res, next);
       return next(new Error("failed retrieving"));
     }
     if (userChats.length > 0) {
@@ -248,7 +248,7 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
     res.status(200).json(userChats);
   } catch (error) {
     // Logging error
-    errorLogger(error);
+    errorLogger(error, req, res, next);
 
     next(error);
   }

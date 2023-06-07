@@ -1,7 +1,16 @@
 import pino from "pino";
+// import PinoPretty from "pino-pretty";
 
 // Create a Pino logger instance
-const logger = pino();
+const logger = pino({
+  transport: {
+    target: "pino-pretty",
+    options: {
+      colorize: true,
+      translateTime: "SYS:dd-mm-yyyy HH:MM:ss",
+    },
+  },
+});
 
 // Middleware function for logging incoming requests
 const requestLogger = (req, res, next) => {
