@@ -7,7 +7,7 @@ const logger = pino({
     target: "pino-pretty",
     options: {
       colorize: true,
-      translateTime: "SYS:dd-mm-yyyy HH:MM:ss",
+      translateTime: "SYS:yyyy-mm-dd HH:MM:ss.l o",
     },
   },
 });
