@@ -14,7 +14,6 @@ export const deleteOldMessages = asyncHandler(async (req, res, next) => {
     usersArr: [user1_name, user2_name],
     usersArrSwitched: [user2_name, user1_name],
   };
-
   const options = { new: true, runValidators: true };
   // Logging controller event
   controllerLogger("deleteOldMessages", req.params, "Deleting old messages");

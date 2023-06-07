@@ -6,15 +6,16 @@ import {
   ConversationPage,
   BirthPage,
   Chat,
-  Nationality,
+  NationalityPage,
   BioPage,
   Location,
   GenderSelection,
 } from "./pages/exports.js";
-import HeaderLayout from "./components/HeaderLayout";
-import NationalityPage from "./pages/NationalityPage/NationalityPage.jsx";
-import prevConversation from "./pages/DemoArrChatsData";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HeaderLayout from "./components/HeaderLayout";
+import prevConversation from "./pages/DemoArrChatsData";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +24,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/lang", element: <LangSelection /> },
       { path: "/interests", element: <Interests /> },
-      { path: "/nationality", element: <Nationality /> },
       { path: "/location", element: <Location /> },
       { path: "/gender", element: <GenderSelection /> },
       { path: "/occupation", element: <Occupation /> },
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
+  { path: "/profile", element: <ProfilePage /> },
   { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
@@ -43,7 +44,6 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
 ]);
-
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }

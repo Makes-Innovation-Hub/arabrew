@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 import { Header } from "../components";
 import { ArrowLeft } from "../assets";
-import { StyledPage, StyledButton } from "../styles";
+import { StyledButton, StyledPage } from "../styles";
 
-const Nationality = () => {
+const Interests = () => {
   return (
     <div>
       <Header
         leftIcon={
-          <Link to="/age">
+          <Link to="/lang">
             <ArrowLeft />
           </Link>
         }
-        title={"Add Nationality"}
+        title={"Add Interests"}
       />
       <StyledPage>
-        <StyledButton to={"/location"} text={"Save & Next"}></StyledButton>
+        <StyledButton to={"/lang"} text={"Save & Next"}></StyledButton>
       </StyledPage>
     </div>
   );
 };
-export default Nationality;
+export default Interests;
