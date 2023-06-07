@@ -25,7 +25,8 @@ export default function BioPage() {
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
+  const [registerUser, { data, isSuccess, isError, error }] =
+    useRegisterUserMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -33,16 +34,21 @@ export default function BioPage() {
   };
   const characterCount = text.value.length;
 
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   useEffect(() => {
     if (isDetailAdded) {
       registerUser(userData);
-      navigate("/conversation");
     }
   }, [isDetailAdded]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/conversation");
+    }
+    if (isError) {
+      console.error(error);
+    }
+  }, [isSuccess, isError]);
 
   return (
     <BackLayout>
