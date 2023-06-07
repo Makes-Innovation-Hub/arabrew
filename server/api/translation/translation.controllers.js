@@ -8,7 +8,6 @@ import {
 import { saveMsgToDB } from "./utils.js";
 import {
   controllerLogger,
-  eventLogger,
   timingLogger,
   successLogger,
   errorLogger,
