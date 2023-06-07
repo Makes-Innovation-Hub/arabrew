@@ -2,7 +2,7 @@ import path from "path";
 import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
-
+import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
@@ -18,7 +18,6 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 connectDB();
 
 const rooms = {};

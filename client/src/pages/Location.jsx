@@ -15,7 +15,7 @@ import { addDetail } from "../features/userRegister/userRegisterSlice";
 const Location = () => {
   const [location, setLocation] = useState({
     value: "",
-    dataField: "Location",
+    field: "address",
   });
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Location = () => {
     <div>
       <Header
         leftIcon={
-          <Link to="/nationality">
+          <Link to="/nationalityPage">
             <ArrowLeft />
           </Link>
         }
@@ -42,6 +42,7 @@ const Location = () => {
           value={value}
           onChange={(e) => setLocation({ ...location, value: e.target.value })}
           placeholder="Add Location"
+          borderColor="#1E75E5"
         />
         <StyledButton
           to={value ? "/gender" : null}
