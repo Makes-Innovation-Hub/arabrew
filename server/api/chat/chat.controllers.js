@@ -1,5 +1,12 @@
 import Chat from "./chat.js";
 import { asyncHandler } from "../index.js";
+import {
+  controllerLogger,
+  successLogger,
+  errorLogger,
+  timingLogger,
+  databaseLogger,
+} from "../../middleware/logger.js";
 
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/:user1_name/:user2_name
@@ -8,16 +15,43 @@ export const createChat = asyncHandler(async (req, res, next) => {
   const { user1_name, user2_name } = req.params;
   const users = { users: [user1_name, user2_name] };
 
-  const newChat = await Chat.create(users);
-  if (!newChat) {
-    return next(new Error("failed to create new chat "));
-  }
-  res.status(200).json({
-    success: true,
-    data: {
+  // Logging controller event
+  controllerLogger("createChat", req.params, "Creating new chat");
+  const startTime = Date.now();
+  try {
+    // Logging database query
+    databaseLogger(
+      "createChat, Create new chat",
+      { users: [user1_name, user2_name] },
+      "Creating new chat"
+    );
+    const newChat = await Chat.create(users);
+    if (!newChat) {
+      // Logging error
+      errorLogger("failed to create new chat", req, res, next);
+      return next(new Error("failed to create new chat "));
+    }
+
+    // Logging timing
+    timingLogger("createChat", startTime);
+
+    // Logging after the service ends successfully
+    successLogger("createChat", {
+      users: [user1_name, user2_name],
       chat: newChat,
-    },
-  });
+    });
+    res.status(200).json({
+      success: true,
+      data: {
+        chat: newChat,
+      },
+    });
+  } catch (error) {
+    // Logging error
+    errorLogger(error, req, res, next);
+
+    next(error);
+  }
 });
 
 //$ @desc    add  message(when sent ) to the mssagesHistory ARRAY in chat doc  (between 2 users)
@@ -35,33 +69,69 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     sender: sender,
   };
   const options = { new: true, runValidators: true };
+  // Logging controller event
+  controllerLogger("addMessageToChat", req.params, "Adding message to chat");
 
-  let updatedChat = await Chat.findOneAndUpdate(
-    { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
-    { $push: { messagesHistory: newMsgObj } },
-    options
-  ).lean();
-  if (!updatedChat)
-    return next(
-      new Error(`error sending Message from ${sender}, to ${reciever}`)
+  const startTime = Date.now();
+  try {
+    // Logging database query
+    databaseLogger(
+      "addMessageToChat, Find and update chat",
+      { usersArr, usersArrSwitched },
+      "Finding and updating chat"
     );
-  let { messagesHistory } = updatedChat;
-  delete updatedChat._id;
-  messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
-  const messagesTimeToLocal = messagesHistory.map((message) => {
-    delete message._id;
-    return {
-      ...message,
-      createdAt: message.createdAt.toLocaleString("en-US", {
-        timeZone: "Asia/Jerusalem",
-        hour12: false,
-      }),
-    };
-  });
+    let updatedChat = await Chat.findOneAndUpdate(
+      { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
+      { $push: { messagesHistory: newMsgObj } },
+      options
+    ).lean();
+    if (!updatedChat) {
+      // Logging error
+      errorLogger(
+        `error sending Message from ${sender}, to ${reciever}`,
+        req,
+        res,
+        next
+      );
 
-  updatedChat.messagesHistory = messagesTimeToLocal;
+      return next(
+        new Error(`error sending Message from ${sender}, to ${reciever}`)
+      );
+    }
 
-  res.status(200).json(updatedChat);
+    let { messagesHistory } = updatedChat;
+    delete updatedChat._id;
+    messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
+    const messagesTimeToLocal = messagesHistory.map((message) => {
+      delete message._id;
+      return {
+        ...message,
+        createdAt: message.createdAt.toLocaleString("en-US", {
+          timeZone: "Asia/Jerusalem",
+          hour12: false,
+        }),
+      };
+    });
+
+    updatedChat.messagesHistory = messagesTimeToLocal;
+
+    // Logging timing
+    timingLogger("addMessageToChat", startTime);
+    // Logging after the service ends successfully
+    successLogger("addMessageToChat", {
+      sender,
+      reciever,
+      newMsgObj,
+      updatedChat,
+    });
+
+    res.status(200).json(updatedChat);
+  } catch (error) {
+    // Logging error
+    errorLogger(error, req, res, next);
+
+    next(error);
+  }
 });
 
 //$ @desc    get chat info  and messages History (between 2 users)
@@ -73,26 +143,66 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
     usersArr: [user1_name, user2_name],
     usersArrSwitched: [user2_name, user1_name],
   };
-  let userChat = await Chat.findOne({
-    $or: [{ users: usersArr }, { users: usersArrSwitched }],
-  }).lean();
-  if (!userChat)
-    return next(
-      new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
+  // Logging controller event
+  controllerLogger(
+    "getChatByNames",
+    req.params,
+    "Getting chat info and messages history"
+  );
+
+  const startTime = Date.now();
+
+  try {
+    // Logging database query
+    databaseLogger(
+      "getChatByNames, Find chat by names",
+      { user1_name, user2_name },
+      "Getting chat info and messages history"
     );
-  let { messagesHistory } = userChat;
-  delete userChat._id;
-  messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
-  const messagesTimeToLocal = messagesHistory.map((message) => {
-    delete message._id;
-    return {
-      ...message,
-      createdAt: message.createdAt.toLocaleString("en-US", {
-        timeZone: "Asia/Jerusalem",
-        hour12: false,
-      }),
-    };
-  });
-  userChat.messagesHistory = messagesTimeToLocal;
-  res.status(200).json(userChat);
+    let userChat = await Chat.findOne({
+      $or: [{ users: usersArr }, { users: usersArrSwitched }],
+    }).lean();
+    if (!userChat) {
+      // Logging error
+      errorLogger(
+        `Chat with names: ${user1_name}, ${user2_name} not found`,
+        req,
+        res,
+        next
+      );
+      return next(
+        new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
+      );
+    }
+    let { messagesHistory } = userChat;
+    delete userChat._id;
+    messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
+    const messagesTimeToLocal = messagesHistory.map((message) => {
+      delete message._id;
+      return {
+        ...message,
+        createdAt: message.createdAt.toLocaleString("en-US", {
+          timeZone: "Asia/Jerusalem",
+          hour12: false,
+        }),
+      };
+    });
+    userChat.messagesHistory = messagesTimeToLocal;
+    // Logging timing
+    timingLogger("getChatByNames", startTime);
+
+    // Logging after the service ends successfully
+    successLogger("getChatByNames", {
+      user1_name,
+      user2_name,
+      userChat,
+    });
+
+    res.status(200).json(userChat);
+  } catch (error) {
+    // Logging error
+    errorLogger(error, req, res, next);
+
+    next(error);
+  }
 });

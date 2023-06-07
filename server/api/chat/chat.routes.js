@@ -6,7 +6,11 @@ import {
   getChatByNames,
 } from "./chat.controllers.js";
 
+import { requestLogger } from "../../middleware/logger.js";
+
 const router = express.Router();
+
+router.use(requestLogger);
 
 router
   .route("/:user1_name/:user2_name")
