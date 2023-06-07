@@ -45,15 +45,15 @@ export const translateMsg = async (msg, original_lang, target_lang) => {
   return response.data.choices[0].message.content;
 };
 
-export const conversationGenerator = async (commonInterests) => {
+export const conversationGenerator = async (user1, user2) => {
   const openai = new OpenAIApi(
     new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
   );
   const response = await sendPromptToOpenAi(
     openai,
-    `give me conversation subjects in json format like this: [{interest:..., subject:...},...] from this array of interests: ${JSON.stringify(
-      commonInterests
-    )}`
+    `give me conversation suggestion that the two users would love to talk about and make the response short as possible, in json format like this: [{suggestion :  i see your both native language is hebrew, so lets chat in hebrew},...] from this 2 users : user1: ${JSON.stringify(
+      user1
+    )} user2: ${JSON.stringify(user2)}`
   );
 
   return response.data.choices[0].message.content;
