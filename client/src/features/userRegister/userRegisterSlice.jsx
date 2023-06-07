@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subId: "",
-  name: "",
-  avatar: "",
+  subId: "123ssss4",
+  name: "batman",
+  avatar:
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
   userDetails: {
     nativeLanguage: "",
     interests: [],
