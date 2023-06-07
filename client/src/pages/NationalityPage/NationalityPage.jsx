@@ -12,31 +12,28 @@ import { useState } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
 import countries from "../../assets/countriesAndFlags/countries.json";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
-
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
-    dataField: "nationality",
+    field: "nationality",
   });
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   return (
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <img src={arrowIcon} />
+          <Link to="/agePage">
+            <img src={arrowIcon} />
+          </Link>
         </div>
         <TitleWrapper>
           <PageTitle>Add Nationality</PageTitle>
         </TitleWrapper>
-
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
           {/*  here you can add code for additional elements in the header */}

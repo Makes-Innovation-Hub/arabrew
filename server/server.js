@@ -1,14 +1,11 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-
+import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
 import connectDB from "./config/db.js";
-import loggerMiddleware from "./middleware/logger.js";
-import { clsProxify } from "cls-proxify";
-import { clsProxifyExpressMiddleware } from "cls-proxify/integration/express";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,26 +14,9 @@ dotenv.config({ path: __dirname + "/.env" });
 
 const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
-const logger = {
-  info: (msg) => console.log(msg),
-};
-const loggerCls = clsProxify(logger);
-app.use(
-  clsProxifyExpressMiddleware((req) => {
-    const headerRequestID = req.headers.Traceparent;
-    const loggerProxy = {
-      info: (msg) => `${headerRequestID}: ${msg}`,
-    };
-    // this value will be accesible in CLS by key 'cls-proxify'
-    // it will be used as a proxy for `loggerCls`
-    return loggerProxy;
-  })
-);
-
 const app = express();
 app.use(express.json());
-app.use(loggerMiddleware);
-
+app.use(cors());
 connectDB();
 
 const rooms = {};
@@ -66,12 +46,6 @@ app.use("/api", routes);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.get("/", (req, res) => {
-  // logger.info({
-  //   method: "get",
-  //   url: "/",
-  //   message: "got a get request serving index.html",
-  // });
-  // loggerCls.info('My message!')
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
