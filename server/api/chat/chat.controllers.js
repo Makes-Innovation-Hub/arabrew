@@ -1,5 +1,6 @@
 import Chat from "./chat.js";
 import { asyncHandler } from "../index.js";
+import { newestMessage } from "./chat.utils.js";
 
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/:user1_name/:user2_name
@@ -36,6 +37,11 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     sender: sender,
     contentOriginal: contentOriginal,
     contentTranslated: contentTranslated,
+    createdAt: new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Jerusalem",
+      hour12: false,
+      timeZoneName: "short",
+    }),
   };
   const options = { new: true, runValidators: true };
 
@@ -51,18 +57,9 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
   let { messagesHistory } = updatedChat;
   delete updatedChat._id;
   messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
-  const messagesTimeToLocal = messagesHistory.map((message) => {
+  messagesHistory.forEach((message) => {
     delete message._id;
-    return {
-      ...message,
-      createdAt: message.createdAt.toLocaleString("en-US", {
-        timeZone: "Asia/Jerusalem",
-        hour12: false,
-      }),
-    };
   });
-
-  updatedChat.messagesHistory = messagesTimeToLocal;
 
   res.status(200).json(updatedChat);
 });
@@ -86,16 +83,35 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
   let { messagesHistory } = userChat;
   delete userChat._id;
   messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
-  const messagesTimeToLocal = messagesHistory.map((message) => {
+  messagesHistory.forEach((message) => {
     delete message._id;
-    return {
-      ...message,
-      createdAt: message.createdAt.toLocaleString("en-US", {
-        timeZone: "Asia/Jerusalem",
-        hour12: false,
-      }),
-    };
   });
-  userChat.messagesHistory = messagesTimeToLocal;
   res.status(200).json(userChat);
+});
+
+//$ @desc    get user Chats list with names and last message
+//$ @route   GET /api/chat/logged/user/:user_name
+//! @access  NOT SET YET
+export const getUserChatsList = asyncHandler(async (req, res, next) => {
+  const { user_name: name } = req.params;
+
+  let userChats = await Chat.find({
+    users: { $all: [name] },
+  })
+    .sort({ updatedAt: -1 })
+    .lean();
+  if (!userChats) return next(new Error("failed retrieving"));
+  if (userChats.length > 0) {
+    userChats = userChats.map((chat) => {
+      const { users, messagesHistory } = chat;
+      const recieverName = users.filter((user) => user !== name)[0];
+      const lastMessage = newestMessage(messagesHistory);
+      return {
+        lastMessage: lastMessage,
+        recieverName: recieverName,
+      };
+    });
+  }
+
+  res.status(200).json(userChats);
 });

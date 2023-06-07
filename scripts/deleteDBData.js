@@ -3,21 +3,26 @@ import fetch from "node-fetch";
 import mongoose from "mongoose";
 import User from "../server/api/user/user.js";
 import Chat from "../server/api/chat/chat.js";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: __dirname + "/../server/.env" });
 
 const deleteDBData = async () => {
   let conn;
   try {
-    conn = await mongoose.connect(
-      "mongodb+srv://admin:admin@arabrew-chat-cluster.kp8fvwt.mongodb.net/?retryWrites=true&w=majority",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
-    await User.deleteOne({ name: "Benny" });
-    await User.deleteOne({ name: "Sean" });
-    await User.deleteOne({ name: "Saleh" });
-    await Chat.deleteOne({ users: ["Sean", "Saleh"] });
+    conn = await mongoose.connect(`${process.env.MONGO_URI}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    await User.deleteOne({ subId: "-1" });
+    await User.deleteOne({ subId: "-2" });
+    await User.deleteOne({ subId: "-3" });
+    await Chat.deleteOne({ users: ["Sean-dev-test", "Saleh-dev-test"] });
   } catch (error) {
     console.error("Error deleting user:", error);
   } finally {
