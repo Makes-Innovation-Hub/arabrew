@@ -9,7 +9,7 @@ export const StyledSideBar = styled.div`
   top: 0px;
   box-shadow: 1.3rem 0px 3rem rgba(0, 0, 0, 0.12);
   border-radius: 0px 2rem 2rem 0px;
-  z-index: 105;
+  z-index: 200;
   display: flex;
   flex-direction: column;
 `;

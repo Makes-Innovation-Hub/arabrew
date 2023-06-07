@@ -27,16 +27,18 @@ export default function SideBar({ a }) {
     [Eng, "عربيه"],
   ];
   return (
-    <ModalSideBar>
-      <StyledSideBar>
-        <GoBack>
-          <div
-            onClick={() => {
-              a(false);
-            }}
-          >
-            <BlackArrowLeft />
-          </div>
+    <ModalSideBar
+      id={"black"}
+      onClick={(e) => {
+        if (e.target.id === "black") a(false);
+        else if (e.target.id === "arrow") a(false);
+        // || e.target.id === "arrow" && a(false);
+        console.log("black:", e.target.id);
+      }}
+    >
+      <StyledSideBar id={"white"}>
+        <GoBack id={"arrow"}>
+          <BlackArrowLeft />
         </GoBack>
         <DisplayMe>
           <ProfileChat profile={thisProfile} /> Mika
@@ -63,7 +65,7 @@ export default function SideBar({ a }) {
           >
             {" "}
             <FlagForLang flag={langArr[whichLang][0]} /> {langArr[whichLang][1]}{" "}
-            {lenOptions ? <ArrowDown /> : <BlackArrowLeft />}
+            {lenOptions && <ArrowDown />}
           </LiSideBar>
           {lenOptions && (
             <div>
