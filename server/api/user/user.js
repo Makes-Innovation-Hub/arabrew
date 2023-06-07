@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const UserSchema = new mongoose.Schema(
   {
     //* the unique subId that auth0 return after login/register

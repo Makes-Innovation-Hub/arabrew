@@ -11,10 +11,10 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useState } from "react";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
-import countries from "../../assets/countriesAndFlags/index.json";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
+import countries from "../../assets/countriesAndFlags/countries.json";
+import { useNavigate, Link } from "react-router-dom";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { useDispatch } from "react-redux";
 //! 1. (MISSING) COUNTRY CODE is what we need countryName is USELESS \\!!
 //! 2. (MISSING) the choosen value should be added to the  the userRegister slice
 //! 3. (MISSING) returning the selected value if user go back to the page
@@ -23,23 +23,20 @@ export default function NationalityPage() {
     value: "",
     field: "nationality",
   });
-
-  useEffect(() => {
-    console.log(selectedNationality);
-  }, [selectedNationality]);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <img src={arrowIcon} />
+          <Link to="/agePage">
+            <img src={arrowIcon} />
+          </Link>
         </div>
         <TitleWrapper>
           <PageTitle>Add Nationality</PageTitle>
         </TitleWrapper>
-
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
           {/*  here you can add code for additional elements in the header */}
@@ -75,6 +72,7 @@ export default function NationalityPage() {
           <Flex style={{ height: "20%", width: "100%" }}>
             <StyledSaveAndNextButton
               onClick={() => {
+                dispatch(addDetail(selectedNationality));
                 navigate("/location");
               }}
             >

@@ -3,15 +3,16 @@ import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
 import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
 import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
 import { Container } from "../../styles/PageLayout/Container.jsx";
+import { StyledRouterLink } from "../../styles/StyledRouterLink.jsx";
 import { Flex } from "../../styles/Flex.jsx";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
 import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
 import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
-
+import arrowIcon from "../../assets/arrow.svg";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 
 export default function BirthPage() {
@@ -19,7 +20,7 @@ export default function BirthPage() {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState({
     value: "",
-    dataField: "year",
+    field: "yearOfBirth",
   });
 
   const navigate = useNavigate();
@@ -39,7 +40,11 @@ export default function BirthPage() {
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
-        <div style={{ width: "20%" }}></div>
+        <div style={{ width: "20%" }}>
+          <Link to="/interests">
+            <img src={arrowIcon} />
+          </Link>
+        </div>
         <TitleWrapper>
           <PageTitle>Add Age</PageTitle>
         </TitleWrapper>
@@ -76,14 +81,26 @@ export default function BirthPage() {
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
+            {/* <StyledRouterLink to={"/nationality"}> */}
             <StyledSaveAndNextButton
               onClick={() => {
-                dispatch(addDetail(selectedYear));
-                // navigate("/nationalityPage");
+                if (
+                  selectedYear.value !== undefined &&
+                  selectedYear.value !== null
+                ) {
+                  dispatch(
+                    addDetail({
+                      field: selectedYear.field,
+                      value: selectedYear.value.toString(),
+                    })
+                  );
+                  navigate("/nationalityPage");
+                }
               }}
             >
               <i>Save & Next</i>
             </StyledSaveAndNextButton>
+            {/* </StyledRouterLink> */}
           </Flex>
         </Flex>
       </Container>

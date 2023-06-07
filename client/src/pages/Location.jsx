@@ -15,7 +15,7 @@ import { addDetail } from "../features/userRegister/userRegisterSlice";
 const Location = () => {
   const [location, setLocation] = useState({
     value: "",
-    field: "Location",
+    field: "address",
   });
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Location = () => {
     <div>
       <Header
         leftIcon={
-          <Link to="/nationality">
+          <Link to="/nationalityPage">
             <ArrowLeft />
           </Link>
         }
