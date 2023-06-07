@@ -41,6 +41,5 @@ export const {
   useLazyGetUsersQuery,
   useGetChatByNamesQuery,
 } = userDataApi;
-export const { useRegisterUserMutation } = userDataApi;
 
 export default userDataApi;
