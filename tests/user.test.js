@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "../.env" });
 const PORT = process.env.PORT;
+const userId = Math.floor(Math.random() * 1000 + 1000);
 
 describe("user creations tests", function () {
   this.timeout(10000);
@@ -20,7 +21,7 @@ describe("user creations tests", function () {
       myHeaders.append("Content-Type", "application/json");
 
       const body = {
-        subId: "17",
+        subId: userId,
         name: "JohnDoe17",
         avatar: "123",
         userDetails: {
@@ -67,7 +68,7 @@ describe("user creations tests", function () {
       };
 
       const res = await fetch(
-        `http://localhost:${PORT}/api/user/17`,
+        `http://localhost:${PORT}/api/user/${userId}`,
         requestOptions
       );
       assert.equal(res.status, 200);
@@ -82,10 +83,7 @@ describe("user creations tests", function () {
           useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-        const deletedUser = await User.deleteOne({
-          _id: "64747cdaad43d12a7186145f",
-        });
-        assert.equal(deletedUser.id, "64747cdaad43d12a7186145f");
+        await User.findOneAndDelete({ subId: userId });
       } catch (error) {
         console.error("Error deleting user:", error);
       } finally {
