@@ -11,7 +11,7 @@ const userDataApi = createApi({
         url: "user/register",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: userObj,
+        body: JSON.stringify(userObj),
       }),
     }),
   }),
