@@ -14,7 +14,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   if (!newUser) {
     return next(new Error("error registering user", newUser));
   }
-  return res.status(200).json({
+  return res.status(201).json({
     success: true,
     data: newUser,
   });

@@ -52,6 +52,7 @@ export const userRegisterSlice = createSlice({
       state[specificUser].gender = action.payload.userDetails.gender;
       state[specificUser].occupation = action.payload.userDetails.occupation;
       state[specificUser].bio = action.payload.userDetails.bio;
+      console.log("state", state);
     },
   },
 });

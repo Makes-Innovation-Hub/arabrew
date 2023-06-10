@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
-import { useRegisterUserMutation } from "../../features/userDataApi.js";
+import { useRegisterUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const [text, setText] = useState({
@@ -24,7 +24,7 @@ export default function BioPage() {
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, data }] = useRegisterUserMutation();
+  const [registerUser, { isSuccess, data }] = useRegisterUserDataMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
