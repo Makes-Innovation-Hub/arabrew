@@ -29,7 +29,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     successLogger("registerUser", "User registration succeeded");
 
     timingLogger("registerUser", startTime);
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
       data: newUser,
     });
@@ -37,6 +37,21 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
+});
+
+export const getUser = asyncHandler(async (req, res, next) => {
+  const { subId } = req.params;
+
+  const user = await User.findOne({ subId: subId });
+
+  if (!user) {
+    return next(new Error("User not found"));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });
 
 //$ @desc    find friends by interests Array, (user id to execlude him )
