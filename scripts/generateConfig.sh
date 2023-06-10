@@ -2,8 +2,8 @@
 read -p "PORT: " port
 read -p "NODE_ENVIRONMENT: " node_env
 read -p "WEB_SOCKET_PORT: " web_socket_port
-read -p "MONGO_DB_DEVELOPMENT_CONNECTION_STRING: " mongo_uri_dev
-read -p "MONGO_DB_PRODUCTION_CONNECTION_STRING: " mongo_uri_prod
+read -p "MONGO_URI_DEVELOPMENT: " mongo_uri_dev
+read -p "MONGO_URI_PRODUCTION: " mongo_uri_prod
 read -p "OPEN_AI_API_KEY: " open_ai_api_key
 
 touch ./server/.env
