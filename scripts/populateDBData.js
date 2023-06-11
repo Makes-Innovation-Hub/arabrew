@@ -1,7 +1,15 @@
+import path from "path";
 import assert from "assert";
 import fetch from "node-fetch";
 import mongoose from "mongoose";
 import User from "../server/api/user/user.js";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: __dirname + "/../server/.env" });
 
 const populateDBData = async () => {
   const body1 = {
@@ -61,16 +69,22 @@ const populateDBData = async () => {
     body: JSON.stringify(body1),
   };
 
-  await fetch("http://localhost:5090/api/user/register", requestOptions);
+  await fetch(
+    `http://localhost:${process.env.PORT}/api/user/register`,
+    requestOptions
+  );
 
   requestOptions.body = JSON.stringify(body2);
-  await fetch("http://localhost:5090/api/user/register", requestOptions);
+  await fetch(`${process.env.BASE_URI}/api/user/register`, requestOptions);
 
   requestOptions.body = JSON.stringify(body3);
-  await fetch("http://localhost:5090/api/user/register", requestOptions);
+  await fetch(
+    `http://localhost:${process.env.PORT}/api/user/register`,
+    requestOptions
+  );
 
   await fetch(
-    "http://localhost:5090/api/chat/Sean-dev-test/Saleh-dev-test",
+    `http://localhost:${process.env.PORT}/api/chat/Sean-dev-test/Saleh-dev-test`,
     requestOptions
   );
 
@@ -81,7 +95,7 @@ const populateDBData = async () => {
     contentTranslated: "سلام",
   });
   await fetch(
-    "http://localhost:5090/api/chat/Sean-dev-test/Saleh-dev-test",
+    `http://localhost:${process.env.PORT}/api/chat/Sean-dev-test/Saleh-dev-test`,
     requestOptions
   );
 
@@ -91,7 +105,7 @@ const populateDBData = async () => {
     contentTranslated: "מה המצב",
   });
   await fetch(
-    "http://localhost:5090/api/chat/Saleh-dev-test/Sean-dev-test",
+    `http://localhost:${process.env.PORT}/api/chat/Saleh-dev-test/Sean-dev-test`,
     requestOptions
   );
 };
