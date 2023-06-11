@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
-import { useRegisterUserMutation } from "../../features/userDataApi.js";
+import { useRegisterUserDataMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const dispatch = useDispatch();

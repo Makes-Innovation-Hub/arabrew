@@ -8,9 +8,9 @@ const initialState = {
   userDetails: {
     nativeLanguage: "",
     interests: [],
-    yearOfBirth: "",
+    birthYear: "",
     nationality: "",
-    address: "",
+    location: "",
     gender: "",
     occupation: "",
     bio: "",
@@ -24,10 +24,9 @@ export const userRegisterSlice = createSlice({
     addDetail: (state, action) => {
       const { field, value } = action.payload;
       state.userDetails[field] = value;
-      state.userDetails[field] = value;
     },
   },
 });
-export const { addDetail } = userRegisterSlice.actions;
+export const { addDetail, addAllDetails } = userRegisterSlice.actions;
 
 export default userRegisterSlice.reducer;
