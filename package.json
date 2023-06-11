@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "npx mocha ./server/api/translation/openAI.test.js",
+    "test": "npx mocha ./tests",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",
@@ -44,6 +44,7 @@
     "node-fetch": "^3.3.1",
     "openai": "^3.2.1",
     "pino": "^8.14.1",
+    "pino-pretty": "^10.0.0",
     "ws": "^8.13.0"
   }
 }
