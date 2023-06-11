@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { ArrowLeft } from "../../assets";
-import { StyledPage, StyledMargin, StyledPageTitle } from "../../styles";
+import {
+  StyledPage,
+  StyledMargin,
+  StyledPageTitle,
+  StyledButton,
+} from "../../styles";
 import {
   Content,
   ButtonDiv,
@@ -22,7 +27,7 @@ const Interests = () => {
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
 
-  const { interests } = useSelector((state) => state.userRegister);
+  const { interests } = useSelector((state) => state.userRegister.userDetails);
   const [selectedInterests, setSelectedInterests] = useState({
     field: "interests",
     value: interests.length > 0 ? interests : [],
@@ -63,7 +68,7 @@ const Interests = () => {
 
   const handleSave = () => {
     dispatch(addDetail(selectedInterests));
-    navigate("/occupation");
+    navigate("/agePage");
   };
   useEffect(() => {
     if (interestsNumber === 5) {
@@ -82,7 +87,7 @@ const Interests = () => {
             <ArrowLeft />
           </Link>
         }
-        title={"Add Language"}
+        title={"Add Interests"}
       />
       <StyledPage>
         <StyledMargin direction="horizontal" margin="35rem">

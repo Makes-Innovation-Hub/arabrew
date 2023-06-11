@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const UserSchema = new mongoose.Schema(
   {
     //* the unique subId that auth0 return after login/register
@@ -54,6 +53,12 @@ const UserSchema = new mongoose.Schema(
         required: [true, "⛔⛔ bio missing ⛔⛔"],
       },
     },
+    friends: [
+      {
+        type: String,
+        ref: "userModel",
+      },
+    ],
   },
   {
     versionKey: false,
