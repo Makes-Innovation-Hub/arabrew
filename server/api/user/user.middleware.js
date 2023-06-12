@@ -15,7 +15,6 @@ export const filterByInterests = asyncHandler(async (req, res, next) => {
   const interestsArr = JSON.stringify(interests);
   req.interests = JSON.parse(interestsArr).split(",");
   delete req.query;
-  // Logging timing
   timingLogger("filterByInterests", startTime);
   next();
 });

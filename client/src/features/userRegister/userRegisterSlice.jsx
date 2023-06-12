@@ -1,28 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  subId: "testing@#$",
+  name: "morty sanchez",
+  avatar:
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+  userDetails: {
+    nativeLanguage: "",
+    interests: [],
+    yearOfBirth: "",
+    nationality: "",
+    address: "",
+    gender: "",
+    occupation: "",
+    bio: "",
+  },
+
   connectedUser: {
     name: "",
     avatar: "",
     subId: "",
     lang: "",
     interests: [],
-    birthYear: "",
+    yearOfBirth: "",
     nationality: "",
-    location: "",
-    gender: "",
-    occupation: "",
-    bio: "",
-  },
-  selectedUserToChat: {
-    name: "",
-    avatar: "",
-    subId: "",
-    lang: "",
-    interests: [],
-    birthYear: "",
-    nationality: "",
-    location: "",
+    address: "",
     gender: "",
     occupation: "",
     bio: "",
@@ -35,7 +37,7 @@ export const userRegisterSlice = createSlice({
   reducers: {
     addDetail: (state, action) => {
       const { field, value } = action.payload;
-      state[field] = value;
+      state.userDetails[field] = value;
     },
     addAllDetails: (state, action) => {
       const specificUser = action.payload.isConnectedUser
@@ -56,6 +58,6 @@ export const userRegisterSlice = createSlice({
     },
   },
 });
-export const { addDetail, addAllDetails } = userRegisterSlice.actions;
+export const { addDetail } = userRegisterSlice.actions;
 
 export default userRegisterSlice.reducer;

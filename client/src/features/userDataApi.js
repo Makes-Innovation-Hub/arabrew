@@ -11,7 +11,7 @@ const userDataApi = createApi({
         url: "user/register",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userObj),
+        body: userObj,
       }),
     }),
     getLoggedUser: builder.query({
@@ -20,7 +20,6 @@ const userDataApi = createApi({
   }),
 });
 
-export const { useRegisterUserDataMutation, useGetLoggedUserQuery } =
-  userDataApi;
+export const { useRegisterUserMutation, useGetLoggedUserQuery } = userDataApi;
 
 export default userDataApi;
