@@ -20,7 +20,6 @@ import { useRegisterUserMutation } from "../../features/userDataApi.js";
 
 export default function BioPage() {
   const dispatch = useDispatch();
-  const dispatch = useDispatch();
   const [text, setText] = useState({
     value: "",
     field: "bio",
