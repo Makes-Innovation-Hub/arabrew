@@ -8,8 +8,24 @@ import {
   StyledMargin,
   StyledParagraph,
 } from "../styles";
+import { useSelector } from "react-redux";
 
 const Intro = () => {
+  const isAuthenticated = useSelector(
+    (state) => state.userStatus.isAuthenticated
+  );
+  const hasOnBoarded = useSelector((state) => state.userStatus.hasOnBoarded);
+
+  let path = "";
+
+  if (!isAuthenticated) {
+    path = "/tempAuth";
+  } else if (!hasOnBoarded) {
+    path = "/lang";
+  } else {
+    path = "/conversation";
+  }
+
   return (
     <Flex direction="column" height="100vh">
       <Glass />
@@ -23,7 +39,7 @@ const Intro = () => {
           to chat with
         </StyledParagraph>
       </StyledDiv>
-      <StyledButton to="/lang" text={"Lets Do It"} />
+      <StyledButton to={path} text={"Lets Do It"} />
     </Flex>
   );
 };

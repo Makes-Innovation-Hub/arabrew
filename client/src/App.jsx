@@ -16,6 +16,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import Test from "./pages/Test.jsx";
+import TempAuthPage from "./pages/TempAuthinticationPage/TempAuthPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
   {
     path: "/nationalityPage",
     element: <NationalityPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/tempAuth",
+    element: <TempAuthPage />,
     errorElement: <>Error...</>,
   },
 ]);
