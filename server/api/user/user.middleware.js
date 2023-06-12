@@ -1,6 +1,5 @@
 import { asyncHandler } from "../index.js";
-import { controllerLogger } from "../../middleware/logger.js";
-
+import { controllerLogger, timingLogger } from "../../middleware/logger.js";
 export const filterByInterests = asyncHandler(async (req, res, next) => {
   const { interests } = req.query;
   const startTime = Date.now();
