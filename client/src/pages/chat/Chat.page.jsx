@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const port = import.meta.env.VITE_WEB_SOCKET_PORT;
-const ws = new WebSocket(`ws://localhost:${port}`);
+const ws = new WebSocket(`${port}`);
 
 const Chat = () => {
   const [msgText, setMsgText] = useState("");
