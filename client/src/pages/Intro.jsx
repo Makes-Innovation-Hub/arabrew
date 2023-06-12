@@ -1,4 +1,5 @@
 import { Glass } from "../assets";
+import { Login, LogoutButton } from "../components";
 import {
   Flex,
   StyledButton,
@@ -23,6 +24,8 @@ const Intro = () => {
           to chat with
         </StyledParagraph>
       </StyledDiv>
+      <Login />
+      <LogoutButton />
       <StyledButton to="/lang" text={"Lets Do It"} />
     </Flex>
   );
