@@ -36,6 +36,9 @@ const userDataApi = createApi({
     getLoggedUser: builder.query({
       query: (subId) => `/user/${subId}`,
     }),
+    getUserChatsList: builder.query({
+      query: (userName) => `/chat/logged/user/${userName}`,
+    }),
   }),
 });
 
@@ -44,6 +47,7 @@ export const {
   useLazyGetUsersQuery,
   useGetChatByNamesQuery,
   useGetLoggedUserQuery,
+  useGetUserChatsListQuery,
 } = userDataApi;
 
 export default userDataApi;
