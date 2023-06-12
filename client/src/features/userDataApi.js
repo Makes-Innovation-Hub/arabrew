@@ -11,8 +11,27 @@ const userDataApi = createApi({
         url: "user/register",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userObj),
+        body: userObj,
       }),
+    }),
+    getUsers: builder.query({
+      query: (userObj) => {
+        const { subId, interests } = userObj;
+        const url = interests ? `?interests=${interests}` : "";
+        return {
+          url: `user/${subId}/get-users${url}`,
+          method: "GET",
+        };
+      },
+    }),
+    getChatByNames: builder.query({
+      query: (names) => {
+        const { user1, user2 } = names;
+        return {
+          url: `chat/${user1}/${user2}`,
+          method: "GET",
+        };
+      },
     }),
     getLoggedUser: builder.query({
       query: (subId) => `/user/${subId}`,
@@ -20,7 +39,11 @@ const userDataApi = createApi({
   }),
 });
 
-export const { useRegisterUserDataMutation, useGetLoggedUserQuery } =
-  userDataApi;
+export const {
+  useRegisterUserMutation,
+  useLazyGetUsersQuery,
+  useGetChatByNamesQuery,
+  useGetLoggedUserQuery,
+} = userDataApi;
 
 export default userDataApi;
