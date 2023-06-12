@@ -20,7 +20,6 @@ const userDataApi = createApi({
   }),
 });
 
-export const { useRegisterUserDataMutation, useGetLoggedUserQuery } =
-  userDataApi;
+export const { useRegisterUserMutation, useGetLoggedUserQuery } = userDataApi;
 
 export default userDataApi;
