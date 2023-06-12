@@ -1,11 +1,13 @@
 import express from "express";
 import { deleteOldMessages } from "./chat.middleware.js";
 import {
-  addMessageToChat,
-  createChat,
   getChatByNames,
   getUserChatsList,
-} from "./chat.controllers.js";
+} from "./chat.controllers-GetFunctions.js";
+import {
+  addMessageToChat,
+  createChat,
+} from "./chat.controllers-update-functions.js/index.js";
 const router = express.Router();
 
 router
