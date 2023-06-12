@@ -18,7 +18,7 @@ import {
 } from "../assets/index.jsx";
 import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
-export default function SideBar({ a }) {
+export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
   let langArr = [
@@ -26,22 +26,29 @@ export default function SideBar({ a }) {
     [Eng, "עברית"],
     [Eng, "عربيه"],
   ];
+
+  let fectivicProfile = {
+    name: "Mika",
+    profile: thisProfile,
+  };
   return (
-    <ModalSideBar
-      id={"black"}
-      onClick={(e) => {
-        if (e.target.id === "black") a(false);
-        else if (e.target.id === "arrow") a(false);
-        // || e.target.id === "arrow" && a(false);
-        console.log("black:", e.target.id);
-      }}
-    >
-      <StyledSideBar id={"white"}>
-        <GoBack id={"arrow"}>
+    <>
+      <ModalSideBar
+        onClick={() => {
+          openSideBar(false);
+        }}
+      />
+      <StyledSideBar>
+        <GoBack
+          onClick={() => {
+            openSideBar(false);
+          }}
+        >
           <BlackArrowLeft />
         </GoBack>
         <DisplayMe>
-          <ProfileChat profile={thisProfile} /> Mika
+          <ProfileChat profile={fectivicProfile.profile} />{" "}
+          {fectivicProfile.name}
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar href="/">
@@ -89,6 +96,6 @@ export default function SideBar({ a }) {
           )}
         </UlSideBar>
       </StyledSideBar>
-    </ModalSideBar>
+    </>
   );
 }

@@ -20,7 +20,7 @@ const ConversationPage = ({ prevConversation }) => {
     <div>
       {isSideBar && (
         <div>
-          <SideBar a={setIsSideBar} />
+          <SideBar openSideBar={setIsSideBar} />
         </div>
       )}
       <StyledMargin direction="vertical" margin="5%">
