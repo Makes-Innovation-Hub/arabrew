@@ -6,10 +6,13 @@ import ConversationPage from "./ConversationPage.jsx";
 import BirthPage from "./BirthPage/BirthPage.jsx";
 // import Chat from "./Chat/Chat.jsx";
 import Chat from "./chat/Chat.page.jsx";
+import NationalityPage from "./NationalityPage/NationalityPage.jsx";
 import Nationality from "./Nationality.jsx";
 import GenderSelection from "./GenderSelection.jsx";
 import BioPage from "./BioPage/BioPage.jsx";
 import Location from "./Location.jsx";
+import CommonInterests from "./CommonInterests.jsx";
+import SearchFriends from "./SearchFriends.page.jsx";
 export {
   Intro,
   BirthPage,
@@ -17,9 +20,11 @@ export {
   Interests,
   Occupation,
   ConversationPage,
-  Nationality,
+  NationalityPage,
   Chat,
   GenderSelection,
   BioPage,
   Location,
+  SearchFriends,
+  CommonInterests,
 };

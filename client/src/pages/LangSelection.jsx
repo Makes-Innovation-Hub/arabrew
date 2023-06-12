@@ -15,7 +15,7 @@ import { addDetail } from "../features/userRegister/userRegisterSlice.jsx";
 const LangSelection = () => {
   const [language, setLanguage] = useState({
     value: "",
-    field: "Language",
+    field: "nativeLanguage",
   });
 
   const dispatch = useDispatch();

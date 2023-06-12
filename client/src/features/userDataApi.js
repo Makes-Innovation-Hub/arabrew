@@ -1,25 +1,49 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-//! this API slice is for all of our https Requests not just the userData...
 const userDataApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5575/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `http://localhost:${import.meta.env.VITE_SERVER_BASE_URL}/api`,
+  }),
+
   endpoints: (builder) => ({
-    sendUserData: builder.mutation({
-      query: (userData) => ({
-        url: "/user-data",
+    registerUser: builder.mutation({
+      query: (userObj) => ({
+        url: "user/register",
         method: "POST",
-        body: userData,
+        headers: { "Content-Type": "application/json" },
+        body: userObj,
       }),
     }),
-  }),
-  getChatByNames: builder.query({
-    query: (namesArr) => ({
-      url: `chat/${namesArr[0]}/${namesArr[1]}`,
-      method: "GET",
+    getUsers: builder.query({
+      query: (userObj) => {
+        const { subId, interests } = userObj;
+        const url = interests ? `?interests=${interests}` : "";
+        return {
+          url: `user/${subId}/get-users${url}`,
+          method: "GET",
+        };
+      },
+    }),
+    getChatByNames: builder.query({
+      query: (names) => {
+        const { user1, user2 } = names;
+        return {
+          url: `chat/${user1}/${user2}`,
+          method: "GET",
+        };
+      },
+    }),
+    getLoggedUser: builder.query({
+      query: (subId) => `/user/${subId}`,
     }),
   }),
 });
 
-export const { useSendUserDataMutation, useGetChatByNamesQuery } = userDataApi;
+export const {
+  useRegisterUserMutation,
+  useLazyGetUsersQuery,
+  useGetChatByNamesQuery,
+  useGetLoggedUserQuery,
+} = userDataApi;
 
 export default userDataApi;

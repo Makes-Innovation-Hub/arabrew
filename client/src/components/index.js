@@ -7,6 +7,8 @@ import { ContentTitle } from "./styles/ContentTitle.jsx";
 import { ButtonDiv } from "./styles/ButtonDiv.jsx";
 import { Button } from "./styles/Button.jsx";
 import Header from "./Header.jsx";
+import Friend from "./Friend.jsx";
+import FriendsList from "./searchFriends/FriendsList.jsx";
 import InputArea from "./Chat/InputArea/InputArea.jsx";
 import {
   selectedBtn,
@@ -29,4 +31,6 @@ export {
   selectedContainer,
   Header,
   InputArea,
+  Friend,
+  FriendsList,
 };

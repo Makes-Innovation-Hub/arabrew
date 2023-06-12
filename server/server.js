@@ -1,7 +1,7 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
-
+import cors from "cors";
 import { WebSocket, WebSocketServer } from "ws";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
@@ -16,7 +16,7 @@ const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 connectDB();
 
 const rooms = {};
@@ -24,6 +24,8 @@ const rooms = {};
 const clients = [];
 
 wss.on("connection", (ws) => {
+  // 1.check if the room exist includes name1_name2
+  //2. if not found create the room
   clients.push({ room: ws.id, client: ws });
   rooms[ws.id] = ws;
   ws.send(JSON.stringify({ msg: "hello there , u are ONLINE" }));
@@ -45,7 +47,7 @@ wss.on("connection", (ws) => {
 app.use("/api", routes);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
@@ -61,5 +63,5 @@ const server = app.listen(
 process.on("unhandledRejection", async (err, promise) => {
   console.log(`Error: ${err.message}`);
   server.close(() => process.exit(1));
-  await wss.close();
+  wss.close();
 });
