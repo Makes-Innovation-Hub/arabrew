@@ -39,6 +39,9 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   }
 });
 
+//$ @desc    GET user by subId
+//$ @route   GET /api/user/:subId
+//! @access  NOT SET YET
 export const getUser = asyncHandler(async (req, res, next) => {
   const { subId } = req.params;
 
