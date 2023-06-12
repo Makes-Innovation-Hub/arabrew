@@ -8,7 +8,7 @@ const initialState = {
 export const userStatusSlice = createSlice({
   name: "status",
   initialState,
-  reducer: {
+  reducers: {
     setAuthenticated: (state, action) => {
       state.isAuthenticated = action.payload;
     },
