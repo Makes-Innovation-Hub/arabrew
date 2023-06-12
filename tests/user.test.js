@@ -9,20 +9,18 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: __dirname + "../.env" });
+dotenv.config({ path: __dirname + "/../server/.env" });
 const PORT = process.env.PORT;
-const userId = Math.floor(Math.random() * 1000 + 1000);
 
 describe("user creations tests", function () {
   this.timeout(10000);
   describe("save user in db test", () => {
     it("should return a 201 status code", async function () {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+      const myHeaders = { "Content-Type": "application/json" };
 
       const body = {
-        subId: userId,
-        name: "JohnDoe17",
+        subId: -10,
+        name: "testUser",
         avatar: "123",
         userDetails: {
           nativeLanguage: "HE",
@@ -40,7 +38,6 @@ describe("user creations tests", function () {
           occupation: "Doctor",
           bio: "I Love People",
         },
-        friends: ["A", "B", "C"],
       };
 
       const requestOptions = {
@@ -50,7 +47,7 @@ describe("user creations tests", function () {
       };
 
       const res = await fetch(
-        `http://localhost:${PORT}/api/user/user-data`,
+        `${process.env.URL}:${process.env.PORT}/api/user/register`,
         requestOptions
       );
       assert.strictEqual(res.status, 201);
@@ -59,8 +56,7 @@ describe("user creations tests", function () {
 
   describe("get user from db test", () => {
     it("should GET the specific user by subId", async function () {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+      const myHeaders = { "Content-Type": "application/json" };
 
       const requestOptions = {
         method: "GET",
@@ -68,7 +64,7 @@ describe("user creations tests", function () {
       };
 
       const res = await fetch(
-        `http://localhost:${PORT}/api/user/${userId}`,
+        `${process.env.URL}:${process.env.PORT}/api/user/-10`,
         requestOptions
       );
       assert.equal(res.status, 200);
@@ -83,7 +79,7 @@ describe("user creations tests", function () {
           useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-        await User.findOneAndDelete({ subId: userId });
+        await User.findOneAndDelete({ subId: "-10" });
       } catch (error) {
         console.error("Error deleting user:", error);
       } finally {

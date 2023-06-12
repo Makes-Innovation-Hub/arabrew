@@ -53,12 +53,6 @@ const UserSchema = new mongoose.Schema(
         required: [true, "⛔⛔ bio missing ⛔⛔"],
       },
     },
-    friends: [
-      {
-        type: String,
-        ref: "userModel",
-      },
-    ],
   },
   {
     versionKey: false,
