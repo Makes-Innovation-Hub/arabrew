@@ -16,6 +16,7 @@ const initialState = {
     bio: "",
   },
 };
+
 export const userRegisterSlice = createSlice({
   name: "userRegister",
   initialState,
