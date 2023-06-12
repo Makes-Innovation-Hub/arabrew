@@ -33,6 +33,9 @@ const userDataApi = createApi({
         };
       },
     }),
+    getLoggedUser: builder.query({
+      query: (subId) => `/user/${subId}`,
+    }),
   }),
 });
 
@@ -40,6 +43,7 @@ export const {
   useRegisterUserMutation,
   useLazyGetUsersQuery,
   useGetChatByNamesQuery,
+  useGetLoggedUserQuery,
 } = userDataApi;
 
 export default userDataApi;

@@ -1,5 +1,12 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import User from "./user.js";
+import {
+  controllerLogger,
+  databaseLogger,
+  timingLogger,
+  successLogger,
+  errorLogger,
+} from "../../middleware/logger.js";
 
 Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);
@@ -11,8 +18,25 @@ Array.prototype.sortByMatching = function () {
 export const registerUser = asyncHandler(async (req, res, next) => {
   const userInfo = req.body;
   const newUser = await User.create(userInfo);
-  if (!newUser) {
-    return next(new Error("error registering user", newUser));
+  controllerLogger("registerUser", { userInfo }, "Registering new user");
+
+  const startTime = Date.now();
+  try {
+    const newUser = await User.create(userInfo);
+    if (!newUser) {
+      errorLogger("error registering user", req, res, next);
+      return next(new Error("error registering user", newUser));
+    }
+    successLogger("registerUser", "User registration succeeded");
+
+    timingLogger("registerUser", startTime);
+    return res.status(201).json({
+      success: true,
+      data: newUser,
+    });
+  } catch (err) {
+    errorLogger(err, req, res, next);
+    next(err);
   }
   return res.status(200).json({
     success: true,
