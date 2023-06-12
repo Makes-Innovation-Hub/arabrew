@@ -10,7 +10,7 @@ import connectDB from "./config/db.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: __dirname + "/config/config.env" });
+dotenv.config({ path: __dirname + "/.env" });
 
 const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
 
