@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserDataMutation } from "../../features/userDataApi.js";
+import { setOnBoarded } from "../../features/userStatus/userStatusSlice.jsx";
 
 export default function BioPage() {
   const [text, setText] = useState({
@@ -94,6 +95,8 @@ export default function BioPage() {
               onClick={() => {
                 dispatch(addDetail(text));
                 setIsDetailAdded(true);
+                dispatch(setOnBoarded(true));
+                navigate("conversation");
               }}
             >
               <i>Save & Finish</i>
