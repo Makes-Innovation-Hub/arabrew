@@ -15,17 +15,19 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
-import { useRegisterUserDataMutation } from "../../features/userDataApi.js";
+import { useRegisterUserMutation } from "../../features/userDataApi.js";
 import { setOnBoarded } from "../../features/userStatus/userStatusSlice.jsx";
 
 export default function BioPage() {
+  const dispatch = useDispatch();
   const [text, setText] = useState({
     value: "",
     field: "bio",
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, data }] = useRegisterUserDataMutation();
+  const [registerUser, { data, isSuccess, isError, error }] =
+    useRegisterUserMutation();
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -33,16 +35,30 @@ export default function BioPage() {
   };
   const characterCount = text.value.length;
 
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   useEffect(() => {
     if (isDetailAdded) {
       registerUser(userData);
-      navigate("/conversation");
     }
   }, [isDetailAdded]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/conversation");
+    }
+    if (isError) {
+      console.error(error);
+    }
+  }, [isSuccess, isError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/conversation");
+    }
+    if (isError) {
+      console.error(error);
+    }
+  }, [isSuccess, isError]);
 
   return (
     <BackLayout>
@@ -96,7 +112,7 @@ export default function BioPage() {
                 dispatch(addDetail(text));
                 setIsDetailAdded(true);
                 dispatch(setOnBoarded(true));
-                navigate("conversation");
+                navigate("/conversation");
               }}
             >
               <i>Save & Finish</i>
