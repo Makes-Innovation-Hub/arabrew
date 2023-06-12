@@ -14,9 +14,12 @@ const userDataApi = createApi({
         body: userObj,
       }),
     }),
+    getLoggedUser: builder.query({
+      query: (subId) => `/user/${subId}`,
+    }),
   }),
 });
 
-export const { useRegisterUserMutation } = userDataApi;
+export const { useRegisterUserMutation, useGetLoggedUserQuery } = userDataApi;
 
 export default userDataApi;
