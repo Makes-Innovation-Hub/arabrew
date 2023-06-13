@@ -9,6 +9,18 @@ export default function ChatDisplayArea() {
         // could be sorted by timestamp before display -not added here-
         <MessageBox message={message} key={index} />
       ))}
+      {chats.length === 0 && (
+        <img
+          width="200rem"
+          height="200rem"
+          src="../../../../img/click-me.jpg"
+          style={{
+            position: "absolute",
+            bottom: "12%",
+            left: "15%",
+          }}
+        />
+      )}
     </ChatsContainer>
   );
 }
