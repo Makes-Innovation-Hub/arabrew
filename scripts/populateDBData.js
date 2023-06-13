@@ -75,7 +75,10 @@ const populateDBData = async () => {
   );
 
   requestOptions.body = JSON.stringify(body2);
-  await fetch(`${process.env.BASE_URI}/api/user/register`, requestOptions);
+  await fetch(
+    `http://localhost:${process.env.PORT}/api/user/register`,
+    requestOptions
+  );
 
   requestOptions.body = JSON.stringify(body3);
   await fetch(
