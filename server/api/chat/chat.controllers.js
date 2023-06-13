@@ -65,9 +65,12 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     usersArrSwitched: [reciever, sender],
   };
 
+  const { contentOriginal, contentTranslated } = req.body;
+
   const newMsgObj = {
-    ...req.body, //* messages content
     sender: sender,
+    contentOriginal: contentOriginal,
+    contentTranslated: contentTranslated,
     createdAt: new Date().toLocaleString("en-US", {
       timeZone: "Asia/Jerusalem",
       hour12: false,

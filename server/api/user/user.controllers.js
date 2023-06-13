@@ -93,10 +93,7 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
     delete user.sortBy;
     delete user._id;
   });
-  res.status(200).json({
-    success: true,
-    data: sorted_matchingUsers,
-  });
+  res.status(200).json(sorted_matchingUsers);
 });
 
 //$ @desc    get all users in random order (execlude the logged user)
@@ -114,8 +111,5 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
     return user;
   });
   allUsers = allUsers.sort(() => Math.random() - 0.5);
-  res.status(200).json({
-    success: true,
-    data: allUsers,
-  });
+  res.status(200).json(allUsers);
 });
