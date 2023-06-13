@@ -1,8 +1,5 @@
 import path from "path";
-import assert from "assert";
 import fetch from "node-fetch";
-import mongoose from "mongoose";
-import User from "../server/api/user/user.js";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 

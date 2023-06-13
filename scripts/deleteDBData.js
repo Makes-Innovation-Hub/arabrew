@@ -1,5 +1,3 @@
-import assert from "assert";
-import fetch from "node-fetch";
 import mongoose from "mongoose";
 import User from "../server/api/user/user.js";
 import Chat from "../server/api/chat/chat.js";
