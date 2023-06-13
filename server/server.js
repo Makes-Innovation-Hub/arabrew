@@ -46,7 +46,7 @@ const socket_io = new Server(server, {
 });
 
 socket_io.on("connection", (socket) => {
-  console.log("🟢🟢 new user connected 🟢🟢");
+  console.log("🟢🟢 Socket.io is active 🟢🟢");
   socket.on("room_setup", (chatData) => {
     const { chatId, sender, reciever } = chatData;
     access_chatCollection([sender, reciever])
@@ -54,21 +54,22 @@ socket_io.on("connection", (socket) => {
         if (!isSuccess)
           throw new Error("error by finding chat , in room_setup");
         socket.join(chatId);
-        console.log(`connected to chat between :${chatId}`);
       })
       .catch((err) => console.error(err));
   });
   socket.on("new_message", (newMsg) => {
     const { chatId, content, sender, reciever } = newMsg;
-    addMessageToChat(sender, reciever, content).then((isSuccess) => {
-      if (!isSuccess) throw new Error("error by finding chat , in room_setup");
-      //*send the message back to the sender
-      socket.emit("message_to_sender", content);
-      //*send the message to the reciever
-      socket.in(chatId).emit("message_to_reciever", newMsg);
-      console.log(`new Message was send by ${sender}, in the chat ${chatId}`);
-    });
+    addMessageToChat(sender, reciever, content)
+      .then((isSuccess) => {
+        if (!isSuccess) throw new Error("failed adding new MSg (server.js)");
+        //*send the message back to the sender
+        socket.emit("message_to_sender", newMsg);
+        //*send the message to the reciever
+        socket.in(chatId).emit("message_to_reciever", newMsg);
+      })
+      .catch((err) => console.error(err));
   });
+  socket.on("disconnect", (data) => console.log(data));
 });
 process.on("unhandledRejection", async (err, promise) => {
   console.log(`Error: ${err.message}`);

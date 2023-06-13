@@ -1,6 +1,8 @@
-export const isAddMessageSuccess = (messagesHistory, createdAt) => {
-  messagesHistory.sort((a, b) => b.createdAt - a.createdAt);
-  const newestMsgTime = messagesHistory[0].createdAt;
-  const isSameTime = newestMsgTime === createdAt ? true : false;
-  return isSameTime;
+import { newestMessage } from "../api/index.js";
+
+export const isAddMessageSuccess = (messagesHistory, content) => {
+  const newestMsgContent = newestMessage(messagesHistory);
+  const isSame = newestMsgContent === content ? true : false;
+  console.log(newestMsgContent);
+  return isSame;
 };
