@@ -3,7 +3,6 @@ import { messageController } from "./translation.controllers.js";
 import { requestLogger } from "../../middleware/logger.js";
 
 const router = express.Router();
-
 router.use(requestLogger);
 
 router

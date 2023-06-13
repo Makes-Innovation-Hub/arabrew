@@ -8,6 +8,7 @@ import { ButtonDiv } from "./styles/ButtonDiv.jsx";
 import { Button } from "./styles/Button.jsx";
 import Header from "./Header.jsx";
 import Friend from "./Friend.jsx";
+import FriendsList from "./searchFriends/FriendsList.jsx";
 import {
   selectedBtn,
   listBtn,
@@ -29,4 +30,5 @@ export {
   selectedContainer,
   Header,
   Friend,
+  FriendsList,
 };
