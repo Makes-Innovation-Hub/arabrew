@@ -18,6 +18,7 @@ Array.prototype.sortByMatching = function () {
 //! @access  NOT SET YET
 export const registerUser = asyncHandler(async (req, res, next) => {
   const userInfo = req.body;
+  const newUser = await User.create(userInfo);
   controllerLogger("registerUser", { userInfo }, "Registering new user");
 
   const startTime = Date.now();
@@ -38,20 +39,9 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
-});
-
-export const getUser = asyncHandler(async (req, res, next) => {
-  const { subId } = req.params;
-
-  const user = await User.findOne({ subId: subId });
-
-  if (!user) {
-    return next(new Error("User not found"));
-  }
-
   return res.status(200).json({
     success: true,
-    data: user,
+    data: newUser,
   });
 });
 
@@ -59,73 +49,38 @@ export const getUser = asyncHandler(async (req, res, next) => {
 //$ @route   GET /api/user/:subId/get-users?interests=Dancing,Gaming...
 //! @access  NOT SET YET
 export const getUsersByInterests = asyncHandler(async (req, res, next) => {
-  controllerLogger(
-    "getUsersByInterests",
-    req.params,
-    "Finding users by interests"
-  );
-  const startTime = Date.now();
-  try {
-    if (!req.interests) {
-      // Logging timing
-      timingLogger("getUsersByInterests", startTime);
-      return next();
-    }
-    const { subId } = req.params;
-    const interests = req.interests || null;
-    const usersInterests = interests
-      ? { "userDetails.interests": { $in: interests } }
-      : {};
+  if (!req.interests) return next();
+  const { subId } = req.params;
+  const interests = req.interests || null;
+  const usersInterests = interests
+    ? { "userDetails.interests": { $in: interests } }
+    : {};
+  const matchingUsers = await User.find({
+    subId: { $ne: subId },
+    ...usersInterests,
+  }).lean();
+  if (!matchingUsers || matchingUsers.length < 1) return next();
 
-    // Logging database query
-    databaseLogger("Service: getUsersByInterests, Find by subId", req.params);
-    const matchingUsers = await User.find({
-      subId: { $ne: subId },
-      ...usersInterests,
-    }).lean();
-    if (!matchingUsers || matchingUsers.length < 1) {
-      // Logging timing
-      timingLogger("getUsersByInterests", startTime);
-      return next();
-    }
+  let sorted_matchingUsers = matchingUsers
+    .map((user) => {
+      const { userDetails } = user;
+      const matching_interests_number = interests.reduce((total, current) => {
+        return userDetails.interests.includes(current)
+          ? (total += 1)
+          : total + 0;
+      }, 0);
 
-    let sorted_matchingUsers = matchingUsers
-      .map((user) => {
-        const { userDetails } = user;
-        const matching_interests_number = interests.reduce((total, current) => {
-          return userDetails.interests.includes(current)
-            ? (total += 1)
-            : total + 0;
-        }, 0);
-
-        return {
-          sortBy: matching_interests_number,
-          ...user,
-        };
-      })
-      .sortByMatching();
-    sorted_matchingUsers.forEach((user) => {
-      delete user.sortBy;
-      delete user._id;
-    });
-
-    // Logging timing
-    timingLogger("getUsersByInterests", startTime);
-
-    // Logging after the service ends successfully
-    successLogger("getUsersByInterests", {
-      interests: interests,
-      matchingUsers: sorted_matchingUsers,
-    });
-
-    res.status(200).json({
-      success: true,
-      data: sorted_matchingUsers,
-    });
-  } catch (err) {
-    errorLogger(err, req, res, next);
-    next(err);
-  }
+      return {
+        sortBy: matching_interests_number,
+        ...user,
+      };
+    })
+    .sortByMatching();
+  sorted_matchingUsers.forEach((user) => {
+    delete user.sortBy;
+    delete user._id;
+  });
+  res.status(200).json(sorted_matchingUsers);
 });
 
 //$ @desc    get all users in random order (execlude the logged user)
