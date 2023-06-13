@@ -11,7 +11,9 @@
     "dev": "nodemon ./server/server.js",
     "generate-env": "bash scripts/generateConfig.sh",
     "install-all": "npm install; npm install --prefix ./client",
-    "build-client": "npm run build --prefix ./client"
+    "build-client": "npm run build --prefix ./client",
+    "populate-dummy-data": "node ./scripts/populateDBData.js",
+    "delete-dummy-data": "node ./scripts/deleteDBData.js"
   },
   "repository": {
     "type": "git",
