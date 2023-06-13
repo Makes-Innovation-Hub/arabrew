@@ -10,7 +10,7 @@ import {
   StyledBorder,
 } from "../styles";
 
-const Friend = ({ name, flag, img, hobbies }) => {
+const Friend = ({ name, flag, img, hobbies, chatPage }) => {
   return (
     <>
       <Flex width="100%">
@@ -20,7 +20,7 @@ const Friend = ({ name, flag, img, hobbies }) => {
         <StyledMargin direction="horizontal" margin="1rem" />
         <StyledHeaderTitle color="#161616">{name}</StyledHeaderTitle>
         <StyledBorder>
-          <Link>
+          <Link to={chatPage}>
             <StyledMargin direction="vertical" margin="0.75rem" />
             <MessageIcon />
           </Link>
