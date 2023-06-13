@@ -16,8 +16,8 @@ const initialState = {
   },
 };
 
-export const userRegisterSlice = createSlice({
-  name: "userRegister",
+export const chatUserSlice = createSlice({
+  name: "chatUser",
   initialState,
   reducers: {
     addDetail: (state, action) => {
@@ -29,6 +29,6 @@ export const userRegisterSlice = createSlice({
     },
   },
 });
-export const { addDetail, addAllDetails } = userRegisterSlice.actions;
+export const { addDetail, addAllDetails } = chatUserSlice.actions;
 
-export default userRegisterSlice.reducer;
+export default chatUserSlice.reducer;
