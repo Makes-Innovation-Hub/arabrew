@@ -6,7 +6,6 @@ export const access_chatCollection = async (usersArr) => {
     const findChat = await Chat.findOne({
       $or: [{ users: usersArr }, { users: usersArrSwitched }],
     });
-    //!.lean();
     const isSuccess = findChat ? true : false;
     if (!isSuccess) {
       const newChat = await Chat.create({ users: usersArr });
@@ -40,7 +39,6 @@ export const addMessageToChat = async (sender, reciever, content) => {
       { $push: { messagesHistory: newMsgObj } },
       options
     );
-    //!.lean();
     const messagesHistory = updatedChat.messagesHistory;
     return isAddMessageSuccess(messagesHistory, content);
   } catch (error) {
