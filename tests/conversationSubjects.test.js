@@ -11,12 +11,20 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/../server/.env" });
 
-describe("generate topics api end-point test", function () {
-  before(async function () {
-    const myHeaders = { "Content-Type": "application/json" };
+describe("generate topics api end-point test", async function () {
+  const myHeaders = { "Content-Type": "application/json" };
+  const subIdArr = [];
+
+  this.beforeAll(async function () {
+    subIdArr[0] = Math.round(Math.random() * 100) * -1;
+    subIdArr[1] = Math.round(Math.random() * 100) * -1;
+
+    while (subIdArr[0] === subIdArr[1]) {
+      subIdArr[1] = Math.round(Math.random()) * 100 * -1;
+    }
 
     const body1 = {
-      subId: "-1",
+      subId: subIdArr[0] + "",
       name: "testuser1",
       avatar: "123",
       userDetails: {
@@ -36,20 +44,13 @@ describe("generate topics api end-point test", function () {
         bio: "I Love People",
       },
     };
-
     const requestOptions1 = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(body1),
     };
-
-    const res1 = await fetch(
-      `${process.env.URL}:${process.env.PORT}/api/user/user-data`,
-      requestOptions1
-    );
-
     const body2 = {
-      subId: "-2",
+      subId: subIdArr[1] + "",
       name: "testuser2",
       avatar: "456",
       userDetails: {
@@ -69,52 +70,50 @@ describe("generate topics api end-point test", function () {
         bio: "I Love People and pets",
       },
     };
-
     const requestOptions2 = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify(body2),
     };
-
+    const res1 = await fetch(
+      `${process.env.BASE_URL}:${process.env.PORT}/api/user/register`,
+      requestOptions1
+    );
     const res2 = await fetch(
-      `${process.env.URL}:${process.env.PORT}/api/user/user-data`,
+      `${process.env.BASE_URL}:${process.env.PORT}/api/user/register`,
       requestOptions2
     );
   });
 
-  after(async function () {
+  it("should GET conversation topics", async function () {
+    this.timeout(5000);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
+    const testUser1 = "testuser1";
+    const testUser2 = "testuser2";
+    const res = await fetch(
+      `${process.env.BASE_URL}:${process.env.PORT}/api/user/generate-topics/${testUser1}/${testUser2}`,
+      requestOptions
+    );
+    const data = await res.json();
+    assert.equal(true, data.data[0].suggestion.length > 0);
+  });
+
+  this.afterAll(async function () {
     let conn;
     try {
       conn = await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-      await User.findOneAndDelete({ subId: -1 });
-      await User.findOneAndDelete({ subId: -2 });
+      await User.findOneAndDelete({ subId: subIdArr[0] + "" });
+      await User.findOneAndDelete({ subId: subIdArr[1] + "" });
     } catch (error) {
       console.error("Error deleting user:", error);
     } finally {
       await conn.disconnect();
     }
-  });
-
-  it("should GET conversation topics", async function () {
-    this.timeout(5000);
-
-    const requestOptions = {
-      method: "GET",
-    };
-
-    const testUser1 = "testuser1";
-    const testUser2 = "testuser2";
-
-    const res = await fetch(
-      `${process.env.URL}:${process.env.PORT}/api/user/generate-topics/${testUser1}/${testUser2}`,
-      requestOptions
-    );
-
-    const data = await res.json();
-    console.log("data", data);
-    assert.equal(true, data.data[0].suggestion.length > 0);
   });
 });

@@ -5,6 +5,7 @@ read -p "WEB_SOCKET_PORT: " web_socket_port
 read -p "MONGO_URI_DEVELOPMENT: " mongo_uri_dev
 read -p "MONGO_URI_PRODUCTION: " mongo_uri_prod
 read -p "OPEN_AI_API_KEY: " open_ai_api_key
+read -p "BASE_URL: " base_url
 
 touch ./server/.env
 echo '
@@ -14,4 +15,5 @@ echo '
   MONGO_URI_DEVELOPMENT='$mongo_uri_dev'
   MONGO_URI_PRODUCTION='$mongo_uri_prod'
   OPEN_AI_API_KEY='$open_ai_api_key'
+  BASE_URL='$base_url'
 ' > ./server/.env

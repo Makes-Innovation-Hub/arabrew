@@ -5,7 +5,6 @@ import {
   getUsersByInterests,
   getAllUsers,
   generateTopics,
-  getUser,
 } from "./user.controllers.js";
 import { requestLogger } from "../../middleware/logger.js";
 const router = express.Router();
