@@ -7,9 +7,9 @@ export default defineConfig({
   build: {
     env: {
       VITE_WEB_SOCKET_PORT: process.env.VITE_WEB_SOCKET_PORT,
+      VITE_WEB_SOCKET_BASE_URL: process.env.VITE_WEB_SOCKET_BASE_URL,
       VITE_SERVER_BASE_URL: process.env.VITE_SERVER_BASE_URL,
       VITE_SERVER_PORT: process.env.VITE_SERVER_PORT,
-      VITE_WEB_SOCKET_BASE_URL: process.env.VITE_WEB_SOCKET_BASE_URL,
     },
   },
   server: {

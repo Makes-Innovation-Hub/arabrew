@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     element: <ConversationPage prevConversation={prevConversation} />,
   },
   {
-    path: "/chat-page/:user1_name/:user2_name",
+    path: "/chat-page/:sender/:reciever",
     element: <Chat />,
     errorElement: <>Error...</>,
   },

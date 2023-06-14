@@ -37,10 +37,6 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
-  return res.status(200).json({
-    success: true,
-    data: newUser,
-  });
 });
 
 //$ @desc    find friends by interests Array, (user id to execlude him )
