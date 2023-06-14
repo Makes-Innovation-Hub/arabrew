@@ -37,6 +37,8 @@ const Intro = () => {
   );
 
   useEffect(() => {
+    console.log(isSuccess);
+    console.log(loggedUser?.success);
     if (!isLoading && user && isSuccess) {
       if (loggedUser?.success) {
         navigate("/conversation");
@@ -86,7 +88,6 @@ const Intro = () => {
 
         {isAuthenticated && (
           <div>
-            {console.log(user)}
             <p>Hello, {user.name}!</p>
             <button
               onClick={() => logout({ returnTo: window.location.origin })}

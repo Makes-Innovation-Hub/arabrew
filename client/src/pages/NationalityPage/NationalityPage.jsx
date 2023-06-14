@@ -15,6 +15,7 @@ import countries from "../../assets/countriesAndFlags/countries.json";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
+
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",

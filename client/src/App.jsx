@@ -10,7 +10,7 @@ import {
   BioPage,
   Location,
   GenderSelection,
-  PopulateDataFromDBToStore,
+  SearchFriends,
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -35,24 +35,22 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
-  // { path: "/test", element: <Test />, errorElement: <>Error...</> },
+  {
+    path: "/chat-page/:sender/:reciever",
+    element: <Chat />,
+    errorElement: <>Error...</>,
+  },
   { path: "/profile", element: <ProfilePage /> },
-  { path: "/chatPage", element: <Chat />, errorElement: <>Error...</> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {
-    path: "/nationalityPage",
-    element: <NationalityPage />,
+    path: "/search-friends",
+    element: <SearchFriends />,
     errorElement: <>Error...</>,
   },
   {
-    path: "/populate-data",
-    element: (
-      <PopulateDataFromDBToStore
-        subId={"google-oauth2|115423007148400278155"}
-        isConnectedUser={true}
-      />
-    ),
+    path: "/nationalityPage",
+    element: <NationalityPage />,
     errorElement: <>Error...</>,
   },
 ]);
