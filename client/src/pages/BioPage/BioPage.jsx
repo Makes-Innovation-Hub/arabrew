@@ -13,7 +13,10 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import {
+  addDetail,
+  addAuth0Details,
+} from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../features/userDataApi.js";
 

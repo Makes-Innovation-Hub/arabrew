@@ -24,11 +24,18 @@ export const chatUserSlice = createSlice({
       const { field, value } = action.payload;
       state.userDetails[field] = value;
     },
-    addAllDetails: (state, action) => {
+    addAuth0Details: (state, action) => {
+      const { subId, name, avatar } = action.payload;
+      state.subId = subId;
+      state.name = name;
+      state.avatar = avatar;
+    },
+    addAllDetailsChatUser: (state, action) => {
       state = action.payload;
     },
   },
 });
-export const { addDetail, addAllDetails } = chatUserSlice.actions;
+export const { addDetail, addAllDetailsChatUser, addAuth0Details } =
+  chatUserSlice.actions;
 
 export default chatUserSlice.reducer;

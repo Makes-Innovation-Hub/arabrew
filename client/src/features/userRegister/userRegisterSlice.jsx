@@ -24,11 +24,19 @@ export const userRegisterSlice = createSlice({
       const { field, value } = action.payload;
       state.userDetails[field] = value;
     },
-    addAllDetails: (state, action) => {
+    addAuth0Details: (state, action) => {
+      const { subId, name, avatar } = action.payload;
+      state.subId = subId;
+      state.name = name;
+      state.avatar = avatar;
+    },
+    addAllDetailsConnectedUser: (state, action) => {
       state = action.payload;
+      console.log("state", state);
     },
   },
 });
-export const { addDetail, addAllDetails } = userRegisterSlice.actions;
+export const { addDetail, addAllDetailsConnectedUser, addAuth0Details } =
+  userRegisterSlice.actions;
 
 export default userRegisterSlice.reducer;

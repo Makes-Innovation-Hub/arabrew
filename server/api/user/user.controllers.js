@@ -17,7 +17,6 @@ Array.prototype.sortByMatching = function () {
 //! @access  NOT SET YET
 export const registerUser = asyncHandler(async (req, res, next) => {
   const userInfo = req.body;
-  const newUser = await User.create(userInfo);
   controllerLogger("registerUser", { userInfo }, "Registering new user");
 
   const startTime = Date.now();
@@ -98,4 +97,21 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   });
   allUsers = allUsers.sort(() => Math.random() - 0.5);
   res.status(200).json(allUsers);
+});
+
+//$ @desc    get user by subId
+//$ @route   GET /api/user/:subId
+export const getUser = asyncHandler(async (req, res, next) => {
+  const { subId } = req.params;
+
+  const user = await User.findOne({ subId: subId });
+
+  if (!user) {
+    return next(new Error("User not found"));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });

@@ -13,6 +13,7 @@ import BioPage from "./BioPage/BioPage.jsx";
 import Location from "./Location.jsx";
 import CommonInterests from "./CommonInterests.jsx";
 import SearchFriends from "./SearchFriends.page.jsx";
+import PopulateDataFromDBToStore from "./PopulateDataFromDBToStore.jsx";
 export {
   Intro,
   BirthPage,
@@ -27,4 +28,5 @@ export {
   Location,
   SearchFriends,
   CommonInterests,
+  PopulateDataFromDBToStore,
 };
