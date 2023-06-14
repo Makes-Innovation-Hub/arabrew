@@ -51,7 +51,7 @@ export const conversationGenerator = async (user1, user2) => {
   );
   const response = await sendPromptToOpenAi(
     openai,
-    `give me conversation suggestion that the two users would love to talk about and make the response short as possible, in json format like this: [{suggestion :  i see your both native language is hebrew, so lets chat in hebrew},...] from this 2 users : user1: ${JSON.stringify(
+    `give me 5 conversation suggestion that the two users would love to talk about and make the response short as possible, in json format like this: [{suggestion :  i see your both native language is hebrew, so lets chat in hebrew},...] from this 2 users : user1: ${JSON.stringify(
       user1
     )} user2: ${JSON.stringify(user2)}`
   );

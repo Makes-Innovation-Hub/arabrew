@@ -18,7 +18,6 @@ Array.prototype.sortByMatching = function () {
 //! @access  NOT SET YET
 export const registerUser = asyncHandler(async (req, res, next) => {
   const userInfo = req.body;
-  const newUser = await User.create(userInfo);
   controllerLogger("registerUser", { userInfo }, "Registering new user");
 
   const startTime = Date.now();
