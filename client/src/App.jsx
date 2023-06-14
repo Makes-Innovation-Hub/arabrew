@@ -10,6 +10,7 @@ import {
   BioPage,
   Location,
   GenderSelection,
+  PopulateDataFromDBToStore,
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -42,6 +43,16 @@ const router = createBrowserRouter([
   {
     path: "/nationalityPage",
     element: <NationalityPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/populate-data",
+    element: (
+      <PopulateDataFromDBToStore
+        subId={"google-oauth2|115423007148400278155"}
+        isConnectedUser={true}
+      />
+    ),
     errorElement: <>Error...</>,
   },
 ]);

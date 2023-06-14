@@ -18,18 +18,19 @@ export const chatUserSlice = createSlice({
   name: "chatUser",
   initialState,
   reducers: {
-    addDetail: (state, action) => {
-      const { field, value } = action.payload;
+    addDetail: (state, { payload }) => {
+      const { field, value } = payload;
       state.userDetails[field] = value;
     },
-    addAuth0Details: (state, action) => {
-      const { subId, name, avatar } = action.payload;
+    addAuth0Details: (state, { payload }) => {
+      const { subId, name, avatar } = payload;
       state.subId = subId;
       state.name = name;
       state.avatar = avatar;
     },
-    addAllDetailsChatUser: (state, action) => {
-      state = action.payload;
+    addAllDetailsChatUser: (state, { payload }) => {
+      state = payload;
+      console.log("chat user state", state);
     },
   },
 });

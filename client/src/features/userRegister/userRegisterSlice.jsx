@@ -18,19 +18,19 @@ export const userRegisterSlice = createSlice({
   name: "userRegister",
   initialState,
   reducers: {
-    addDetail: (state, action) => {
-      const { field, value } = action.payload;
+    addDetail: (state, { payload }) => {
+      const { field, value } = payload;
       state.userDetails[field] = value;
     },
-    addAuth0Details: (state, action) => {
-      const { subId, name, avatar } = action.payload;
+    addAuth0Details: (state, { payload }) => {
+      const { subId, name, avatar } = payload;
       state.subId = subId;
       state.name = name;
       state.avatar = avatar;
     },
-    addAllDetailsConnectedUser: (state, action) => {
-      state = action.payload;
-      console.log("state", state);
+    addAllDetailsConnectedUser: (state, { payload }) => {
+      state = payload;
+      console.log("user state", state);
     },
   },
 });
