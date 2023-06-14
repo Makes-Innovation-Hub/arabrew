@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+console.log("ENDPOINT", ENDPOINT);
 let socket;
 
 const Chat = () => {
@@ -16,23 +17,7 @@ const Chat = () => {
     content: msgText,
   };
   //!MUST be refactored and replaced when rtk query and chatschema is configured
-  const [messages, setMessages] = useState([
-    {
-      sender: "John Smith",
-      content: "hi taufiq im john",
-      createdAt: "5/28/2023, 23:23:14 GMT+3",
-    },
-    {
-      sender: "taufiq zayyad",
-      content: "hi john nice 2 meet u",
-      createdAt: "5/28/2023, 23:23:36 GMT+3",
-    },
-    {
-      sender: "taufiq zayyad",
-      content: "wanna go for a drink??..",
-      createdAt: "5/28/2023, 23:39:37 GMT+3",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   //!
 
   const handleChange = (e) => setMsgText(e.target.value);
