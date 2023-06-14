@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/.env" });
 
-const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
+const wss = new WebSocketServer({ port: "3333" });
 
 const app = express();
 app.use(express.json());
