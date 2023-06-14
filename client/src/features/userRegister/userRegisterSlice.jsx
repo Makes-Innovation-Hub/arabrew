@@ -32,7 +32,6 @@ export const userRegisterSlice = createSlice({
     },
     addAllDetailsConnectedUser: (state, action) => {
       state = action.payload;
-      console.log("state", state);
     },
   },
 });
