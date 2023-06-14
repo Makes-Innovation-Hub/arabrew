@@ -18,12 +18,10 @@ import { useGetUserChatsListQuery } from "../features/userDataApi";
 import { useSelector } from "react-redux";
 
 const ConversationPage = () => {
-  const username = useSelector((state) => state.userRegister.username);
-  console.log(username, "username");
-  const { data, error, isLoading } = useGetUserChatsListQuery("Sean-dev-test");
+  const username = useSelector((state) => state.userRegister.name);
+  const { data, error, isLoading } = useGetUserChatsListQuery(username);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred while fetching chats.</div>;
-  console.log(data);
   const chats = data;
   return (
     <div>
