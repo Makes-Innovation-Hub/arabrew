@@ -8,6 +8,8 @@ import FemaleIcon from "./FemaleIcon";
 import ChatIcon from "./ChatIcon";
 import MessageIcon from "./MessageIcon";
 import HebrewIcon from "./HebrewIcon";
+import GoogleIcon from "./GoogleIcon";
+import FacebookIcon from "./FacebookIcon";
 export {
   Hamburger,
   ArrowLeft,
@@ -19,4 +21,6 @@ export {
   ChatIcon,
   MessageIcon,
   HebrewIcon,
+  GoogleIcon,
+  FacebookIcon,
 };

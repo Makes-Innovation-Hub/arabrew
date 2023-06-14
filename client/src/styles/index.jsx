@@ -34,6 +34,8 @@ import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
 import { StyledMsgButton } from "./StyledMsgButton";
 import { StyledImage } from "./StyledImage";
 import { StyledBorder } from "./StyledBorder";
+import { StyledSocialButton } from "./StyledSocialButton";
+import { StyledSocialIcon } from "./StyledSocialIcon";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -59,6 +61,8 @@ export {
   StyledMsgButton,
   StyledImage,
   StyledBorder,
+  StyledSocialButton,
+  StyledSocialIcon,
   ContentConversationPage,
   ConversationPageStyle,
   DisplayChatsStyle,

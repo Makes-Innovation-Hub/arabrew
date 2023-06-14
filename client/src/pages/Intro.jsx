@@ -1,4 +1,5 @@
-import { Glass } from "../assets";
+import { useEffect, useState } from "react";
+import { Glass, GoogleIcon, FacebookIcon } from "../assets";
 import { Login, LogoutButton } from "../components";
 import {
   Flex,
@@ -8,9 +9,38 @@ import {
   StyledDiv,
   StyledMargin,
   StyledParagraph,
+  StyledSocialButton,
 } from "../styles";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import { useGetLoggedUserQuery } from "../features/userDataApi";
+import { skipToken } from "@reduxjs/toolkit/query/react";
 
 const Intro = () => {
+  const navigate = useNavigate();
+  const {
+    loginWithPopup,
+    logout,
+    user,
+    isAuthenticated,
+    isLoading,
+    loginWithRedirect,
+  } = useAuth0();
+
+  const loginWithFacebook = () => loginWithPopup({ connection: "facebook" });
+  const loginWithGoogle = () => loginWithPopup({ connection: "google-oauth2" });
+
+  const { data: loggedUser, isSuccess } = useGetLoggedUserQuery(
+    user ? user.sub : skipToken
+  );
+
+  // useEffect(() => {
+  //   if (!isLoading && user && isSuccess) {
+  //     console.log(loggedUser);
+  //     navigate(loggedUser?.success ? "/conversation" : "/lang");
+  //   }
+  // }, [navigate, isLoading, user, isSuccess, loggedUser]);
+
   return (
     <Flex direction="column" height="100vh">
       <Glass />
@@ -24,8 +54,35 @@ const Intro = () => {
           to chat with
         </StyledParagraph>
       </StyledDiv>
-      <Login />
-      <LogoutButton />
+      <div>
+        {!isAuthenticated && (
+          <Flex direction="column">
+            <StyledSocialButton onClick={loginWithFacebook}>
+              <FacebookIcon />
+              <StyledMargin direction="horizontal" margin="1rem" />
+              Sign in with Facebook
+            </StyledSocialButton>
+            <StyledMargin direction="vertical" margin="2.5rem" />
+            <StyledSocialButton onClick={loginWithGoogle}>
+              <GoogleIcon />
+              <StyledMargin direction="horizontal" margin="1rem" />
+              Sign in with Google
+            </StyledSocialButton>
+          </Flex>
+        )}
+
+        {isAuthenticated && (
+          <div>
+            {console.log(user)}
+            <p>Hello, {user.name}!</p>
+            <button
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Log out
+            </button>
+          </div>
+        )}
+      </div>
       <StyledButton to="/lang" text={"Lets Do It"} />
     </Flex>
   );
