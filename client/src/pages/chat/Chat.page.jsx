@@ -3,18 +3,20 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 
-import { useState, useEffect } from "react";
 import { ChatLayout } from "../../styles/Chat/ChatLayout";
 import { InputArea } from "../../components/index.js";
 import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea";
 
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-console.log("ENDPOINT", ENDPOINT);
+
 let socket;
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+
 const Chat = () => {
-  const { sender, reciever } = useParams();
+  // first param the sender HERE is the logged USER
+  const params = useParams();
+  const { sender, reciever } = params;
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {
@@ -39,14 +41,12 @@ const Chat = () => {
       console.log(data);
       setMessages(data.messagesHistory);
     }
+    console.log(params);
   }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {
     socket.emit("new_message", chatData);
-  const handleSendMsg = (e) => {
-    e.preventDefault();
-    ws.send(JSON.stringify(msgText));
     setMsgText("");
   };
 
@@ -60,15 +60,11 @@ const Chat = () => {
       setMessages((prev) => [...prev, newMsg]);
     });
     // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
-   
-
-   
-    
   }, []);
 
   return (
     <ChatLayout>
-      <Header />
+      <Header reciever={{ name: reciever }} />
       <ChatDisplayArea messages={messages} />
       {/* {messages.map((message) => (
         <h1 key={Math.random()}>{message}</h1>

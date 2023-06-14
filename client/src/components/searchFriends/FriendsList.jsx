@@ -7,7 +7,7 @@ const FriendsList = ({ friendsArr, userName }) => {
     return (
       <Friend
         key={subId}
-        name={name}
+        name={friend}
         img={avatar}
         flag={nationality}
         hobbies={interests}
