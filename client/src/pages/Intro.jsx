@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Glass, GoogleIcon, FacebookIcon } from "../assets";
-import { Login, LogoutButton } from "../components";
+import { useDispatch } from "react-redux";
 import {
   Flex,
   StyledButton,
@@ -11,6 +11,7 @@ import {
   StyledParagraph,
   StyledSocialButton,
 } from "../styles";
+import { addAuth0Details } from "../features/userRegister/userRegisterSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { useGetLoggedUserQuery } from "../features/userDataApi";
@@ -18,6 +19,7 @@ import { skipToken } from "@reduxjs/toolkit/query/react";
 
 const Intro = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     loginWithPopup,
     logout,
@@ -34,12 +36,23 @@ const Intro = () => {
     user ? user.sub : skipToken
   );
 
-  // useEffect(() => {
-  //   if (!isLoading && user && isSuccess) {
-  //     console.log(loggedUser);
-  //     navigate(loggedUser?.success ? "/conversation" : "/lang");
-  //   }
-  // }, [navigate, isLoading, user, isSuccess, loggedUser]);
+  useEffect(() => {
+    if (!isLoading && user && isSuccess) {
+      if (loggedUser?.success) {
+        navigate("/conversation");
+      } else {
+        const { name, picture, sub } = user;
+        dispatch(
+          addAuth0Details({
+            name: name,
+            avatar: picture,
+            subId: sub,
+          })
+        );
+        navigate("/lang");
+      }
+    }
+  }, [navigate, isLoading, user, isSuccess, loggedUser]);
 
   return (
     <Flex direction="column" height="100vh">

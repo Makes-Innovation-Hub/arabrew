@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userRegisterSlice } from "../features/userRegister/userRegisterSlice.jsx";
-import userDataApi from "../features/userDataApi";
+import userDataApi from "../features/userDataApi.js";
 
 export const store = configureStore({
   reducer: {

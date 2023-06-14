@@ -13,36 +13,49 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import {
+  addDetail,
+  addAuth0Details,
+} from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
-import { useRegisterUserDataMutation } from "../../features/userDataApi.js";
-
+import { useRegisterUserMutation } from "../../features/userDataApi.js";
 export default function BioPage() {
+  const dispatch = useDispatch();
   const [text, setText] = useState({
     value: "",
     field: "bio",
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, data }] = useRegisterUserDataMutation();
-
+  const [registerUser, { data, isSuccess, isError, error }] =
+    useRegisterUserMutation();
   const handleChange = (event) => {
     const inputValue = event.target.value;
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
-
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   useEffect(() => {
     if (isDetailAdded) {
       registerUser(userData);
-      navigate("/conversation");
     }
   }, [isDetailAdded]);
-
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/conversation");
+    }
+    if (isError) {
+      console.error(error);
+    }
+  }, [isSuccess, isError]);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/conversation");
+    }
+    if (isError) {
+      console.error(error);
+    }
+  }, [isSuccess, isError]);
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -55,7 +68,6 @@ export default function BioPage() {
         <TitleWrapper>
           <PageTitle>Add Bio</PageTitle>
         </TitleWrapper>
-
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
           {/*  here you can add code for additional elements in the header */}
@@ -93,6 +105,13 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
+                // dispatch(
+                //   addAuth0Details({
+                //     name: "Eric",
+                //     subId: "94122337",
+                //     avatar: "blablabla",
+                //   })
+                // );
                 setIsDetailAdded(true);
               }}
             >
