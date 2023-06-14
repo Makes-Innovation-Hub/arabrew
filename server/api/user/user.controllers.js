@@ -45,7 +45,10 @@ export const getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ subId: subId });
 
   if (!user) {
-    return next(new Error("User not found"));
+    return res.status(200).json({
+      success: false,
+      data: {},
+    });
   }
 
   return res.status(200).json({
