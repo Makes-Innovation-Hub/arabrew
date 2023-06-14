@@ -37,8 +37,6 @@ const Intro = () => {
   );
 
   useEffect(() => {
-    console.log(isSuccess);
-    console.log(loggedUser?.success);
     if (!isLoading && user && isSuccess) {
       if (loggedUser?.success) {
         navigate("/conversation");
