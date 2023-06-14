@@ -26,6 +26,14 @@ const SearchFriends = () => {
   const [selectedInterests, setSelectedInterests] = useState(userObj.interests);
   const [getUsers, { data, error, isError, isLoading, isSuccess }] =
     useLazyGetUsersQuery();
+
+  useEffect(() => {
+    getUsers({
+      subId: userObj.subId,
+      interests: selectedInterests,
+    });
+  }, [selectedInterests]);
+
   useEffect(() => {
     if (isSuccess) {
       console.log(data);
@@ -33,11 +41,7 @@ const SearchFriends = () => {
     if (isError) {
       console.log(error);
     }
-    getUsers({
-      subId: userObj.subId,
-      interests: selectedInterests,
-    });
-  }, [isError, isSuccess, selectedInterests]);
+  }, [isError, isSuccess]);
 
   if (isLoading) return <h1>is Loading...</h1>;
 
