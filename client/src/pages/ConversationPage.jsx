@@ -21,8 +21,13 @@ const ConversationPage = () => {
   const username = useSelector((state) => state.userRegister.name);
   const { data, error, isLoading } = useGetUserChatsListQuery(username);
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error occurred while fetching chats.</div>;
+  if (error) {
+    console.log(error);
+    return <div>Error occurred while fetching chats.</div>;
+  }
   const chats = data;
+  console.log(data, "data");
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
