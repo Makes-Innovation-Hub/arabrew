@@ -14,7 +14,17 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
-const ConversationPage = ({ prevConversation }) => {
+import { useGetUserChatsListQuery } from "../features/userDataApi";
+import { useSelector } from "react-redux";
+
+const ConversationPage = () => {
+  const username = useSelector((state) => state.userRegister.username);
+  console.log(username, "username");
+  const { data, error, isLoading } = useGetUserChatsListQuery("Sean-dev-test");
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error occurred while fetching chats.</div>;
+  console.log(data);
+  const chats = data;
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -28,11 +38,11 @@ const ConversationPage = ({ prevConversation }) => {
         />
       </StyledMargin>
       <StyledPage>
-        {prevConversation.length !== 0 ? (
+        {chats.length !== 0 ? (
           <ConversationPageStyle>
             <div>Conversation</div>
             <ChatsDisplay>
-              {prevConversation.map((chat, i) => {
+              {chats.map((chat, i) => {
                 return (
                   <ConversationDisplay
                     key={i}
