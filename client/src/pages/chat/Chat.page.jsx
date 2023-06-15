@@ -1,57 +1,54 @@
-import { useState, useEffect } from "react";
-
-const port = import.meta.env.VITE_WEB_SOCKET_PORT;
-const ws = new WebSocket(`ws://localhost:${port}`);
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import io from "socket.io-client";
+import { genChatId } from "../../helpers/genChatId.jsx";
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+console.log("ENDPOINT", ENDPOINT);
+let socket;
 
 const Chat = () => {
+  const { sender, reciever } = useParams();
+  const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
-
+  const chatData = {
+    chatId: genChatId(usersArr),
+    sender: sender,
+    reciever: reciever,
+    content: msgText,
+  };
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   const [messages, setMessages] = useState([]);
+  //!
 
   const handleChange = (e) => setMsgText(e.target.value);
 
-  const handleSendMsg = (e) => {
-    e.preventDefault();
-
-    ws.send(JSON.stringify(msgText));
+  const handleSendMsg = () => {
+    socket.emit("new_message", chatData);
     setMsgText("");
   };
 
   useEffect(() => {
-    ws.onopen = (data) => {
-      console.log("🟢🟢🟢  user connected  🟢🟢🟢", data);
-      ws.send("user connected!");
-    };
-
-    ws.onmessage = (e) => {
-      const msg = e.data;
-
-      setMessages((prev) => [...prev, msg]);
-      console.log(messages);
-    };
-
-    ws.onerror = (error) => {
-      console.log("⛔⛔⛔ Following  Error ocurred ⛔⛔⛔", error);
-    };
-
-    return () => {
-      ws.onclose = (data) => {
-        console.log("❤️‍🔥❤️‍🔥❤️‍🔥 User Disconnected ❤️‍🔥❤️‍🔥❤️‍🔥", data);
-      };
-    };
+    socket = io(ENDPOINT);
+    socket.emit("room_setup", chatData);
+    socket.on("message_to_reciever", (newMsg) => {
+      setMessages((prev) => [...prev, newMsg]);
+    });
+    socket.on("message_to_sender", (newMsg) => {
+      setMessages((prev) => [...prev, newMsg]);
+    });
+    // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
   }, []);
 
   return (
     <div>
-      <form onSubmit={handleSendMsg}>
-        <input type="text" onChange={handleChange} value={msgText} />
-        <button type="submit">Send Message</button>
-      </form>
+      <input type="text" onChange={handleChange} value={msgText} />
+      <button onClick={handleSendMsg}>Send Message</button>
 
-      {/* The key={Math.random()} MUST be refactored and replaced when rtk query and chatschema is configuredwith chat.id  */}
       {messages.map((message) => (
-        <h1 key={Math.random()}>{message}</h1>
+        <div key={message.createdAt}>
+          <h2>{message.sender}</h2>
+          <h4>{message.content}</h4>
+        </div>
       ))}
     </div>
   );

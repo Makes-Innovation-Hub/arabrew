@@ -5,13 +5,15 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "npx mocha ./server/api/translation/openAI.test.js",
+    "test": "npx mocha ./tests",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",
     "generate-env": "bash scripts/generateConfig.sh",
     "install-all": "npm install; npm install --prefix ./client",
-    "build-client": "npm run build --prefix ./client"
+    "build-client": "npm run build --prefix ./client",
+    "populate-dummy-data": "node ./scripts/populateDBData.js",
+    "delete-dummy-data": "node ./scripts/deleteDBData.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,7 @@
     "node-fetch": "^3.3.1",
     "openai": "^3.2.1",
     "pino": "^8.14.1",
-    "ws": "^8.13.0"
+    "pino-pretty": "^10.0.0",
+    "socket.io": "^4.6.2"
   }
 }

@@ -18,9 +18,6 @@ const chatSchema = new mongoose.Schema(
           trim: true,
         },
         content: String,
-        // content_HE:String,
-        // content_AR:String,
-
         createdAt: {
           type: String,
         },
