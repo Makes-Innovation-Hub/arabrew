@@ -25,7 +25,7 @@ export default function BioPage() {
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { data, isSuccess, isError, error }] =
+  const [registerUser, { isSuccess, isError, error }] =
     useRegisterUserMutation();
 
   const handleChange = (event) => {
