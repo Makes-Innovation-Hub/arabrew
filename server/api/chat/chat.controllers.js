@@ -1,5 +1,5 @@
 import Chat from "./chat.js";
-import { asyncHandler } from "../index.js";
+import { asyncHandler, User } from "../index.js";
 import {
   controllerLogger,
   successLogger,
@@ -231,17 +231,25 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
       return next(new Error("failed retrieving"));
     }
     if (userChats.length > 0) {
-      userChats = userChats.map((chat) => {
-        const { users, messagesHistory } = chat;
-        const recieverName = users.filter((user) => user !== name)[0];
-        const lastMessage = newestMessage(messagesHistory);
-        return {
-          lastMessage: lastMessage,
-          recieverName: recieverName,
-        };
-      });
+      userChats = await Promise.all(
+        userChats.map(async (chat) => {
+          const { users, messagesHistory } = chat;
+          const recieverName = users.filter((user) => user !== name)[0];
+          const user = await User.findOne({ name: recieverName }).lean();
+          const userAvatar = user ? user.avatar : null;
+          const lastMessage = newestMessage(
+            messagesHistory,
+            name,
+            recieverName
+          );
+          return {
+            profile: userAvatar,
+            name: recieverName,
+            lastCon: lastMessage,
+          };
+        })
+      );
     }
-
     // Logging timing
     timingLogger("getUserChatsList", startTime);
 
