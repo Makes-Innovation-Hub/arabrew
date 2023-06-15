@@ -26,62 +26,59 @@ const ConversationPage = () => {
     return <div>Error occurred while fetching chats.</div>;
   }
   const chats = data;
-
-  const ConversationPage = () => {
-    const [isSideBar, setIsSideBar] = useState(false);
-    return (
-      <div>
-        {isSideBar && (
-          <div>
-            <SideBar openSideBar={setIsSideBar} />
-          </div>
+  const [isSideBar, setIsSideBar] = useState(false);
+  return (
+    <div>
+      {isSideBar && (
+        <div>
+          <SideBar openSideBar={setIsSideBar} />
+        </div>
+      )}
+      <StyledMargin direction="vertical" margin="5%">
+        <Header
+          leftIcon={
+            <div
+              onClick={() => {
+                setIsSideBar(true);
+              }}
+            >
+              <Hamburger />
+            </div>
+          }
+          title={<SmallGlass />}
+        />
+      </StyledMargin>
+      <StyledPage>
+        {chats.length !== 0 ? (
+          <ConversationPageStyle>
+            <div>Conversation</div>
+            <ChatsDisplay>
+              {chats.map((chat, i) => {
+                return (
+                  <ConversationDisplay
+                    key={i}
+                    nameCon={chat.name}
+                    contentCon={chat.lastCon}
+                    profile={chat.profile}
+                  />
+                );
+              })}
+            </ChatsDisplay>
+            <BlockDiv />
+            <ButtonForChats>Search for friends to chat</ButtonForChats>
+          </ConversationPageStyle>
+        ) : (
+          <ConversationPageStyle>
+            <NoConversationStyle>No Conversation</NoConversationStyle>
+            <ContentConversationPage>
+              Add some friends and start chatting with them, Your conversations
+              will show up here.
+            </ContentConversationPage>
+            <ButtonForChats>Search for friends to chat</ButtonForChats>
+          </ConversationPageStyle>
         )}
-        <StyledMargin direction="vertical" margin="5%">
-          <Header
-            leftIcon={
-              <div
-                onClick={() => {
-                  setIsSideBar(true);
-                }}
-              >
-                <Hamburger />
-              </div>
-            }
-            title={<SmallGlass />}
-          />
-        </StyledMargin>
-        <StyledPage>
-          {chats.length !== 0 ? (
-            <ConversationPageStyle>
-              <div>Conversation</div>
-              <ChatsDisplay>
-                {chats.map((chat, i) => {
-                  return (
-                    <ConversationDisplay
-                      key={i}
-                      nameCon={chat.name}
-                      contentCon={chat.lastCon}
-                      profile={chat.profile}
-                    />
-                  );
-                })}
-              </ChatsDisplay>
-              <BlockDiv />
-              <ButtonForChats>Search for friends to chat</ButtonForChats>
-            </ConversationPageStyle>
-          ) : (
-            <ConversationPageStyle>
-              <NoConversationStyle>No Conversation</NoConversationStyle>
-              <ContentConversationPage>
-                Add some friends and start chatting with them, Your
-                conversations will show up here.
-              </ContentConversationPage>
-              <ButtonForChats>Search for friends to chat</ButtonForChats>
-            </ConversationPageStyle>
-          )}
-        </StyledPage>
-      </div>
-    );
-  };
+      </StyledPage>
+    </div>
+  );
 };
 export default ConversationPage;
