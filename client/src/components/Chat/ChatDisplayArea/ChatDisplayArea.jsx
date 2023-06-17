@@ -9,7 +9,6 @@ const ChatDisplayArea = ({ messages }) => {
   const { name: loggedUser } = useSelector(
     (state) => state.userRegister.connectedUser
   );
-  console.log("loggedUser", loggedUser, "loggedUser");
 
   return (
     <ChatsContainer>

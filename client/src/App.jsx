@@ -39,6 +39,7 @@ const router = createBrowserRouter([
     element: <Chat />,
     errorElement: <>Error...</>,
   },
+  { path: "/profile", element: <ProfilePage /> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {

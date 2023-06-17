@@ -35,13 +35,11 @@ const Chat = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(error);
+      console.error(error);
     }
     if (isSuccess) {
-      console.log(data);
       setMessages(data.messagesHistory);
     }
-    console.log(params);
   }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
@@ -66,9 +64,6 @@ const Chat = () => {
     <ChatLayout>
       <Header reciever={{ name: reciever }} />
       <ChatDisplayArea messages={messages} />
-      {/* {messages.map((message) => (
-        <h1 key={Math.random()}>{message}</h1>
-      ))} */}
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}
