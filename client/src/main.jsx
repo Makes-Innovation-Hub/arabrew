@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
+import Error from "./components/Error.jsx";
 import App from "./App.jsx";
 import { store } from "./app/store.jsx";
 import { Provider } from "react-redux";
