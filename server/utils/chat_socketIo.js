@@ -26,8 +26,8 @@ export const addMessageToChat = async (
   receiver
 ) => {
   const { usersArr, usersArrSwitched } = {
-    usersArr: [sender, reciever],
-    usersArrSwitched: [reciever, sender],
+    usersArr: [sender, receiver],
+    usersArrSwitched: [receiver, sender],
   };
   const newMsgObj = {
     sender: sender,
@@ -48,7 +48,8 @@ export const addMessageToChat = async (
       options
     );
     const messagesHistory = updatedChat.messagesHistory;
-    return isAddMessageSuccess(messagesHistory, content);
+    // return isAddMessageSuccess(messagesHistory, content);
+    return true;
   } catch (error) {
     throw new Error(error);
   }

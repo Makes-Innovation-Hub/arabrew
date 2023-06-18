@@ -80,31 +80,32 @@ socket_io.on("connection", (socket) => {
     fetch(url, requestOptions)
       .then((res) => {
         translationPlusProfanity = res;
+
+        if (translationPlusProfanity.isProfanity) {
+          socket.emit("message_to_sender", translationPlusProfanity.data);
+        } else {
+          addMessageToChat(
+            chatId,
+            content,
+            translationPlusProfanity.data,
+            sender,
+            reciever
+          )
+            .then((savedMsg) => {
+              if (!savedMsg)
+                throw new Error("failed adding new MSg (server.js)");
+              //*send the message back to the sender
+              console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
+              socket.emit("message_to_sender", savedMsg);
+              //*send the message to the reciever
+              socket.in(chatId).emit("message_to_reciever", savedMsg);
+            })
+            .catch((err) => console.error(err));
+        }
       })
       .catch((err) => {
         throw new Error(err);
       });
-
-    if (translationPlusProfanity.isProfanity) {
-      socket.emit("message_to_sender", translationPlusProfanity.data);
-    } else {
-      addMessageToChat(
-        chatId,
-        content,
-        translationPlusProfanity.data,
-        sender,
-        reciever
-      )
-        .then((savedMsg) => {
-          if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
-          //*send the message back to the sender
-          console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
-          socket.emit("message_to_sender", savedMsg);
-          //*send the message to the reciever
-          socket.in(chatId).emit("message_to_reciever", savedMsg);
-        })
-        .catch((err) => console.error(err));
-    }
   });
   socket.on("disconnect", (data) => console.log(data));
 });

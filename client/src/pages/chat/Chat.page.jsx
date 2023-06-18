@@ -13,7 +13,7 @@ import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 let socket;
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
-const Chat = async () => {
+const Chat = () => {
   // first param the sender HERE is the logged USER
   const params = useParams();
   const { sender, reciever } = params;
