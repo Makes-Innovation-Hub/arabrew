@@ -9,6 +9,7 @@ import { Button } from "./styles/Button.jsx";
 import Header from "./Header.jsx";
 import Friend from "./Friend.jsx";
 import FriendsList from "./searchFriends/FriendsList.jsx";
+import InputArea from "./Chat/InputArea/InputArea.jsx";
 import {
   selectedBtn,
   listBtn,
@@ -29,6 +30,7 @@ export {
   wrapper,
   selectedContainer,
   Header,
+  InputArea,
   Friend,
   FriendsList,
 };

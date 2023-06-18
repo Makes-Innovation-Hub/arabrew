@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-console.log("ENDPOINT", ENDPOINT);
+
+import { ChatLayout } from "../../styles/Chat/ChatLayout";
+import { InputArea } from "../../components/index.js";
+import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea";
+
+import Header from "../../components/Chat/Header/Header";
+import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
+
 let socket;
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
 const Chat = () => {
-  const { sender, reciever } = useParams();
+  // first param the sender HERE is the logged USER
+  const params = useParams();
+  const { sender, reciever } = params;
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {
@@ -16,10 +25,22 @@ const Chat = () => {
     reciever: reciever,
     content: msgText,
   };
-  //!MUST be refactored and replaced when rtk query and chatschema is configured
   const [messages, setMessages] = useState([]);
+  const namesArr = ["tito blah", "bibo mimo"];
+  //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
 
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetChatByNamesQuery(usersArr);
+
+  useEffect(() => {
+    if (isError) {
+      console.error(error);
+    }
+    if (isSuccess) {
+      setMessages(data.messagesHistory);
+    }
+  }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {
@@ -32,6 +53,7 @@ const Chat = () => {
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
+      console.log("newMsg", newMsg);
     });
     socket.on("message_to_sender", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
@@ -40,17 +62,15 @@ const Chat = () => {
   }, []);
 
   return (
-    <div>
-      <input type="text" onChange={handleChange} value={msgText} />
-      <button onClick={handleSendMsg}>Send Message</button>
-
-      {messages.map((message) => (
-        <div key={message.createdAt}>
-          <h2>{message.sender}</h2>
-          <h4>{message.content}</h4>
-        </div>
-      ))}
-    </div>
+    <ChatLayout>
+      <Header reciever={{ name: reciever }} />
+      <ChatDisplayArea messages={messages} />
+      <InputArea
+        typedMsg={msgText}
+        handleChange={handleChange}
+        handleSendMsg={handleSendMsg}
+      />
+    </ChatLayout>
   );
 };
 

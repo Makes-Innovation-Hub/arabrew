@@ -30,7 +30,6 @@ export const userRegisterSlice = createSlice({
     },
     addAllDetailsConnectedUser: (state, { payload }) => {
       state = payload;
-      console.log("user state", state);
     },
   },
 });
