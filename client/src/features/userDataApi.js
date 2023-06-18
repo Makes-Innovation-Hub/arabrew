@@ -28,7 +28,6 @@ const userDataApi = createApi({
     getChatByNames: builder.query({
       query: (names) => {
         const [sender, reciever] = names;
-        console.log(sender, reciever);
         return {
           url: `chat/${sender}/${reciever}`,
           method: "GET",
