@@ -60,12 +60,13 @@ socket_io.on("connection", (socket) => {
   socket.on("new_message", (newMsg) => {
     const { chatId, content, sender, reciever } = newMsg;
     addMessageToChat(sender, reciever, content)
-      .then((isSuccess) => {
-        if (!isSuccess) throw new Error("failed adding new MSg (server.js)");
+      .then((savedMsg) => {
+        if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
         //*send the message back to the sender
-        socket.emit("message_to_sender", newMsg);
+        console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
+        socket.emit("message_to_sender", savedMsg);
         //*send the message to the reciever
-        socket.in(chatId).emit("message_to_reciever", newMsg);
+        socket.in(chatId).emit("message_to_reciever", savedMsg);
       })
       .catch((err) => console.error(err));
   });

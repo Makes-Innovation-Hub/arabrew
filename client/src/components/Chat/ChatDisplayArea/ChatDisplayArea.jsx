@@ -9,11 +9,14 @@ const ChatDisplayArea = ({ messages }) => {
   const { name: loggedUser } = useSelector(
     (state) => state.userRegister.connectedUser
   );
-
   return (
     <ChatsContainer>
       {messages.map((message) => (
-        <MessageBox message={message} loggedUser={loggedUser} key={uuidv4()} />
+        <MessageBox
+          message={message}
+          loggedUser={loggedUser}
+          key={message.id}
+        />
       ))}
     </ChatsContainer>
   );
