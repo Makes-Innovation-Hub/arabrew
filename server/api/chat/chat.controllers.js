@@ -178,6 +178,7 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
     delete userChat._id;
     messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
     messagesHistory.forEach((message) => {
+      message.id = message._id;
       delete message._id;
     });
     // Logging timing

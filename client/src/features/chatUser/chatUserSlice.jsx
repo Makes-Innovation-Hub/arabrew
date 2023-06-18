@@ -14,8 +14,8 @@ const initialState = {
     bio: "",
   },
 };
-export const userRegisterSlice = createSlice({
-  name: "userRegister",
+export const chatUserSlice = createSlice({
+  name: "chatUser",
   initialState,
   reducers: {
     addDetail: (state, { payload }) => {
@@ -28,11 +28,12 @@ export const userRegisterSlice = createSlice({
       state.name = name;
       state.avatar = avatar;
     },
-    addAllDetailsConnectedUser: (state, { payload }) => {
+    addAllDetailsChatUser: (state, { payload }) => {
       state = payload;
+      console.log("chat user state", state);
     },
   },
 });
-export const { addDetail, addAllDetailsConnectedUser, addAuth0Details } =
-  userRegisterSlice.actions;
-export default userRegisterSlice.reducer;
+export const { addDetail, addAllDetailsChatUser, addAuth0Details } =
+  chatUserSlice.actions;
+export default chatUserSlice.reducer;
