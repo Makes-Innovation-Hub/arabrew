@@ -18,6 +18,7 @@ import { useGetUserChatsListQuery } from "../features/userDataApi";
 import { useSelector } from "react-redux";
 
 const ConversationPage = () => {
+  const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
   const { data, error, isLoading } = useGetUserChatsListQuery(username);
   if (isLoading) return <div>Loading...</div>;
@@ -26,7 +27,6 @@ const ConversationPage = () => {
     return <div>Error occurred while fetching chats.</div>;
   }
   const chats = data;
-  const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
       {isSideBar && (
