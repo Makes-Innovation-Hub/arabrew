@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { DisplayChatsStyle, ProfileChat, ContentChat } from "../styles";
-
 export const ConversationDisplay = ({ profile, nameCon, contentCon }) => {
-  return (
+    return (
     <DisplayChatsStyle>
       <ProfileChat profile={profile} />
       <ContentChat>
@@ -12,5 +11,4 @@ export const ConversationDisplay = ({ profile, nameCon, contentCon }) => {
     </DisplayChatsStyle>
   );
 };
-
 export default ConversationDisplay;

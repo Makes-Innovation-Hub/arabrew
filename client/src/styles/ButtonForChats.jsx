@@ -12,11 +12,11 @@ export const ButtonForChats = styled.button`
   color: #fff;
   font-style: italic;
   transition: background-color 0.3s;
-  position: ${prevConversation.length !== 0 && "fixed"};
-  left: ${prevConversation.length !== 0 && "50%"};
-  transform: ${prevConversation.length !== 0 && "translateX(-50%)"};
-  bottom: ${prevConversation.length !== 0 && "4rem"};
-  z-index: ${prevConversation.length !== 0 && "2"};
+  position: ${prevConversation[1].length !== 0 && "fixed"};
+  left: ${prevConversation[1].length !== 0 && "50%"};
+  transform: ${prevConversation[1].length !== 0 && "translateX(-50%)"};
+  bottom: ${prevConversation[1].length !== 0 && "4rem"};
+  z-index: ${prevConversation[1].length !== 0 && "2"};
   &:hover {
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
