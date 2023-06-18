@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+const PORT = import.meta.env.VITE_SERVER_PORT;
 
 import { ChatLayout } from "../../styles/Chat/ChatLayout";
 import { InputArea } from "../../components/index.js";
@@ -11,7 +13,6 @@ import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 
 let socket;
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
 const Chat = () => {
   // first param the sender HERE is the logged USER
@@ -26,7 +27,6 @@ const Chat = () => {
     content: msgText,
   };
   const [messages, setMessages] = useState([]);
-  const namesArr = ["tito blah", "bibo mimo"];
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
 
@@ -49,7 +49,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = PORT ? io(`${ENDPOINT}:${PORT}`) : io(`${ENDPOINT}`);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
