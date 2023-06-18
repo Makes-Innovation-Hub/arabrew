@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-console.log("ENDPOINT", ENDPOINT);
+const PORT = import.meta.env.VITE_SERVER_PORT;
 let socket;
 
 const Chat = () => {
@@ -28,7 +28,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = PORT ? io(`${ENDPOINT}:${PORT}`) : io(`${ENDPOINT}`);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
