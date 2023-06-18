@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import MessageBox from "../MessageBox/MessageBox.jsx";
 import { useSelector } from "react-redux";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
