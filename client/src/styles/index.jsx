@@ -28,6 +28,14 @@ import { StyledInput } from "../styles/StyledInput";
 import { StyledRouterLink } from "./StyledRouterLink";
 import { NoConversationStyle } from "../styles/NoConversationStyle";
 import { ButtonConversation } from "./ButtonConversation";
+import { ModalSideBar } from "./ModalSideBar";
+import { StyledSideBar } from "./StyledSideBar";
+import { GoBack } from "./GoBack";
+import { DisplayMe } from "./DisplayMe";
+import { UlSideBar } from "./UlSideBar";
+import { LiSideBar } from "./LiSideBar";
+import { LinkSideBar } from "./LinksSideBars";
+import { FlagForLang } from "./FlagForLang";
 import { StyledHeaderTitle } from "./StyledHeaderTitle";
 import { StyledHobby } from "./StyledHobby";
 import { StyledHobbiesContainer } from "./StyledHobbiesContainer";
@@ -45,6 +53,8 @@ export {
   ProfileTitle,
   ProfileImg,
   Flex,
+  FlagForLang,
+  ModalSideBar,
   StyledPage,
   StyledMargin,
   StyledButton,
@@ -73,5 +83,11 @@ export {
   ButtonForChats,
   BlockDiv,
   ButtonConversation,
+  StyledSideBar,
+  GoBack,
+  DisplayMe,
+  UlSideBar,
+  LiSideBar,
+  LinkSideBar,
   StyledProfilePage,
 };

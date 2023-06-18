@@ -13,10 +13,7 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addDetail,
-  addAuth0Details,
-} from "../../features/userRegister/userRegisterSlice.jsx";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../features/userDataApi.js";
 export default function BioPage() {
@@ -105,13 +102,6 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                // dispatch(
-                //   addAuth0Details({
-                //     name: "Eric",
-                //     subId: "94122337",
-                //     avatar: "blablabla",
-                //   })
-                // );
                 setIsDetailAdded(true);
               }}
             >
