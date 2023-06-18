@@ -59,16 +59,17 @@ export const createChat = asyncHandler(async (req, res, next) => {
 //$ @route   PUT /api/chat/:user1_name/:user2_name
 //! @access  NOT SET YET
 export const addMessageToChat = asyncHandler(async (req, res, next) => {
-  const { user1_name: sender, user2_name: reciever } = req.params;
+  const { user1_name: sender, user2_name: receiver } = req.params;
   const { usersArr, usersArrSwitched } = {
-    usersArr: [sender, reciever],
-    usersArrSwitched: [reciever, sender],
+    usersArr: [sender, receiver],
+    usersArrSwitched: [receiver, sender],
   };
 
   const { contentOriginal, contentTranslated } = req.body;
 
   const newMsgObj = {
     sender: sender,
+    receiver: receiver,
     contentOriginal: contentOriginal,
     contentTranslated: contentTranslated,
     createdAt: new Date().toLocaleString("en-US", {
@@ -97,14 +98,14 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     if (!updatedChat) {
       // Logging error
       errorLogger(
-        `error sending Message from ${sender}, to ${reciever}`,
+        `error sending Message from ${sender}, to ${receiver}`,
         req,
         res,
         next
       );
 
       return next(
-        new Error(`error sending Message from ${sender}, to ${reciever}`)
+        new Error(`error sending Message from ${sender}, to ${receiver}`)
       );
     }
 
@@ -120,7 +121,7 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     // Logging after the service ends successfully
     successLogger("addMessageToChat", {
       sender,
-      reciever,
+      receiver,
       newMsgObj,
       updatedChat,
     });
@@ -234,11 +235,11 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
     if (userChats.length > 0) {
       userChats = userChats.map((chat) => {
         const { users, messagesHistory } = chat;
-        const recieverName = users.filter((user) => user !== name)[0];
+        const receiverName = users.filter((user) => user !== name)[0];
         const lastMessage = newestMessage(messagesHistory).content;
         return {
           lastMessage: lastMessage,
-          recieverName: recieverName,
+          receiverName: receiverName,
         };
       });
     }

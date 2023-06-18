@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useLazyGetUsersQuery } from "../features/userDataApi.js";
 import { FriendsList } from "../components/index.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Header, Friend } from "../components";
+import { Header } from "../components";
 import {
   StyledPage,
   StyledMargin,
@@ -14,13 +13,12 @@ import {
 } from "../styles";
 import { ArrowLeft, SmallGlass } from "../assets";
 const SearchFriends = () => {
-  const navigate = useNavigate();
   //! hardcoded until benny finish the LOGGEDUSER slice in the store
   //! then we replace them with useSelector
   const userObj = {
-    subId: "54584682",
+    subId: "-11111",
     interests: ["Yoga", "Reading", "Hiking", "Traveling", "Cooking"],
-    name: "Taufiq Zayyad",
+    name: "Benny Solomon",
   };
   //! ***************************************************************************
   const [selectedInterests, setSelectedInterests] = useState(userObj.interests);

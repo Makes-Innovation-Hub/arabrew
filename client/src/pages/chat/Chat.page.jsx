@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
@@ -13,10 +13,28 @@ import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 let socket;
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
-const Chat = () => {
+const Chat = async () => {
   // first param the sender HERE is the logged USER
   const params = useParams();
   const { sender, reciever } = params;
+
+  // const senderUser = await fetch(
+  //   `${import.meta.env.VITE_SERVER_BASE_URL}:${
+  //     import.meta.env.VITE_SERVER_PORT
+  //   }/api/user/${sender}`
+  // );
+  // const recieverUser = await fetch(
+  //   `${import.meta.env.VITE_SERVER_BASE_URL}:${
+  //     import.meta.env.VITE_SERVER_PORT
+  //   }/api/user/${reciever}`
+  // );
+
+  // const src_lang = senderUser.userDetails.nativeLanguage;
+  // const dest_lang = recieverUser.userDetails.nativeLanguage;
+
+  const src_lang = "hebrew";
+  const dest_lang = "arabic";
+
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {
@@ -24,14 +42,15 @@ const Chat = () => {
     sender: sender,
     reciever: reciever,
     content: msgText,
+    src_lang: src_lang,
+    dest_lang: dest_lang,
   };
   const [messages, setMessages] = useState([]);
-  const namesArr = ["tito blah", "bibo mimo"];
+  //! const namesArr = ["tito blah", "bibo mimo"];
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetChatByNamesQuery(usersArr);
+  const { data, isSuccess, isError, error } = useGetChatByNamesQuery(usersArr);
 
   useEffect(() => {
     if (isError) {

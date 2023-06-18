@@ -1,4 +1,3 @@
-import React from "react";
 import Friend from "../Friend.jsx";
 const FriendsList = ({ friendsArr, userName }) => {
   return friendsArr.map((user) => {

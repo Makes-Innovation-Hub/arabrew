@@ -18,14 +18,22 @@ export const access_chatCollection = async (usersArr) => {
   }
 };
 
-export const addMessageToChat = async (sender, reciever, content) => {
+export const addMessageToChat = async (
+  chatId,
+  content,
+  translated,
+  sender,
+  receiver
+) => {
   const { usersArr, usersArrSwitched } = {
     usersArr: [sender, reciever],
     usersArrSwitched: [reciever, sender],
   };
   const newMsgObj = {
     sender: sender,
-    content: content,
+    receiver: receiver,
+    contentOriginal: content,
+    contentTranslated: translated,
     createdAt: new Date().toLocaleString("en-US", {
       timeZone: "Asia/Jerusalem",
       hour12: false,

@@ -54,7 +54,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
 
   return res.status(200).json({
     success: true,
-    data: newUser,
+    data: user,
   });
 });
 
@@ -112,4 +112,21 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   });
   allUsers = allUsers.sort(() => Math.random() - 0.5);
   res.status(200).json(allUsers);
+});
+
+//$ @desc    get user by name
+//$ @route   GET /api/user/:userName
+export const getUserByName = asyncHandler(async (req, res, next) => {
+  const { userName } = req.params;
+
+  const user = await User.findOne({ name: userName });
+
+  if (!user) {
+    return next(new Error("User not found"));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });

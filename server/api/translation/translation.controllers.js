@@ -36,6 +36,7 @@ export const messageController = asyncHandler(async (req, res, next) => {
 
       return res.status(200).json({
         success: true,
+        isProfanity: true,
         data:
           req.params.original_lang === "hebrew"
             ? PROFANITY_MSG_HE
@@ -49,13 +50,13 @@ export const messageController = asyncHandler(async (req, res, next) => {
       req.params.target_lang
     );
 
-    saveMsgToDB(
-      CHAT_BASE_URL,
-      req.params.user1,
-      req.params.user2,
-      req.body.data,
-      translatedMsg
-    );
+    // saveMsgToDB(
+    //   CHAT_BASE_URL,
+    //   req.params.user1,
+    //   req.params.user2,
+    //   req.body.data,
+    //   translatedMsg
+    // );
 
     // Logging timing
     timingLogger("messageController", startTime);
@@ -69,6 +70,7 @@ export const messageController = asyncHandler(async (req, res, next) => {
     });
     return res.status(200).json({
       success: true,
+      isProfanity: false,
       data: translatedMsg,
     });
   } catch (error) {
