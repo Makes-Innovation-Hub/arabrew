@@ -70,13 +70,19 @@ const Chat = () => {
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("room_setup", chatData);
-    socket.on("message_to_reciever", (newMsg) => {
+    socket.on("message_to_reciever", (newMsg, sender) => {
       console.log("message_to_reciever", newMsg);
-      setMessages((prev) => [...prev, newMsg]);
+      setMessages((prev) => [
+        ...prev,
+        { content: newMsg, sender: sender, loggedUser: sender },
+      ]);
     });
-    socket.on("message_to_sender", (newMsg) => {
+    socket.on("message_to_sender", (newMsg, sender) => {
       console.log("message_to_sender", newMsg);
-      setMessages((prev) => [...prev, newMsg]);
+      setMessages((prev) => [
+        ...prev,
+        { content: newMsg, sender: sender, loggedUser: sender },
+      ]);
     });
     // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
   }, []);

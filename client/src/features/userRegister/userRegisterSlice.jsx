@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subId: "testing@#$",
-  name: "morty sanchez",
+  subId: "-11111",
+  name: "Benny Solomon",
   avatar:
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
   userDetails: {

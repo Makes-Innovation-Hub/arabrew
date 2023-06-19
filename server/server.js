@@ -71,8 +71,8 @@ socket_io.on("connection", (socket) => {
     console.log("###content###", content);
     console.log("###translated###", translated);
 
-    socket.emit("message_to_sender", content);
-    socket.in(chatId).emit("message_to_reciever", translated);
+    socket.emit("message_to_sender", content, sender, reciever);
+    socket.in(chatId).emit("message_to_reciever", translated, sender, reciever);
 
     // const url = `${process.env.BASE_URL}:${process.env.PORT}/api/translation/${sender}/${reciever}/${src_lang}/${dest_lang}`;
     // const data = {
