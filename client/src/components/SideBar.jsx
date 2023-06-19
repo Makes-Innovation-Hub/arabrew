@@ -18,6 +18,10 @@ import {
 } from "../assets/index.jsx";
 import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
+import { useDispatch } from "react-redux";
+import { setLanguage } from "../features/appLanguage/appLanguageSlice";
+import { useSelector } from "react-redux";
+
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -31,6 +35,12 @@ export default function SideBar({ openSideBar }) {
     name: "Mika",
     profile: thisProfile,
   };
+
+  const dispatch = useDispatch();
+  const selectedLanguage = useSelector(
+    (state) => state.language.selectedLanguage
+  );
+
   return (
     <>
       <ModalSideBar
@@ -85,6 +95,15 @@ export default function SideBar({ openSideBar }) {
                       onClick={() => {
                         lenOptions ? setLenOptions(false) : setLenOptions(true);
                         setWhichLang(i);
+                        dispatch(setLanguage(langArr[whichLang][1]));
+                        console.log(
+                          "lang",
+                          i,
+                          whichLang,
+                          langArr[whichLang][1],
+                          typeof langArr[whichLang][1],
+                          selectedLanguage
+                        );
                       }}
                     >
                       <FlagForLang flag={len[0]} /> {len[1]}{" "}
