@@ -8,7 +8,10 @@ import routes from "./routes.js";
 import connectDB from "./config/db.js";
 import { checkProfanity } from "../server/api/translation/openAI.js";
 import { translateMsg } from "../server/api/translation/openAI.js";
-
+import {
+  PROFANITY_MSG_HE,
+  PROFANITY_MSG_AR,
+} from "../server/utils/constants.js";
 import {
   access_chatCollection,
   addMessageToChat,
@@ -63,16 +66,38 @@ socket_io.on("connection", (socket) => {
     const { chatId, content, sender, reciever, src_lang, dest_lang } = newMsg;
 
     const isProfanity = await checkProfanity(content);
-    const translated = await translateMsg(content, src_lang, dest_lang);
 
-    console.log("###sender###", sender);
-    console.log("###reciever###", reciever);
-    console.log("###isProfanity###", isProfanity);
-    console.log("###content###", content);
-    console.log("###translated###", translated);
+    if (isProfanity) {
+      socket.emit(
+        "message_to_sender",
+        src_lang === "hebrew" ? PROFANITY_MSG_HE : PROFANITY_MSG_AR,
+        sender,
+        reciever
+      );
+    } else {
+      const translated = await translateMsg(content, src_lang, dest_lang);
+      socket.emit("message_to_sender", content, sender, reciever);
+      socket
+        .in(chatId)
+        .emit("message_to_reciever", translated, sender, reciever);
+      const response = await fetch(
+        `${process.env.BASE_URL}:${process.env.PORT}/api/chat/${sender}/${reciever}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contentOriginal: content,
+            contentTranslated: translated,
+          }),
+        }
+      );
+    }
 
-    socket.emit("message_to_sender", content, sender, reciever);
-    socket.in(chatId).emit("message_to_reciever", translated, sender, reciever);
+    // console.log("###sender###", sender);
+    // console.log("###reciever###", reciever);
+    // console.log("###isProfanity###", isProfanity);
+    // console.log("###content###", content);
+    // console.log("###translated###", translated);
 
     // const url = `${process.env.BASE_URL}:${process.env.PORT}/api/translation/${sender}/${reciever}/${src_lang}/${dest_lang}`;
     // const data = {

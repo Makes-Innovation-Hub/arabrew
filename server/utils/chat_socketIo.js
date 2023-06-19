@@ -51,8 +51,8 @@ export const addMessageToChat = async (
     //   options
     // );
 
-    // const chat = fetch("http://localhost:5090/api/chat/Benny Solomon/Sean");
-    // const chatObj = JSON.parse(chat);
+    const chat = fetch("http://localhost:5090/api/chat/Benny Solomon/Sean");
+    const chatObj = JSON.parse(chat);
 
     // const messagesHistory = updatedChat.messagesHistory;
     // return isAddMessageSuccess(messagesHistory, content);
