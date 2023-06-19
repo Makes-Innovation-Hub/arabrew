@@ -6,6 +6,7 @@
   "main": "./server/server.js",
   "scripts": {
     "test": "npx mocha ./tests",
+    "test-chat-func": "npx mocha ./tests/chat.test.js",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "assert": "^2.0.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "mocha": "^10.2.0",

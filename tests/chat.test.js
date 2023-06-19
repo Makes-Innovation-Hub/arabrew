@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 //* the "export default app;" at the very end of the server.js
 import server from "../server/server.js";
-import { Chat } from "../server/api/index.js";
 
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
