@@ -7,7 +7,7 @@ import {
 import {
   addMessageToChat,
   createChat,
-} from "./chat.controllers-update-functions.js/index.js";
+} from "./chat.controllers-update-functions.js";
 const router = express.Router();
 
 router
