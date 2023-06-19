@@ -16,6 +16,71 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useGetLoggedUserQuery } from "./features/userDataApi.js";
+import { skipToken } from "@reduxjs/toolkit/dist/query/index.js";
+import { addAuth0Details } from "./features/userRegister/userRegisterSlice.jsx";
+
+const AuthWrapper = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
+    useAuth0();
+
+  const { data: loggedUser, isSuccess } = useGetLoggedUserQuery(
+    user ? user.sub : skipToken
+  );
+
+  useEffect(() => {
+    console.log(`isLoading: ${isLoading}, isAuthenticated: ${isAuthenticated}`);
+    if (!isLoading && !isAuthenticated) {
+      console.log("Redirecting to Auth0...");
+      loginWithRedirect({
+        appState: { targetUrl: "/home" },
+      });
+    } else if (isAuthenticated && user) {
+      console.log("User is authenticated");
+      // logic for redirecting the user based on their authentication state
+    }
+  }, [navigate, isLoading, isAuthenticated, user, loginWithRedirect]);
+
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     loginWithRedirect();
+  //   }
+  // }, [isAuthenticated, loginWithRedirect]);
+
+  useEffect(() => {
+    console.log(`isLoading:${isLoading}`);
+    console.log(`user:${user}`);
+    console.log(`isSuccess:${isSuccess}`);
+    if (!isLoading && user && isSuccess) {
+      if (loggedUser?.success) {
+        navigate("/conversation");
+      } else {
+        const { name, picture, sub } = user;
+        dispatch(
+          addAuth0Details({
+            name: name,
+            avatar: picture,
+            subId: sub.split("|")[1],
+          })
+        );
+        navigate("/lang");
+      }
+    }
+  }, [navigate, isLoading, user, isSuccess, loggedUser, dispatch]);
+  return (
+    <button onClick={() => logout({ returnTo: window.location.origin })}>
+      Log out
+    </button>
+  );
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +95,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
+  { path: "/home", element: <AuthWrapper />, errorElement: <>Error...</> },
   {
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
@@ -53,7 +119,12 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
 ]);
+
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <RouterProvider router={router}>
+      <AuthWrapper />
+    </RouterProvider>
+  );
 }
 export default App;
