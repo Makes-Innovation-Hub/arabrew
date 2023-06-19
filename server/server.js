@@ -63,7 +63,6 @@ socket_io.on("connection", (socket) => {
       .then((savedMsg) => {
         if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
         //*send the message back to the sender
-        console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
         socket.emit("message_to_sender", savedMsg);
         //*send the message to the reciever
         socket.in(chatId).emit("message_to_reciever", savedMsg);
@@ -76,3 +75,4 @@ process.on("unhandledRejection", async (err, promise) => {
   console.log(`Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+export default app;
