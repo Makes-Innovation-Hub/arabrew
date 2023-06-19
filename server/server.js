@@ -65,23 +65,14 @@ socket_io.on("connection", (socket) => {
     const isProfanity = await checkProfanity(content);
     const translated = await translateMsg(content, src_lang, dest_lang);
 
+    console.log("###sender###", sender);
+    console.log("###reciever###", reciever);
     console.log("###isProfanity###", isProfanity);
+    console.log("###content###", content);
     console.log("###translated###", translated);
 
-    socket.emit("message_to_sender", {
-      message: {
-        sender: sender,
-        content: content,
-      },
-      loggedUser: sender,
-    });
-    socket.in(chatId).emit("message_to_reciever", {
-      message: {
-        sender: sender,
-        content: translated,
-      },
-      loggedUser: sender,
-    });
+    socket.emit("message_to_sender", content);
+    socket.in(chatId).emit("message_to_reciever", translated);
 
     // const url = `${process.env.BASE_URL}:${process.env.PORT}/api/translation/${sender}/${reciever}/${src_lang}/${dest_lang}`;
     // const data = {

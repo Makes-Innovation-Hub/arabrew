@@ -73,10 +73,9 @@ const Chat = () => {
     socket.on("message_to_reciever", (newMsg) => {
       console.log("message_to_reciever", newMsg);
       setMessages((prev) => [...prev, newMsg]);
-
-      console.log("newMsg", newMsg);
     });
     socket.on("message_to_sender", (newMsg) => {
+      console.log("message_to_sender", newMsg);
       setMessages((prev) => [...prev, newMsg]);
     });
     // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
