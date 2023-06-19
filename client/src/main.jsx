@@ -8,17 +8,9 @@ import App from "./App.jsx";
 import { store } from "./app/store.jsx";
 import { Provider } from "react-redux";
 import GlobalStyles from "./styles/GlobalStyles.jsx";
-import { createBrowserHistory } from "history";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-
-const history = createBrowserHistory();
-
-const onRedirectCallback = (appState) => {
-  const targetUrl = appState?.targetUrl || "/home";
-  history.push(targetUrl);
-};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -26,9 +18,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: window.location.origin + "/home",
       }}
-      onRedirectCallback={onRedirectCallback}
     >
       <GlobalStyles />
       <ErrorBoundary

@@ -36,28 +36,11 @@ const AuthWrapper = () => {
   );
 
   useEffect(() => {
-    console.log(`isLoading: ${isLoading}, isAuthenticated: ${isAuthenticated}`);
+    console.log(`auth: ${isAuthenticated}`);
     if (!isLoading && !isAuthenticated) {
       console.log("Redirecting to Auth0...");
-      loginWithRedirect({
-        appState: { targetUrl: "/home" },
-      });
-    } else if (isAuthenticated && user) {
-      console.log("User is authenticated");
-      // logic for redirecting the user based on their authentication state
+      loginWithRedirect();
     }
-  }, [navigate, isLoading, isAuthenticated, user, loginWithRedirect]);
-
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     loginWithRedirect();
-  //   }
-  // }, [isAuthenticated, loginWithRedirect]);
-
-  useEffect(() => {
-    console.log(`isLoading:${isLoading}`);
-    console.log(`user:${user}`);
-    console.log(`isSuccess:${isSuccess}`);
     if (!isLoading && user && isSuccess) {
       if (loggedUser?.success) {
         navigate("/conversation");
@@ -73,7 +56,15 @@ const AuthWrapper = () => {
         navigate("/lang");
       }
     }
-  }, [navigate, isLoading, user, isSuccess, loggedUser, dispatch]);
+  }, [
+    isLoading,
+    isAuthenticated,
+    user,
+    loginWithRedirect,
+    isSuccess,
+    loggedUser,
+  ]);
+
   return (
     <button onClick={() => logout({ returnTo: window.location.origin })}>
       Log out
