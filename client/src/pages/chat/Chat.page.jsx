@@ -71,7 +71,9 @@ const Chat = () => {
     socket = io(ENDPOINT);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
+      console.log("message_to_reciever", newMsg);
       setMessages((prev) => [...prev, newMsg]);
+
       console.log("newMsg", newMsg);
     });
     socket.on("message_to_sender", (newMsg) => {

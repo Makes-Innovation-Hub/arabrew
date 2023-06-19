@@ -42,14 +42,21 @@ export const addMessageToChat = async (
   };
   const options = { new: true, runValidators: true };
   try {
-    const updatedChat = await Chat.findOneAndUpdate(
-      { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
-      { $push: { messagesHistory: newMsgObj } },
-      options
-    );
-    const messagesHistory = updatedChat.messagesHistory;
+    // console.log("usersArr", usersArr);
+    // console.log("usersArrSwitched", usersArrSwitched);
+    // console.log("newMsgObj", newMsgObj);
+    // const updatedChat = await Chat.findOneAndUpdate(
+    //   { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
+    //   { $push: { messagesHistory: newMsgObj } },
+    //   options
+    // );
+
+    // const chat = fetch("http://localhost:5090/api/chat/Benny Solomon/Sean");
+    // const chatObj = JSON.parse(chat);
+
+    // const messagesHistory = updatedChat.messagesHistory;
     // return isAddMessageSuccess(messagesHistory, content);
-    return true;
+    return newMsgObj;
   } catch (error) {
     throw new Error(error);
   }
