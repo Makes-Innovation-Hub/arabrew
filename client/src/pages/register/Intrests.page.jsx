@@ -19,6 +19,7 @@ import {
   listBtn,
   selectedContainer,
   wrapper,
+  noBorderListBtn,
 } from "../../components/index.js";
 
 const Interests = () => {
@@ -26,6 +27,7 @@ const Interests = () => {
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
+  const [chosen, setChosen] = useState([]);
 
   const { interests } = useSelector((state) => state.userRegister.userDetails);
   const [selectedInterests, setSelectedInterests] = useState({
@@ -97,18 +99,16 @@ const Interests = () => {
           </StyledPageTitle>
         </StyledMargin>
         <Content>
-          {isError && (
-            <h1 style={{ color: "red" }}>
-              * max Interests Number, were selected
-            </h1>
-          )}
-
           <div style={selectedContainer}>
             {value.map((interest) => (
               <button
                 style={selectedBtn}
                 key={interest}
-                onClick={() => removeInterest(interest)}
+                onClick={() => {
+                  removeInterest(interest);
+                  setIsError(false);
+                  chosen.splice(chosen.indexOf(interest), 1);
+                }}
               >
                 {interest}
                 <span> X</span>
@@ -119,13 +119,37 @@ const Interests = () => {
           <div>
             {interestsList.map((interest) => (
               <span key={interest}>
-                <button style={listBtn} onClick={() => addInterests(interest)}>
+                <button
+                  style={chosen.includes(interest) ? listBtn : noBorderListBtn}
+                  onClick={(e) => {
+                    addInterests(interest);
+                    !chosen.includes(interest) &&
+                      setChosen([...chosen, e.target.innerText]);
+                    console.log("arr:", chosen);
+                  }}
+                >
                   {interest}
                 </button>
               </span>
             ))}
           </div>
 
+          <div
+            style={{
+              height: "2rem",
+              display: "flex",
+              width: "80%",
+              textAlign: "center",
+            }}
+          >
+            {isError ? (
+              <h1 style={{ color: "red" }}>
+                * max Interests Number, were selected
+              </h1>
+            ) : (
+              <div />
+            )}
+          </div>
           <ButtonDiv>
             <Button onClick={handleSave} disabled={disableSaveBtn}>
               Save & Next

@@ -15,6 +15,7 @@ import {
   listBtn,
   wrapper,
   selectedContainer,
+  noBorderListBtn,
 } from "./styles/Interests.style.jsx";
 export {
   Navbar,
@@ -29,6 +30,7 @@ export {
   listBtn,
   wrapper,
   selectedContainer,
+  noBorderListBtn,
   Header,
   InputArea,
   Friend,

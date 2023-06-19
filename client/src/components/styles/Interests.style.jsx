@@ -14,26 +14,35 @@ export const selectedBtn = {
   border: "none",
   padding: "0.7rem",
   margin: "0.2rem 0.3rem",
+  height: "3rem",
 };
 
 export const listBtn = {
   fontSize: "1.2rem",
   backgroundColor: "#EDF2F7",
   borderRadius: "4rem",
-  border: "none",
+  border: "0.1rem solid #000",
+  padding: "1rem",
+  margin: "0.3rem 0.3rem",
+};
+export const noBorderListBtn = {
+  fontSize: "1.2rem",
+  backgroundColor: "#EDF2F7",
+  borderRadius: "4rem",
+  border: "0.1rem solid #EDF2F7",
   padding: "1rem",
   margin: "0.3rem 0.3rem",
 };
 
 export const selectedContainer = {
   fontSize: "1rem",
-  padding: "0.4rem",
   border: "none",
-  margin: "1rem",
+  marginTop: "1rem",
   fontWeight: "500",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
   lineHeight: "1.6rem",
   flexWrap: "wrap",
+  minHeight: "8rem",
 };
