@@ -36,9 +36,7 @@ const AuthWrapper = () => {
   );
 
   useEffect(() => {
-    console.log(`auth: ${isAuthenticated}`);
     if (!isLoading && !isAuthenticated) {
-      console.log("Redirecting to Auth0...");
       loginWithRedirect();
     }
     if (!isLoading && user && isSuccess) {
@@ -64,12 +62,6 @@ const AuthWrapper = () => {
     isSuccess,
     loggedUser,
   ]);
-
-  return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
-      Log out
-    </button>
-  );
 };
 
 const router = createBrowserRouter([
