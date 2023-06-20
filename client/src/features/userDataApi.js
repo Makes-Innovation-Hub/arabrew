@@ -1,9 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}:${
-      import.meta.env.VITE_SERVER_PORT
-    }/api`,
+    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}/api`,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -25,10 +23,10 @@ const userDataApi = createApi({
       },
     }),
     getChatByNames: builder.query({
-      query: (names) => {
-        const [sender, reciever] = names;
+      query: ([usersArr, userLang]) => {
+        const [sender, reciever] = usersArr;
         return {
-          url: `chat/${sender}/${reciever}`,
+          url: `chat/${sender}/${reciever}?userLang=${userLang}`,
           method: "GET",
         };
       },

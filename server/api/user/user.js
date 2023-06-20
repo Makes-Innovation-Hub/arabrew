@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema(
       nativeLanguage: {
         type: String,
         required: [true, "⛔⛔ user Language missing ⛔⛔"],
+        enum: ["HE", "AR"],
       },
       interests: {
         type: [

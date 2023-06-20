@@ -1,5 +1,9 @@
 import { Chat } from "../api/index.js";
-import { isAddMessageSuccess } from "./util.js";
+import {
+  isAddMessageSuccess,
+  isProfanity,
+  sendPromptToOpenAi,
+} from "./util.js";
 export const access_chatCollection = async (usersArr) => {
   try {
     const usersArrSwitched = [usersArr[1], usersArr[0]];
@@ -19,21 +23,27 @@ export const access_chatCollection = async (usersArr) => {
 };
 
 export const addMessageToChat = async (
-  chatId,
-  content,
-  translated,
   sender,
-  receiver
+  reciever,
+  content_AR,
+  content_HE
 ) => {
   const { usersArr, usersArrSwitched } = {
-    usersArr: [sender, receiver],
-    usersArrSwitched: [receiver, sender],
+    usersArr: [sender, reciever],
+    usersArrSwitched: [reciever, sender],
   };
+  console.log(
+    "$$$$$$$$$$$$$",
+    sender,
+    reciever,
+    content_AR,
+    content_HE,
+    "$$$$$$$$$$$$$"
+  );
   const newMsgObj = {
     sender: sender,
-    receiver: receiver,
-    contentOriginal: content,
-    contentTranslated: translated,
+    content_AR: content_AR,
+    content_HE: content_HE,
     createdAt: new Date().toLocaleString("en-US", {
       timeZone: "Asia/Jerusalem",
       hour12: false,
@@ -42,22 +52,23 @@ export const addMessageToChat = async (
   };
   const options = { new: true, runValidators: true };
   try {
-    // console.log("usersArr", usersArr);
-    // console.log("usersArrSwitched", usersArrSwitched);
-    // console.log("newMsgObj", newMsgObj);
-    // const updatedChat = await Chat.findOneAndUpdate(
-    //   { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
-    //   { $push: { messagesHistory: newMsgObj } },
-    //   options
-    // );
-
-    const chat = fetch("http://localhost:5090/api/chat/Benny Solomon/Sean");
-    const chatObj = JSON.parse(chat);
-
-    // const messagesHistory = updatedChat.messagesHistory;
-    // return isAddMessageSuccess(messagesHistory, content);
-    return newMsgObj;
+    const updatedChat = await Chat.findOneAndUpdate(
+      { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
+      { $push: { messagesHistory: newMsgObj } },
+      options
+    );
+    const messagesHistory = updatedChat.messagesHistory;
+    return isAddMessageSuccess(messagesHistory, content_HE);
   } catch (error) {
     throw new Error(error);
   }
+};
+
+export const CheckAndTranslateMsg = async (msg, origin_lang, target_lang) => {
+  const profanity = await isProfanity(msg, origin_lang);
+  if (profanity) return { isProfanity: true, profanity: profanity };
+  const prompt = `translate from language ${origin_lang} to language ${target_lang} this text: ${msg}. return only the translated message`;
+  const response = await sendPromptToOpenAi(prompt);
+  const translatedText = response.data.choices[0].message.content;
+  return { isProfanity: false, translatedMsg: translatedText };
 };

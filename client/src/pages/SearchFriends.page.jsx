@@ -16,10 +16,14 @@ const SearchFriends = () => {
   //! hardcoded until benny finish the LOGGEDUSER slice in the store
   //! then we replace them with useSelector
   const userObj = {
-    subId: "-11111",
+    subId: "116936549360403241952",
     interests: ["Yoga", "Reading", "Hiking", "Traveling", "Cooking"],
-    name: "Benny Solomon",
+    name: "Tawfiq Zayyad",
+    userDetails: {
+      nativeLanguage: "AR",
+    },
   };
+  const { nativeLanguage: originLang } = userObj.userDetails;
   //! ***************************************************************************
   const [selectedInterests, setSelectedInterests] = useState(userObj.interests);
   const [getUsers, { data, error, isError, isLoading, isSuccess }] =
@@ -83,7 +87,13 @@ const SearchFriends = () => {
           ))}
         </StyledHobbiesContainer>
         <StyledMargin direction="vertical" margin="4rem" />
-        {isSuccess && <FriendsList friendsArr={data} userName={userObj.name} />}
+        {isSuccess && (
+          <FriendsList
+            friendsArr={data}
+            originLang={originLang}
+            userName={userObj.name}
+          />
+        )}
       </StyledPage>
     </>
   );

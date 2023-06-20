@@ -49,6 +49,7 @@ const Intro = () => {
             subId: sub.split("|")[1],
           })
         );
+        console.log(user);
         navigate("/lang");
       }
     }

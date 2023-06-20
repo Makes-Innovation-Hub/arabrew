@@ -1,5 +1,5 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
-import { checkProfanity, translateMsg } from "./openAI.js";
+import { checkProfanity, translateMsg } from "./translation.services.js";
 import {
   PROFANITY_MSG_HE,
   PROFANITY_MSG_AR,
@@ -15,7 +15,6 @@ import {
 } from "../../middleware/logger.js";
 
 export const messageController = asyncHandler(async (req, res, next) => {
-  // Logging controller event
   controllerLogger("messageController", req.params, "Handling message");
 
   const startTime = Date.now();
@@ -24,10 +23,8 @@ export const messageController = asyncHandler(async (req, res, next) => {
     if (isProfanity) {
       eventLogger("found profanity", req.body.data);
 
-      //logging timing
       timingLogger("messageController", startTime);
 
-      // Logging after the service ends successfully
       successLogger("messageController", {
         foundProfanity: isProfanity,
         message: req.body.data,
@@ -44,24 +41,14 @@ export const messageController = asyncHandler(async (req, res, next) => {
       });
     }
 
-    let translatedMsg = await translateMsg(
+    const translatedMsg = await translateMsg(
       req.body.data,
       req.params.original_lang,
       req.params.target_lang
     );
 
-    // saveMsgToDB(
-    //   CHAT_BASE_URL,
-    //   req.params.user1,
-    //   req.params.user2,
-    //   req.body.data,
-    //   translatedMsg
-    // );
-
-    // Logging timing
     timingLogger("messageController", startTime);
 
-    // Logging after the service ends successfully
     successLogger("messageController", {
       originalLang: req.params.original_lang,
       targetLang: req.params.target_lang,
@@ -74,7 +61,6 @@ export const messageController = asyncHandler(async (req, res, next) => {
       data: translatedMsg,
     });
   } catch (error) {
-    // Logging error
     errorLogger(error, req, res, next);
 
     next(error);

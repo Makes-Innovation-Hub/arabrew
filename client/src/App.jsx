@@ -30,6 +30,7 @@ import {
 } from "./features/userRegister/userRegisterSlice.jsx";
 
 const AuthWrapper = () => {
+  //! custom hooks are madde to avoid this! MUST REFACTOR
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
     element: <ConversationPage prevConversation={prevConversation} />,
   },
   {
-    path: "/chat-page/:sender/:reciever",
+    path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
     element: <Chat />,
     errorElement: <>Error...</>,
   },
@@ -114,6 +115,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <RouterProvider router={router}>
+      {/* //! custom hooks are made  to avoid this! MUST REFACTOR */}
       <AuthWrapper />
     </RouterProvider>
   );

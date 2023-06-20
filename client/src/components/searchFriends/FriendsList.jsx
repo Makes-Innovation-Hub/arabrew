@@ -1,8 +1,8 @@
 import Friend from "../Friend.jsx";
-const FriendsList = ({ friendsArr, userName }) => {
+const FriendsList = ({ friendsArr, userName, originLang }) => {
   return friendsArr.map((user) => {
     const { name: friend, avatar, subId, userDetails } = user;
-    const { nationality, interests } = userDetails;
+    const { nationality, interests, nativeLanguage: targetLang } = userDetails;
     return (
       <Friend
         key={subId}
@@ -10,7 +10,7 @@ const FriendsList = ({ friendsArr, userName }) => {
         img={avatar}
         flag={nationality}
         hobbies={interests}
-        chatPage={`/chat-page/${userName}/${friend}`}
+        chatPage={`/chat-page/${userName}/${friend}/${originLang}/${targetLang}`}
       />
     );
   });

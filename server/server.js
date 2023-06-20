@@ -6,12 +6,7 @@ import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
 import connectDB from "./config/db.js";
-import { checkProfanity } from "../server/api/translation/openAI.js";
-import { translateMsg } from "../server/api/translation/openAI.js";
-import {
-  PROFANITY_MSG_HE,
-  PROFANITY_MSG_AR,
-} from "../server/utils/constants.js";
+import { CheckAndTranslateMsg } from "./utils/chat_socketIo.js";
 import {
   access_chatCollection,
   addMessageToChat,
@@ -62,36 +57,37 @@ socket_io.on("connection", (socket) => {
       })
       .catch((err) => console.error(err));
   });
-  socket.on("new_message", async (newMsg) => {
-    const { chatId, content, sender, reciever, src_lang, dest_lang } = newMsg;
-
-    const isProfanity = await checkProfanity(content);
-
-    if (isProfanity) {
-      socket.emit(
-        "message_to_sender",
-        src_lang === "hebrew" ? PROFANITY_MSG_HE : PROFANITY_MSG_AR,
-        sender,
-        reciever
-      );
-    } else {
-      const translated = await translateMsg(content, src_lang, dest_lang);
-      socket.emit("message_to_sender", content, sender, reciever);
-      socket
-        .in(chatId)
-        .emit("message_to_reciever", translated, sender, reciever);
-      const response = await fetch(
-        `${process.env.BASE_URL}:${process.env.PORT}/api/chat/${sender}/${reciever}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contentOriginal: content,
-            contentTranslated: translated,
-          }),
-        }
-      );
-    }
+  socket.on("new_message", (newMsg) => {
+    const { chatId, content, sender, reciever, originLang, targetLang } =
+      newMsg;
+    CheckAndTranslateMsg(content, originLang, targetLang)
+      .then((result) => {
+        if (result.isProfanity)
+          return socket.emit("message_to_sender", result.profanity);
+        const { translatedMsg } = result;
+        const content_HE = originLang === "HE" ? content : translatedMsg;
+        const content_AR = originLang === "AR" ? content : translatedMsg;
+        addMessageToChat(sender, reciever, content_AR, content_HE)
+          .then((savedMsg) => {
+            if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
+            //*send the message back to the sender
+            let savedMsg_sender = savedMsg;
+            savedMsg_sender.content = savedMsg_sender["content_" + originLang];
+            delete savedMsg_sender["content_" + originLang];
+            delete savedMsg_sender["content_" + targetLang];
+            socket.emit("message_to_sender", savedMsg_sender);
+            //*send the message to the reciever
+            let savedMsg_reciever = savedMsg;
+            savedMsg_reciever.content =
+              savedMsg_reciever["content_" + targetLang];
+            delete savedMsg_reciever["content_" + originLang];
+            delete savedMsg_reciever["content_" + targetLang];
+            console.log(targetLang);
+            socket.in(chatId).emit("message_to_reciever", savedMsg_reciever);
+          })
+          .catch((err) => console.error(err));
+      })
+      .catch((err) => console.error(err));
   });
   socket.on("disconnect", (data) => console.log(data));
 });
