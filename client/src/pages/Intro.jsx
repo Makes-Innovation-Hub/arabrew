@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Glass, GoogleIcon, FacebookIcon } from "../assets";
 import { useDispatch } from "react-redux";
 import {
@@ -26,7 +26,7 @@ const Intro = () => {
     user,
     isAuthenticated,
     isLoading,
-    loginWithRedirect,
+    // loginWithRedirect,
   } = useAuth0();
 
   const loginWithFacebook = () => loginWithPopup({ connection: "facebook" });
@@ -46,7 +46,7 @@ const Intro = () => {
           addAuth0Details({
             name: name,
             avatar: picture,
-            subId: sub,
+            subId: sub.split("|")[1],
           })
         );
         navigate("/lang");

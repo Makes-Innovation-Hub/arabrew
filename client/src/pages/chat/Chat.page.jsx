@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
@@ -16,8 +16,16 @@ let socket;
 
 const Chat = () => {
   // first param the sender HERE is the logged USER
-  const params = useParams();
-  const { sender, reciever } = params;
+  // const params = useParams();
+  // const { sender, reciever } = params;
+  const senderUser = useSelector((state) => state.userRegister);
+  const recieverUser = useSelector((state) => state.chatUser);
+
+  console.log("senderUser", senderUser);
+  console.log("recieverUser", recieverUser);
+
+  const sender = senderUser.name;
+  const reciever = recieverUser.name;
 
   const src_lang = senderUser.userDetails.nativeLanguage;
   const dest_lang = recieverUser.userDetails.nativeLanguage;
