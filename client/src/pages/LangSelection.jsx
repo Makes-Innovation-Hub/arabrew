@@ -9,24 +9,34 @@ import {
   StyledButton,
   StyledLanguageButton,
   StyledPageTitle,
+  StyledHiddenButton,
 } from "../styles";
 import { ArrowLeft, LanguageIcon } from "../assets";
 import { addDetail } from "../features/userRegister/userRegisterSlice.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
+
 const LangSelection = () => {
   const [language, setLanguage] = useState({
     value: "",
     field: "nativeLanguage",
   });
 
+  const { logout } = useAuth0();
+
   const dispatch = useDispatch();
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/intro">
+            <StyledHiddenButton
+              onClick={() =>
+                logout({ returnTo: window.location.origin + "/home" })
+              }
+            >
               <ArrowLeft />
-            </Link>
+            </StyledHiddenButton>
           }
           title={"Add Language"}
         />
