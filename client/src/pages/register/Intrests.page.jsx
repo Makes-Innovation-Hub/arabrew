@@ -21,23 +21,19 @@ import {
   wrapper,
   noBorderListBtn,
 } from "../../components/index.js";
-
 const Interests = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
   const [chosen, setChosen] = useState([]);
-
   const { interests } = useSelector((state) => state.userRegister.userDetails);
   const [selectedInterests, setSelectedInterests] = useState({
     field: "interests",
     value: interests.length > 0 ? interests : [],
     interestsNumber: interests.length > 0 ? interests.length : 0,
   });
-
   const { value, interestsNumber } = selectedInterests;
-
   const addInterests = (newInterest) => {
     let prevInterests = value;
     const newInterestNoEmoji = newInterest.split(" ")[1];
@@ -48,7 +44,6 @@ const Interests = () => {
     if (value.length === 5) {
       return setIsError(true);
     }
-
     const newInterestsArr = [...value, newInterestNoEmoji];
     setSelectedInterests({
       ...selectedInterests,
@@ -56,7 +51,6 @@ const Interests = () => {
       interestsNumber: newInterestsArr.length,
     });
   };
-
   const removeInterest = (interest) => {
     const newInterestsArr = value.filter(
       (currentInterest) => currentInterest != interest
@@ -67,7 +61,6 @@ const Interests = () => {
       interestsNumber: newInterestsArr.length,
     });
   };
-
   const handleSave = () => {
     dispatch(addDetail(selectedInterests));
     navigate("/agePage");
@@ -104,10 +97,10 @@ const Interests = () => {
               <button
                 style={selectedBtn}
                 key={interest}
-                onClick={() => {
-                  removeInterest(interest);
+                onClick={async () => {
                   setIsError(false);
-                  chosen.splice(chosen.indexOf(interest), 1);
+                  await chosen.splice(chosen.indexOf(interest), 1);
+                  await removeInterest(interest);
                 }}
               >
                 {interest}
@@ -115,7 +108,6 @@ const Interests = () => {
               </button>
             ))}
           </div>
-
           <div>
             {interestsList.map((interest) => (
               <span key={interest}>
@@ -133,7 +125,6 @@ const Interests = () => {
               </span>
             ))}
           </div>
-
           <div
             style={{
               height: "2rem",
@@ -160,5 +151,4 @@ const Interests = () => {
     </div>
   );
 };
-
 export default Interests;
