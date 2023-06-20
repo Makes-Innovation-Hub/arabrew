@@ -119,12 +119,6 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     // Logging timing
     timingLogger("addMessageToChat", startTime);
     // Logging after the service ends successfully
-    successLogger("addMessageToChat", {
-      sender,
-      receiver,
-      newMsgObj,
-      updatedChat,
-    });
 
     res.status(200).json(updatedChat);
   } catch (error) {

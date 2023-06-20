@@ -11,7 +11,7 @@ dotenv.config({ path: __dirname + "/../../.env" });
 const sendPromptToOpenAi = async (openai, prompt) => {
   return await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: "assistant", content: prompt }],
   });
 };
 
@@ -34,12 +34,20 @@ export const checkProfanity = async (msg) => {
 };
 
 export const translateMsg = async (msg, original_lang, target_lang) => {
+  console.log("msg", msg);
+  console.log("original_lang", original_lang);
+  console.log("target_lang", target_lang);
   const openai = new OpenAIApi(
     new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
   );
   const response = await sendPromptToOpenAi(
     openai,
-    `translate from ${original_lang} to ${target_lang}: ${msg}`
+    `translate from language ${original_lang} to language ${target_lang} this text: ${msg}. return only the translated message`
+  );
+
+  console.log(
+    "response.data.choices[0].message.content",
+    response.data.choices[0].message.content
   );
 
   return response.data.choices[0].message.content;

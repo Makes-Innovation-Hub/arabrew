@@ -92,68 +92,6 @@ socket_io.on("connection", (socket) => {
         }
       );
     }
-
-    // console.log("###sender###", sender);
-    // console.log("###reciever###", reciever);
-    // console.log("###isProfanity###", isProfanity);
-    // console.log("###content###", content);
-    // console.log("###translated###", translated);
-
-    // const url = `${process.env.BASE_URL}:${process.env.PORT}/api/translation/${sender}/${reciever}/${src_lang}/${dest_lang}`;
-    // const data = {
-    //   data: content,
-    // };
-
-    // const headers = {
-    //   "Content-Type": "application/json",
-    // };
-
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: JSON.stringify(data),
-    // };
-
-    // let translationPlusProfanity;
-
-    // fetch(url, requestOptions)
-    //   .then((res) => {
-    //     translationPlusProfanity = res;
-
-    //     if (translationPlusProfanity.isProfanity) {
-    //       socket.emit("message_to_sender", translationPlusProfanity.data);
-    //     } else {
-    //       addMessageToChat(
-    //         chatId,
-    //         content,
-    //         translationPlusProfanity.data,
-    //         sender,
-    //         reciever
-    //       )
-    //         .then((savedMsg) => {
-    //           if (!savedMsg) {
-    //             throw new Error(
-    //               "failed adding new MSg (server.js)"
-    //             );
-    //           }
-    //           //*send the message back to the sender
-    //           console.log(
-    //             "contentOriginal",
-    //             savedMsg.contentOriginal,
-    //             "%%%%%%%%%%%%%%%%%%%%"
-    //           );
-    //           socket.emit("message_to_sender", savedMsg.contentOriginal);
-    //           //*send the message to the reciever
-    //           socket
-    //             .in(chatId)
-    //             .emit("message_to_reciever", savedMsg.contentTranslated);
-    //         })
-    //         .catch((err) => console.error(err));
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     throw new Error(err);
-    //   });
   });
   socket.on("disconnect", (data) => console.log(data));
 });

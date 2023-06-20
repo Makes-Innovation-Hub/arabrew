@@ -18,22 +18,8 @@ const Chat = () => {
   const params = useParams();
   const { sender, reciever } = params;
 
-  // const senderUser = await fetch(
-  //   `${import.meta.env.VITE_SERVER_BASE_URL}:${
-  //     import.meta.env.VITE_SERVER_PORT
-  //   }/api/user/${sender}`
-  // );
-  // const recieverUser = await fetch(
-  //   `${import.meta.env.VITE_SERVER_BASE_URL}:${
-  //     import.meta.env.VITE_SERVER_PORT
-  //   }/api/user/${reciever}`
-  // );
-
-  // const src_lang = senderUser.userDetails.nativeLanguage;
-  // const dest_lang = recieverUser.userDetails.nativeLanguage;
-
-  const src_lang = "hebrew";
-  const dest_lang = "arabic";
+  const src_lang = senderUser.userDetails.nativeLanguage;
+  const dest_lang = recieverUser.userDetails.nativeLanguage;
 
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
