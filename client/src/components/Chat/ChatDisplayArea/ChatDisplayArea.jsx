@@ -4,9 +4,7 @@ import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.
 
 const ChatDisplayArea = ({ messages }) => {
   //! must be refactored, when a loggedUser slice is created
-  const { name: loggedUser } = useSelector(
-    (state) => state.userRegister.connectedUser
-  );
+  const { name: loggedUser } = useSelector((state) => state.userRegister);
   return (
     <ChatsContainer>
       {messages.map((message) => (

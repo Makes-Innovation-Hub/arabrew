@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
-
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseUrl}/api`,
+    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}:${
+      import.meta.env.VITE_SERVER_PORT
+    }/api`,
   }),
-
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (userObj) => ({
@@ -39,12 +38,10 @@ const userDataApi = createApi({
     }),
   }),
 });
-
 export const {
   useRegisterUserMutation,
   useLazyGetUsersQuery,
   useGetChatByNamesQuery,
   useGetLoggedUserQuery,
 } = userDataApi;
-
 export default userDataApi;
