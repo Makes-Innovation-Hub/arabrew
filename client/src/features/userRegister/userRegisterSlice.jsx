@@ -31,8 +31,17 @@ export const userRegisterSlice = createSlice({
     addAllDetailsConnectedUser: (state, { payload }) => {
       state = payload;
     },
+    mergeDetails: (state, { payload }) => {
+      console.log("state before", state);
+      state = { ...state, ...payload };
+      console.log("state after", state);
+    },
   },
 });
-export const { addDetail, addAllDetailsConnectedUser, addAuth0Details } =
-  userRegisterSlice.actions;
+export const {
+  addDetail,
+  addAllDetailsConnectedUser,
+  addAuth0Details,
+  mergeDetails,
+} = userRegisterSlice.actions;
 export default userRegisterSlice.reducer;

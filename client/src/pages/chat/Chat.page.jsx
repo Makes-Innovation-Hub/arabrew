@@ -11,6 +11,7 @@ import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayAr
 
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
+import { useSelector } from "react-redux";
 
 let socket;
 
@@ -18,9 +19,11 @@ const Chat = () => {
   // first param the sender HERE is the logged USER
   const params = useParams();
   const { sender, reciever } = params;
-
-  const src_lang = senderUser.userDetails.nativeLanguage;
-  const dest_lang = recieverUser.userDetails.nativeLanguage;
+  const { chatUser, userRegister } = useSelector((state) => state);
+  console.log("userRegister", userRegister);
+  console.log("chatUser", chatUser);
+  const srcLang = userRegister.userDetails.nativeLanguage;
+  const destLang = userRegister.userDetails.nativeLanguage;
 
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
@@ -29,8 +32,8 @@ const Chat = () => {
     sender: sender,
     reciever: reciever,
     content: msgText,
-    src_lang: src_lang,
-    dest_lang: dest_lang,
+    src_lang: srcLang,
+    dest_lang: destLang,
   };
   const [messages, setMessages] = useState([]);
   //!MUST be refactored and replaced when rtk query and chatschema is configured

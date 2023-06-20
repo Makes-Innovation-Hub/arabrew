@@ -23,7 +23,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useGetLoggedUserQuery } from "./features/userDataApi.js";
 import { skipToken } from "@reduxjs/toolkit/dist/query/index.js";
-import { addAuth0Details } from "./features/userRegister/userRegisterSlice.jsx";
+import {
+  addAuth0Details,
+  addDetail,
+  mergeDetails,
+} from "./features/userRegister/userRegisterSlice.jsx";
 
 const AuthWrapper = () => {
   const navigate = useNavigate();
@@ -41,14 +45,18 @@ const AuthWrapper = () => {
     }
     if (!isLoading && user && isSuccess) {
       if (loggedUser?.success) {
+        const userDetails = loggedUser.data;
+        console.log("userDetails", userDetails);
+        // dispatch(mergeDetails(userDetails))
         navigate("/conversation");
       } else {
         const { name, picture, sub } = user;
+        const subId = sub.split("|")[1];
         dispatch(
           addAuth0Details({
             name: name,
             avatar: picture,
-            subId: sub.split("|")[1],
+            subId,
           })
         );
         navigate("/lang");
