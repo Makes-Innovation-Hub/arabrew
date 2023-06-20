@@ -54,6 +54,12 @@ const Intro = () => {
     }
   }, [navigate, isLoading, user, isSuccess, loggedUser]);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isAuthenticated, loginWithRedirect]);
+
   return (
     <Flex direction="column" height="100vh">
       <Glass />

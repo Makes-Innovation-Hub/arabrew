@@ -44,6 +44,7 @@ import { StyledImage } from "./StyledImage";
 import { StyledBorder } from "./StyledBorder";
 import { StyledSocialButton } from "./StyledSocialButton";
 import { StyledSocialIcon } from "./StyledSocialIcon";
+import { StyledHiddenButton } from "./StyledHiddenButton";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -73,6 +74,7 @@ export {
   StyledBorder,
   StyledSocialButton,
   StyledSocialIcon,
+  StyledHiddenButton,
   ContentConversationPage,
   ConversationPageStyle,
   DisplayChatsStyle,
