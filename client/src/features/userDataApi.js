@@ -35,6 +35,7 @@ const userDataApi = createApi({
     }),
     getLoggedUser: builder.query({
       query: (subId) => `/user/${subId}`,
+      method: "GET",
     }),
   }),
 });
