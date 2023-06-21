@@ -104,6 +104,7 @@ export default function SideBar({ openSideBar }) {
           <LiSideBar>
             <StyledHiddenButton
               onClick={() => {
+                console.log("loggin out...");
                 dispatch(
                   addAllDetailsConnectedUser({
                     subId: "",

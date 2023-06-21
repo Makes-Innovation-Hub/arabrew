@@ -1,5 +1,4 @@
 import {
-  Intro,
   LangSelection,
   Interests,
   Occupation,
@@ -30,8 +29,6 @@ const router = createBrowserRouter([
       { path: "/occupation", element: <Occupation /> },
     ],
   },
-  // { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
-  // { path: "/home", element: <AuthWrapper />, errorElement: <>Error...</> },
   {
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,

@@ -14,12 +14,35 @@ import {
 import { ArrowLeft, SmallGlass } from "../assets";
 import { useSelector } from "react-redux";
 const SearchFriends = () => {
-  const loggedUser = useSelector((state) => state.userRegister);
+  // const loggedUser = useSelector((state) => state.userRegister);
+  const loggedUser = {
+    userDetails: {
+      nativeLanguage: "HE",
+      interests: [
+        "Writing",
+        "Basketball",
+        "instruments",
+        "Photography",
+        "Pottery",
+      ],
+      yearOfBirth: "1983",
+      nationality: "AF",
+      address: "jlm",
+      gender: "Male",
+      occupation: "mj",
+      bio: "mjmjm",
+    },
+    subId: "101540013678950523003",
+    name: "Yishai Nachliel",
+    avatar:
+      "https://lh3.googleusercontent.com/a/AAcHTtdmFuJ7mVi6ImQgay4QPNUFmBRg_JAndJ4lesm0=s96-c",
+    id: "6492e08a8773cebbd0fcbdb6",
+  };
   console.log("loggedUser", loggedUser);
   const { nativeLanguage: originLang } = loggedUser.userDetails;
   //! ***************************************************************************
   const [selectedInterests, setSelectedInterests] = useState(
-    loggedUser.interests
+    loggedUser.userDetails.interests
   );
   const [getUsers, { data = [], error, isError, isLoading, isSuccess }] =
     useLazyGetUsersQuery();

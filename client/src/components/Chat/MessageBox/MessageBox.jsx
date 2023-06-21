@@ -1,4 +1,6 @@
 export default function MessageBox({ message, loggedUser }) {
+  console.log("loggedUser", loggedUser);
+  console.log("message", message);
   return (
     <div
       style={{

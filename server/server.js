@@ -59,10 +59,12 @@ socket_io.on("connection", (socket) => {
       .catch((err) => console.error(err));
   });
   socket.on("new_message", (newMsg) => {
+    console.log("got new msg in chat server newMsg", newMsg);
     const { chatId, content, sender, reciever, originLang, targetLang } =
       newMsg;
     CheckAndTranslateMsg(content, originLang, targetLang)
       .then((result) => {
+        console.log("result", result);
         if (result.isProfanity)
           return socket.emit("message_to_sender", result.profanity);
         const { translatedMsg } = result;
@@ -72,18 +74,19 @@ socket_io.on("connection", (socket) => {
           .then((savedMsg) => {
             if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
             //*send the message back to the sender
-            let savedMsg_sender = savedMsg;
+            const savedMsg_sender = Object.assign({}, savedMsg);
             savedMsg_sender.content = savedMsg_sender["content_" + originLang];
             delete savedMsg_sender["content_" + originLang];
             delete savedMsg_sender["content_" + targetLang];
+            console.log("savedMsg_sender", savedMsg_sender);
             socket.emit("message_to_sender", savedMsg_sender);
             //*send the message to the reciever
-            let savedMsg_reciever = savedMsg;
+            const savedMsg_reciever = Object.assign({}, savedMsg);
             savedMsg_reciever.content =
               savedMsg_reciever["content_" + targetLang];
-            delete savedMsg_reciever["content_" + originLang];
             delete savedMsg_reciever["content_" + targetLang];
-            console.log(targetLang);
+            delete savedMsg_reciever["content_" + originLang];
+            console.log("savedMsg_reciever", savedMsg_reciever);
             socket.in(chatId).emit("message_to_reciever", savedMsg_reciever);
           })
           .catch((err) => console.error(err));

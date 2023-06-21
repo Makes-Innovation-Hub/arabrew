@@ -1,8 +1,8 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { StyledHeader } from "../styles/StyledHeader";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addAllDetailsConnectedUser,
   addAuth0Details,
@@ -15,6 +15,12 @@ export default function HeaderLayout() {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [trigger, result, lastPromiseInfo] = useLazyGetLoggedUserQuery();
+  const [currentState, setState] = useState(
+    useSelector((state) => state.userRegister)
+  );
+  useEffect(() => {
+    console.log("currentState in effect", currentState);
+  }, [currentState]);
 
   useEffect(() => {
     async function handleNav() {

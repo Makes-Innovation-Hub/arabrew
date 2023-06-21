@@ -11,7 +11,8 @@ import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayAr
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+const ENDPOINT =
+  import.meta.env.VITE_SERVER_BASE_URL + ":" + import.meta.env.VITE_SERVER_PORT;
 
 let socket;
 
@@ -29,23 +30,10 @@ const Chat = () => {
     content: msgText,
   };
   const [messages, setMessages] = useState([]);
-  //!MUST be refactored and replaced when rtk query and chatschema is configured
-  //!
-
   const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
     [usersArr, originLang]
   );
 
-  useEffect(() => {
-    if (isError) {
-      console.error(error);
-    }
-    if (isSuccess) {
-      setMessages(data.messagesHistory);
-      console.log(data);
-    }
-    console.log(params);
-  }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {
@@ -57,9 +45,11 @@ const Chat = () => {
     socket = io(ENDPOINT);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
+      console.log("newMsg message_to_reciever", newMsg);
       setMessages((prev) => [...prev, newMsg]);
     });
     socket.on("message_to_sender", (newMsg) => {
+      console.log("newMsg message_to_sender", newMsg);
       setMessages((prev) => [...prev, newMsg]);
     });
     // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
