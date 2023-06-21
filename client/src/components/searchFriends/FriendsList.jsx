@@ -3,8 +3,6 @@ const FriendsList = ({ friendsArr, userName, originLang }) => {
   return friendsArr.map((user) => {
     const { name: friend, avatar, subId, userDetails } = user;
     const { nationality, interests, nativeLanguage: targetLang } = userDetails;
-    console.log("originLang", originLang);
-    console.log("targetLang", targetLang);
     return (
       <Friend
         key={subId}

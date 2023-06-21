@@ -30,7 +30,6 @@ export default function HeaderLayout() {
           const fetchedUserData = await trigger(subId);
           if (Object.keys(fetchedUserData.data.data).length > 0) {
             const userData = fetchedUserData.data.data;
-            console.log("userData after user found in db", userData);
             updateUserData(userData);
             dispatch(addAllDetailsConnectedUser(userData));
           }

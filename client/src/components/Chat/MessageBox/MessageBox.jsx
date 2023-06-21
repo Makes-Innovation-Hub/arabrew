@@ -1,6 +1,4 @@
 export default function MessageBox({ message, loggedUser }) {
-  console.log("loggedUser", loggedUser);
-  console.log("message", message);
   return (
     <div
       style={{
@@ -19,7 +17,7 @@ export default function MessageBox({ message, loggedUser }) {
         color: "#3D4260",
       }}
     >
-      <p>{message.content}</p>
+      <p>{message.isProfanity ? message.profanity : message.content}</p>
     </div>
   );
 }

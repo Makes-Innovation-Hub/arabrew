@@ -1,5 +1,5 @@
 import { Chat } from "../api/index.js";
-import { eventLogger } from "../middleware/logger.js";
+import { errorLogger, eventLogger } from "../middleware/logger.js";
 import {
   isAddMessageSuccess,
   isProfanity,
@@ -33,14 +33,12 @@ export const addMessageToChat = async (
     usersArr: [sender, reciever],
     usersArrSwitched: [reciever, sender],
   };
-  console.log(
-    "$$$$$$$$$$$$$",
+  eventLogger("Add chat msg", {
     sender,
     reciever,
     content_AR,
     content_HE,
-    "$$$$$$$$$$$$$"
-  );
+  });
   const newMsgObj = {
     sender: sender,
     content_AR: content_AR,
@@ -66,11 +64,9 @@ export const addMessageToChat = async (
 };
 
 export const CheckAndTranslateMsg = async (msg, origin_lang, target_lang) => {
-  console.log("msg", msg);
   eventLogger("Translating msg start", { msg, origin_lang, target_lang });
   try {
     const profanity = await isProfanity(msg, origin_lang);
-    console.log("profanity", profanity);
     if (profanity) return { isProfanity: true, profanity: profanity };
     const prompt = `translate from language ${origin_lang} to language ${target_lang} this text: ${msg}. return only the translated message`;
     const response = await sendPromptToOpenAi(prompt);

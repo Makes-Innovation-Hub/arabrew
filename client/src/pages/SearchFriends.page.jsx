@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 const SearchFriends = () => {
   const { userData: loggedUser } = useContext(UserContext);
-  console.log("loggedUser", loggedUser);
   const { nativeLanguage: originLang } = loggedUser.userDetails;
   const [selectedInterests, setSelectedInterests] = useState(
     loggedUser.userDetails.interests

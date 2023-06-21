@@ -45,11 +45,9 @@ const Chat = () => {
     socket = io(ENDPOINT);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
-      console.log("newMsg message_to_reciever", newMsg);
       setMessages((prev) => [...prev, newMsg]);
     });
     socket.on("message_to_sender", (newMsg) => {
-      console.log("newMsg message_to_sender", newMsg);
       setMessages((prev) => [...prev, newMsg]);
     });
     // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
