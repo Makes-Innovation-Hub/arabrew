@@ -22,6 +22,8 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState(initialState);
 
   const updateUserData = (newData) => {
+    console.log("newData updateUserData", newData);
+    console.log("{ ...userData, ...newData }", { ...userData, ...newData });
     setUserData({ ...userData, ...newData });
   };
 

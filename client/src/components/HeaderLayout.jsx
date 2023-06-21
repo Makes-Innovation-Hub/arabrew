@@ -20,8 +20,6 @@ export default function HeaderLayout() {
 
   // context
   const { userData, updateUserData } = useContext(UserContext);
-  console.log("userData context header", userData);
-
   useEffect(() => {
     async function handleNav() {
       if (!isAuthenticated && !isLoading) {
@@ -30,9 +28,12 @@ export default function HeaderLayout() {
         if (location.pathname === "/" && user) {
           const subId = user.sub.split("|")[1];
           const fetchedUserData = await trigger(subId);
-          const userData = fetchedUserData.data.data;
-          updateUserData(userData);
-          dispatch(addAllDetailsConnectedUser(userData));
+          if (Object.keys(fetchedUserData.data.data).length > 0) {
+            const userData = fetchedUserData.data.data;
+            console.log("userData after user found in db", userData);
+            updateUserData(userData);
+            dispatch(addAllDetailsConnectedUser(userData));
+          }
           if (result.data && result.data.success) {
             navigate("/conversation");
           } else if (
@@ -43,6 +44,7 @@ export default function HeaderLayout() {
             const subId = user.sub.split("|")[1];
             const { name, picture } = user;
             updateUserData({ name, avatar: picture, subId });
+            dispatch(addAuth0Details({ name, avatar: picture, subId }));
             navigate("/lang");
           }
         }

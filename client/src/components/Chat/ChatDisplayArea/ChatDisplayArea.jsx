@@ -11,6 +11,7 @@ const ChatDisplayArea = ({ messages }) => {
   //   return state.userRegister;
   // });
   const { userData: loggedUser } = useContext(UserContext);
+  console.log("loggedUser", loggedUser);
   return (
     <ChatsContainer>
       {messages.map((message) => (
