@@ -16,24 +16,20 @@ const serverUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
 console.log("serverUrl", serverUrl);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      authorizationParams={{
-        redirect_uri: serverUrl,
-      }}
-    >
-      <GlobalStyles />
-      <ErrorBoundary
-        fallback={<Error text={"Error in one of the components"} />}
-      >
-        <Provider store={store}>
-          <UserProvider>
-            <App />
-          </UserProvider>
-        </Provider>
-      </ErrorBoundary>
-    </Auth0Provider>
-  </React.StrictMode>
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+      redirect_uri: serverUrl,
+    }}
+  >
+    <GlobalStyles />
+    <ErrorBoundary fallback={<Error text={"Error in one of the components"} />}>
+      <Provider store={store}>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </Provider>
+    </ErrorBoundary>
+  </Auth0Provider>
 );
