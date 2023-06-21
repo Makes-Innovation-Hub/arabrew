@@ -11,6 +11,7 @@ import {
   access_chatCollection,
   addMessageToChat,
 } from "./utils/chat_socketIo.js";
+import { requestLogger } from "./middleware/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,9 +23,9 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
-app.use("/api", routes);
-
+app.use(requestLogger);
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use("/api", routes);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });

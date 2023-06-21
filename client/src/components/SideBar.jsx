@@ -20,6 +20,8 @@ import {
 import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
+import { addAllDetailsConnectedUser } from "../features/userRegister/userRegisterSlice";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -35,7 +37,7 @@ export default function SideBar({ openSideBar }) {
   };
 
   const { logout } = useAuth0();
-
+  const dispatch = useDispatch();
   return (
     <>
       <ModalSideBar
@@ -101,9 +103,26 @@ export default function SideBar({ openSideBar }) {
           )}
           <LiSideBar>
             <StyledHiddenButton
-              onClick={() =>
-                logout({ returnTo: window.location.origin + "/home" })
-              }
+              onClick={() => {
+                dispatch(
+                  addAllDetailsConnectedUser({
+                    subId: "",
+                    name: "",
+                    avatar: "",
+                    userDetails: {
+                      nativeLanguage: "",
+                      interests: [],
+                      yearOfBirth: "",
+                      nationality: "",
+                      address: "",
+                      gender: "",
+                      occupation: "",
+                      bio: "",
+                    },
+                  })
+                );
+                logout({ returnTo: "http://localhost:5173/" });
+              }}
             >
               Log Out
             </StyledHiddenButton>
