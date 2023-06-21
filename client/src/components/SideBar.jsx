@@ -20,6 +20,7 @@ import {
 import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTranslation } from "react-i18next";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -35,6 +36,8 @@ export default function SideBar({ openSideBar }) {
   };
 
   const { logout } = useAuth0();
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -59,13 +62,13 @@ export default function SideBar({ openSideBar }) {
           <LinkSideBar href="/">
             <LiSideBar>
               <HomeIcon />
-              Home
+              {t("home")}
             </LiSideBar>
           </LinkSideBar>
           <LinkSideBar href="/profile">
             <LiSideBar>
               <ProfileIcon />
-              Profile
+              {t("profile")}
             </LiSideBar>
           </LinkSideBar>
 
@@ -105,7 +108,7 @@ export default function SideBar({ openSideBar }) {
                 logout({ returnTo: window.location.origin + "/home" })
               }
             >
-              Log Out
+              {t("log_out")}
             </StyledHiddenButton>
           </LiSideBar>
         </UlSideBar>

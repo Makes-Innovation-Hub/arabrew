@@ -14,8 +14,10 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
+import { useTranslation } from "react-i18next";
 const ConversationPage = ({ prevConversation }) => {
   const [isSideBar, setIsSideBar] = useState(false);
+  const { t } = useTranslation();
   return (
     <div>
       {isSideBar && (
@@ -40,7 +42,7 @@ const ConversationPage = ({ prevConversation }) => {
       <StyledPage>
         {prevConversation.length !== 0 ? (
           <ConversationPageStyle>
-            <div>Conversation</div>
+            <div>{t("pageTitle9")}</div>
             <ChatsDisplay>
               {prevConversation.map((chat, i) => {
                 return (
@@ -54,16 +56,15 @@ const ConversationPage = ({ prevConversation }) => {
               })}
             </ChatsDisplay>
             <BlockDiv />
-            <ButtonForChats>Search for friends to chat</ButtonForChats>
+            <ButtonForChats>{t("button4")}</ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
-            <NoConversationStyle>No Conversation</NoConversationStyle>
+            <NoConversationStyle>{t("infoMsg1")}</NoConversationStyle>
             <ContentConversationPage>
-              Add some friends and start chatting with them, Your conversations
-              will show up here.
+              {t("infoDetail1")}
             </ContentConversationPage>
-            <ButtonForChats>Search for friends to chat</ButtonForChats>
+            <ButtonForChats>{t("button4")}</ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>

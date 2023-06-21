@@ -14,6 +14,7 @@ import {
 import { ArrowLeft, LanguageIcon } from "../assets";
 import { addDetail } from "../features/userRegister/userRegisterSlice.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTranslation } from "react-i18next";
 
 const LangSelection = () => {
   const [language, setLanguage] = useState({
@@ -24,6 +25,8 @@ const LangSelection = () => {
   const { logout } = useAuth0();
 
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -38,13 +41,13 @@ const LangSelection = () => {
               <ArrowLeft />
             </StyledHiddenButton>
           }
-          title={"Add Language"}
+          title={t("headerTitle1")}
         />
       </StyledMargin>
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Choose your Language</StyledPageTitle>
+          <StyledPageTitle>{t("pageTitle1")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="9.25rem" />
         <Flex>
@@ -55,7 +58,7 @@ const LangSelection = () => {
             color={language.value === "AR" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "AR" })}
           >
-            Arabic
+            {t("language1")}
           </StyledLanguageButton>
         </Flex>
         <StyledMargin direction="vertical" margin="3rem" />
@@ -67,7 +70,7 @@ const LangSelection = () => {
             color={language.value === "HE" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "HE" })}
           >
-            Hebrew
+            {t("language2")}
           </StyledLanguageButton>
         </Flex>
         <StyledButton
@@ -81,7 +84,7 @@ const LangSelection = () => {
           }}
           bg={language.value ? "#50924E" : "#d7ddd6"}
           hoverBg={language.value ? "#396d37" : "#d7ddd6"}
-          text={"Save & Next"}
+          text={t("button2")}
         ></StyledButton>
       </StyledPage>
     </div>

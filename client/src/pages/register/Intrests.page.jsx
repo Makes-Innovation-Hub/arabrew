@@ -20,10 +20,12 @@ import {
   selectedContainer,
   wrapper,
 } from "../../components/index.js";
+import { useTranslation } from "react-i18next";
 
 const Interests = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
 
@@ -87,21 +89,17 @@ const Interests = () => {
             <ArrowLeft />
           </Link>
         }
-        title={"Add Interests"}
+        title={t("headerTitle2")}
       />
       <StyledPage>
         <StyledMargin direction="horizontal" margin="35rem">
           <StyledPageTitle style={{ marginTop: "2rem" }}>
-            Choose five interests &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp; &nbsp; {interestsNumber} of 5{" "}
+            {t("pageTitle2")} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+            &nbsp; {interestsNumber} {t("of")} 5{" "}
           </StyledPageTitle>
         </StyledMargin>
         <Content>
-          {isError && (
-            <h1 style={{ color: "red" }}>
-              * max Interests Number, were selected
-            </h1>
-          )}
+          {isError && <h1 style={{ color: "red" }}>{t("warnMsg1")}</h1>}
 
           <div style={selectedContainer}>
             {value.map((interest) => (
@@ -128,7 +126,7 @@ const Interests = () => {
 
           <ButtonDiv>
             <Button onClick={handleSave} disabled={disableSaveBtn}>
-              Save & Next
+              {t("button2")}
             </Button>
           </ButtonDiv>
         </Content>

@@ -14,6 +14,7 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -36,6 +37,8 @@ export default function BirthPage() {
 
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -46,7 +49,7 @@ export default function BirthPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>Add Age</PageTitle>
+          <PageTitle>{t("headerTitle3")}</PageTitle>
         </TitleWrapper>
 
         {/* do not remove this div even if it is empty */}
@@ -69,12 +72,12 @@ export default function BirthPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>Add your Year of Birth</InstructionPrompt>
+            <InstructionPrompt>{t("pageTitle3")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <CustomDropdown
               optionsArray={years}
-              placeHolder="Year"
+              placeHolder={t("placeHolder1")}
               selected={selectedYear}
               setSelected={setSelectedYear}
               isSearchable={false}
@@ -98,7 +101,7 @@ export default function BirthPage() {
                 }
               }}
             >
-              <i>Save & Next</i>
+              <i>{t("button2")}</i>
             </StyledSaveAndNextButton>
             {/* </StyledRouterLink> */}
           </Flex>

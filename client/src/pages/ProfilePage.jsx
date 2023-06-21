@@ -14,7 +14,9 @@ import {
   CircleIcon,
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
+import { useTranslation } from "react-i18next";
 const ProfilePage = ({ profileData }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -24,7 +26,7 @@ const ProfilePage = ({ profileData }) => {
               <ArrowLeft />
             </Link>
           }
-          title="Profile"
+          title={t("profile")}
           rightIcon={
             <>
               {userRegisterSlice.name !== "userRegister" && (
@@ -54,7 +56,7 @@ const ProfilePage = ({ profileData }) => {
             />
           </ProfileTitle>
           <InterestTextStyle>
-            My Interest
+            {t("sectionTag1")}
             <HobbiesDisplay>
               {profileData.hobbies.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;

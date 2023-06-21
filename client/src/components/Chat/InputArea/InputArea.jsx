@@ -6,8 +6,10 @@ import { RecommendedButton } from "../../../styles/Chat/InputArea/RecommendedBut
 import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
 import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
+import { useTranslation } from "react-i18next";
 
 const InputArea = ({ typedMsg, handleChange, handleSendMsg }) => {
+  const { t } = useTranslation();
   return (
     <InputWrapper>
       <InputAreaContainer>
@@ -17,7 +19,7 @@ const InputArea = ({ typedMsg, handleChange, handleSendMsg }) => {
         <InputComponent
           value={typedMsg}
           onChange={handleChange}
-          placeholder="Start typing..."
+          placeholder={t("placeHolder6")}
         />
         <SendButton onClick={handleSendMsg}>
           <img src={PaperPlane} />

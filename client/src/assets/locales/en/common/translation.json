@@ -1,0 +1,17 @@
+{
+  "hi": "Hi",
+  "hello": "Hello",
+  "log_out": "Log out",
+  "button1": "Lets Do It",
+  "button2": "Save & Next",
+  "button3": "Save & Finish",
+  "button4": "Search for friends to chat",
+  "language1": "Arabic",
+  "language2": "Hebrew",
+  "language3": "English (US)",
+  "character": "Character",
+  "profile": "Profile",
+  "infoMsg1": "Loading...",
+  "infoMsg2": "Error...",
+  "infoMsg3": "Error occurred while fetching data"
+}

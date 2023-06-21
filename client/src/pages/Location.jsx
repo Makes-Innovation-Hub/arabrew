@@ -11,6 +11,7 @@ import {
 } from "../styles";
 import { ArrowLeft } from "../assets";
 import { addDetail } from "../features/userRegister/userRegisterSlice";
+import { useTranslation } from "react-i18next";
 
 const Location = () => {
   const [location, setLocation] = useState({
@@ -20,6 +21,7 @@ const Location = () => {
 
   const dispatch = useDispatch();
   const { value } = location;
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -29,19 +31,19 @@ const Location = () => {
             <ArrowLeft />
           </Link>
         }
-        title={"Add Location"}
+        title={t("headerTitle5")}
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add your Location</StyledPageTitle>
+          <StyledPageTitle>{t("pageTitle5")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="9.25rem" />
         <StyledInput
           type="text"
           value={value}
           onChange={(e) => setLocation({ ...location, value: e.target.value })}
-          placeholder="Add Location"
+          placeholder={t("placeHolder3")}
           borderColor="#1E75E5"
         />
         <StyledButton
@@ -55,7 +57,7 @@ const Location = () => {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={"Save & Next"}
+          text={t("button2")}
         ></StyledButton>
       </StyledPage>
     </div>

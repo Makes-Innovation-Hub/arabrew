@@ -16,10 +16,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { useGetLoggedUserQuery } from "../features/userDataApi";
 import { skipToken } from "@reduxjs/toolkit/query/react";
+import { useTranslation } from "react-i18next";
 
 const Intro = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const {
     loginWithPopup,
     logout,
@@ -66,12 +68,9 @@ const Intro = () => {
       <StyledMargin direction="vertical" margin="2rem" />
       <StyledTitle>AraBrew</StyledTitle>
       <StyledMargin direction="vertical" margin="2rem" />
-      <StyledSpan>Hi!</StyledSpan>
+      <StyledSpan>{t("hi")}!</StyledSpan>
       <StyledDiv>
-        <StyledParagraph>
-          Please answer some quick question so we can find you relevant people
-          to chat with
-        </StyledParagraph>
+        <StyledParagraph>{t("onBoardingWelcome")}</StyledParagraph>
       </StyledDiv>
       <div>
         {!isAuthenticated && (
@@ -79,29 +78,31 @@ const Intro = () => {
             <StyledSocialButton onClick={loginWithFacebook}>
               <FacebookIcon />
               <StyledMargin direction="horizontal" margin="1rem" />
-              Sign in with Facebook
+              {t("signIn_facebook")}
             </StyledSocialButton>
             <StyledMargin direction="vertical" margin="2.5rem" />
             <StyledSocialButton onClick={loginWithGoogle}>
               <GoogleIcon />
               <StyledMargin direction="horizontal" margin="1rem" />
-              Sign in with Google
+              {t("signIn_google")}
             </StyledSocialButton>
           </Flex>
         )}
 
         {isAuthenticated && (
           <div>
-            <p>Hello, {user.name}!</p>
+            <p>
+              {t("hello")}, {user.name}!
+            </p>
             <button
               onClick={() => logout({ returnTo: window.location.origin })}
             >
-              Log out
+              {t("log_out")}
             </button>
           </div>
         )}
       </div>
-      <StyledButton to="/lang" text={"Lets Do It"} />
+      <StyledButton to="/lang" text={t("button1")} />
     </Flex>
   );
 };

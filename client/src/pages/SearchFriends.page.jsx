@@ -13,7 +13,9 @@ import {
   StyledHobbiesContainer,
 } from "../styles";
 import { ArrowLeft, SmallGlass } from "../assets";
+import { useTranslation } from "react-i18next";
 const SearchFriends = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   //! hardcoded until benny finish the LOGGEDUSER slice in the store
   //! then we replace them with useSelector
@@ -43,7 +45,7 @@ const SearchFriends = () => {
     }
   }, [isError, isSuccess]);
 
-  if (isLoading) return <h1>is Loading...</h1>;
+  if (isLoading) return <h1>{t("infoMsg1")}</h1>;
 
   return (
     <>
@@ -57,9 +59,9 @@ const SearchFriends = () => {
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
-        <StyledPageTitle>Search friends</StyledPageTitle>
+        <StyledPageTitle>{t("pageTitle10")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="0.75rem" />
-        <StyledPageTitle>by common Interests</StyledPageTitle>
+        <StyledPageTitle>{t("pageTitle11")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="2rem" />
         <StyledHobbiesContainer>
           {userObj.interests.map((interest) => (

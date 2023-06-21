@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetLoggedUserQuery } from "./features/userDataApi.js";
 import { skipToken } from "@reduxjs/toolkit/dist/query/index.js";
 import { addAuth0Details } from "./features/userRegister/userRegisterSlice.jsx";
+import i18n from "./i18n/i18n.js"; // this import seems un-used but it is important for the internationalization of the app, please do not remove
 
 const AuthWrapper = () => {
   const navigate = useNavigate();

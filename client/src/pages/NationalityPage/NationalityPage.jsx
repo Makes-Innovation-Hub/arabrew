@@ -15,6 +15,7 @@ import countries from "../../assets/countriesAndFlags/countries.json";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
@@ -23,6 +24,7 @@ export default function NationalityPage() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -33,7 +35,7 @@ export default function NationalityPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>Add Nationality</PageTitle>
+          <PageTitle>{t("headerTitle4")}</PageTitle>
         </TitleWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
@@ -55,12 +57,12 @@ export default function NationalityPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>Add your Nationality</InstructionPrompt>
+            <InstructionPrompt>{t("pageTitle4")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <CustomDropdown
               optionsArray={countries}
-              placeHolder="Select"
+              placeHolder={t("placeHolder2")}
               selected={selectedNationality}
               setSelected={setSelectedNationality}
               isSearchable={false}
@@ -74,7 +76,7 @@ export default function NationalityPage() {
                 navigate("/location");
               }}
             >
-              <i>Save & Next</i>
+              <i>{t("button2")}</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

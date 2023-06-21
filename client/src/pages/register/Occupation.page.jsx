@@ -13,6 +13,7 @@ import {
 } from "../../styles";
 import { ArrowLeft } from "../../assets";
 import { addDetail } from "../../features/userRegister/userRegisterSlice";
+import { useTranslation } from "react-i18next";
 
 const Occupation = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Occupation = () => {
 
   const { value } = userInput;
 
+  const { t } = useTranslation();
+
   return (
     <div>
       <Header
@@ -33,12 +36,12 @@ const Occupation = () => {
             <ArrowLeft />
           </Link>
         }
-        title={"Add Occupation"}
+        title={t("headerTitle7")}
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add your Occupation</StyledPageTitle>
+          <StyledPageTitle>{t("pageTitle7")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledInput
@@ -48,13 +51,13 @@ const Occupation = () => {
           onChange={(e) =>
             setUserInput({ ...userInput, value: e.target.value })
           }
-          placeholder="Write Here... For example: Doctor"
+          placeholder={t("placeHolder4")}
         />
         <StyledMargin direction="vertical" margin="2.6rem" />
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
           <StyledSpan fontSize="12px" color="#7F8790" alignSelf="flex-end">
-            30 Character
+            30 {t("character")}
           </StyledSpan>
         </Flex>
         <StyledButton
@@ -67,7 +70,7 @@ const Occupation = () => {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={"Save & Next"}
+          text={t("button2")}
         ></StyledButton>
       </StyledPage>
     </div>

@@ -12,6 +12,7 @@ import {
 } from "../styles";
 import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets";
 import { addDetail } from "../features/userRegister/userRegisterSlice";
+import { useTranslation } from "react-i18next";
 
 const GenderSelection = () => {
   const [gender, setGender] = useState({
@@ -21,6 +22,7 @@ const GenderSelection = () => {
 
   const dispatch = useDispatch();
   const { value } = gender;
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -30,12 +32,12 @@ const GenderSelection = () => {
             <ArrowLeft />
           </Link>
         }
-        title={"Add Gender"}
+        title={t("headerTitle6")}
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add your Gender</StyledPageTitle>
+          <StyledPageTitle>{t("pageTitle6")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="9.25rem" />
         <Flex>
@@ -46,7 +48,7 @@ const GenderSelection = () => {
             color={value === "Male" ? "#FFFFFF" : "#000000"}
             onClick={() => setGender({ ...gender, value: "Male" })}
           >
-            Male
+            {t("genderMale")}
           </StyledLanguageButton>
         </Flex>
         <StyledMargin direction="vertical" margin="3rem" />
@@ -58,7 +60,7 @@ const GenderSelection = () => {
             color={value === "Female" ? "#FFFFFF" : "#000000"}
             onClick={() => setGender({ ...gender, value: "Female" })}
           >
-            Female
+            {t("genderFemale")}
           </StyledLanguageButton>
         </Flex>
         <StyledMargin direction="vertical" margin="3rem" />
@@ -70,7 +72,7 @@ const GenderSelection = () => {
             color={value === "Other" ? "#FFFFFF" : "#000000"}
             onClick={() => setGender({ ...gender, value: "Other" })}
           >
-            Other
+            {t("other")}
           </StyledLanguageButton>
         </Flex>
         <StyledButton
@@ -84,7 +86,7 @@ const GenderSelection = () => {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={"Save & Next"}
+          text={t("button2")}
         ></StyledButton>
       </StyledPage>
     </div>

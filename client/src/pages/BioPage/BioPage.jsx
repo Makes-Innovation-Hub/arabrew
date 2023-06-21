@@ -16,8 +16,11 @@ import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../features/userDataApi.js";
+import { useTranslation } from "react-i18next";
+
 export default function BioPage() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [text, setText] = useState({
     value: "",
     field: "bio",
@@ -63,7 +66,7 @@ export default function BioPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>Add Bio</PageTitle>
+          <PageTitle>{t("headerTitle8")}</PageTitle>
         </TitleWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
@@ -85,17 +88,17 @@ export default function BioPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>Add your Bio Description</InstructionPrompt>
+            <InstructionPrompt>{t("pageTitle8")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <StyledTextArea
               value={text.value}
               onChange={handleChange}
-              placeholder="Write here...For example: I'm John Doe and Cooking for me is a way of living."
+              placeholder={t("placeHolder5")}
               maxLength={500}
             ></StyledTextArea>
             <StyledNumberOfCharLabel>
-              {500 - characterCount} character
+              {500 - characterCount} {t("character")}
             </StyledNumberOfCharLabel>
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
@@ -105,7 +108,7 @@ export default function BioPage() {
                 setIsDetailAdded(true);
               }}
             >
-              <i>Save & Finish</i>
+              <i>{t("button3")}</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>
