@@ -38,9 +38,26 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
+});
+
+//$ @desc    GET user by subId
+//$ @route   GET /api/user/:subId
+//! @access  NOT SET YET
+export const getUser = asyncHandler(async (req, res, next) => {
+  const { subId } = req.params;
+
+  const user = await User.findOne({ subId: subId });
+
+  if (!user) {
+    return res.status(200).json({
+      success: false,
+      data: {},
+    });
+  }
+
   return res.status(200).json({
     success: true,
-    data: newUser,
+    data: user,
   });
 });
 
