@@ -1,22 +1,26 @@
-import chats from "../InputArea/chatsDummyDataGenerator.js";
 import MessageBox from "../MessageBox/MessageBox.jsx";
+import { useSelector } from "react-redux";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
 import { useState } from "react";
 
-export default function ChatDisplayArea() {
+export default function ChatDisplayArea({ messages }) {
   const [isPopupDisplaying, setIsPopupDisplaying] = useState(
     chats.length === 0 ? true : false
   );
+  const { name: loggedUser } = useSelector((state) => state.userRegister);
 
   const clickHandler = () => {
     setIsPopupDisplaying(false);
   };
-
+  
   return (
     <ChatsContainer>
-      {chats.map((message, index) => (
-        // could be sorted by timestamp before display -not added here-
-        <MessageBox message={message} key={index} />
+      {messages.map((message) => (
+        <MessageBox
+          message={message}
+          loggedUser={loggedUser}
+          key={message.id}
+        />
       ))}
       {isPopupDisplaying && (
         <svg
@@ -46,4 +50,6 @@ export default function ChatDisplayArea() {
       )}
     </ChatsContainer>
   );
-}
+};
+
+export default ChatDisplayArea;

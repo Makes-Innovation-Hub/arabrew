@@ -2,47 +2,25 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { WebSocket, WebSocketServer } from "ws";
+import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
 import connectDB from "./config/db.js";
+
+import {
+  access_chatCollection,
+  addMessageToChat,
+} from "./utils/chat_socketIo.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/.env" });
 
-const wss = new WebSocketServer({ port: process.env.WEB_SOCKET_PORT });
-
 const app = express();
 app.use(express.json());
 app.use(cors());
 connectDB();
-
-const rooms = {};
-
-const clients = [];
-
-wss.on("connection", (ws) => {
-  // 1.check if the room exist includes name1_name2
-  //2. if not found create the room
-  clients.push({ room: ws.id, client: ws });
-  rooms[ws.id] = ws;
-  ws.send(JSON.stringify({ msg: "hello there , u are ONLINE" }));
-  ws.on("message", (data) => {
-    clients.forEach((client) => {
-      if (client.client.readyState === WebSocket.OPEN) {
-        client.client.send(data.toString());
-      }
-    });
-  });
-  ws.on("close", () => {
-    console.log(" User Disconnected ");
-  });
-  ws.onerror = function () {
-    console.log("Some Error ocurred ");
-  };
-});
 
 app.use("/api", routes);
 
@@ -60,8 +38,41 @@ const server = app.listen(
   )
 );
 
+const socket_io = new Server(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "*",
+  },
+});
+
+socket_io.on("connection", (socket) => {
+  console.log("🟢🟢 Socket.io is active 🟢🟢");
+  socket.on("room_setup", (chatData) => {
+    const { chatId, sender, reciever } = chatData;
+    access_chatCollection([sender, reciever])
+      .then((isSuccess) => {
+        if (!isSuccess)
+          throw new Error("error by finding chat , in room_setup");
+        socket.join(chatId);
+      })
+      .catch((err) => console.error(err));
+  });
+  socket.on("new_message", (newMsg) => {
+    const { chatId, content, sender, reciever } = newMsg;
+    addMessageToChat(sender, reciever, content)
+      .then((savedMsg) => {
+        if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
+        //*send the message back to the sender
+        console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
+        socket.emit("message_to_sender", savedMsg);
+        //*send the message to the reciever
+        socket.in(chatId).emit("message_to_reciever", savedMsg);
+      })
+      .catch((err) => console.error(err));
+  });
+  socket.on("disconnect", (data) => console.log(data));
+});
 process.on("unhandledRejection", async (err, promise) => {
   console.log(`Error: ${err.message}`);
   server.close(() => process.exit(1));
-  wss.close();
 });

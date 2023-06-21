@@ -16,7 +16,6 @@ import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../features/userDataApi.js";
-
 export default function BioPage() {
   const dispatch = useDispatch();
   const [text, setText] = useState({
@@ -27,20 +26,17 @@ export default function BioPage() {
   const userData = useSelector((state) => state.userRegister);
   const [registerUser, { isSuccess, isError, error }] =
     useRegisterUserMutation();
-
   const handleChange = (event) => {
     const inputValue = event.target.value;
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
-
   const navigate = useNavigate();
   useEffect(() => {
     if (isDetailAdded) {
       registerUser(userData);
     }
   }, [isDetailAdded]);
-
   useEffect(() => {
     if (isSuccess) {
       navigate("/conversation");
@@ -49,7 +45,6 @@ export default function BioPage() {
       console.error(error);
     }
   }, [isSuccess, isError]);
-
   useEffect(() => {
     if (isSuccess) {
       navigate("/conversation");
@@ -58,7 +53,6 @@ export default function BioPage() {
       console.error(error);
     }
   }, [isSuccess, isError]);
-
   return (
     <BackLayout>
       <HeaderWrapper>
@@ -71,7 +65,6 @@ export default function BioPage() {
         <TitleWrapper>
           <PageTitle>Add Bio</PageTitle>
         </TitleWrapper>
-
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
           {/*  here you can add code for additional elements in the header */}
