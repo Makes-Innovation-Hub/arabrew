@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   subId: "",
   name: "",
@@ -29,12 +30,11 @@ export const userRegisterSlice = createSlice({
       state.avatar = avatar;
     },
     addAllDetailsConnectedUser: (state, { payload }) => {
-      state = payload;
+      state = Object.assign({}, payload);
+      console.log("state", state);
     },
     mergeDetails: (state, { payload }) => {
-      console.log("state before", state);
       state = { ...state, ...payload };
-      console.log("state after", state);
     },
   },
 });

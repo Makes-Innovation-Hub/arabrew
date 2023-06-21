@@ -12,33 +12,28 @@ import {
   StyledHobbiesContainer,
 } from "../styles";
 import { ArrowLeft, SmallGlass } from "../assets";
+import { useSelector } from "react-redux";
 const SearchFriends = () => {
-  //! hardcoded until benny finish the LOGGEDUSER slice in the store
-  //! then we replace them with useSelector
-  const userObj = {
-    subId: "116936549360403241952",
-    interests: ["Yoga", "Reading", "Hiking", "Traveling", "Cooking"],
-    name: "Tawfiq Zayyad",
-    userDetails: {
-      nativeLanguage: "AR",
-    },
-  };
-  const { nativeLanguage: originLang } = userObj.userDetails;
+  const loggedUser = useSelector((state) => state.userRegister);
+  console.log("loggedUser", loggedUser);
+  const { nativeLanguage: originLang } = loggedUser.userDetails;
   //! ***************************************************************************
-  const [selectedInterests, setSelectedInterests] = useState(userObj.interests);
-  const [getUsers, { data, error, isError, isLoading, isSuccess }] =
+  const [selectedInterests, setSelectedInterests] = useState(
+    loggedUser.interests
+  );
+  const [getUsers, { data = [], error, isError, isLoading, isSuccess }] =
     useLazyGetUsersQuery();
 
   useEffect(() => {
     getUsers({
-      subId: userObj.subId,
+      subId: loggedUser.subId,
       interests: selectedInterests,
     });
   }, [selectedInterests]);
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(data);
+      console.log("data", data);
     }
     if (isError) {
       console.log(error);
@@ -64,7 +59,7 @@ const SearchFriends = () => {
         <StyledPageTitle>by common Interests</StyledPageTitle>
         <StyledMargin direction="vertical" margin="2rem" />
         <StyledHobbiesContainer>
-          {userObj.interests.map((interest) => (
+          {loggedUser.userDetails.interests.map((interest) => (
             <StyledHobby
               border={
                 selectedInterests.includes(interest)
@@ -91,7 +86,7 @@ const SearchFriends = () => {
           <FriendsList
             friendsArr={data}
             originLang={originLang}
-            userName={userObj.name}
+            userName={loggedUser.name}
           />
         )}
       </StyledPage>

@@ -30,7 +30,6 @@ export const chatUserSlice = createSlice({
     },
     addAllDetailsChatUser: (state, { payload }) => {
       state = payload;
-      console.log("chat user state", state);
     },
   },
 });
