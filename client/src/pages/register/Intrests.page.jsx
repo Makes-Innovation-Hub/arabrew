@@ -115,9 +115,12 @@ const Interests = () => {
                   style={chosen.includes(interest) ? listBtn : noBorderListBtn}
                   onClick={(e) => {
                     addInterests(interest);
-                    !chosen.includes(interest) &&
+                    if (
+                      !chosen.includes(e.target.innerText) &&
+                      chosen.length < 5
+                    ) {
                       setChosen([...chosen, e.target.innerText]);
-                    console.log("arr:", chosen);
+                    }
                   }}
                 >
                   {interest}
