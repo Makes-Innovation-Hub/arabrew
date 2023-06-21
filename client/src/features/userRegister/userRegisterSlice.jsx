@@ -30,8 +30,7 @@ export const userRegisterSlice = createSlice({
       state.avatar = avatar;
     },
     addAllDetailsConnectedUser: (state, { payload }) => {
-      state = Object.assign({}, payload);
-      console.log("state", state);
+      state = Object.assign({}, state, payload);
     },
     mergeDetails: (state, { payload }) => {
       state = { ...state, ...payload };
@@ -44,4 +43,5 @@ export const {
   addAuth0Details,
   mergeDetails,
 } = userRegisterSlice.actions;
+
 export default userRegisterSlice.reducer;

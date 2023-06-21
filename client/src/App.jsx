@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
+import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const router = createBrowserRouter([
   {

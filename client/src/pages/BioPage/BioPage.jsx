@@ -34,6 +34,7 @@ export default function BioPage() {
   const navigate = useNavigate();
   useEffect(() => {
     if (isDetailAdded) {
+      console.log("userData", userData);
       registerUser(userData);
     }
   }, [isDetailAdded]);
