@@ -51,7 +51,9 @@ export const addMessageToChat = async (
     //   options
     // );
 
-    const chat = fetch("http://localhost:5090/api/chat/Benny Solomon/Sean");
+    const chat = await fetch(
+      `${process.env.BASE_URL}:${process.env.PORT}/api/chat/${sender}/${receiver}`
+    );
     const chatObj = JSON.parse(chat);
 
     // const messagesHistory = updatedChat.messagesHistory;

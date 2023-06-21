@@ -1,34 +1,33 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-const PORT = import.meta.env.VITE_SERVER_PORT;
-
+import { useParams } from "react-router-dom";
 import { ChatLayout } from "../../styles/Chat/ChatLayout";
 import { InputArea } from "../../components/index.js";
 import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea";
-
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
+
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+const PORT = import.meta.env.VITE_SERVER_PORT;
 
 let socket;
 
 const Chat = () => {
   // first param the sender HERE is the logged USER
-  // const params = useParams();
-  // const { sender, reciever } = params;
-  const senderUser = useSelector((state) => state.userRegister);
-  const recieverUser = useSelector((state) => state.chatUser);
+  const params = useParams();
+  const { sender, reciever } = params;
+  // const senderUser = useSelector((state) => state.userRegister);
+  // const recieverUser = useSelector((state) => state.chatUser);
 
-  console.log("senderUser", senderUser);
-  console.log("recieverUser", recieverUser);
+  // console.log("senderUser", senderUser);
+  // console.log("recieverUser", recieverUser);
 
-  const sender = senderUser.name;
-  const reciever = recieverUser.name;
+  // const sender = senderUser.name;
+  // const reciever = recieverUser.name;
 
-  const src_lang = senderUser.userDetails.nativeLanguage;
-  const dest_lang = recieverUser.userDetails.nativeLanguage;
+  const src_lang = "hebrew";
+  const dest_lang = "arabic";
 
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");

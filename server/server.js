@@ -80,17 +80,17 @@ socket_io.on("connection", (socket) => {
       socket
         .in(chatId)
         .emit("message_to_reciever", translated, sender, reciever);
-      const response = await fetch(
-        `${process.env.BASE_URL}:${process.env.PORT}/api/chat/${sender}/${reciever}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contentOriginal: content,
-            contentTranslated: translated,
-          }),
-        }
-      );
+      // const response = await fetch(
+      //   `${process.env.BASE_URL}:${process.env.PORT}/api/chat/${sender}/${reciever}`,
+      //   {
+      //     method: "PUT",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({
+      //       contentOriginal: content,
+      //       contentTranslated: translated,
+      //     }),
+      //   }
+      // );
     }
   });
   socket.on("disconnect", (data) => console.log(data));

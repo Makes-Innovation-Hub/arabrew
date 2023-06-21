@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}/api`,
+    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}:${
+      import.meta.env.VITE_SERVER_PORT
+    }/api`,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
