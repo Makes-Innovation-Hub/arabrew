@@ -46,13 +46,19 @@ const Intro = () => {
           addAuth0Details({
             name: name,
             avatar: picture,
-            subId: sub,
+            subId: sub.split("|")[1],
           })
         );
         navigate("/lang");
       }
     }
   }, [navigate, isLoading, user, isSuccess, loggedUser]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isAuthenticated, loginWithRedirect]);
 
   return (
     <Flex direction="column" height="100vh">

@@ -9,6 +9,7 @@ import {
   UlSideBar,
   LiSideBar,
   LinkSideBar,
+  StyledHiddenButton,
 } from "../styles";
 import {
   BlackArrowLeft,
@@ -22,6 +23,7 @@ import { useDispatch } from "react-redux";
 import { setLanguage } from "../features/appLanguage/appLanguageSlice";
 import { useSelector } from "react-redux";
 
+import { useAuth0 } from "@auth0/auth0-react";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -40,6 +42,7 @@ export default function SideBar({ openSideBar }) {
   const selectedLanguage = useSelector(
     (state) => state.language.selectedLanguage
   );
+  const { logout } = useAuth0();
 
   return (
     <>
@@ -113,6 +116,15 @@ export default function SideBar({ openSideBar }) {
               })}
             </div>
           )}
+          <LiSideBar>
+            <StyledHiddenButton
+              onClick={() =>
+                logout({ returnTo: window.location.origin + "/home" })
+              }
+            >
+              Log Out
+            </StyledHiddenButton>
+          </LiSideBar>
         </UlSideBar>
       </StyledSideBar>
     </>
