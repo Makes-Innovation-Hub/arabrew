@@ -12,15 +12,17 @@ import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+const serverUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:${
+  import.meta.env.VITE_SERVER_PORT
+}`;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <>
+  <React.StrictMode>
     <Auth0Provider
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: "http://localhost:5173/",
+        redirect_uri: serverUrl,
       }}
     >
       <GlobalStyles />
@@ -34,6 +36,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Provider>
       </ErrorBoundary>
     </Auth0Provider>
-    {/* </React.StrictMode> */}
-  </>
+  </React.StrictMode>
 );

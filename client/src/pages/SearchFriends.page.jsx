@@ -18,37 +18,7 @@ const SearchFriends = () => {
   const { userData } = useContext(UserContext);
   console.log("userData context", userData);
   const loggedUser = Object.assign({}, userData);
-  // const [storedUser] = useState(useSelector((state) => state.userRegister));
-  // const loggedUserStore = useSelector((state) => state.userRegister);
-  // useEffect(() => {
-  //   console.log('loggedUserStore', loggedUserStore);
-  //   console.log('storedUser', storedUser);
-  // }, [loggedUserStore, storedUser])
-  // const loggedUser = {
-  //   userDetails: {
-  //     nativeLanguage: "HE",
-  //     interests: [
-  //       "Writing",
-  //       "Basketball",
-  //       "instruments",
-  //       "Photography",
-  //       "Pottery",
-  //     ],
-  //     yearOfBirth: "1983",
-  //     nationality: "AF",
-  //     address: "jlm",
-  //     gender: "Male",
-  //     occupation: "mj",
-  //     bio: "mjmjm",
-  //   },
-  //   subId: "101540013678950523003",
-  //   name: "Yishai Nachliel",
-  //   avatar:
-  //     "https://lh3.googleusercontent.com/a/AAcHTtdmFuJ7mVi6ImQgay4QPNUFmBRg_JAndJ4lesm0=s96-c",
-  //   id: "6492e08a8773cebbd0fcbdb6",
-  // };
   const { nativeLanguage: originLang } = loggedUser.userDetails;
-  //! ***************************************************************************
   const [selectedInterests, setSelectedInterests] = useState(
     loggedUser.userDetails.interests
   );
@@ -61,15 +31,6 @@ const SearchFriends = () => {
       interests: selectedInterests,
     });
   }, [selectedInterests]);
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     console.log("data", data);
-  //   }
-  //   if (isError) {
-  //     console.log(error);
-  //   }
-  // }, [isError, isSuccess]);
 
   if (isLoading) return <h1>is Loading...</h1>;
 

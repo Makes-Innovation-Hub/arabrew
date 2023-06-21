@@ -21,7 +21,7 @@ import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
-import { addAllDetailsConnectedUser } from "../features/userRegister/userRegisterSlice";
+import { cleanUser } from "../features/userRegister/userRegisterSlice";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -105,23 +105,7 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 console.log("loggin out...");
-                dispatch(
-                  addAllDetailsConnectedUser({
-                    subId: "",
-                    name: "",
-                    avatar: "",
-                    userDetails: {
-                      nativeLanguage: "",
-                      interests: [],
-                      yearOfBirth: "",
-                      nationality: "",
-                      address: "",
-                      gender: "",
-                      occupation: "",
-                      bio: "",
-                    },
-                  })
-                );
+                dispatch(cleanUser());
                 logout({ returnTo: "http://localhost:5173/" });
               }}
             >
