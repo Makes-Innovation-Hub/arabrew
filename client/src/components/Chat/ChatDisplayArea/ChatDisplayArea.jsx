@@ -1,14 +1,15 @@
 import MessageBox from "../MessageBox/MessageBox.jsx";
-import { useSelector } from "react-redux";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/loggedUser.context.jsx";
 import { useState } from "react";
 
 export default function ChatDisplayArea({ messages }) {
+  const { userData: loggedUser } = useContext(UserContext);
   const [isPopupDisplaying, setIsPopupDisplaying] = useState(
     chats.length === 0 ? true : false
   );
   const { name: loggedUser } = useSelector((state) => state.userRegister);
-
   const clickHandler = () => {
     setIsPopupDisplaying(false);
   };

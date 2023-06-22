@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
@@ -14,7 +13,10 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
+import { useNavigate } from "react-router-dom";
+
 const ConversationPage = ({ prevConversation }) => {
+  const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
@@ -54,7 +56,13 @@ const ConversationPage = ({ prevConversation }) => {
               })}
             </ChatsDisplay>
             <BlockDiv />
-            <ButtonForChats>Search for friends to chat</ButtonForChats>
+            <ButtonForChats
+              onClick={() => {
+                navigate("/search-friends");
+              }}
+            >
+              Search for friends to chat
+            </ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
@@ -63,7 +71,13 @@ const ConversationPage = ({ prevConversation }) => {
               Add some friends and start chatting with them, Your conversations
               will show up here.
             </ContentConversationPage>
-            <ButtonForChats>Search for friends to chat</ButtonForChats>
+            <ButtonForChats
+              onClick={() => {
+                navigate("/search-friends");
+              }}
+            >
+              Search for friends to chat
+            </ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>
