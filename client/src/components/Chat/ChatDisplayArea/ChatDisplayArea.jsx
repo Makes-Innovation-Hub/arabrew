@@ -1,14 +1,21 @@
-import chats from "../InputArea/chatsDummyDataGenerator.js";
 import MessageBox from "../MessageBox/MessageBox.jsx";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/loggedUser.context.jsx";
 
-export default function ChatDisplayArea() {
+const ChatDisplayArea = ({ messages }) => {
+  const { userData: loggedUser } = useContext(UserContext);
   return (
     <ChatsContainer>
-      {chats.map((message, index) => (
-        // could be sorted by timestamp before display -not added here-
-        <MessageBox message={message} key={index} />
+      {messages.map((message) => (
+        <MessageBox
+          message={message}
+          loggedUser={loggedUser}
+          key={message.id}
+        />
       ))}
     </ChatsContainer>
   );
-}
+};
+
+export default ChatDisplayArea;

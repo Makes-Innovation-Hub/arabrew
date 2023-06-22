@@ -7,6 +7,7 @@ import {
   timingLogger,
   successLogger,
   errorLogger,
+  eventLogger,
 } from "../../middleware/logger.js";
 
 Array.prototype.sortByMatching = function () {
@@ -38,10 +39,31 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
-  return res.status(200).json({
-    success: true,
-    data: newUser,
-  });
+});
+
+//$ @desc    GET user by subId
+//$ @route   GET /api/user/:subId
+//! @access  NOT SET YET
+export const getUser = asyncHandler(async (req, res, next) => {
+  controllerLogger("GetUser", req.params, "starting to fetch user");
+  const { subId } = req.params;
+  try {
+    const user = await User.findOne({ subId: subId });
+    if (!user) {
+      eventLogger(`user not found`);
+      return res.status(200).json({
+        success: false,
+        data: {},
+      });
+    }
+    eventLogger(`user found in db`);
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
 });
 
 //$ @desc    find friends by interests Array, (user id to execlude him )
@@ -114,5 +136,22 @@ export const generateTopics = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     data: JSON.parse(jsonTopics),
+  });
+});
+
+//$ @desc    get user by name
+//$ @route   GET /api/user/:userName
+export const getUserByName = asyncHandler(async (req, res, next) => {
+  const { userName } = req.params;
+
+  const user = await User.findOne({ name: userName });
+
+  if (!user) {
+    return next(new Error("User not found"));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: user,
   });
 });

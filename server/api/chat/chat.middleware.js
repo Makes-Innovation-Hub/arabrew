@@ -33,14 +33,15 @@ export const deleteOldMessages = asyncHandler(async (req, res, next) => {
     if (!chat) {
       // Logging error
       errorLogger(
-        `Chat with names: ${user1_name}, ${user2_name} not found`,
+        `Chat with names: ${user1_name}, ${user2_name} not found. nothing to delete`,
         req,
         res,
         next
       );
-      return next(
-        new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
-      );
+      return next();
+      // return next(
+      //   new Error(`chat with names: ${(user1_name, user2_name)}, NOT FOUND!`)
+      // );
     }
 
     const monthInMs = 30 * 24 * 60 * 60 * 1000;

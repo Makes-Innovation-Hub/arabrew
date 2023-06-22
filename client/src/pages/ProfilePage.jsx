@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import userRegisterSlice from "../features/userRegister/userRegisterSlice";
 import {
@@ -14,7 +14,11 @@ import {
   CircleIcon,
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
-const ProfilePage = ({ profileData }) => {
+import { useContext } from "react";
+import { UserContext } from "../contexts/loggedUser.context";
+const ProfilePage = () => {
+  const { userData: profileData } = useContext(UserContext);
+  const location = useLocation();
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -40,7 +44,7 @@ const ProfilePage = ({ profileData }) => {
       </StyledMargin>
       <StyledPage>
         <StyledProfilePage>
-          <ProfileImg src={profileData.img} alt="profile" />
+          <ProfileImg src={profileData.avatar} alt="profile" />
           <ProfileTitle>
             <ProfileName>{profileData.name}</ProfileName>
             <LanguageIcon
@@ -56,7 +60,7 @@ const ProfilePage = ({ profileData }) => {
           <InterestTextStyle>
             My Interest
             <HobbiesDisplay>
-              {profileData.hobbies.map((hobby, i) => {
+              {profileData.userDetails.interests.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
               })}
             </HobbiesDisplay>

@@ -1,5 +1,4 @@
 import {
-  Intro,
   LangSelection,
   Interests,
   Occupation,
@@ -16,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
+import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,13 +30,12 @@ const router = createBrowserRouter([
       { path: "/occupation", element: <Occupation /> },
     ],
   },
-  { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
   {
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
   {
-    path: "/chat-page/:user1_name/:user2_name",
+    path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
     element: <Chat />,
     errorElement: <>Error...</>,
   },
@@ -54,7 +53,9 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
 ]);
+
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 }
+
 export default App;

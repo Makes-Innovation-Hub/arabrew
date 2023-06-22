@@ -8,7 +8,7 @@ const chatSchema = new mongoose.Schema(
           type: String,
         },
       ],
-      validate: [checkUsers, "chat with same ids exists,or missing recieverId"],
+      validate: [checkUsers, "chat with same ids exists,or missing receiverId"],
     },
 
     messagesHistory: [
@@ -17,9 +17,12 @@ const chatSchema = new mongoose.Schema(
           type: String,
           trim: true,
         },
-        contentOriginal: String,
-        contentTranslated: String,
-
+        receiver: {
+          type: String,
+          trim: true,
+        },
+        content_HE: String,
+        content_AR: String,
         createdAt: {
           type: String,
         },
