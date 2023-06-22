@@ -1,7 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
+const port = import.meta.env.VITE_SERVER_PORT;
+
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_BASE_URL}/api`,
+    baseUrl: `${baseUrl}:${port}/api`,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -23,16 +26,17 @@ const userDataApi = createApi({
       },
     }),
     getChatByNames: builder.query({
-      query: (names) => {
-        const [sender, reciever] = names;
+      query: ([usersArr, userLang]) => {
+        const [sender, reciever] = usersArr;
         return {
-          url: `chat/${sender}/${reciever}`,
+          url: `chat/${sender}/${reciever}?userLang=${userLang}`,
           method: "GET",
         };
       },
     }),
     getLoggedUser: builder.query({
       query: (subId) => `/user/${subId}`,
+      method: "GET",
     }),
     getUserChatsList: builder.query({
       query: (userName) => `/chat/logged/user/${userName}`,
@@ -45,5 +49,6 @@ export const {
   useGetChatByNamesQuery,
   useGetLoggedUserQuery,
   useGetUserChatsListQuery,
+  useLazyGetLoggedUserQuery,
 } = userDataApi;
 export default userDataApi;

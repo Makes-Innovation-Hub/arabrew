@@ -8,27 +8,27 @@ import App from "./App.jsx";
 import { store } from "./app/store.jsx";
 import { Provider } from "react-redux";
 import GlobalStyles from "./styles/GlobalStyles.jsx";
+import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+const serverUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-      }}
-    >
-      <GlobalStyles />
-      <ErrorBoundary
-        fallback={<Error text={"Error in one of the components"} />}
-      >
-        <Provider store={store}>
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+      redirect_uri: serverUrl,
+    }}
+  >
+    <GlobalStyles />
+    <ErrorBoundary fallback={<Error text={"Error in one of the components"} />}>
+      <Provider store={store}>
+        <UserProvider>
           <App />
-        </Provider>
-      </ErrorBoundary>
-    </Auth0Provider>
-  </React.StrictMode>
+        </UserProvider>
+      </Provider>
+    </ErrorBoundary>
+  </Auth0Provider>
 );

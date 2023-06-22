@@ -59,16 +59,17 @@ export const createChat = asyncHandler(async (req, res, next) => {
 //$ @route   PUT /api/chat/:user1_name/:user2_name
 //! @access  NOT SET YET
 export const addMessageToChat = asyncHandler(async (req, res, next) => {
-  const { user1_name: sender, user2_name: reciever } = req.params;
+  const { user1_name: sender, user2_name: receiver } = req.params;
   const { usersArr, usersArrSwitched } = {
-    usersArr: [sender, reciever],
-    usersArrSwitched: [reciever, sender],
+    usersArr: [sender, receiver],
+    usersArrSwitched: [receiver, sender],
   };
 
   const { contentOriginal, contentTranslated } = req.body;
 
   const newMsgObj = {
     sender: sender,
+    receiver: receiver,
     contentOriginal: contentOriginal,
     contentTranslated: contentTranslated,
     createdAt: new Date().toLocaleString("en-US", {
@@ -97,14 +98,14 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     if (!updatedChat) {
       // Logging error
       errorLogger(
-        `error sending Message from ${sender}, to ${reciever}`,
+        `error sending Message from ${sender}, to ${receiver}`,
         req,
         res,
         next
       );
 
       return next(
-        new Error(`error sending Message from ${sender}, to ${reciever}`)
+        new Error(`error sending Message from ${sender}, to ${receiver}`)
       );
     }
 
@@ -118,12 +119,6 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
     // Logging timing
     timingLogger("addMessageToChat", startTime);
     // Logging after the service ends successfully
-    successLogger("addMessageToChat", {
-      sender,
-      reciever,
-      newMsgObj,
-      updatedChat,
-    });
 
     res.status(200).json(updatedChat);
   } catch (error) {
@@ -139,6 +134,7 @@ export const addMessageToChat = asyncHandler(async (req, res, next) => {
 //! @access  NOT SET YET
 export const getChatByNames = asyncHandler(async (req, res, next) => {
   const { user1_name, user2_name } = req.params;
+  const { userLang } = req.query;
   const { usersArr, usersArrSwitched } = {
     usersArr: [user1_name, user2_name],
     usersArrSwitched: [user2_name, user1_name],
@@ -179,6 +175,9 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
     messagesHistory.sort((a, b) => a.createdAt - b.createdAt);
     messagesHistory.forEach((message) => {
       message.id = message._id;
+      message.content = message["content_" + userLang];
+      delete message.content_AR;
+      delete message.content_HE;
       delete message._id;
     });
     // Logging timing
@@ -205,7 +204,7 @@ export const getChatByNames = asyncHandler(async (req, res, next) => {
 //! @access  NOT SET YET
 export const getUserChatsList = asyncHandler(async (req, res, next) => {
   const { user_name: name } = req.params;
-
+  //* const {userLang}=req.body
   // Logging controller event
   controllerLogger(
     "getUserChatsList",
