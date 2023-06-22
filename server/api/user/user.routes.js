@@ -17,7 +17,6 @@ router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);
 router.route("/:userName").get(getUserByName);
-
 router.route("/generate-topics/:user1_name/:user2_name").get(generateTopics);
 
 export default router;
