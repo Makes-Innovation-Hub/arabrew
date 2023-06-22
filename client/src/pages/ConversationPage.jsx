@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-const ConversationPage = ({ prevConversation }) => {
+const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
