@@ -4,6 +4,7 @@ import {
   registerUser,
   getUsersByInterests,
   getAllUsers,
+  getUserByName,
   getUser,
 } from "./user.controllers.js";
 import { requestLogger } from "../../middleware/logger.js";
@@ -14,4 +15,5 @@ router.route("/:subId").get(getUser);
 router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);
+router.route("/:userName").get(getUserByName);
 export default router;
