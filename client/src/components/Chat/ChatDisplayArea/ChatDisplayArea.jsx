@@ -1,10 +1,10 @@
 import MessageBox from "../MessageBox/MessageBox.jsx";
-import { useSelector } from "react-redux";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/loggedUser.context.jsx";
 
 const ChatDisplayArea = ({ messages }) => {
-  //! must be refactored, when a loggedUser slice is created
-  const { name: loggedUser } = useSelector((state) => state.userRegister);
+  const { userData: loggedUser } = useContext(UserContext);
   return (
     <ChatsContainer>
       {messages.map((message) => (

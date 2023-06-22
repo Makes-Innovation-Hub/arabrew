@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { useLazyGetUsersQuery } from "../features/userDataApi.js";
 import { FriendsList } from "../components/index.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Header, Friend } from "../components";
+import { Header } from "../components";
 import {
   StyledPage,
   StyledMargin,
@@ -13,35 +12,23 @@ import {
   StyledHobbiesContainer,
 } from "../styles";
 import { ArrowLeft, SmallGlass } from "../assets";
+import { useSelector } from "react-redux";
+import { UserContext } from "../contexts/loggedUser.context.jsx";
 const SearchFriends = () => {
-  const navigate = useNavigate();
-  //! hardcoded until benny finish the LOGGEDUSER slice in the store
-  //! then we replace them with useSelector
-  const userObj = {
-    subId: "54584682",
-    interests: ["Yoga", "Reading", "Hiking", "Traveling", "Cooking"],
-    name: "Taufiq Zayyad",
-  };
-  //! ***************************************************************************
-  const [selectedInterests, setSelectedInterests] = useState(userObj.interests);
-  const [getUsers, { data, error, isError, isLoading, isSuccess }] =
+  const { userData: loggedUser } = useContext(UserContext);
+  const { nativeLanguage: originLang } = loggedUser.userDetails;
+  const [selectedInterests, setSelectedInterests] = useState(
+    loggedUser.userDetails.interests
+  );
+  const [getUsers, { data = [], error, isError, isLoading, isSuccess }] =
     useLazyGetUsersQuery();
 
   useEffect(() => {
     getUsers({
-      subId: userObj.subId,
+      subId: loggedUser.subId,
       interests: selectedInterests,
     });
   }, [selectedInterests]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
-    }
-    if (isError) {
-      console.log(error);
-    }
-  }, [isError, isSuccess]);
 
   if (isLoading) return <h1>is Loading...</h1>;
 
@@ -62,7 +49,7 @@ const SearchFriends = () => {
         <StyledPageTitle>by common Interests</StyledPageTitle>
         <StyledMargin direction="vertical" margin="2rem" />
         <StyledHobbiesContainer>
-          {userObj.interests.map((interest) => (
+          {loggedUser.userDetails.interests.map((interest) => (
             <StyledHobby
               border={
                 selectedInterests.includes(interest)
@@ -85,7 +72,13 @@ const SearchFriends = () => {
           ))}
         </StyledHobbiesContainer>
         <StyledMargin direction="vertical" margin="4rem" />
-        {isSuccess && <FriendsList friendsArr={data} userName={userObj.name} />}
+        {isSuccess && (
+          <FriendsList
+            friendsArr={data}
+            originLang={originLang}
+            userName={loggedUser.name}
+          />
+        )}
       </StyledPage>
     </>
   );
