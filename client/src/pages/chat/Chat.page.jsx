@@ -34,6 +34,14 @@ const Chat = () => {
     [usersArr, originLang]
   );
 
+  useEffect(() => {
+    if (data && isSuccess && !isLoading) {
+      console.log("data", data);
+      console.log("data.messageHistory", data.messagesHistory);
+      setMessages((prev) => [...prev, ...data.messagesHistory]);
+    }
+  }, [data, isSuccess, isLoading]);
+
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {

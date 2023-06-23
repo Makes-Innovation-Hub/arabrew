@@ -49,6 +49,7 @@ export const addMessageToChat = async (
       timeZoneName: "short",
     }),
   };
+  console.log("newMsgObj", newMsgObj);
   const options = { new: true, runValidators: true };
   try {
     const updatedChat = await Chat.findOneAndUpdate(
@@ -57,8 +58,11 @@ export const addMessageToChat = async (
       options
     );
     const messagesHistory = updatedChat.messagesHistory;
-    return isAddMessageSuccess(messagesHistory, content_HE);
+    // console.log('messagesHistory', messagesHistory)
+    // return isAddMessageSuccess(newMsgObj, content_HE);
+    return newMsgObj;
   } catch (error) {
+    console.log("error", error);
     throw new Error(error);
   }
 };

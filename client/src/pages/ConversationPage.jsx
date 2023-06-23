@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
@@ -17,12 +17,19 @@ import { useGetUserChatsListQuery } from "../features/userDataApi";
 import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/loggedUser.context";
 
 const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
+  const { userData: loggedUser } = useContext(UserContext);
   const { data, error, isLoading } = useGetUserChatsListQuery(username);
+  useEffect(() => {
+    if (data && !error && !isLoading) {
+      console.log("data", data);
+    }
+  }, [data, isLoading]);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);
@@ -56,11 +63,16 @@ const ConversationPage = () => {
             <div>Conversation</div>
             <ChatsDisplay>
               {chats.map((chat, i) => {
+                console.log("chat", chat);
                 return (
                   <ConversationDisplay
                     key={i}
                     nameCon={chat.name}
-                    contentCon={chat.lastCon}
+                    contentCon={
+                      chat.lastCon[
+                        `content_${loggedUser.userDetails.nativeLanguage}`
+                      ]
+                    }
                     profile={chat.profile}
                   />
                 );
