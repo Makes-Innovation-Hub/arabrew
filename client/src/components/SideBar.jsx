@@ -17,14 +17,10 @@ import {
   HomeIcon,
   ProfileIcon,
 } from "../assets/index.jsx";
-import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useDispatch } from "react-redux";
 import { setLanguage } from "../features/appLanguage/appLanguageSlice";
-import { useSelector } from "react-redux";
-
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
 import { cleanUser } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
