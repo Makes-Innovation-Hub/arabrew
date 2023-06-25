@@ -78,13 +78,13 @@ const Intro = () => {
             <StyledSocialButton onClick={loginWithFacebook}>
               <FacebookIcon />
               <StyledMargin direction="horizontal" margin="1rem" />
-              {t("signIn_facebook")}
+              {t("signInFacebook")}
             </StyledSocialButton>
             <StyledMargin direction="vertical" margin="2.5rem" />
             <StyledSocialButton onClick={loginWithGoogle}>
               <GoogleIcon />
               <StyledMargin direction="horizontal" margin="1rem" />
-              {t("signIn_google")}
+              {t("signInGoogle")}
             </StyledSocialButton>
           </Flex>
         )}
@@ -97,12 +97,12 @@ const Intro = () => {
             <button
               onClick={() => logout({ returnTo: window.location.origin })}
             >
-              {t("log_out")}
+              {t("logOut")}
             </button>
           </div>
         )}
       </div>
-      <StyledButton to="/lang" text={t("button1")} />
+      <StyledButton to="/lang" text={t("letsDoItButton")} />
     </Flex>
   );
 };

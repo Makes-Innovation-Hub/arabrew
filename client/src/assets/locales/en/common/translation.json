@@ -1,17 +1,17 @@
 {
   "hi": "Hi",
   "hello": "Hello",
-  "log_out": "Log out",
-  "button1": "Lets Do It",
-  "button2": "Save & Next",
-  "button3": "Save & Finish",
-  "button4": "Search for friends to chat",
-  "language1": "Arabic",
-  "language2": "Hebrew",
-  "language3": "English (US)",
+  "logOut": "Log out",
+  "letsDoItButton": "Lets Do It",
+  "saveAndNextButton": "Save & Next",
+  "saveAndFinish": "Save & Finish",
+  "searchFriendButton": "Search for friends to chat",
+  "arabic": "Arabic",
+  "hebrew": "Hebrew",
+  "english": "English (US)",
   "character": "Character",
   "profile": "Profile",
-  "infoMsg1": "Loading...",
-  "infoMsg2": "Error...",
-  "infoMsg3": "Error occurred while fetching data"
+  "loadingMsg": "Loading...",
+  "errorMsg1": "Error...",
+  "errorMsg2": "Error occurred while fetching data"
 }

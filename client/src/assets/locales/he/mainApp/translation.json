@@ -1,0 +1,16 @@
+{
+  "authPageWelcome": "מדברי ערבית ועברית שמתקיימים שיחה באינטרנט ומתענגים על קפה ותה וירטואליים",
+  "signInGoogle": "התחברות עם גוגל",
+  "signInFacebook": "התחברות עם פייסבוק",
+  "GenerateSubjectsMsg": "לחץ כאן כדי ליצור נושאים לשיחה",
+  "chatInputPLaceHolder": "התחל להקליד...",
+  "ConversationTitle": "שיחות",
+  "noConversationMsg": "אין שיחות",
+  "noConversationMsgDetails": ".הוסף חברים והתחל לשוחח איתם, השיחות שלך יופיעו כאן",
+  "interestsSectionTag": "תחומי עניין",
+  "occupationSectionTag": "עיסוק",
+  "aboutMeSectionTag": "על עצמי",
+  "searchFriendsTitle": "חיפוש חברים",
+  "byCommonInterestTitle": "על ידי עניינים משותפים",
+  "home": "דף הבית"
+}

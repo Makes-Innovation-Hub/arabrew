@@ -56,7 +56,7 @@ const ProfilePage = ({ profileData }) => {
             />
           </ProfileTitle>
           <InterestTextStyle>
-            {t("sectionTag1")}
+            {t("interestsSectionTag")}
             <HobbiesDisplay>
               {profileData.hobbies.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;

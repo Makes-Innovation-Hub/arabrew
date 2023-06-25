@@ -45,7 +45,7 @@ const SearchFriends = () => {
     }
   }, [isError, isSuccess]);
 
-  if (isLoading) return <h1>{t("infoMsg1")}</h1>;
+  if (isLoading) return <h1>{t("loadingMsg")}</h1>;
 
   return (
     <>
@@ -59,9 +59,9 @@ const SearchFriends = () => {
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
-        <StyledPageTitle>{t("pageTitle10")}</StyledPageTitle>
+        <StyledPageTitle>{t("searchFriendsTitle")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="0.75rem" />
-        <StyledPageTitle>{t("pageTitle11")}</StyledPageTitle>
+        <StyledPageTitle>{t("byCommonInterestTitle")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="2rem" />
         <StyledHobbiesContainer>
           {userObj.interests.map((interest) => (

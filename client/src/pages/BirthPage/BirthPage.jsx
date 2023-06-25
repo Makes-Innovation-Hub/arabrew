@@ -49,7 +49,7 @@ export default function BirthPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>{t("headerTitle3")}</PageTitle>
+          <PageTitle>{t("ageHeaderTitle")}</PageTitle>
         </TitleWrapper>
 
         {/* do not remove this div even if it is empty */}
@@ -72,12 +72,12 @@ export default function BirthPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>{t("pageTitle3")}</InstructionPrompt>
+            <InstructionPrompt>{t("agePageTitle")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <CustomDropdown
               optionsArray={years}
-              placeHolder={t("placeHolder1")}
+              placeHolder={t("yearPlaceHolder")}
               selected={selectedYear}
               setSelected={setSelectedYear}
               isSearchable={false}
@@ -101,7 +101,7 @@ export default function BirthPage() {
                 }
               }}
             >
-              <i>{t("button2")}</i>
+              <i>{t("saveAndNextButton")}</i>
             </StyledSaveAndNextButton>
             {/* </StyledRouterLink> */}
           </Flex>

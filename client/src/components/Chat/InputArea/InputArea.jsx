@@ -19,7 +19,7 @@ const InputArea = ({ typedMsg, handleChange, handleSendMsg }) => {
         <InputComponent
           value={typedMsg}
           onChange={handleChange}
-          placeholder={t("placeHolder6")}
+          placeholder={t("chatInputPLaceHolder")}
         />
         <SendButton onClick={handleSendMsg}>
           <img src={PaperPlane} />

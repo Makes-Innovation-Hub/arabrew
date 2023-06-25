@@ -1,0 +1,16 @@
+{
+  "authPageWelcome": "المتحدثون باللغة العربية والعبرية يتحاورون عبر الإنترنت ويستمتعون بالقهوة والشاي الافتراضيين",
+  "signInGoogle": "تسجيل الدخول باستخدام جوجل",
+  "signInFacebook": "تسجيل الدخول باستخدام فيسبوك",
+  "GenerateSubjectsMsg": "انقر هنا لإنشاء مواضيع للدردشة",
+  "chatInputPLaceHolder": "ابدأ بالكتابة...",
+  "ConversationTitle": "المحادثات",
+  "noConversationMsg": "لا توجد محادثات",
+  "noConversationMsgDetails": ".أضف بعض الأصدقاء وابدأ في التحدث معهم، ستظهر محادثاتك هنا",
+  "interestsSectionTag": "اهتماماتي",
+  "occupationSectionTag": "المهنة",
+  "aboutMeSectionTag": "عن نفسي",
+  "searchFriendsTitle": "البحث عن أصدقاء",
+  "byCommonInterestTitle": "حسب الاهتمامات المشتركة",
+  "home": "الصفحة الرئيسية"
+}

@@ -66,7 +66,7 @@ export default function BioPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>{t("headerTitle8")}</PageTitle>
+          <PageTitle>{t("bioHeaderTitle")}</PageTitle>
         </TitleWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
@@ -88,13 +88,13 @@ export default function BioPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>{t("pageTitle8")}</InstructionPrompt>
+            <InstructionPrompt>{t("bioPageTitle")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <StyledTextArea
               value={text.value}
               onChange={handleChange}
-              placeholder={t("placeHolder5")}
+              placeholder={t("bioPlaceHolder")}
               maxLength={500}
             ></StyledTextArea>
             <StyledNumberOfCharLabel>
@@ -108,7 +108,7 @@ export default function BioPage() {
                 setIsDetailAdded(true);
               }}
             >
-              <i>{t("button3")}</i>
+              <i>{t("saveAndFinish")}</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

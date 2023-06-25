@@ -35,7 +35,7 @@ export default function NationalityPage() {
           </Link>
         </div>
         <TitleWrapper>
-          <PageTitle>{t("headerTitle4")}</PageTitle>
+          <PageTitle>{t("nationalityHeaderTitle")}</PageTitle>
         </TitleWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
@@ -57,12 +57,12 @@ export default function NationalityPage() {
               justifyContent: "flex-start",
             }}
           >
-            <InstructionPrompt>{t("pageTitle4")}</InstructionPrompt>
+            <InstructionPrompt>{t("nationalityPageTitle")}</InstructionPrompt>
           </Flex>
           <BioStyledDiv>
             <CustomDropdown
               optionsArray={countries}
-              placeHolder={t("placeHolder2")}
+              placeHolder={t("nationalityPlaceHolder")}
               selected={selectedNationality}
               setSelected={setSelectedNationality}
               isSearchable={false}
@@ -76,7 +76,7 @@ export default function NationalityPage() {
                 navigate("/location");
               }}
             >
-              <i>{t("button2")}</i>
+              <i>{t("saveAndNextButton")}</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

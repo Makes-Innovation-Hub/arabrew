@@ -32,12 +32,12 @@ const GenderSelection = () => {
             <ArrowLeft />
           </Link>
         }
-        title={t("headerTitle6")}
+        title={t("genderHeaderTitle")}
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>{t("pageTitle6")}</StyledPageTitle>
+          <StyledPageTitle>{t("genderPageTitle")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="9.25rem" />
         <Flex>
@@ -86,7 +86,7 @@ const GenderSelection = () => {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={t("button2")}
+          text={t("saveAndNextButton")}
         ></StyledButton>
       </StyledPage>
     </div>

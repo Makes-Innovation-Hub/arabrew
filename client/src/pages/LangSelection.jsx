@@ -41,13 +41,13 @@ const LangSelection = () => {
               <ArrowLeft />
             </StyledHiddenButton>
           }
-          title={t("headerTitle1")}
+          title={t("languageHeaderTitle")}
         />
       </StyledMargin>
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>{t("pageTitle1")}</StyledPageTitle>
+          <StyledPageTitle>{t("languagePageTitle")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="9.25rem" />
         <Flex>
@@ -58,7 +58,7 @@ const LangSelection = () => {
             color={language.value === "AR" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "AR" })}
           >
-            {t("language1")}
+            {t("arabic")}
           </StyledLanguageButton>
         </Flex>
         <StyledMargin direction="vertical" margin="3rem" />
@@ -70,7 +70,7 @@ const LangSelection = () => {
             color={language.value === "HE" ? "#FFFFFF" : "#000000"}
             onClick={() => setLanguage({ ...language, value: "HE" })}
           >
-            {t("language2")}
+            {t("hebrew")}
           </StyledLanguageButton>
         </Flex>
         <StyledButton
@@ -84,7 +84,7 @@ const LangSelection = () => {
           }}
           bg={language.value ? "#50924E" : "#d7ddd6"}
           hoverBg={language.value ? "#396d37" : "#d7ddd6"}
-          text={t("button2")}
+          text={t("saveAndNextButton")}
         ></StyledButton>
       </StyledPage>
     </div>

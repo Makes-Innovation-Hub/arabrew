@@ -89,17 +89,19 @@ const Interests = () => {
             <ArrowLeft />
           </Link>
         }
-        title={t("headerTitle2")}
+        title={t("interestsHeaderTitle")}
       />
       <StyledPage>
         <StyledMargin direction="horizontal" margin="35rem">
           <StyledPageTitle style={{ marginTop: "2rem" }}>
-            {t("pageTitle2")} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-            &nbsp; {interestsNumber} {t("of")} 5{" "}
+            {t("interestsPageTitle")} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp; &nbsp; {interestsNumber} {t("of")} 5{" "}
           </StyledPageTitle>
         </StyledMargin>
         <Content>
-          {isError && <h1 style={{ color: "red" }}>{t("warnMsg1")}</h1>}
+          {isError && (
+            <h1 style={{ color: "red" }}>{t("maxInterestWarMsg")}</h1>
+          )}
 
           <div style={selectedContainer}>
             {value.map((interest) => (
@@ -126,7 +128,7 @@ const Interests = () => {
 
           <ButtonDiv>
             <Button onClick={handleSave} disabled={disableSaveBtn}>
-              {t("button2")}
+              {t("saveAndNextButton")}
             </Button>
           </ButtonDiv>
         </Content>

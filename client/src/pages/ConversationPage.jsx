@@ -42,7 +42,7 @@ const ConversationPage = ({ prevConversation }) => {
       <StyledPage>
         {prevConversation.length !== 0 ? (
           <ConversationPageStyle>
-            <div>{t("pageTitle9")}</div>
+            <div>{t("ConversationTitle")}</div>
             <ChatsDisplay>
               {prevConversation.map((chat, i) => {
                 return (
@@ -56,15 +56,15 @@ const ConversationPage = ({ prevConversation }) => {
               })}
             </ChatsDisplay>
             <BlockDiv />
-            <ButtonForChats>{t("button4")}</ButtonForChats>
+            <ButtonForChats>{t("searchFriendButton")}</ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
-            <NoConversationStyle>{t("infoMsg1")}</NoConversationStyle>
+            <NoConversationStyle>{t("noConversationMsg")}</NoConversationStyle>
             <ContentConversationPage>
-              {t("infoDetail1")}
+              {t("noConversationMsgDetails")}
             </ContentConversationPage>
-            <ButtonForChats>{t("button4")}</ButtonForChats>
+            <ButtonForChats>{t("searchFriendButton")}</ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>

@@ -36,12 +36,12 @@ const Occupation = () => {
             <ArrowLeft />
           </Link>
         }
-        title={t("headerTitle7")}
+        title={t("occupationHeaderTitle")}
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>{t("pageTitle7")}</StyledPageTitle>
+          <StyledPageTitle>{t("occupationPageTitle")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledInput
@@ -51,7 +51,7 @@ const Occupation = () => {
           onChange={(e) =>
             setUserInput({ ...userInput, value: e.target.value })
           }
-          placeholder={t("placeHolder4")}
+          placeholder={t("occupationPlaceHolder")}
         />
         <StyledMargin direction="vertical" margin="2.6rem" />
         <Flex>
@@ -70,7 +70,7 @@ const Occupation = () => {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={t("button2")}
+          text={t("saveAndNextButton")}
         ></StyledButton>
       </StyledPage>
     </div>
