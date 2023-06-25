@@ -1,4 +1,4 @@
-# arabrew
+# Arabrew
 
 Arabrew is a chat website mobile firstf approach that should connect different cultures and should translate into the language of each user, with the help of open ai api
 
