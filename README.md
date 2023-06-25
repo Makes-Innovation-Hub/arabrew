@@ -10,19 +10,18 @@ link to website: https://replace.with.our.aws.deploy.com
 git clone https://github.com/Makes-Innovation-Hub/arabrew.git
 ```
 
-## .env setup:
+#### .env setup:
 
 ```
+cd arabrew
 npm run generate-env
 ```
 
-## follow this steps:
+#### follow this steps:
 
-## PORT: 5050
-
-## NODE_ENVIRONMENT: development
-
-## MONGO_URI_DEVELOPMENT:
+PORT: 5050
+NODE_ENVIRONMENT: development
+MONGO_URI_DEVELOPMENT:
 
 sign in to mongodb website: https://www.mongodb.com/
 press "+ New Project" button
@@ -44,7 +43,7 @@ Description: open for all
 press "Add Entry" button
 press "Finish and Close" button
 
-## MONGO_URI_PRODUCTION:
+MONGO_URI_PRODUCTION:
 
 sign in to mongodb website: https://www.mongodb.com/
 press "+ New Project" button
@@ -75,7 +74,7 @@ upper menu right side, press "Personal"
 press "View API keys"
 press "+ Create new secret key" button
 
-## make .env file:
+#### make .env file:
 
 ```
 cd arabrew/client
@@ -85,9 +84,7 @@ touch .env
 VITE_SERVER_BASE_URL=http://localhost
 VITE_SERVER_PORT=5050
 VITE_AUTH0_DOMAIN=
-
----
-
+------------------
 goto https://auth0.com/
 press login
 press "Create Application"
@@ -97,8 +94,8 @@ press "Create"
 press react logo
 press "Settings" tab
 
-## VITE_AUTH0_CLIENT_ID=
-
+VITE_AUTH0_CLIENT_ID=
+---------------------
 goto https://auth0.com/
 press login
 press "Create Application"
@@ -108,23 +105,18 @@ press "Create"
 press react logo
 press "Settings" tab
 
-## install dependencies:
-
+#### install dependencies:
 ```
 cd arabrew
 npm run install-all
 npm run build-client
 ```
-
-## run server:
-
+#### run server:
 ```
 cd arabrew
 npm run dev
 ```
-
-## run client:
-
+#### run client:
 ```
 cd arabrew/client
 npm run dev
