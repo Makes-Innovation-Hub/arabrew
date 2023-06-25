@@ -17,10 +17,10 @@ import {
   HomeIcon,
   ProfileIcon,
 } from "../assets/index.jsx";
-import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
+import { setLanguage } from "../features/appLanguage/appLanguageSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 import { cleanUser } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
@@ -96,6 +96,7 @@ export default function SideBar({ openSideBar }) {
                       onClick={() => {
                         lenOptions ? setLenOptions(false) : setLenOptions(true);
                         setWhichLang(i);
+                        dispatch(setLanguage(langArr[whichLang][1]));
                       }}
                     >
                       <FlagForLang flag={len[0]} /> {len[1]}{" "}
