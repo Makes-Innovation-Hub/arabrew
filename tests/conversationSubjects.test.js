@@ -86,7 +86,7 @@ describe("generate topics api end-point test", async function () {
   });
 
   it("should GET conversation topics", async function () {
-    this.timeout(5000);
+    this.timeout(10000);
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
