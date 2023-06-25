@@ -20,6 +20,7 @@ const InputArea = ({
   handleChange,
   handleSendMsg,
   setShowTopics,
+  setShowSpinner,
 }) => {
   const dispatch = useDispatch();
   const [popUpSuggestion, setPopUpSuggestion] = useState("");
@@ -32,19 +33,27 @@ const InputArea = ({
   });
 
   useEffect(() => {
-    if (getTopics && getTopics.data.length > 0) {
-      console.log(getTopics);
-      console.log(getTopics.data.length);
-      dispatch(addSuggestions(getTopics.data));
-      setPopUpSuggestion(getTopics.data[index].suggestion);
+    if (getTopics) {
+      if (getTopics.data.length > 0) {
+        setShowSpinner({ isShowed: false });
+        dispatch(addSuggestions(getTopics.data));
+        setPopUpSuggestion(getTopics.data[index].suggestion);
+      } else {
+        setShowSpinner({ isShowed: true });
+      }
     }
-  }, [setPopUpSuggestion, getTopics, index]);
+  }, [getTopics, index]);
 
   return (
     <InputWrapper>
       <InputAreaContainer>
         <RecommendedButton
           onClick={() => {
+            if (!getTopics) {
+              setShowSpinner({
+                isShowed: true,
+              });
+            }
             setShowTopics({
               isShowed: true,
               text: popUpSuggestion,

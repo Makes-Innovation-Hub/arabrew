@@ -5,8 +5,9 @@ import { Flex } from "../../../styles/Flex.jsx";
 import { CoffeeMugChat } from "../../../assets";
 import { StyledMargin } from "../../../styles/StyledMargin.jsx";
 import { StyledSpan } from "../../../styles/StyledSpan.jsx";
+import StyledSpinner from "../../../styles/StyledSpinner.jsx";
 
-const ChatDisplayArea = ({ messages, showTopics }) => {
+const ChatDisplayArea = ({ messages, showTopics, showSpinner }) => {
   //! must be refactored, when a loggedUser slice is created
 
   const { name: loggedUser } = useSelector((state) => state.userRegister);
@@ -20,7 +21,7 @@ const ChatDisplayArea = ({ messages, showTopics }) => {
           key={message.id}
         />
       ))}
-      {showTopics && (
+      {showTopics && !showSpinner && (
         <Flex direction="column">
           <StyledMargin direction="vertical" margin="4.7rem" />
           <CoffeeMugChat />
@@ -34,6 +35,7 @@ const ChatDisplayArea = ({ messages, showTopics }) => {
           </Flex>
         </Flex>
       )}
+      {!showTopics && showSpinner && <StyledSpinner />}
     </ChatsContainer>
   );
 };

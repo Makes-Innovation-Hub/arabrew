@@ -45,6 +45,7 @@ import { StyledBorder } from "./StyledBorder";
 import { StyledSocialButton } from "./StyledSocialButton";
 import { StyledSocialIcon } from "./StyledSocialIcon";
 import { StyledHiddenButton } from "./StyledHiddenButton";
+import StyledSpinner from "./StyledSpinner";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -92,4 +93,5 @@ export {
   LiSideBar,
   LinkSideBar,
   StyledProfilePage,
+  StyledSpinner,
 };

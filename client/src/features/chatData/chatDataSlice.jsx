@@ -9,7 +9,6 @@ export const chatDataSlice = createSlice({
   reducers: {
     addSuggestions: (state, { payload }) => {
       state.suggestions = payload.map((suggestion) => suggestion);
-      console.log(state.suggestions);
     },
     increaseIndex: (state) => {
       if (state.index === 4) {

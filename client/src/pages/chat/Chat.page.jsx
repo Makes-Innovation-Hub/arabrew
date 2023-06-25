@@ -31,6 +31,10 @@ const Chat = () => {
     isShowed: false,
     text: "",
   });
+  const [showSpinner, setShowSpinner] = useState({
+    isShowed: false,
+  });
+
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
 
@@ -68,12 +72,17 @@ const Chat = () => {
   return (
     <ChatLayout>
       <Header reciever={{ name: reciever }} />
-      <ChatDisplayArea showTopics={showTopics.text} messages={messages} />
+      <ChatDisplayArea
+        showTopics={showTopics.text}
+        showSpinner={showSpinner.isShowed}
+        messages={messages}
+      />
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}
         handleSendMsg={handleSendMsg}
         setShowTopics={setShowTopics}
+        setShowSpinner={setShowSpinner}
       />
     </ChatLayout>
   );
