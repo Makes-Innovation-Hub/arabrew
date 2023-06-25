@@ -22,8 +22,8 @@ follow this steps:
 * NODE_ENVIRONMENT: development
 * MONGO_URI_DEVELOPMENT:
 
-sign in to mongodb website: https://www.mongodb.com/
-press "+ New Project" button
+ * sign in to mongodb website: https://www.mongodb.com/
+ * press "+ New Project" button
 give project name
 press "Create Project" button
 press "Add Current IP Address" button
