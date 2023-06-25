@@ -17,7 +17,7 @@ npm run generate-env
 ```
 
 follow this steps:
-PORT: 5050
+#####PORT: 5050
 NODE_ENVIRONMENT: development
 MONGO_URI_DEVELOPMENT:
 * sign in to mongodb website: https://www.mongodb.com/
