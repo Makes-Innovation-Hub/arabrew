@@ -17,14 +17,9 @@ npm run generate-env
 ```
 
 follow this steps:
-------------------
 PORT: 5050
-------------------
 NODE_ENVIRONMENT: development
-------------------
 MONGO_URI_DEVELOPMENT:
-------------------
-
 * sign in to mongodb website: https://www.mongodb.com/
 * press "+ New Project" button
 * give project name
@@ -46,7 +41,6 @@ MONGO_URI_DEVELOPMENT:
 * press "Finish and Close" button
 
 MONGO_URI_PRODUCTION:
----------------------
 * sign in to mongodb website: https://www.mongodb.com/
 * press "+ New Project" button
 * give project name
@@ -68,7 +62,6 @@ MONGO_URI_PRODUCTION:
 * press "Finish and Close" button
 
 OPEN_AI_API_KEY:
---------------------
 * open ai website: https://openai.com/
 * goto menu > signin
 * press API box
@@ -84,7 +77,6 @@ touch .env
 VITE_SERVER_BASE_URL=http://localhost
 VITE_SERVER_PORT=5050
 VITE_AUTH0_DOMAIN=
-------------------
 * goto https://auth0.com/
 * press login
 * press "Create Application"
@@ -95,7 +87,6 @@ VITE_AUTH0_DOMAIN=
 * press "Settings" tab
 
 VITE_AUTH0_CLIENT_ID=
----------------------
 * goto https://auth0.com/
 * press login
 * press "Create Application"
