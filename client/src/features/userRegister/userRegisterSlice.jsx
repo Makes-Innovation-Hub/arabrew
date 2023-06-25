@@ -15,9 +15,10 @@ const initialState = {
     bio: "",
   },
 };
+const storedUser = localStorage.getItem("loggedUser");
 export const userRegisterSlice = createSlice({
   name: "userRegister",
-  initialState,
+  initialState: storedUser ? JSON.parse(storedUser) : initialState,
   reducers: {
     addDetail: (state, { payload }) => {
       const { field, value } = payload;

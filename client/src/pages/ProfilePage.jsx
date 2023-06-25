@@ -16,9 +16,13 @@ import {
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
 import { useContext } from "react";
 import { UserContext } from "../contexts/loggedUser.context";
+import { useSelector } from "react-redux";
 const ProfilePage = () => {
-  const { userData: profileData } = useContext(UserContext);
-  const location = useLocation();
+  const { userData: profileData1 } = useContext(UserContext);
+  const { userData: profileData2 } = useSelector((state) => state.userRegister);
+  console.log("profileData1", profileData1);
+  console.log("profileData2", profileData2);
+  const profileData = profileData1 || profileData2;
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">

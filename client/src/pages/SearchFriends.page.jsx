@@ -15,8 +15,11 @@ import { ArrowLeft, SmallGlass } from "../assets";
 import { useSelector } from "react-redux";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 const SearchFriends = () => {
-  const { userData: loggedUser } = useContext(UserContext);
-  const { nativeLanguage: originLang } = loggedUser.userDetails;
+  const { userData: contextUser } = useContext(UserContext);
+  const loggedUser = useSelector((state) => state.userRegister);
+  const originLang =
+    loggedUser.userDetails.nativeLanguage ||
+    contextUser.userDetails.nativeLanguage;
   const [selectedInterests, setSelectedInterests] = useState(
     loggedUser.userDetails.interests
   );

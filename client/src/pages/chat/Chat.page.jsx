@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 // import { useSelector } from "react-redux";
@@ -19,6 +19,8 @@ let socket;
 const Chat = () => {
   const params = useParams();
   const { sender, reciever, originLang, targetLang } = params;
+  const state = useLocation().state;
+  console.log("state", state);
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {
@@ -36,8 +38,6 @@ const Chat = () => {
 
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
-      console.log("data", data);
-      console.log("data.messageHistory", data.messagesHistory);
       setMessages((prev) => [...prev, ...data.messagesHistory]);
     }
   }, [data, isSuccess, isLoading]);
@@ -63,7 +63,7 @@ const Chat = () => {
 
   return (
     <ChatLayout>
-      <Header reciever={{ name: reciever }} />
+      <Header reciever={{ name: reciever, img: state.reciverImg }} />
       {isLoading && <h2>LOADING...</h2>}
       {isSuccess && <ChatDisplayArea messages={messages} />}
       <InputArea

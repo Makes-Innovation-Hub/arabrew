@@ -17,7 +17,6 @@ import {
   HomeIcon,
   ProfileIcon,
 } from "../assets/index.jsx";
-import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
@@ -109,6 +108,7 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 dispatch(cleanUser());
+                localStorage.setItem("loggedUser", false);
                 logout({ returnTo: "http://localhost:5173/" });
               }}
             >

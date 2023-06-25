@@ -69,9 +69,11 @@ const ConversationPage = () => {
                     key={i}
                     nameCon={chat.name}
                     contentCon={
-                      chat.lastCon[
-                        `content_${loggedUser.userDetails.nativeLanguage}`
-                      ]
+                      chat?.lastCon
+                        ? chat.lastCon[
+                            `content_${loggedUser.userDetails.nativeLanguage}`
+                          ]
+                        : ""
                     }
                     profile={chat.profile}
                   />

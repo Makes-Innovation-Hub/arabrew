@@ -19,10 +19,19 @@ const initialState = {
 };
 
 const UserProvider = ({ children }) => {
-  const [userData, setUserData] = useState(initialState);
+  let storedUser = localStorage.getItem("loggedUser");
+  if (storedUser) {
+    console.log("storedUser", storedUser);
+    storedUser = JSON.parse(storedUser);
+  }
+  const [userData, setUserData] = useState(storedUser || initialState);
 
   const updateUserData = (newData) => {
     setUserData({ ...userData, ...newData });
+    localStorage.setItem(
+      "loggedUser",
+      JSON.stringify({ ...userData, ...newData })
+    );
   };
 
   return (
