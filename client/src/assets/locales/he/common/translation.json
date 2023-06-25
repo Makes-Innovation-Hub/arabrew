@@ -1,0 +1,17 @@
+{
+  "hi": "שלום",
+  "hello": "היי",
+  "logOut": "התנתק",
+  "letsDoItButton": "בואו נעשה זאת",
+  "saveAndNextButton": "שמירה והמשך",
+  "saveAndFinish": "שמירה וסיום",
+  "searchFriendButton": "חפש חברים לשיחה",
+  "arabic": "ערבית",
+  "hebrew": "עברית",
+  "english": "אנגלית (ארה\"ב)",
+  "character": "תווים",
+  "profile": "פרופיל",
+  "loadingMsg": "טוען...",
+  "errorMsg1": "שגיאה...",
+  "errorMsg2": "אירעה שגיאה בעת קבלת המידע"
+}

@@ -16,6 +16,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
+import i18n from "./i18n/i18n.js"; // this import seems un-used but it is important for the internationalization of the app, please do not remove
 
 const router = createBrowserRouter([
   {

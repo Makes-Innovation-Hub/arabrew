@@ -13,11 +13,13 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const ConversationPage = ({ prevConversation }) => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
+  const { t } = useTranslation();
   return (
     <div>
       {isSideBar && (
@@ -42,7 +44,7 @@ const ConversationPage = ({ prevConversation }) => {
       <StyledPage>
         {prevConversation.length !== 0 ? (
           <ConversationPageStyle>
-            <div>Conversation</div>
+            <div>{t("ConversationTitle")}</div>
             <ChatsDisplay>
               {prevConversation.map((chat, i) => {
                 return (
@@ -61,22 +63,21 @@ const ConversationPage = ({ prevConversation }) => {
                 navigate("/search-friends");
               }}
             >
-              Search for friends to chat
+              {t("searchFriendButton")}
             </ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
-            <NoConversationStyle>No Conversation</NoConversationStyle>
+            <NoConversationStyle>{t("noConversationMsg")}</NoConversationStyle>
             <ContentConversationPage>
-              Add some friends and start chatting with them, Your conversations
-              will show up here.
+              {t("noConversationMsgDetails")}
             </ContentConversationPage>
             <ButtonForChats
               onClick={() => {
                 navigate("/search-friends");
               }}
             >
-              Search for friends to chat
+              {t("searchFriendButton")}
             </ButtonForChats>
           </ConversationPageStyle>
         )}

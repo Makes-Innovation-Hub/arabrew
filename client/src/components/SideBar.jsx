@@ -18,6 +18,7 @@ import {
   ProfileIcon,
 } from "../assets/index.jsx";
 import Eng from "../assets/Eng.png";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setLanguage } from "../features/appLanguage/appLanguageSlice";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -36,6 +37,8 @@ export default function SideBar({ openSideBar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userData: loggedUser } = useContext(UserContext);
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -59,7 +62,7 @@ export default function SideBar({ openSideBar }) {
           <LinkSideBar href="/">
             <LiSideBar>
               <HomeIcon />
-              Home
+              {t("home")}
             </LiSideBar>
           </LinkSideBar>
           <LinkSideBar>
@@ -70,7 +73,7 @@ export default function SideBar({ openSideBar }) {
             >
               <LiSideBar>
                 <ProfileIcon />
-                Profile
+                {t("profile")}
               </LiSideBar>
             </Link>
           </LinkSideBar>
@@ -113,7 +116,7 @@ export default function SideBar({ openSideBar }) {
                 logout({ returnTo: "http://localhost:5173/" });
               }}
             >
-              Log Out
+              {t("logOut")}
             </StyledHiddenButton>
           </LiSideBar>
         </UlSideBar>

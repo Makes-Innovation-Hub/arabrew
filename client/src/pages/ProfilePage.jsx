@@ -14,9 +14,11 @@ import {
   CircleIcon,
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
+import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { UserContext } from "../contexts/loggedUser.context";
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const { userData: profileData } = useContext(UserContext);
   const location = useLocation();
   return (
@@ -28,7 +30,7 @@ const ProfilePage = () => {
               <ArrowLeft />
             </Link>
           }
-          title="Profile"
+          title={t("profile")}
           rightIcon={
             <>
               {userRegisterSlice.name !== "userRegister" && (
@@ -58,7 +60,7 @@ const ProfilePage = () => {
             />
           </ProfileTitle>
           <InterestTextStyle>
-            My Interest
+            {t("interestsSectionTag")}
             <HobbiesDisplay>
               {profileData.userDetails.interests.map((hobby, i) => {
                 return <HobbyBackground key={i}> {hobby}</HobbyBackground>;

@@ -1,0 +1,17 @@
+{
+  "hi": "مرحبًا",
+  "hello": "أهلاً",
+  "logOut": "تسجيل الخروج",
+  "letsDoItButton": "لنفعل ذلك",
+  "saveAndNextButton": "حفظ والتالي",
+  "saveAndFinish": "حفظ وإنهاء",
+  "searchFriendButton": "البحث عن أصدقاء للدردشة",
+  "arabic": "العربية",
+  "hebrew": "العبرية",
+  "english": "الإنجليزية (الولايات المتحدة)",
+  "character": "الأحرف",
+  "profile": "الملف الشخصي",
+  "loadingMsg": "جاري التحميل...",
+  "errorMsg1": "خطأ...",
+  "errorMsg2": "حدث خطأ أثناء استرداد البيانات"
+}

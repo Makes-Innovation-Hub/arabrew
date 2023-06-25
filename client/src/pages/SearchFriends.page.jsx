@@ -14,6 +14,7 @@ import {
 import { ArrowLeft, SmallGlass } from "../assets";
 import { useSelector } from "react-redux";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
+import { useTranslation } from "react-i18next";
 const SearchFriends = () => {
   const { userData: loggedUser } = useContext(UserContext);
   const { nativeLanguage: originLang } = loggedUser.userDetails;
@@ -30,7 +31,9 @@ const SearchFriends = () => {
     });
   }, [selectedInterests]);
 
-  if (isLoading) return <h1>is Loading...</h1>;
+  if (isLoading) return <h1>{t("loadingMsg")}</h1>;
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -44,9 +47,9 @@ const SearchFriends = () => {
       />
       <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
-        <StyledPageTitle>Search friends</StyledPageTitle>
+        <StyledPageTitle>{t("searchFriendsTitle")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="0.75rem" />
-        <StyledPageTitle>by common Interests</StyledPageTitle>
+        <StyledPageTitle>{t("byCommonInterestTitle")}</StyledPageTitle>
         <StyledMargin direction="vertical" margin="2rem" />
         <StyledHobbiesContainer>
           {loggedUser.userDetails.interests.map((interest) => (
