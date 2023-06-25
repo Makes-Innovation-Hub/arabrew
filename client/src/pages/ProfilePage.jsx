@@ -15,10 +15,10 @@ import {
 } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
 import { useTranslation } from "react-i18next";
-const { t } = useTranslation();
 import { useContext } from "react";
 import { UserContext } from "../contexts/loggedUser.context";
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const { userData: profileData } = useContext(UserContext);
   const location = useLocation();
   return (
