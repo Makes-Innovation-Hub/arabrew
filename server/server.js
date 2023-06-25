@@ -6,11 +6,12 @@ import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import routes from "./routes.js";
 import connectDB from "./config/db.js";
-
+import { CheckAndTranslateMsg } from "./utils/chat_socketIo.js";
 import {
   access_chatCollection,
   addMessageToChat,
 } from "./utils/chat_socketIo.js";
+import { requestLogger } from "./middleware/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,9 +23,9 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
-app.use("/api", routes);
-
+app.use(requestLogger);
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use("/api", routes);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
@@ -58,15 +59,32 @@ socket_io.on("connection", (socket) => {
       .catch((err) => console.error(err));
   });
   socket.on("new_message", (newMsg) => {
-    const { chatId, content, sender, reciever } = newMsg;
-    addMessageToChat(sender, reciever, content)
-      .then((savedMsg) => {
-        if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
-        //*send the message back to the sender
-        console.log("savedMsg", savedMsg, "%%%%%%%%%%%%%%%%%%%%");
-        socket.emit("message_to_sender", savedMsg);
-        //*send the message to the reciever
-        socket.in(chatId).emit("message_to_reciever", savedMsg);
+    const { chatId, content, sender, reciever, originLang, targetLang } =
+      newMsg;
+    CheckAndTranslateMsg(content, originLang, targetLang)
+      .then((result) => {
+        if (result.isProfanity) return socket.emit("message_to_sender", result);
+        const { translatedMsg } = result;
+        const content_HE = originLang === "HE" ? content : translatedMsg;
+        const content_AR = originLang === "AR" ? content : translatedMsg;
+        addMessageToChat(sender, reciever, content_AR, content_HE)
+          .then((savedMsg) => {
+            if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
+            //*send the message back to the sender
+            const savedMsg_sender = Object.assign({}, savedMsg);
+            savedMsg_sender.content = savedMsg_sender["content_" + originLang];
+            delete savedMsg_sender["content_" + originLang];
+            delete savedMsg_sender["content_" + targetLang];
+            socket.emit("message_to_sender", savedMsg_sender);
+            //*send the message to the reciever
+            const savedMsg_reciever = Object.assign({}, savedMsg);
+            savedMsg_reciever.content =
+              savedMsg_reciever["content_" + targetLang];
+            delete savedMsg_reciever["content_" + targetLang];
+            delete savedMsg_reciever["content_" + originLang];
+            socket.in(chatId).emit("message_to_reciever", savedMsg_reciever);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   });

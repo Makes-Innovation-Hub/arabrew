@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   ModalSideBar,
   StyledSideBar,
@@ -24,6 +24,10 @@ import { setLanguage } from "../features/appLanguage/appLanguageSlice";
 import { useSelector } from "react-redux";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
+import { cleanUser } from "../features/userRegister/userRegisterSlice";
+import { UserContext } from "../contexts/loggedUser.context";
+import { Link, useNavigate } from "react-router-dom";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -32,17 +36,10 @@ export default function SideBar({ openSideBar }) {
     [Eng, "עברית"],
     [Eng, "عربيه"],
   ];
-
-  let fectivicProfile = {
-    name: "Mika",
-    profile: thisProfile,
-  };
-
-  const dispatch = useDispatch();
-  const selectedLanguage = useSelector(
-    (state) => state.language.selectedLanguage
-  );
   const { logout } = useAuth0();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userData: loggedUser } = useContext(UserContext);
 
   return (
     <>
@@ -60,8 +57,7 @@ export default function SideBar({ openSideBar }) {
           <BlackArrowLeft />
         </GoBack>
         <DisplayMe>
-          <ProfileChat profile={fectivicProfile.profile} />{" "}
-          {fectivicProfile.name}
+          <ProfileChat profile={loggedUser.avatar} /> {loggedUser.name}
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar href="/">
@@ -70,11 +66,17 @@ export default function SideBar({ openSideBar }) {
               Home
             </LiSideBar>
           </LinkSideBar>
-          <LinkSideBar href="/profile">
-            <LiSideBar>
-              <ProfileIcon />
-              Profile
-            </LiSideBar>
+          <LinkSideBar>
+            <Link
+              onClick={() => {
+                navigate("/profile", { state: loggedUser });
+              }}
+            >
+              <LiSideBar>
+                <ProfileIcon />
+                Profile
+              </LiSideBar>
+            </Link>
           </LinkSideBar>
 
           <LiSideBar
@@ -99,14 +101,6 @@ export default function SideBar({ openSideBar }) {
                         lenOptions ? setLenOptions(false) : setLenOptions(true);
                         setWhichLang(i);
                         dispatch(setLanguage(langArr[whichLang][1]));
-                        console.log(
-                          "lang",
-                          i,
-                          whichLang,
-                          langArr[whichLang][1],
-                          typeof langArr[whichLang][1],
-                          selectedLanguage
-                        );
                       }}
                     >
                       <FlagForLang flag={len[0]} /> {len[1]}{" "}
@@ -118,9 +112,10 @@ export default function SideBar({ openSideBar }) {
           )}
           <LiSideBar>
             <StyledHiddenButton
-              onClick={() =>
-                logout({ returnTo: window.location.origin + "/home" })
-              }
+              onClick={() => {
+                dispatch(cleanUser());
+                logout({ returnTo: "http://localhost:5173/" });
+              }}
             >
               Log Out
             </StyledHiddenButton>
