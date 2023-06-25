@@ -10,15 +10,14 @@ link to website: https://replace.with.our.aws.deploy.com
 git clone https://github.com/Makes-Innovation-Hub/arabrew.git
 ```
 
-#### .env setup:
-
+.env setup:
 ```
 cd arabrew
 npm run generate-env
 ```
 
-#### follow this steps:
-
+follow this steps:
+------------------
 PORT: 5050
 NODE_ENVIRONMENT: development
 MONGO_URI_DEVELOPMENT:
