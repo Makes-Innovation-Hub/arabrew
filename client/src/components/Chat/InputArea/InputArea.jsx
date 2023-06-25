@@ -1,6 +1,5 @@
 import CoffeeMug from "../../../assets/CoffeeMugWithGreenBG.svg";
 import PaperPlane from "../../../assets/PaperPlane.svg";
-
 import { InputAreaContainer } from "../../../styles/Chat/InputArea/InputAreaContainer";
 import { RecommendedButton } from "../../../styles/Chat/InputArea/RecommendedButton";
 import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
@@ -8,7 +7,7 @@ import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
 import { useGetTopicsQuery } from "../../../features/userDataApi";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
   addSuggestions,
@@ -25,6 +24,7 @@ const InputArea = ({
   const dispatch = useDispatch();
   const [popUpSuggestion, setPopUpSuggestion] = useState("");
   const index = useSelector((state) => state.chatData.index);
+  const buttonRef = useRef(null);
 
   // GET USER1 NAME USER2 NAME FROM REDUX STORE
   const { data: getTopics } = useGetTopicsQuery({
@@ -35,6 +35,7 @@ const InputArea = ({
   useEffect(() => {
     if (getTopics) {
       if (getTopics.data.length > 0) {
+        console.log(getTopics);
         setShowSpinner({ isShowed: false });
         dispatch(addSuggestions(getTopics.data));
         setPopUpSuggestion(getTopics.data[index].suggestion);

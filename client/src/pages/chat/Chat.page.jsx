@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
-const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-const PORT = import.meta.env.VITE_SERVER_PORT;
+// import { useSelector } from "react-redux";
 
 import { ChatLayout } from "../../styles/Chat/ChatLayout";
 import { InputArea } from "../../components/index.js";
@@ -12,18 +11,22 @@ import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayAr
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 
+const ENDPOINT =
+  import.meta.env.VITE_SERVER_BASE_URL + ":" + import.meta.env.VITE_SERVER_PORT;
+
 let socket;
 
 const Chat = () => {
-  // first param the sender HERE is the logged USER
   const params = useParams();
-  const { sender, reciever } = params;
+  const { sender, reciever, originLang, targetLang } = params;
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {
     chatId: genChatId(usersArr),
     sender: sender,
     reciever: reciever,
+    originLang: originLang,
+    targetLang: targetLang,
     content: msgText,
   };
   const [messages, setMessages] = useState([]);
@@ -37,18 +40,10 @@ const Chat = () => {
 
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
+  const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
+    [usersArr, originLang]
+  );
 
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetChatByNamesQuery(usersArr);
-
-  useEffect(() => {
-    if (isError) {
-      console.error(error);
-    }
-    if (isSuccess) {
-      setMessages(data.messagesHistory);
-    }
-  }, [isSuccess, isError]);
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {
@@ -57,11 +52,10 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    socket = PORT ? io(`${ENDPOINT}:${PORT}`) : io(`${ENDPOINT}`);
+    socket = io(ENDPOINT);
     socket.emit("room_setup", chatData);
     socket.on("message_to_reciever", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
-      console.log("newMsg", newMsg);
     });
     socket.on("message_to_sender", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
@@ -77,6 +71,8 @@ const Chat = () => {
         showSpinner={showSpinner.isShowed}
         messages={messages}
       />
+      {isLoading && <h2>LOADING...</h2>}
+      {isSuccess && <ChatDisplayArea messages={messages} />}
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}

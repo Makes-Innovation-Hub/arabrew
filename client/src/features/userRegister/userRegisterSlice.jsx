@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   subId: "",
   name: "",
@@ -31,8 +32,20 @@ export const userRegisterSlice = createSlice({
     addAllDetailsConnectedUser: (state, { payload }) => {
       state = payload;
     },
+    mergeDetails: (state, { payload }) => {
+      state = { ...state, ...payload };
+    },
+    cleanUser: (state, { payload }) => {
+      state = initialState;
+    },
   },
 });
-export const { addDetail, addAllDetailsConnectedUser, addAuth0Details } =
-  userRegisterSlice.actions;
+export const {
+  addDetail,
+  addAllDetailsConnectedUser,
+  addAuth0Details,
+  mergeDetails,
+  cleanUser,
+} = userRegisterSlice.actions;
+
 export default userRegisterSlice.reducer;

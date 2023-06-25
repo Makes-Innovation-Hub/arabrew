@@ -4,6 +4,7 @@ import {
   registerUser,
   getUsersByInterests,
   getAllUsers,
+  getUserByName,
   getUser,
   generateTopics,
 } from "./user.controllers.js";
@@ -18,4 +19,5 @@ router
 
 router.route("/generate-topics/:user1_name/:user2_name").get(generateTopics);
 
+router.route("/:userName").get(getUserByName);
 export default router;
