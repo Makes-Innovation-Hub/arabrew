@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
@@ -15,7 +14,10 @@ import {
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 const ConversationPage = ({ prevConversation }) => {
+  const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const { t } = useTranslation();
   return (
@@ -56,7 +58,13 @@ const ConversationPage = ({ prevConversation }) => {
               })}
             </ChatsDisplay>
             <BlockDiv />
-            <ButtonForChats>{t("searchFriendButton")}</ButtonForChats>
+            <ButtonForChats
+              onClick={() => {
+                navigate("/search-friends");
+              }}
+            >
+              {t("searchFriendButton")}
+            </ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
@@ -64,7 +72,13 @@ const ConversationPage = ({ prevConversation }) => {
             <ContentConversationPage>
               {t("noConversationMsgDetails")}
             </ContentConversationPage>
-            <ButtonForChats>{t("searchFriendButton")}</ButtonForChats>
+            <ButtonForChats
+              onClick={() => {
+                navigate("/search-friends");
+              }}
+            >
+              {t("searchFriendButton")}
+            </ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>

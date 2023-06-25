@@ -1,5 +1,4 @@
 import {
-  Intro,
   LangSelection,
   Interests,
   Occupation,
@@ -16,54 +15,8 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
-
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useGetLoggedUserQuery } from "./features/userDataApi.js";
-import { skipToken } from "@reduxjs/toolkit/dist/query/index.js";
-import { addAuth0Details } from "./features/userRegister/userRegisterSlice.jsx";
+import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import i18n from "./i18n/i18n.js"; // this import seems un-used but it is important for the internationalization of the app, please do not remove
-
-const AuthWrapper = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
-    useAuth0();
-
-  const { data: loggedUser, isSuccess } = useGetLoggedUserQuery(
-    user ? user.sub : skipToken
-  );
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      loginWithRedirect();
-    }
-    if (!isLoading && user && isSuccess) {
-      if (loggedUser?.success) {
-        navigate("/conversation");
-      } else {
-        const { name, picture, sub } = user;
-        dispatch(
-          addAuth0Details({
-            name: name,
-            avatar: picture,
-            subId: sub.split("|")[1],
-          })
-        );
-        navigate("/lang");
-      }
-    }
-  }, [
-    isLoading,
-    isAuthenticated,
-    user,
-    loginWithRedirect,
-    isSuccess,
-    loggedUser,
-  ]);
-};
 
 const router = createBrowserRouter([
   {
@@ -78,14 +31,12 @@ const router = createBrowserRouter([
       { path: "/occupation", element: <Occupation /> },
     ],
   },
-  { path: "/intro", element: <Intro />, errorElement: <>Error...</> },
-  { path: "/home", element: <AuthWrapper />, errorElement: <>Error...</> },
   {
     path: "/conversation",
     element: <ConversationPage prevConversation={prevConversation} />,
   },
   {
-    path: "/chat-page/:sender/:reciever",
+    path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
     element: <Chat />,
     errorElement: <>Error...</>,
   },
@@ -105,10 +56,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <RouterProvider router={router}>
-      <AuthWrapper />
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 }
+
 export default App;

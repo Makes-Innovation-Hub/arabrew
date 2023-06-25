@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   ModalSideBar,
   StyledSideBar,
@@ -21,6 +21,10 @@ import thisProfile from "../assets/photo.webp";
 import Eng from "../assets/Eng.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { cleanUser } from "../features/userRegister/userRegisterSlice";
+import { UserContext } from "../contexts/loggedUser.context";
+import { Link, useNavigate } from "react-router-dom";
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
@@ -29,13 +33,10 @@ export default function SideBar({ openSideBar }) {
     [Eng, "עברית"],
     [Eng, "عربيه"],
   ];
-
-  let fectivicProfile = {
-    name: "Mika",
-    profile: thisProfile,
-  };
-
   const { logout } = useAuth0();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userData: loggedUser } = useContext(UserContext);
 
   const { t } = useTranslation();
 
@@ -55,8 +56,7 @@ export default function SideBar({ openSideBar }) {
           <BlackArrowLeft />
         </GoBack>
         <DisplayMe>
-          <ProfileChat profile={fectivicProfile.profile} />{" "}
-          {fectivicProfile.name}
+          <ProfileChat profile={loggedUser.avatar} /> {loggedUser.name}
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar href="/">
@@ -65,11 +65,17 @@ export default function SideBar({ openSideBar }) {
               {t("home")}
             </LiSideBar>
           </LinkSideBar>
-          <LinkSideBar href="/profile">
-            <LiSideBar>
-              <ProfileIcon />
-              {t("profile")}
-            </LiSideBar>
+          <LinkSideBar>
+            <Link
+              onClick={() => {
+                navigate("/profile", { state: loggedUser });
+              }}
+            >
+              <LiSideBar>
+                <ProfileIcon />
+                {t("profile")}
+              </LiSideBar>
+            </Link>
           </LinkSideBar>
 
           <LiSideBar
@@ -104,11 +110,12 @@ export default function SideBar({ openSideBar }) {
           )}
           <LiSideBar>
             <StyledHiddenButton
-              onClick={() =>
-                logout({ returnTo: window.location.origin + "/home" })
-              }
+              onClick={() => {
+                dispatch(cleanUser());
+                logout({ returnTo: "http://localhost:5173/" });
+              }}
             >
-              {t("log_out")}
+              {t("logOut")}
             </StyledHiddenButton>
           </LiSideBar>
         </UlSideBar>

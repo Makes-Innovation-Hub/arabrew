@@ -102,7 +102,10 @@ const Intro = () => {
           </div>
         )}
       </div>
-      <StyledButton to="/lang" text={t("letsDoItButton")} />
+      <StyledButton
+        to={isAuthenticated && "/lang"}
+        text={t("letsDoItButton")}
+      />
     </Flex>
   );
 };
