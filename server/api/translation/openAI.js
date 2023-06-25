@@ -44,3 +44,19 @@ export const translateMsg = async (msg, original_lang, target_lang) => {
 
   return response.data.choices[0].message.content;
 };
+
+export const conversationGenerator = async (user1, user2) => {
+  console.log("user1: 🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽", JSON.stringify(user1));
+  console.log("user2: 🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽🎀🥽", JSON.stringify(user2));
+  const openai = new OpenAIApi(
+    new Configuration({ apiKey: process.env.OPEN_AI_API_KEY })
+  );
+  const response = await sendPromptToOpenAi(
+    openai,
+    `give me 5 different conversation suggestion that the two users would love to talk about based on their common hobbies. if none, try to find common info such as native language, location, occupation, bio, and nationality. make the response short as possible, in json format like this: [{suggestion :  i see your both native language is hebrew, so lets chat in hebrew},...] from this 2 users : ${
+      user1.name
+    }: ${JSON.stringify(user1)} ${user2.name}: ${JSON.stringify(user2)}`
+  );
+
+  return response.data.choices[0].message.content;
+};

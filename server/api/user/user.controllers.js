@@ -1,5 +1,6 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
 import User from "./user.js";
+import { conversationGenerator } from "../translation/openAI.js";
 import {
   controllerLogger,
   databaseLogger,
@@ -37,6 +38,10 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     errorLogger(err, req, res, next);
     next(err);
   }
+  return res.status(200).json({
+    success: true,
+    data: newUser,
+  });
 });
 
 //$ @desc    GET user by subId
@@ -114,4 +119,21 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   });
   allUsers = allUsers.sort(() => Math.random() - 0.5);
   res.status(200).json(allUsers);
+});
+
+export const generateTopics = asyncHandler(async (req, res, next) => {
+  const { user1_name, user2_name } = req.params;
+
+  console.log(user1_name + "🎯💰🎯💰🎯💰🎯💰🎯💰🎯💰");
+  console.log(user2_name + "🎯💰🎯💰🎯💰🎯💰🎯💰🎯💰");
+
+  const user1 = await User.findOne({ name: user1_name });
+  const user2 = await User.findOne({ name: user2_name });
+
+  const jsonTopics = await conversationGenerator(user1, user2);
+
+  return res.status(200).json({
+    success: true,
+    data: JSON.parse(jsonTopics),
+  });
 });

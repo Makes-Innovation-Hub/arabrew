@@ -15,6 +15,7 @@ import MessageIcon from "./MessageIcon";
 import HebrewIcon from "./HebrewIcon";
 import GoogleIcon from "./GoogleIcon";
 import FacebookIcon from "./FacebookIcon";
+import CoffeeMugChat from "./CoffeeMugChat";
 export {
   Hamburger,
   ArrowLeft,
@@ -33,4 +34,5 @@ export {
   HebrewIcon,
   GoogleIcon,
   FacebookIcon,
+  CoffeeMugChat,
 };

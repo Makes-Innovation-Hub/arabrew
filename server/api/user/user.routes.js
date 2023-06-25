@@ -5,6 +5,7 @@ import {
   getUsersByInterests,
   getAllUsers,
   getUser,
+  generateTopics,
 } from "./user.controllers.js";
 import { requestLogger } from "../../middleware/logger.js";
 const router = express.Router();
@@ -14,4 +15,7 @@ router.route("/:subId").get(getUser);
 router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);
+
+router.route("/generate-topics/:user1_name/:user2_name").get(generateTopics);
+
 export default router;

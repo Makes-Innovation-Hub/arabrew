@@ -27,6 +27,10 @@ const Chat = () => {
     content: msgText,
   };
   const [messages, setMessages] = useState([]);
+  const [showTopics, setShowTopics] = useState({
+    isShowed: false,
+    text: "",
+  });
   //!MUST be refactored and replaced when rtk query and chatschema is configured
   //!
 
@@ -64,11 +68,12 @@ const Chat = () => {
   return (
     <ChatLayout>
       <Header reciever={{ name: reciever }} />
-      <ChatDisplayArea messages={messages} />
+      <ChatDisplayArea showTopics={showTopics.text} messages={messages} />
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}
         handleSendMsg={handleSendMsg}
+        setShowTopics={setShowTopics}
       />
     </ChatLayout>
   );
