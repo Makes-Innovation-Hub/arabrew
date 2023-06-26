@@ -1,6 +1,6 @@
 # [Arabrew]()
 
-Arabrew is a chat website mobile first approach that should connect different cultures and should translate into the language of each user, with the help of open ai api
+Arabrew is a real time chat website mobile first approach that should connect different cultures and should translate into the language of each user, with the help of open ai api
 
 link to the figma design: https://www.figma.com/file/LG30Hg5hTIO1spIHvzjYir/Arabrew?type=design&node-id=126-1592&mode=design&t=cFAwCtUZKqxUmXBY-0
 
