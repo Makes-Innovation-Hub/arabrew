@@ -1,4 +1,4 @@
-# Arabrew
+# [Arabrew]()
 
 Arabrew is a chat website mobile first approach that should connect different cultures and should translate into the language of each user, with the help of open ai api
 
@@ -17,9 +17,12 @@ npm run generate-env
 ```
 
 follow this steps:
-* [PORT](): 5050
-* [NODE_ENVIRONMENT](): development
-* [MONGO_URI_DEVELOPMENT]():
+[PORT](): 5050
+
+[NODE_ENVIRONMENT](): development
+
+[MONGO_URI_DEVELOPMENT]():
+
 * sign in to mongodb website: https://www.mongodb.com/
 * press "+ New Project" button
 * give project name
@@ -59,7 +62,8 @@ follow this steps:
 * Description: open for all
 * press "Add Entry" button
 * press "Finish and Close" button
-* [OPEN_AI_API_KEY]():
+[OPEN_AI_API_KEY]():
+
 * open ai website: https://openai.com/
 * goto menu > signin
 * press API box
