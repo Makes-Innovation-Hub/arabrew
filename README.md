@@ -63,6 +63,7 @@ follow this steps:
 * Description: open for all
 * press "Add Entry" button
 * press "Finish and Close" button
+
 [OPEN_AI_API_KEY]():
 
 * open ai website: https://openai.com/
@@ -77,9 +78,13 @@ follow this steps:
 cd arabrew/client
 touch .env
 ```
-* [VITE_SERVER_BASE_URL]()=http://localhost
-* [VITE_SERVER_PORT]()=5050
-* [VITE_AUTH0_DOMAIN]()=
+
+[VITE_SERVER_BASE_URL]()=http://localhost
+
+[VITE_SERVER_PORT]()=5050
+
+[VITE_AUTH0_DOMAIN]()=
+
 * goto https://auth0.com/
 * press login
 * press "Create Application"
