@@ -17,6 +17,7 @@ npm run generate-env
 ```
 
 follow this steps:
+
 [PORT](): 5050
 
 [NODE_ENVIRONMENT](): development
