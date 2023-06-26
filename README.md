@@ -163,7 +163,6 @@ touch .env
 ```
 cd arabrew
 npm run install-all
-npm run build-client
 ```
 [run server]():
 ```
