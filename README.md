@@ -76,13 +76,13 @@ follow this steps:
 * goto menu
 ![צילום מסך 2023-06-26 ב-12 35 32](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/147a8f55-f0ec-4777-951c-79c165d47f43)
 * goto Log in
-![צילום מסך 2023-06-26 ב-12 37 16](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/cf56b8d9-150f-4d28-a6e3-8a8b1c600ab6)
+![צילום מסך 2023-06-26 ב-12 49 14](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/478cbaa7-41fe-4fb2-8695-4ea5f98708ac)
 * press API box
 ![צילום מסך 2023-06-26 ב-12 38 21](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/d2a8afc1-8ac4-4b2a-8c61-708b87901dc5)
 * upper menu right side, press "Personal"
 ![צילום מסך 2023-06-26 ב-12 39 33](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/3da1f623-c923-49f5-9ce4-3a334230e352)
 * press "View API keys"
-![צילום מסך 2023-06-26 ב-12 42 05](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/71e1f8be-2fe4-44ee-9bbd-9eca890a3995)
+![צילום מסך 2023-06-26 ב-12 50 32](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/8b55566b-621f-4abe-a401-7ee79a4ce294)
 * press "+ Create new secret key" button
 ![צילום מסך 2023-06-26 ב-12 44 29](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/13a95b31-3424-40c6-8062-5f826fee3df5)
 [make .env file]():
