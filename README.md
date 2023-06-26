@@ -6,6 +6,9 @@ link to the figma design: https://www.figma.com/file/LG30Hg5hTIO1spIHvzjYir/Arab
 
 link to website: https://replace.with.our.aws.deploy.com
 
+![צילום מסך 2023-06-26 ב-11 21 46](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/665f9cfb-7fda-4778-bef2-13b2f75a51f3)
+
+
 ```
 git clone https://github.com/Makes-Innovation-Hub/arabrew.git
 ```
@@ -18,11 +21,11 @@ npm run generate-env
 
 follow this steps:
 
-[PORT](): 5050
+[PORT](): 1024 - 65535, for example 5000 | type: number
 
-[NODE_ENVIRONMENT](): development
+[NODE_ENVIRONMENT](): development/production for example: development | type: string
 
-[MONGO_URI_DEVELOPMENT]():
+[MONGO_URI_DEVELOPMENT](): string structure: mongodb+srv://[REPLACE WITH NAME]():[REPLACE WITH PASSWORD]()@[REPLACE WITH CLUSTER NAME]().kp8fvwt.mongodb.net/?retryWrites=true&w=majority | type: string
 
 * sign in to mongodb website: https://www.mongodb.com/
 * press "+ New Project" button
