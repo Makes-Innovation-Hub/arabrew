@@ -2,18 +2,22 @@
 
 Arabrew is a real time chat website mobile first approach that should connect different cultures and should translate into the language of each user, with the help of open ai api
 
-link to the figma design: https://www.figma.com/file/LG30Hg5hTIO1spIHvzjYir/Arabrew?type=design&node-id=126-1592&mode=design&t=cFAwCtUZKqxUmXBY-0
-
-link to website: https://replace.with.our.aws.deploy.com
-
 ![צילום מסך 2023-06-26 ב-11 21 46](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/665f9cfb-7fda-4778-bef2-13b2f75a51f3)
 
+# [Table Of Content]()
+* [Installation](#installation)
+* [Mongo DB setup](#mongo-db-setup)
+* [Open AI setup](#open-ai-setup)
+* [Auth 0 setup](#auth-0-setup)
+* [License](#license)
+
+## Installation
 
 ```
 git clone https://github.com/Makes-Innovation-Hub/arabrew.git
 ```
 
-.env setup:
+[server .env setup]():
 ```
 cd arabrew
 npm run generate-env
@@ -25,7 +29,43 @@ follow this steps:
 
 [NODE_ENVIRONMENT](): development/production for example: development | type: string
 
-[MONGO_URI_DEVELOPMENT](): string structure: mongodb+srv://[REPLACE WITH NAME]():[REPLACE WITH PASSWORD]()@[REPLACE WITH CLUSTER NAME]().kp8fvwt.mongodb.net/?retryWrites=true&w=majority | type: string
+[MONGO_URI_DEVELOPMENT](): [Mongo DB setup](#mongo-db-setup)
+
+[MONGO_URI_PRODUCTION](): [Mongo DB setup](#mongo-db-setup)
+
+[OPEN_AI_API_KEY](): [Open AI setup](#open-ai-setup)
+
+[make client .env file]():
+```
+cd arabrew/client
+touch .env
+```
+
+[VITE_SERVER_BASE_URL]()= http://localhost | type: string
+
+[VITE_SERVER_PORT]()= 1024 - 65535 for example 5000 | type: number
+
+[VITE_AUTH0_DOMAIN]()= [Auth 0 setup](#auth-0-setup)
+
+[VITE_AUTH0_CLIENT_ID]()= [Auth 0 setup](#auth-0-setup)
+
+[install dependencies]():
+```
+cd arabrew
+npm run install-all
+```
+[run server]():
+```
+cd arabrew
+npm run dev
+```
+[run client]():
+```
+cd arabrew/client
+npm run dev
+```
+
+## Mongo DB setup
 
 * sign in to mongodb website: https://www.mongodb.com/
 
@@ -84,11 +124,7 @@ follow this steps:
 * press "Finish and Close" button
 
 ![צילום מסך 2023-06-26 ב-12 32 04](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/bce1a1e9-fd79-498e-9982-1752f2a3dade)
-[MONGO_URI_PRODUCTION]():
-
-* use the steps in MONGO_URI_DEVELOPMENT, just give development name
-
-[OPEN_AI_API_KEY]():
+## Open AI setup
 
 * open ai website: https://openai.com/
 * goto menu
@@ -109,18 +145,9 @@ follow this steps:
 * press "+ Create new secret key" button
 
 ![צילום מסך 2023-06-26 ב-12 44 29](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/13a95b31-3424-40c6-8062-5f826fee3df5)
-[make .env file]():
-```
-cd arabrew/client
-touch .env
-```
 
-[VITE_SERVER_BASE_URL]()= http://localhost | type: string
-
-[VITE_SERVER_PORT]()= 1024 - 65535 for example 5000 | type: number
-
-[VITE_AUTH0_DOMAIN]()= 
-
+## Auth 0 setup
+ 
 * goto https://auth0.com/
 
 ![צילום מסך 2023-06-26 ב-13 07 26](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/1ceddbb9-f75c-485a-9176-ced373e2e4e6)
@@ -155,22 +182,8 @@ touch .env
 
 ![צילום מסך 2023-06-26 ב-14 03 51](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/e8c77e0e-0181-4456-89c5-4b13badeea04)
 
+## License
 
-[VITE_AUTH0_CLIENT_ID]()=
-* the same as VITE_AUTH0_DOMAIN
+The MIT License (MIT)
 
-[install dependencies]():
-```
-cd arabrew
-npm run install-all
-```
-[run server]():
-```
-cd arabrew
-npm run dev
-```
-[run client]():
-```
-cd arabrew/client
-npm run dev
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
