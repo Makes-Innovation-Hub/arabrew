@@ -45,7 +45,8 @@ follow this steps:
 ![צילום מסך 2023-06-26 ב-12 06 48](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/c6bd10bd-f777-4b24-8eb6-ee4fd7b53cf0)
 * press green "+ Create" button
 
-![צילום מסך 2023-06-26 ב-12 08 07](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/9f6091d5-f953-4da7-b077-e26c66926f93)
+![צילום מסך 2023-06-26 ב-13 01 48](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/29c2bae6-53d9-4af8-a5dc-0f33b86262d2)
+
 * check M0 free option
 
 ![צילום מסך 2023-06-26 ב-12 09 56](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/3ff5bddf-07be-47a4-8519-109f0c5610e4)
@@ -74,8 +75,6 @@ follow this steps:
 
 ![צילום מסך 2023-06-26 ב-12 24 02](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/76367e81-c4f8-4e43-bc0d-40b330c65839)
 * IP Address: 0.0.0.0/0
-
-![צילום מסך 2023-06-26 ב-12 26 04](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/ee5764b3-cd70-447f-8715-a4f35938718a)
 * Description: open for all
 
 ![צילום מסך 2023-06-26 ב-12 27 18](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/6d23ff1a-013a-4dd0-9373-9f8efc96f54d)
@@ -123,12 +122,33 @@ touch .env
 [VITE_AUTH0_DOMAIN]()= 
 
 * goto https://auth0.com/
+
+![צילום מסך 2023-06-26 ב-13 07 26](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/1ceddbb9-f75c-485a-9176-ced373e2e4e6)
+
 * press login
+
+![צילום מסך 2023-06-26 ב-13 08 22](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/4468738e-e75d-4065-9038-c442d989aeab)
+
 * press "Create Application"
+
+![צילום מסך 2023-06-26 ב-13 10 07](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/579bc4a5-0055-480a-9ded-82524f16ba48)
+
 * give name
+
+![צילום מסך 2023-06-26 ב-13 11 32](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/7b141ed2-2996-42d9-a9c0-49bc66562343)
+
 * choose "Single Page Web Applications"
+
+![צילום מסך 2023-06-26 ב-13 12 42](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/2376539d-82b3-45bc-8827-edd9211711bc)
+
 * press "Create"
+
+![צילום מסך 2023-06-26 ב-13 13 44](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/38bd96a5-427a-4a46-a563-27738c03f934)
+
 * press react logo
+
+![צילום מסך 2023-06-26 ב-13 15 12](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/4462848d-90f8-42fe-b8c3-4a6254c77e46)
+
 * press "Settings" tab
 * [VITE_AUTH0_CLIENT_ID]()=
 * goto https://auth0.com/
