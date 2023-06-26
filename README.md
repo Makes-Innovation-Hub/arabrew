@@ -150,15 +150,11 @@ touch .env
 ![צילום מסך 2023-06-26 ב-13 15 12](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/4462848d-90f8-42fe-b8c3-4a6254c77e46)
 
 * press "Settings" tab
-* [VITE_AUTH0_CLIENT_ID]()=
-* goto https://auth0.com/
-* press login
-* press "Create Application"
-* give name
-* choose "Single Page Web Applications"
-* press "Create"
-* press react logo
-* press "Settings" tab
+
+![צילום מסך 2023-06-26 ב-13 54 25](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/b5f73835-b6d8-4a8a-8b2f-9eac5b0af643)
+
+[VITE_AUTH0_CLIENT_ID]()=
+* the same as VITE_AUTH0_DOMAIN
 
 [install dependencies]():
 ```
