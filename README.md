@@ -153,6 +153,9 @@ touch .env
 
 ![צילום מסך 2023-06-26 ב-13 54 25](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/b5f73835-b6d8-4a8a-8b2f-9eac5b0af643)
 
+![צילום מסך 2023-06-26 ב-14 03 51](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/e8c77e0e-0181-4456-89c5-4b13badeea04)
+
+
 [VITE_AUTH0_CLIENT_ID]()=
 * the same as VITE_AUTH0_DOMAIN
 
