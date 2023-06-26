@@ -17,49 +17,47 @@ Arabrew is a real time chat website mobile first approach that should connect di
 git clone https://github.com/Makes-Innovation-Hub/arabrew.git
 ```
 
-[server .env setup]():
+``server .env setup:``
 ```
 cd arabrew
 npm run generate-env
 ```
 
-follow this steps:
+``PORT``: 1024 - 65535, for example 5000 | type: number
 
-[PORT](): 1024 - 65535, for example 5000 | type: number
+``NODE_ENVIRONMENT``: development/production for example: development | type: string
 
-[NODE_ENVIRONMENT](): development/production for example: development | type: string
+``MONGO_URI_DEVELOPMENT``: [Mongo DB setup](#mongo-db-setup)
 
-[MONGO_URI_DEVELOPMENT](): [Mongo DB setup](#mongo-db-setup)
+``MONGO_URI_PRODUCTION``: [Mongo DB setup](#mongo-db-setup)
 
-[MONGO_URI_PRODUCTION](): [Mongo DB setup](#mongo-db-setup)
+``OPEN_AI_API_KEY``: [Open AI setup](#open-ai-setup)
 
-[OPEN_AI_API_KEY](): [Open AI setup](#open-ai-setup)
-
-[make client .env file]():
+``make client .env file``:
 ```
 cd arabrew/client
 touch .env
 ```
 
-[VITE_SERVER_BASE_URL]()= http://localhost | type: string
+``VITE_SERVER_BASE_URL``= http://localhost | type: string
 
-[VITE_SERVER_PORT]()= 1024 - 65535 for example 5000 | type: number
+``VITE_SERVER_PORT``= 1024 - 65535 for example 5000 | type: number
 
-[VITE_AUTH0_DOMAIN]()= [Auth 0 setup](#auth-0-setup)
+``VITE_AUTH0_DOMAIN``= [Auth 0 setup](#auth-0-setup)
 
-[VITE_AUTH0_CLIENT_ID]()= [Auth 0 setup](#auth-0-setup)
+``VITE_AUTH0_CLIENT_ID``= [Auth 0 setup](#auth-0-setup)
 
-[install dependencies]():
+``install dependencies``:
 ```
 cd arabrew
 npm run install-all
 ```
-[run server]():
+``run server``:
 ```
 cd arabrew
 npm run dev
 ```
-[run client]():
+``run client``:
 ```
 cd arabrew/client
 npm run dev
