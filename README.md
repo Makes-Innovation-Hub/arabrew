@@ -7,6 +7,8 @@ Arabrew is a real time chat website mobile first approach that should connect di
 
 ![diagrama drawio](https://github.com/Makes-Innovation-Hub/arabrew/assets/53153372/ae098cb7-293b-41c2-a169-83a4df9908b2)
 
+## [Arabrew Teaser]() - [https://youtu.be/NL7cNWGYQJo](https://youtu.be/NL7cNWGYQJo)
+
 # [Table Of Content]()
 * [Installation](#installation)
 * [Mongo DB setup](#mongo-db-setup)
