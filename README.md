@@ -16,7 +16,7 @@ Arabrew is a real time chat website mobile first approach that should connect di
 * [Open AI setup](#open-ai-setup)
 * [Auth 0 setup](#auth-0-setup)
 * [License](#license)
-
+--------------------------------
 ## Installation
 
 ```
