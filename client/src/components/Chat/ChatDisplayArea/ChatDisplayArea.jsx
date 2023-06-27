@@ -9,11 +9,11 @@ export default function ChatDisplayArea({ messages }) {
   const [isPopupDisplaying, setIsPopupDisplaying] = useState(
     chats.length === 0 ? true : false
   );
-  const { name: loggedUser } = useSelector((state) => state.userRegister);
+  // const { name: loggedUser } = useSelector((state) => state.userRegister);
   const clickHandler = () => {
     setIsPopupDisplaying(false);
   };
-  
+
   return (
     <ChatsContainer>
       {messages.map((message) => (
@@ -51,6 +51,4 @@ export default function ChatDisplayArea({ messages }) {
       )}
     </ChatsContainer>
   );
-};
-
-export default ChatDisplayArea;
+}
