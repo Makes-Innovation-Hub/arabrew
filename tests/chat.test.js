@@ -232,3 +232,22 @@ describe("send a message in an existing chat", () => {
     assert.equal(res.status, 200);
   });
 });
+
+describe("delete two users from db test", () => {
+  it("should DELETE 2 users by their subId", async function () {
+    const res1 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId1}`,
+      requestOptions.methods.DELETE
+    );
+    const res2 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId2}`,
+      requestOptions.methods.DELETE
+    );
+
+    const { success: res1_success } = await res1.json();
+    const { success: res2_success } = await res2.json();
+
+    assert.equal(res1_success, true);
+    assert.equal(res2_success, true);
+  });
+});

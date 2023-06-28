@@ -146,7 +146,7 @@ export const deleteUser = asyncHandler(async (req, res, next) => {
   const { subId } = req.params;
 
   try {
-    const user = await User.findOne({ subId: subId });
+    const user = await User.findOneAndDelete({ subId: subId });
     if (!user) {
       eventLogger(`user not found`);
       return res.status(200).json({
@@ -155,8 +155,7 @@ export const deleteUser = asyncHandler(async (req, res, next) => {
       });
     }
 
-    eventLogger(`user found in db`);
-    await User.findOneAndDelete({ subId: subId });
+    eventLogger(`user deleted from db`);
 
     return res.status(200).json({
       success: true,
