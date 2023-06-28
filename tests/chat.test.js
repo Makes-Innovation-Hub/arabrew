@@ -27,6 +27,11 @@ const requestOptions = {
       method: "POST",
       headers: myHeaders,
     },
+    PUT: {
+      method: "PUT",
+      headers: myHeaders,
+      body: JSON.stringify({ message: "שלום" }),
+    },
     DELETE: {
       method: "DELETE",
       headers: myHeaders,
@@ -195,6 +200,34 @@ describe("get a chat by names", () => {
     const res = await fetch(
       `http://localhost:${PORT}/api/chat/${user_name1}/${user_name2}`,
       requestOptions.methods.GET
+    );
+    assert.equal(res.status, 200);
+  });
+});
+
+describe("send a message in an existing chat", () => {
+  it("should PUT a message in a chat. first user is the sender and the second user is the receiver", async () => {
+    const res_user1 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId1}`,
+      requestOptions.methods.GET
+    );
+
+    const {
+      data: { name: user_name1 },
+    } = await res_user1.json();
+
+    const res_user2 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId2}`,
+      requestOptions.methods.GET
+    );
+
+    const {
+      data: { name: user_name2 },
+    } = await res_user2.json();
+
+    const res = await fetch(
+      `http://localhost:${PORT}/api/chat/${user_name1}/${user_name2}`,
+      requestOptions.methods.PUT
     );
     assert.equal(res.status, 200);
   });
