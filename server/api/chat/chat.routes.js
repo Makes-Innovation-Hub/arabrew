@@ -16,7 +16,7 @@ router.use(requestLogger);
 router
   .route("/:user1_name/:user2_name")
   .post(createChat)
-  .get(deleteOldMessages, getChatByNames);
-// .put(addMessageToChat);
+  .get(deleteOldMessages, getChatByNames)
+  .put(addMessageToChat);
 router.route("/logged/user/:user_name").get(getUserChatsList);
 export default router;

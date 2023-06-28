@@ -234,7 +234,7 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
       userChats = userChats.map((chat) => {
         const { users, messagesHistory } = chat;
         const receiverName = users.filter((user) => user !== name)[0];
-        const lastMessage = newestMessage(messagesHistory).content;
+        const lastMessage = newestMessage(messagesHistory)?.content;
         return {
           lastMessage: lastMessage,
           receiverName: receiverName,
