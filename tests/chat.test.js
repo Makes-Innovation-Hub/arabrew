@@ -171,3 +171,31 @@ describe("get user chat list with names and last message (if exist)", () => {
     assert.equal(res.status, 200);
   });
 });
+
+describe("get a chat by names", () => {
+  it("should GET both users name and GET their chat", async function () {
+    const res_user1 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId1}`,
+      requestOptions.methods.GET
+    );
+
+    const {
+      data: { name: user_name1 },
+    } = await res_user1.json();
+
+    const res_user2 = await fetch(
+      `http://localhost:${PORT}/api/user/${userId2}`,
+      requestOptions.methods.GET
+    );
+
+    const {
+      data: { name: user_name2 },
+    } = await res_user2.json();
+
+    const res = await fetch(
+      `http://localhost:${PORT}/api/chat/${user_name1}/${user_name2}`,
+      requestOptions.methods.GET
+    );
+    assert.equal(res.status, 200);
+  });
+});
