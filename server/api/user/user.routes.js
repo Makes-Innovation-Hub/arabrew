@@ -6,12 +6,13 @@ import {
   getAllUsers,
   getUserByName,
   getUser,
+  deleteUser,
 } from "./user.controllers.js";
 import { requestLogger } from "../../middleware/logger.js";
 const router = express.Router();
 router.use(requestLogger);
 router.route("/register").post(registerUser);
-router.route("/:subId").get(getUser);
+router.route("/:subId").get(getUser).delete(deleteUser);
 router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);

@@ -137,3 +137,32 @@ export const getUserByName = asyncHandler(async (req, res, next) => {
     data: user,
   });
 });
+
+//$ @desc    delete user by subId
+//$ @route   DELETE /api/user/:subId
+//! @access  NOT SET YET
+
+export const deleteUser = asyncHandler(async (req, res, next) => {
+  const { subId } = req.params;
+
+  try {
+    const user = await User.findOne({ subId: subId });
+    if (!user) {
+      eventLogger(`user not found`);
+      return res.status(200).json({
+        success: false,
+        data: {},
+      });
+    }
+
+    eventLogger(`user found in db`);
+    await User.findOneAndDelete({ subId: subId });
+
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+});
