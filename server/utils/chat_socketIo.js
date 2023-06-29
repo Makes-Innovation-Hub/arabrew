@@ -75,7 +75,7 @@ export const CheckAndTranslateMsg = async (msg, origin_lang, target_lang) => {
     eventLogger("Translating msg end", { translatedText });
     return { isProfanity: false, translatedMsg: translatedText };
   } catch (error) {
-    console.log("error CheckAndTranslateMsg", error);
+    console.log("error CheckAndTranslateMsg", error.data);
     return {};
   }
 };
