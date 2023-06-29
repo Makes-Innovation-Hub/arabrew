@@ -6,7 +6,7 @@ const appLanguageSLice = createSlice({
     selectedLanguage: "English (US)",
   },
   reducers: {
-    setLanguage: (state, action) => {
+    setLanguage: function (state, action) {
       state.selectedLanguage = action.payload;
     },
   },
