@@ -40,6 +40,8 @@ export const isProfanity = async (msg, origin_lang) => {
 };
 
 export const unionObj = (obj1, obj2) => {
+  console.log("obj2", obj2);
+  console.log("obj1", obj1);
   const commonKeys = Object.keys(obj1).filter((key) =>
     obj2.hasOwnProperty(key)
   );

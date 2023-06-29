@@ -270,9 +270,10 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
 export const generateConversationTopics = asyncHandler(
   async (req, res, next) => {
     try {
-      controllerLogger("generating conversation topics", req.params, "start");
+      controllerLogger("generating conversation topics", req.body, "start");
+      console.log("req.body", req.body);
       const { user1Data, user2Data } = req.body;
-      const unionData = unionObj(user1Data.userDetails, user2Data.userDetails);
+      const unionData = unionObj(user1Data, user2Data);
       eventLogger(
         "generated united object fron users data",
         JSON.stringify(unionData)

@@ -9,7 +9,7 @@ const conversationApi = createApi({
   }),
   endpoints: (builder) => ({
     generateConversationTopics: builder.mutation({
-      query: (user1Data, user2Data) => ({
+      query: ({ user1Data, user2Data }) => ({
         url: "/",
         method: "POST",
         headers: { "Content-Type": "application/json" },
