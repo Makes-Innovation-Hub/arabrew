@@ -6,8 +6,11 @@ import {
   errorLogger,
   timingLogger,
   databaseLogger,
+  eventLogger,
 } from "../../middleware/logger.js";
 import { newestMessage } from "./chat.utils.js";
+import { unionObj } from "../../utils/util.js";
+import { generateChatTopics } from "../../utils/openAi.utils.js";
 
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/:user1_name/:user2_name
@@ -266,8 +269,20 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
 
 export const generateConversationTopics = asyncHandler(
   async (req, res, next) => {
-    const body = req.body;
-    console.log("body", body);
-    res.status(200).json({ msg: "ok" });
+    try {
+      controllerLogger("generating conversation topics", req.params, "start");
+      const { user1Data, user2Data } = req.body;
+      const unionData = unionObj(user1Data.userDetails, user2Data.userDetails);
+      eventLogger(
+        "generated united object fron users data",
+        JSON.stringify(unionData)
+      );
+      const suggestions = await generateChatTopics(unionData);
+      eventLogger("generated suggestions", JSON.stringify(suggestions));
+      res.status(200).json({ suggestions });
+    } catch (error) {
+      console.log("error generateConversationTopics", error);
+      res.status(500).json({ msg: "error", error });
+    }
   }
 );
