@@ -12,14 +12,14 @@ import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-const serverUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
+const baseClientUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Auth0Provider
     domain={domain}
     clientId={clientId}
     authorizationParams={{
-      redirect_uri: serverUrl,
+      redirect_uri: baseClientUrl,
     }}
   >
     <GlobalStyles />

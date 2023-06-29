@@ -15,23 +15,34 @@ export default function HeaderLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, isLoading, error, loginWithRedirect } =
+    useAuth0();
   const [trigger, result, lastPromiseInfo] = useLazyGetLoggedUserQuery();
 
   // context
-  const { userData, updateUserData } = useContext(UserContext);
+  const { userData, updateUserData, getEmptyUserObj } = useContext(UserContext);
+
   useEffect(() => {
     async function handleNav() {
+      if (error) {
+        console.log("error", error);
+      }
       if (!isAuthenticated && !isLoading) {
         loginWithRedirect();
       } else {
         if (location.pathname === "/" && user) {
           const subId = user.sub.split("|")[1];
           const fetchedUserData = await trigger(subId);
+
           if (Object.keys(fetchedUserData.data.data).length > 0) {
             const userData = fetchedUserData.data.data;
-            updateUserData(userData);
-            dispatch(addAllDetailsConnectedUser(userData));
+            if (userData) {
+              //clear exsiting data
+              updateUserData(getEmptyUserObj());
+              // fill with new data
+              updateUserData(userData);
+              dispatch(addAllDetailsConnectedUser(userData));
+            }
           }
           if (result.data && result.data.success) {
             navigate("/conversation");
@@ -50,7 +61,8 @@ export default function HeaderLayout() {
       }
     }
     handleNav();
-  }, [isLoading, result]);
+  }, [isLoading, result, error]);
+
   return (
     <div>
       <StyledHeader />

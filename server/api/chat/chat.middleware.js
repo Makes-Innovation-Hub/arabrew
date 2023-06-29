@@ -4,6 +4,7 @@ import {
   controllerLogger,
   databaseLogger,
   errorLogger,
+  eventLogger,
   successLogger,
   timingLogger,
 } from "../../middleware/logger.js";
@@ -32,11 +33,8 @@ export const deleteOldMessages = asyncHandler(async (req, res, next) => {
     });
     if (!chat) {
       // Logging error
-      errorLogger(
-        `Chat with names: ${user1_name}, ${user2_name} not found. nothing to delete`,
-        req,
-        res,
-        next
+      eventLogger(
+        `Chat with names: ${user1_name}, ${user2_name} not found. nothing to delete`
       );
       return next();
       // return next(

@@ -5,4 +5,5 @@ export const StyledProfilePage = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 70%;
 `;

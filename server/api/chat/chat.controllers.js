@@ -1,5 +1,5 @@
 import Chat from "./chat.js";
-import { asyncHandler } from "../index.js";
+import { asyncHandler, User } from "../index.js";
 import {
   controllerLogger,
   successLogger,
@@ -208,7 +208,7 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
   // Logging controller event
   controllerLogger(
     "getUserChatsList",
-    { userName: name },
+    { user_name: name },
     "Retrieving user chats list"
   );
   const startTime = Date.now();
@@ -226,19 +226,26 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
       .sort({ updatedAt: -1 })
       .lean();
     if (!userChats) {
-      // Logging error
-      errorLogger("Failed to retrieve user chats list", req, res, next);
       return next(new Error("failed retrieving"));
     }
     if (userChats.length > 0) {
-      userChats = userChats.map((chat) => {
-        const { users, messagesHistory } = chat;
-        const receiverName = users.filter((user) => user !== name)[0];
-        const lastMessage = newestMessage(messagesHistory).content;
-        return {
-          lastMessage: lastMessage,
-          receiverName: receiverName,
-        };
+      userChats = await Promise.all(
+        userChats.map(async (chat) => {
+          const { users, messagesHistory } = chat;
+          const recieverName = users.filter((user) => user !== name)[0];
+          const reciverUser = await User.findOne({ name: recieverName }).lean();
+          const senderUser = await User.findOne({ name }).lean();
+          const senderLang = senderUser.userDetails.nativeLanguage;
+          const userAvatar = reciverUser ? reciverUser.avatar : null;
+          const lastMessage = newestMessage(messagesHistory, name, senderLang);
+          return {
+            profile: userAvatar,
+            name: recieverName,
+            lastCon: lastMessage,
+          };
+        })
+      ).catch((err) => {
+        console.log("err in finding chat msg", err);
       });
     }
 

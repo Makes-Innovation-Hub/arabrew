@@ -18,15 +18,27 @@ const initialState = {
   },
 };
 
+function getEmptyUserObj() {
+  return Object.assign({}, initialState);
+}
+
 const UserProvider = ({ children }) => {
-  const [userData, setUserData] = useState(initialState);
+  let storedUser = sessionStorage.getItem("loggedUser");
+  if (storedUser) {
+    storedUser = JSON.parse(storedUser);
+  }
+  const [userData, setUserData] = useState(storedUser || initialState);
 
   const updateUserData = (newData) => {
     setUserData({ ...userData, ...newData });
+    sessionStorage.setItem(
+      "loggedUser",
+      JSON.stringify({ ...userData, ...newData })
+    );
   };
 
   return (
-    <UserContext.Provider value={{ userData, updateUserData }}>
+    <UserContext.Provider value={{ userData, updateUserData, getEmptyUserObj }}>
       {children}
     </UserContext.Provider>
   );

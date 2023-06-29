@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import {
@@ -13,11 +13,24 @@ import {
 } from "../styles";
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
-import { useNavigate } from "react-router-dom";
+import { useGetUserChatsListQuery } from "../features/userDataApi";
+import { useSelector } from "react-redux";
 
-const ConversationPage = ({ prevConversation }) => {
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/loggedUser.context";
+
+const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
+  const username = useSelector((state) => state.userRegister.name);
+  const loggedUser = useSelector((state) => state.userRegister);
+  // const { userData: loggedUser } = useContext(UserContext);
+  const { data: chats, error, isLoading } = useGetUserChatsListQuery(username);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    console.log(error);
+    return <div>Error occurred while fetching chats.</div>;
+  }
   return (
     <div>
       {isSideBar && (
@@ -40,16 +53,22 @@ const ConversationPage = ({ prevConversation }) => {
         />
       </StyledMargin>
       <StyledPage>
-        {prevConversation.length !== 0 ? (
+        {chats.length !== 0 ? (
           <ConversationPageStyle>
             <div>Conversation</div>
             <ChatsDisplay>
-              {prevConversation.map((chat, i) => {
+              {chats.map((chat, i) => {
                 return (
                   <ConversationDisplay
                     key={i}
                     nameCon={chat.name}
-                    contentCon={chat.lastCon}
+                    contentCon={
+                      chat?.lastCon
+                        ? chat.lastCon[
+                            `content_${loggedUser.userDetails.nativeLanguage}`
+                          ]
+                        : ""
+                    }
                     profile={chat.profile}
                   />
                 );

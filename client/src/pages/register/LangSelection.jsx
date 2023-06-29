@@ -34,7 +34,7 @@ const LangSelection = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/intro">
+            <Link to="/">
               <ArrowLeft />
             </Link>
           }

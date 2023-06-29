@@ -32,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/conversation",
-    element: <ConversationPage prevConversation={prevConversation} />,
+    element: <ConversationPage />,
   },
   {
     path: "/chat-page/:sender/:reciever/:originLang/:targetLang",

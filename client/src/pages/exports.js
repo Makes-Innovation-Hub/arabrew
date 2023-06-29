@@ -1,4 +1,3 @@
-import Intro from "./Intro.jsx";
 import LangSelection from "./LangSelection.jsx";
 import Interests from "./register/Intrests.page.jsx";
 import Occupation from "./register/Occupation.page.jsx";
@@ -12,7 +11,6 @@ import Location from "./Location.jsx";
 import CommonInterests from "./CommonInterests.jsx";
 import SearchFriends from "./SearchFriends.page.jsx";
 export {
-  Intro,
   BirthPage,
   LangSelection,
   Interests,

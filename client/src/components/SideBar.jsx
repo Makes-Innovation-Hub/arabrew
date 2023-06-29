@@ -36,7 +36,7 @@ export default function SideBar({ openSideBar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userData: loggedUser } = useContext(UserContext);
-
+  const baseClientUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
   return (
     <>
       <ModalSideBar
@@ -110,7 +110,8 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 dispatch(cleanUser());
-                logout({ returnTo: "http://localhost:5173/" });
+                sessionStorage.setItem("loggedUser", false);
+                logout({ returnTo: baseClientUrl });
               }}
             >
               Log Out
