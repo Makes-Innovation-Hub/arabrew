@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
-// import { useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 import { ChatLayout } from "../../styles/Chat/ChatLayout";
 import { InputArea } from "../../components/index.js";
 import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea";
@@ -18,10 +17,18 @@ let socket;
 
 const Chat = () => {
   const params = useParams();
-  const { sender, reciever, originLang, targetLang } = params;
-  const state = useLocation().state;
-  const usersArr = [sender, reciever];
+  const [messages, setMessages] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const [msgText, setMsgText] = useState("");
+  const state = useLocation().state;
+  const loggedUser = useSelector((state) => state.userRegister);
+
+  const { sender, reciever, originLang, targetLang } = params;
+  const usersArr = [sender, reciever];
+
+  const chatUserDetails = state.userDetails;
+  const loggedUserDetails = loggedUser.userDetails;
+
   const chatData = {
     chatId: genChatId(usersArr),
     sender: sender,
@@ -30,7 +37,6 @@ const Chat = () => {
     targetLang: targetLang,
     content: msgText,
   };
-  const [messages, setMessages] = useState([]);
   const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
     [usersArr, originLang]
   );
@@ -46,6 +52,17 @@ const Chat = () => {
   const handleSendMsg = () => {
     socket.emit("new_message", chatData);
     setMsgText("");
+  };
+
+  const addSuggestionToMsgs = (newSuggestions) => {
+    const suggestionsUpdated = newSuggestions ? newSuggestions : suggestions;
+    const suggestion = suggestionsUpdated.pop();
+    const suggestionObj = {
+      sender: "server",
+      content: suggestion,
+    };
+    setSuggestions([...suggestionsUpdated]);
+    setMessages((prev) => [...prev, suggestionObj]);
   };
 
   useEffect(() => {
@@ -69,6 +86,10 @@ const Chat = () => {
         typedMsg={msgText}
         handleChange={handleChange}
         handleSendMsg={handleSendMsg}
+        loggedUserDetails={loggedUserDetails}
+        chatUserDetails={chatUserDetails}
+        currentSuggestions={suggestions}
+        setSuggestions={addSuggestionToMsgs}
       />
     </ChatLayout>
   );

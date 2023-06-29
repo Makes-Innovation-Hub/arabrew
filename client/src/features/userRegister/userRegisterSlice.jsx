@@ -37,7 +37,7 @@ export const userRegisterSlice = createSlice({
     mergeDetails: function (state, { payload }) {
       state = { ...state, ...payload };
     },
-    cleanUser: function (state, { payload }) {
+    cleanUser: function (state) {
       state = initialState;
     },
   },

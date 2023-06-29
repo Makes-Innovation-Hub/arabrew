@@ -28,7 +28,7 @@ export const chatUserSlice = createSlice({
     //   state.name = name;
     //   state.avatar = avatar;
     // },
-    addAllDetailsChatUser: (state, { payload }) => {
+    addAllDetailsChatUser: function (state, { payload }) {
       state = payload;
     },
   },

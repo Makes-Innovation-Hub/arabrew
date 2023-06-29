@@ -1,4 +1,15 @@
+import CoffeMug from "../../../assets/CoffeeMugWithGreenBG.svg";
+import { Suggestion, SuggestionText } from "../../styles/Suggestion";
+
 export default function MessageBox({ message, loggedUser }) {
+  if (message.sender === "server") {
+    return (
+      <Suggestion>
+        <img src={CoffeMug} alt="coffe mug symbol" />
+        <SuggestionText> {message.content}</SuggestionText>
+      </Suggestion>
+    );
+  }
   return (
     <div
       style={{

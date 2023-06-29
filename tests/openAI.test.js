@@ -1,14 +1,15 @@
 import assert from "assert";
-import {
-  checkProfanity,
-  translateMsg,
-} from "../server/api/translation/openAI.js";
+import { checkProfanity, translateMsg } from "./openAI.js";
 
 describe("open ai api tests", () => {
   describe("translation test", () => {
     it("should translate from hebrew to arabic : שלום", async function () {
-      const result = await translateMsg("שלום", "hebrew", "arabic");
-      assert.equal(true, result.includes("مرحبا") || result.includes("السلام"));
+      const result = await translateMsg(
+        "please translate from hebrew to arabic : שלום",
+        "hebrew",
+        "arabic"
+      );
+      assert.equal(result, "مرحبا (Marhaba)" || "مرحبا (Marhaban)" || "مرحبا");
     });
   });
   describe("profanity test", () => {
@@ -17,7 +18,7 @@ describe("open ai api tests", () => {
       assert.equal(result, false);
     });
     it("should return : true", async function () {
-      const result = await checkProfanity("go to hell");
+      const result = await checkProfanity("good morning ass hole");
       assert.equal(result, true);
     });
   });

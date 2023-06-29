@@ -38,3 +38,20 @@ export const isProfanity = async (msg, origin_lang) => {
     return {};
   }
 };
+
+export const unionObj = (obj1, obj2) => {
+  const commonKeys = Object.keys(obj1).filter((key) =>
+    obj2.hasOwnProperty(key)
+  );
+  const commonObj = {};
+  for (const key of commonKeys) {
+    if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+      commonObj[key] = obj1[key].filter((val) => obj2[key].includes(val));
+    } else if (
+      obj1[key].toLowerCase().trim() === obj2[key].toLowerCase().trim()
+    ) {
+      commonObj[key] = obj1[key];
+    }
+  }
+  return commonObj;
+};

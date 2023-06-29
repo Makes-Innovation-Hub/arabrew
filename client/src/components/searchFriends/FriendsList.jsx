@@ -10,6 +10,7 @@ const FriendsList = ({ friendsArr, userName, originLang }) => {
         img={avatar}
         flag={nationality}
         hobbies={interests}
+        userDetails={userDetails}
         chatPage={`/chat-page/${userName}/${friend}/${originLang}/${targetLang}`}
       />
     );

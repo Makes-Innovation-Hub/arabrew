@@ -6,12 +6,44 @@ import { RecommendedButton } from "../../../styles/Chat/InputArea/RecommendedBut
 import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
 import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
+import { useGenerateConversationTopicsMutation } from "../../../features/conversations/conversationApi.slice";
+import { useEffect } from "react";
 
-const InputArea = ({ typedMsg, handleChange, handleSendMsg }) => {
+const InputArea = ({
+  typedMsg,
+  handleChange,
+  handleSendMsg,
+  loggedUserDetails,
+  chatUserDetails,
+  setSuggestions,
+  currentSuggestions,
+}) => {
+  const [getSuggestions, { isSuccess, isLoading, isError, data }] =
+    useGenerateConversationTopicsMutation();
+  useEffect(() => {
+    if (isSuccess && !isLoading && !isError) {
+      const suggestions = JSON.parse(data.suggestions.message.content);
+      if (suggestions && suggestions.length > 0) {
+        setSuggestions(suggestions);
+      }
+    }
+  }, [isSuccess, isLoading, isError]);
   return (
     <InputWrapper>
       <InputAreaContainer>
-        <RecommendedButton>
+        <RecommendedButton
+          onClick={() => {
+            if (currentSuggestions.length > 0) {
+              setSuggestions();
+            } else {
+              const suggestionObj = {
+                user1Data: loggedUserDetails,
+                user2Data: chatUserDetails,
+              };
+              getSuggestions(suggestionObj);
+            }
+          }}
+        >
           <img src={CoffeeMug} />
         </RecommendedButton>
         <InputComponent
