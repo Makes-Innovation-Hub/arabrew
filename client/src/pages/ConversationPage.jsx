@@ -23,13 +23,9 @@ const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
+  const userData = useSelector((state) => state.userRegister);
   const { userData: loggedUser } = useContext(UserContext);
   const { data, error, isLoading } = useGetUserChatsListQuery(username);
-  useEffect(() => {
-    if (data && !error && !isLoading) {
-      console.log("data", data);
-    }
-  }, [data, isLoading]);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);
@@ -63,7 +59,6 @@ const ConversationPage = () => {
             <div>Conversation</div>
             <ChatsDisplay>
               {chats.map((chat, i) => {
-                console.log("chat", chat);
                 return (
                   <ConversationDisplay
                     key={i}

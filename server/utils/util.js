@@ -4,9 +4,7 @@ import { PROFANITY_MSG_AR, PROFANITY_MSG_HE } from "./constants.js";
 
 export const isAddMessageSuccess = (messagesHistory, content_HE) => {
   const newestMsg = newestMessage(messagesHistory);
-  console.log("newestMsg", newestMsg);
   let isSame = newestMsg === content_HE ? newestMsg.content_HE : false;
-  console.log("isSame", isSame);
   if (isSame) {
     isSame = JSON.parse(JSON.stringify(isSame));
     isSame.id = isSame._id;

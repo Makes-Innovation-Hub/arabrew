@@ -20,7 +20,6 @@ const Chat = () => {
   const params = useParams();
   const { sender, reciever, originLang, targetLang } = params;
   const state = useLocation().state;
-  console.log("state", state);
   const usersArr = [sender, reciever];
   const [msgText, setMsgText] = useState("");
   const chatData = {

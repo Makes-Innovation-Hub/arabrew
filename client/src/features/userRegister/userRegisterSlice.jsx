@@ -15,28 +15,29 @@ const initialState = {
     bio: "",
   },
 };
-const storedUser = localStorage.getItem("loggedUser");
+const storedUser = sessionStorage.getItem("loggedUser");
 export const userRegisterSlice = createSlice({
   name: "userRegister",
   initialState: storedUser ? JSON.parse(storedUser) : initialState,
   reducers: {
-    addDetail: (state, { payload }) => {
+    addDetail: function (state, { payload }) {
       const { field, value } = payload;
       state.userDetails[field] = value;
     },
-    addAuth0Details: (state, { payload }) => {
+    addAuth0Details: function (state, { payload }) {
       const { subId, name, avatar } = payload;
       state.subId = subId;
       state.name = name;
       state.avatar = avatar;
     },
-    addAllDetailsConnectedUser: (state, { payload }) => {
+    addAllDetailsConnectedUser: function (state, { payload }) {
       state = payload;
+      return state;
     },
-    mergeDetails: (state, { payload }) => {
+    mergeDetails: function (state, { payload }) {
       state = { ...state, ...payload };
     },
-    cleanUser: (state, { payload }) => {
+    cleanUser: function (state, { payload }) {
       state = initialState;
     },
   },

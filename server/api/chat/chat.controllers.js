@@ -231,16 +231,13 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
     if (userChats.length > 0) {
       userChats = await Promise.all(
         userChats.map(async (chat) => {
-          console.log("chat", chat);
           const { users, messagesHistory } = chat;
           const recieverName = users.filter((user) => user !== name)[0];
           const reciverUser = await User.findOne({ name: recieverName }).lean();
           const senderUser = await User.findOne({ name }).lean();
-          console.log("senderUser", senderUser);
           const senderLang = senderUser.userDetails.nativeLanguage;
           const userAvatar = reciverUser ? reciverUser.avatar : null;
           const lastMessage = newestMessage(messagesHistory, name, senderLang);
-          console.log("lastMessage", lastMessage);
           return {
             profile: userAvatar,
             name: recieverName,
