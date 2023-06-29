@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Suggestion = styled.div`
-  margin: 5% 5%;
+  margin: 5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
