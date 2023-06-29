@@ -271,7 +271,6 @@ export const generateConversationTopics = asyncHandler(
   async (req, res, next) => {
     try {
       controllerLogger("generating conversation topics", req.body, "start");
-      console.log("req.body", req.body);
       const { user1Data, user2Data } = req.body;
       const unionData = unionObj(user1Data, user2Data);
       eventLogger(

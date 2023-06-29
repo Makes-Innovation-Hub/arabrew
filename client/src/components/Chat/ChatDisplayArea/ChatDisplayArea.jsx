@@ -26,7 +26,7 @@ function ChatDisplayArea({ messages }) {
   };
 
   return (
-    <ChatsContainer>
+    <ChatsContainer key={Date.now()}>
       {messages.map((message) => (
         <MessageBox
           message={message}
