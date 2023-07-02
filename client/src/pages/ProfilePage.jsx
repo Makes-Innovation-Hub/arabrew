@@ -1,18 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import userRegisterSlice from "../features/userRegister/userRegisterSlice";
-import {
-  ProfileName,
-  InterestTextStyle,
-  StyledPage,
-  StyledMargin,
-  StyledProfilePage,
-  ProfileImg,
-  ProfileTitle,
-  HobbyBackground,
-  HobbiesDisplay,
-  CircleIcon,
-} from "../styles";
+import { StyledMargin } from "../styles";
 import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
 import { useContext } from "react";
 import { UserContext } from "../contexts/loggedUser.context";
@@ -21,6 +9,7 @@ const ProfilePage = () => {
   const { userData: profileData1 } = useContext(UserContext);
   const { userData: profileData2 } = useSelector((state) => state.userRegister);
   const profileData = profileData1 || profileData2;
+  console.log("profileData", profileData);
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -31,44 +20,111 @@ const ProfilePage = () => {
             </Link>
           }
           title="Profile"
-          rightIcon={
-            <>
-              {userRegisterSlice.name !== "userRegister" && (
-                <CircleIcon>
-                  <Link to="/">
-                    <ChatIcon />
-                  </Link>
-                </CircleIcon>
-              )}
-            </>
-          }
         />
       </StyledMargin>
-      <StyledPage>
-        <StyledProfilePage>
-          <ProfileImg src={profileData.avatar} alt="profile" />
-          <ProfileTitle>
-            <ProfileName>{profileData.name}</ProfileName>
-            <LanguageIcon
-              letter={
-                profileData.lang === "Arabic"
-                  ? "ع"
-                  : profileData.lang === "Hebrew"
-                  ? "He"
-                  : "En"
-              }
-            />
-          </ProfileTitle>
-          <InterestTextStyle>
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div
+          id="profileImg"
+          style={{
+            flexGrow: 2,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "end",
+          }}
+        >
+          <img
+            src={profileData.avatar}
+            alt="profile"
+            width="80%"
+            height="60%"
+            style={{
+              borderRadius: "5%",
+            }}
+          />
+        </div>
+        <div
+          id="rest"
+          style={{
+            flexGrow: 4,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+          }}
+        >
+          <div
+            id="title"
+            style={{
+              flexGrow: 0.05,
+              display: "flex",
+              justifyContent: "space-around",
+              fontFamily: "Poppins",
+              fontStyle: "normal",
+              fontweight: 600,
+              fontSize: "3rem",
+              borderBottom: "1px solid lightgray",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {profileData.name}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <LanguageIcon
+                letter={
+                  profileData.userDetails.nativeLanguage === "AR"
+                    ? "ع"
+                    : profileData.userDetails.nativeLanguage === "HE"
+                    ? "He"
+                    : "En"
+                }
+              />
+            </div>
+          </div>
+          <div id="intests" style={{ margin: "5% auto 5% 3%" }}>
             My Interest
-            <HobbiesDisplay>
-              {profileData.userDetails.interests.map((hobby, i) => {
-                return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
-              })}
-            </HobbiesDisplay>
-          </InterestTextStyle>
-        </StyledProfilePage>
-      </StyledPage>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            {profileData.userDetails.interests.map((hobby, i) => {
+              return (
+                <div
+                  style={{
+                    backgroundColor: "#EDF2F7",
+                    borderRadius: "2rem",
+                    margin: "0.5rem 1.5rem",
+                    padding: "1% 1.5%",
+                  }}
+                  key={i}
+                >
+                  {" "}
+                  {hobby}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

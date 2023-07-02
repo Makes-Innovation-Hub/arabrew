@@ -1,10 +1,6 @@
 import { Chat } from "../api/index.js";
 import { errorLogger, eventLogger } from "../middleware/logger.js";
-import {
-  isAddMessageSuccess,
-  isProfanity,
-  sendPromptToOpenAi,
-} from "./util.js";
+import { checkProfanity, sendPromptToOpenAi } from "./openAi.utils.js";
 export const access_chatCollection = async (usersArr) => {
   try {
     const usersArrSwitched = [usersArr[1], usersArr[0]];
@@ -67,7 +63,7 @@ export const addMessageToChat = async (
 export const CheckAndTranslateMsg = async (msg, origin_lang, target_lang) => {
   eventLogger("Translating msg start", { msg, origin_lang, target_lang });
   try {
-    const profanity = await isProfanity(msg, origin_lang);
+    const profanity = await checkProfanity(msg, origin_lang);
     if (profanity) return { isProfanity: true, profanity: profanity };
     const prompt = `translate from language ${origin_lang} to language ${target_lang} this text: ${msg}. return only the translated message`;
     const response = await sendPromptToOpenAi(prompt);
@@ -75,7 +71,8 @@ export const CheckAndTranslateMsg = async (msg, origin_lang, target_lang) => {
     eventLogger("Translating msg end", { translatedText });
     return { isProfanity: false, translatedMsg: translatedText };
   } catch (error) {
-    console.log("error CheckAndTranslateMsg", error.data);
+    console.log("error CheckAndTranslateMsg", error);
+    console.log("error CheckAndTranslateMsg", error.response.data.error);
     return {};
   }
 };

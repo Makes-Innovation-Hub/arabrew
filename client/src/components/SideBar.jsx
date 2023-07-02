@@ -56,7 +56,11 @@ export default function SideBar({ openSideBar }) {
           <ProfileChat profile={loggedUser.avatar} /> {loggedUser.name}
         </DisplayMe>
         <UlSideBar>
-          <LinkSideBar href="/">
+          <LinkSideBar
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <LiSideBar>
               <HomeIcon />
               Home

@@ -1,5 +1,5 @@
 import asyncHandler from "../../middleware/asyncHandler.js";
-import { checkProfanity, translateMsg } from "./translation.services.js";
+import { translateMsg } from "./translation.services.js";
 import {
   PROFANITY_MSG_HE,
   PROFANITY_MSG_AR,
@@ -13,6 +13,7 @@ import {
   errorLogger,
   eventLogger,
 } from "../../middleware/logger.js";
+import { checkProfanity } from "../../utils/openAi.utils.js";
 
 export const messageController = asyncHandler(async (req, res, next) => {
   controllerLogger("messageController", req.params, "Handling message");
