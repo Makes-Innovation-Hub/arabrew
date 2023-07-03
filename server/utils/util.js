@@ -1,4 +1,5 @@
 import { newestMessage } from "../api/index.js";
+
 export const isAddMessageSuccess = (messagesHistory, content_HE) => {
   const newestMsg = newestMessage(messagesHistory);
   let isSame = newestMsg === content_HE ? newestMsg.content_HE : false;

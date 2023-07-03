@@ -25,7 +25,6 @@ export default function MessageBox({ message, loggedUser }) {
             ? "0.9rem 0.9rem 0 0.9rem"
             : "0 0.9rem 0.9rem 0.9rem",
         backgroundColor: message.sender === loggedUser ? "#50924E" : "#FFFFFF",
-        color: "#3D4260",
         color: message.sender === loggedUser ? "white" : "black",
       }}
     >

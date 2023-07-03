@@ -9,7 +9,6 @@ const ProfilePage = () => {
   const { userData: profileData1 } = useContext(UserContext);
   const { userData: profileData2 } = useSelector((state) => state.userRegister);
   const profileData = profileData1 || profileData2;
-  console.log("profileData", profileData);
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
