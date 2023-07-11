@@ -1,4 +1,6 @@
 import path from "path";
+import { readFileSync } from "fs";
+import { createServer } from "https";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -18,6 +20,11 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: __dirname + "/.env" });
 
+const httpsServer = createServer({
+  key: readFileSync("/etc/letsencrypt/live/arabrew.tech/privkey.pem"),
+  cert: readFileSync("/etc/letsencrypt/live/arabrew.tech/fullchain.pem"),
+});
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -32,14 +39,14 @@ app.get("*", (req, res) => {
 
 const PORT = process.env.PORT || 5050;
 
-const server = app.listen(
+const server = httpsServer.listen(
   PORT,
   console.log(
     `📶 server is running in ${process.env.NODE_ENV} Mode, & made on port ${PORT} 📶`
   )
 );
 
-const socket_io = new Server(server, {
+const socket_io = new Server(httpsServer, {
   pingTimeout: 60000,
   cors: {
     origin: "*",

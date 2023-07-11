@@ -12,9 +12,7 @@ import { UserProvider } from "./contexts/loggedUser.context.jsx";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-const baseClientUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:${
-  import.meta.env.VITE_SERVER_PORT
-}`;
+const baseClientUrl = "https://arabrew.tech/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Auth0Provider

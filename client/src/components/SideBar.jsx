@@ -36,7 +36,7 @@ export default function SideBar({ openSideBar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userData: loggedUser } = useContext(UserContext);
-  const baseClientUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
+  const baseClientUrl = "https://arabrew.tech";
   return (
     <>
       <ModalSideBar

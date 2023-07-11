@@ -14,7 +14,6 @@ export const sendPromptToOpenAi = async (prompt) => {
 
 export const checkProfanity = async (msg, origin_lang) => {
   eventLogger(`checking profanity in msg: ${msg}`);
-  console.log("msg", msg);
   const prompt = `
   You are developing a text moderation system and need to implement a function that checks a given text for any form of profanity or hate speech. Your task is to create a function that takes a text input and returns True if the text contains any form of profanity, swear words, curse words, sexual content, racist or sexist messages, or hate speech, and False otherwise. The function should be able to handle a wide range of offensive language, including explicit words, derogatory slurs, and offensive phrases.
 To accomplish this, your algorithm should consider the following factors when determining whether a text contains profanity or hate speech:
@@ -32,15 +31,10 @@ the text to check is: ${msg}`;
   // the text can be in hebrew, arabic or english, so check in all 3 languages.
   // the text to check is: ${msg}`;
   const response = await sendPromptToOpenAi(prompt);
-  console.log(
-    "response.data.choices[0].message.content",
-    response.data.choices[0].message.content
-  );
   eventLogger("profanity results: ", response.data.choices[0].message.content);
   const isProfanity = response.data.choices[0].message.content
     .toLowerCase()
     .includes("true");
-  console.log("isProfanity", isProfanity);
   const profanity_alert_lang =
     origin_lang === "HE" ? PROFANITY_MSG_HE : PROFANITY_MSG_AR;
   const profanity_alert = isProfanity && profanity_alert_lang;

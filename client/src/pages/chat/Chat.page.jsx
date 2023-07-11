@@ -10,9 +10,7 @@ import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayAr
 import Header from "../../components/Chat/Header/Header";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 
-const ENDPOINT =
-  import.meta.env.VITE_SERVER_BASE_URL + ":" + import.meta.env.VITE_SERVER_PORT;
-
+const ENDPOINT = "http:127.0.0.1:5000";
 let socket;
 
 const Chat = () => {

@@ -26,9 +26,10 @@ const ConversationPage = () => {
   const loggedUser = useSelector((state) => state.userRegister);
   // const { userData: loggedUser } = useContext(UserContext);
   const { data: chats, error, isLoading } = useGetUserChatsListQuery(username);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   if (error) {
-    console.log(error);
     return <div>Error occurred while fetching chats.</div>;
   }
   return (
