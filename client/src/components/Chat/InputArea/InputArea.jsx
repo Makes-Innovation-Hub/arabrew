@@ -20,6 +20,7 @@ const InputArea = ({
 }) => {
   const [getSuggestions, { isSuccess, isLoading, isError, data }] =
     useGenerateConversationTopicsMutation();
+  console.log("input area data", data);
   useEffect(() => {
     if (isSuccess && !isLoading && !isError) {
       const suggestions = JSON.parse(data.suggestions.message.content);

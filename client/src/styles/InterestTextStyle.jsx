@@ -2,10 +2,12 @@ import styled from "styled-components";
 export const InterestTextStyle = styled.h1`
   width: 10rem;
   height: 1rem;
+  text-align: left;
+  width: 100%;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   line-height: 100%;
   color: #161616;
 `;

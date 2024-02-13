@@ -1,5 +1,5 @@
-import Chat from "./chat.js";
-import { asyncHandler, User } from "../index.js";
+import Chat from "../models/chat.js";
+import { asyncHandler, User } from "../utils/index.js";
 import {
   controllerLogger,
   successLogger,
@@ -7,10 +7,10 @@ import {
   timingLogger,
   databaseLogger,
   eventLogger,
-} from "../../middleware/logger.js";
-import { newestMessage } from "./chat.utils.js";
-import { unionObj } from "../../utils/util.js";
-import { generateChatTopics } from "../../utils/openAi.utils.js";
+} from "../middleware/logger.js";
+import { newestMessage } from "../utils/chat.utils.js";
+import { unionObj } from "../utils/util.js";
+import { generateChatTopics } from "../utils/openAi.utils.js";
 
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/:user1_name/:user2_name
