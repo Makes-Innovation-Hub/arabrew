@@ -15,7 +15,7 @@ import countries from "../../assets/countriesAndFlags/countries.json";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
-
+import StyledButton from "../../styles/StyledButton.jsx";
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
@@ -68,14 +68,19 @@ export default function NationalityPage() {
             />
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton
+            <StyledButton
+              to={selectedNationality.value ? "/location" : null}
               onClick={() => {
+                if (!selectedNationality.value) {
+                  return;
+                }
                 dispatch(addDetail(selectedNationality));
-                navigate("/location");
+                setSelectedNationality({ ...selectedNationality, value: "" });
               }}
-            >
-              <i>Save & Next</i>
-            </StyledSaveAndNextButton>
+              bg={selectedNationality.value ? "#50924E" : "#D7DDD6"}
+              hoverBg={selectedNationality.value ? "#396D37" : "#D7DDD6"}
+              text={"Save & Next"}
+            ></StyledButton>
           </Flex>
         </Flex>
       </Container>
