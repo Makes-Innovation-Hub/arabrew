@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { Server } from "socket.io";
 import { fileURLToPath } from "url";
-import routes from "./routes.js";
+import routes from "./routes/routes.js";
 import connectDB from "./config/db.js";
 import { CheckAndTranslateMsg } from "./utils/chat_socketIo.js";
 import {

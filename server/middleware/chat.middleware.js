@@ -1,5 +1,5 @@
-import Chat from "./chat.js";
-import { asyncHandler } from "../index.js";
+import Chat from "../models/chat.js";
+import { asyncHandler } from "../utils/index.js";
 import {
   controllerLogger,
   databaseLogger,
@@ -7,7 +7,7 @@ import {
   eventLogger,
   successLogger,
   timingLogger,
-} from "../../middleware/logger.js";
+} from "./logger.js";
 
 export const deleteOldMessages = asyncHandler(async (req, res, next) => {
   const { user1_name, user2_name } = req.params;
