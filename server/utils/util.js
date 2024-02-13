@@ -1,4 +1,4 @@
-import { newestMessage } from "../api/index.js";
+import { newestMessage } from "../utils/index.js";
 import { Configuration, OpenAIApi } from "openai";
 import { PROFANITY_MSG_AR, PROFANITY_MSG_HE } from "../constants/constants.js";
 

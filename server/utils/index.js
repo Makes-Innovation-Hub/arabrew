@@ -1,7 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/user.js";
 import Chat from "../models/chat.js";
-import { newestMessage } from "../utils/chat.utils.js";
+import { newestMessage } from "./chat.utils.js";
 import {
   checkProfanity,
   translateMsg,

@@ -1,5 +1,5 @@
 import Chat from "../models/chat.js";
-import { asyncHandler, User } from "../api/index.js";
+import { asyncHandler, User } from "../utils/index.js";
 import {
   controllerLogger,
   successLogger,

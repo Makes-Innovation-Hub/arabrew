@@ -1,4 +1,4 @@
-import { asyncHandler } from "../api/index.js";
+import { asyncHandler } from "../utils/index.js";
 import { controllerLogger, timingLogger } from "./logger.js";
 export const filterByInterests = asyncHandler(async (req, res, next) => {
   const { interests } = req.query;
