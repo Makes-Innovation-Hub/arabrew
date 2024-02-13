@@ -1,4 +1,4 @@
-import { Chat } from "../api/index.js";
+import { Chat } from "../utils/index.js";
 import { errorLogger, eventLogger } from "../middleware/logger.js";
 import {
   isAddMessageSuccess,

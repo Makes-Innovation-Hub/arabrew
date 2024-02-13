@@ -4,6 +4,8 @@ export const HobbyBackground = styled.div`
   /* flex-direction: row; */
   /* align-items: flex-start; */
   padding: 0.25rem 0.75rem;
+  gap: 0.5rem;
+  /* min-width: 9rem; */
   /* gap: 0.5rem; */
   /* min-width: 9rem; */
   height: 2.3rem;

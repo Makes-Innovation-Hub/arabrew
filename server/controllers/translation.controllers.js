@@ -1,18 +1,21 @@
-import asyncHandler from "../../middleware/asyncHandler.js";
-import { checkProfanity, translateMsg } from "./translation.services.js";
+import asyncHandler from "../middleware/asyncHandler.js";
+import {
+  checkProfanity,
+  translateMsg,
+} from "../services/translation.services.js";
 import {
   PROFANITY_MSG_HE,
   PROFANITY_MSG_AR,
   CHAT_BASE_URL,
-} from "../../utils/constants.js";
-import { saveMsgToDB } from "./utils.js";
+} from "../constants/constants.js";
+import { saveMsgToDB } from "../utils/translation.utils.js";
 import {
   controllerLogger,
   timingLogger,
   successLogger,
   errorLogger,
   eventLogger,
-} from "../../middleware/logger.js";
+} from "../middleware/logger.js";
 
 export const messageController = asyncHandler(async (req, res, next) => {
   controllerLogger("messageController", req.params, "Handling message");

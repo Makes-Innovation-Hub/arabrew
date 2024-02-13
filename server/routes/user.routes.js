@@ -1,13 +1,13 @@
 import express from "express";
-import { filterByInterests } from "./user.middleware.js";
+import { filterByInterests } from "../middleware/user.middleware.js";
 import {
   registerUser,
   getUsersByInterests,
   getAllUsers,
   getUserByName,
   getUser,
-} from "./user.controllers.js";
-import { requestLogger } from "../../middleware/logger.js";
+} from "../controllers/user.controllers.js";
+import { requestLogger } from "../middleware/logger.js";
 const router = express.Router();
 router.use(requestLogger);
 router.route("/register").post(registerUser);
