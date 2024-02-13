@@ -1,5 +1,5 @@
-import asyncHandler from "../../middleware/asyncHandler.js";
-import User from "./user.js";
+import asyncHandler from "../middleware/asyncHandler.js";
+import User from "../models/user.js";
 import {
   controllerLogger,
   databaseLogger,
@@ -7,7 +7,7 @@ import {
   successLogger,
   errorLogger,
   eventLogger,
-} from "../../middleware/logger.js";
+} from "../middleware/logger.js";
 
 Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);

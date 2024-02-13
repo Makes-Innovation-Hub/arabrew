@@ -59,14 +59,12 @@ const ProfilePage = () => {
               }
             />
           </ProfileTitle>
-          <InterestTextStyle>
-            My Interest
-            <HobbiesDisplay>
-              {profileData.userDetails.interests.map((hobby, i) => {
-                return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
-              })}
-            </HobbiesDisplay>
-          </InterestTextStyle>
+          <InterestTextStyle>My Interest</InterestTextStyle>
+          <HobbiesDisplay>
+            {profileData.userDetails.interests.map((hobby, i) => {
+              return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
+            })}
+          </HobbiesDisplay>
         </StyledProfilePage>
       </StyledPage>
     </div>
