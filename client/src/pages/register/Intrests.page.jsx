@@ -38,8 +38,9 @@ const Interests = () => {
 
   const addInterests = (newInterest) => {
     let prevInterests = value;
-    const newInterestNoEmoji = newInterest.split(" ")[1];
-    const isSelected = prevInterests.indexOf(newInterestNoEmoji);
+    // const newInterestNoEmoji = newInterest.split(" ")[1];
+    // no need to remove the emoji
+    const isSelected = prevInterests.indexOf(newInterest);
     if (isSelected !== -1) {
       return;
     }
@@ -47,7 +48,8 @@ const Interests = () => {
       return setIsError(true);
     }
 
-    const newInterestsArr = [...value, newInterestNoEmoji];
+    const newInterestsArr = [...value, newInterest];
+    //to save the interests with emoji to show it in profile page
     setSelectedInterests({
       ...selectedInterests,
       value: newInterestsArr,
