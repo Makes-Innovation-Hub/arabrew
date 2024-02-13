@@ -54,6 +54,11 @@ const UserSchema = new mongoose.Schema(
         trim: true,
         required: [true, "⛔⛔ workField missing ⛔⛔"],
       },
+      resume: {
+        type: String,
+        trim: true,
+        required: [true, "⛔⛔ Resume missing ⛔⛔"],
+      },
       bio: {
         type: String,
         trim: true,
