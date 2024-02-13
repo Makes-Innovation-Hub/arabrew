@@ -53,7 +53,7 @@ const ConversationPage = () => {
         />
       </StyledMargin>
       <StyledPage>
-        {chats.length !== 0 ? (
+        {chats && chats.length !== 0 ? (
           <ConversationPageStyle>
             <div>Conversation</div>
             <ChatsDisplay>

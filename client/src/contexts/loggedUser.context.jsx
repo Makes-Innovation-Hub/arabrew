@@ -15,6 +15,7 @@ const initialState = {
     gender: "",
     occupation: "",
     workField: "",
+    resume: "",
     bio: "",
   },
 };
