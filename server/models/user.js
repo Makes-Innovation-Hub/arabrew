@@ -48,6 +48,12 @@ const UserSchema = new mongoose.Schema(
         trim: true,
         required: [true, "⛔⛔ occupation missing ⛔⛔"],
       },
+      workField: {
+        type: String,
+        maxlength: [30, "max length"],
+        trim: true,
+        required: [true, "⛔⛔ workField missing ⛔⛔"],
+      },
       bio: {
         type: String,
         trim: true,

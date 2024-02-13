@@ -12,10 +12,12 @@ const initialState = {
     address: "",
     gender: "",
     occupation: "",
+    workField: "",
     bio: "",
   },
 };
 const storedUser = sessionStorage.getItem("loggedUser");
+console.log(storedUser);
 export const userRegisterSlice = createSlice({
   name: "userRegister",
   initialState: storedUser ? JSON.parse(storedUser) : initialState,
