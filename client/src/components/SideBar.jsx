@@ -110,7 +110,7 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 dispatch(cleanUser());
-                sessionStorage.clear();
+                sessionStorage.removeItem("loggedUser");
                 logout({ returnTo: baseClientUrl });
               }}
             >
