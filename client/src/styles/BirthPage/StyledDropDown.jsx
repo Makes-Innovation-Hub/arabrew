@@ -1,8 +1,11 @@
 import { useState } from "react";
 // import Select, { components } from "react-select";
-import Select, { components } from "react-windowed-select";
-import WindowedSelect from "react-windowed-select";
+// import Select, { components } from "react-windowed-select";
+// import WindowedSelect , { components } from 'react-windowed-select/dist/index.esm.js';
+// import { components, createFilter } from 'react-windowed-select';
+// import WindowedSelect from "react-windowed-select";
 import MyCustomStyles from "./DropDownCustomStyles.jsx";
+import WindowedSelect, { components } from "react-windowed-select/dist/main.js";
 
 const customStyles = MyCustomStyles;
 
@@ -27,7 +30,8 @@ const CustomDropdown = ({
   };
 
   return (
-    <Select
+    // <></>
+    <WindowedSelect
       closeMenuOnSelect={true}
       components={{
         Option: customOption ? customOption : DefaultOption,
@@ -44,3 +48,11 @@ const CustomDropdown = ({
 };
 
 export default CustomDropdown;
+
+// import React from 'react'
+
+// export default function CustomDropdown() {
+//   return (
+//     <div>StyledDropDown</div>
+//   )
+// }

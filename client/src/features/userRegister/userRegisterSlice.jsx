@@ -21,6 +21,7 @@ export const userRegisterSlice = createSlice({
   initialState: storedUser ? JSON.parse(storedUser) : initialState,
   reducers: {
     addDetail: function (state, { payload }) {
+      console.log(payload);
       const { field, value } = payload;
       state.userDetails[field] = value;
     },

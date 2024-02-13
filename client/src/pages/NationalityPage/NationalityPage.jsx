@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
-    value: "",
+    value: "asdad",
     field: "nationality",
   });
   const navigate = useNavigate();

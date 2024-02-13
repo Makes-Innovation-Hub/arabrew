@@ -19,7 +19,7 @@ export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState({
-    value: "",
+    value: "1332",
     field: "yearOfBirth",
   });
 
