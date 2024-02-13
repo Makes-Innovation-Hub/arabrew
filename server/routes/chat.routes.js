@@ -1,14 +1,14 @@
 import express from "express";
-import { deleteOldMessages } from "./chat.middleware.js";
+import { deleteOldMessages } from "../middleware/chat.middleware.js";
 import {
   addMessageToChat,
   createChat,
   getChatByNames,
   getUserChatsList,
   generateConversationTopics,
-} from "./chat.controllers.js";
+} from "../controllers/chat.controllers.js";
 
-import { requestLogger } from "../../middleware/logger.js";
+import { requestLogger } from "../middleware/logger.js";
 
 const router = express.Router();
 

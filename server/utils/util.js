@@ -1,6 +1,6 @@
 import { newestMessage } from "../api/index.js";
 import { Configuration, OpenAIApi } from "openai";
-import { PROFANITY_MSG_AR, PROFANITY_MSG_HE } from "./constants.js";
+import { PROFANITY_MSG_AR, PROFANITY_MSG_HE } from "../constants/constants.js";
 
 export const isAddMessageSuccess = (messagesHistory, content_HE) => {
   const newestMsg = newestMessage(messagesHistory);
