@@ -78,33 +78,33 @@ const ProfilePage = () => {
             />
             <StyledNationalityContainer>
               <FlagForLang
-                flag={flags[profileData.userDetails.nationality]?.image}
+                flag={flags[profileData?.userDetails?.nationality]?.image}
               />
               <UserIcon />
             </StyledNationalityContainer>
           </ProfileTitle>
           <ProfileDetails>
-            <div>{profileData.userDetails.gender}</div>
+            <div>{profileData?.userDetails?.gender}</div>
             <div>
-              <LocationIcon /> {profileData.userDetails.address},{" "}
-              {flags[profileData.userDetails.nationality].name}
+              <LocationIcon /> {profileData?.userDetails?.address},{" "}
+              {flags[profileData?.userDetails?.nationality]?.name}
             </div>
           </ProfileDetails>
           <ProfileOccupationContainer>
             <ProfileOccupation>Occupation</ProfileOccupation>
             <ProfileOccupationData>
-              {profileData.userDetails.occupation}
+              {profileData.userDetails?.occupation}
             </ProfileOccupationData>
           </ProfileOccupationContainer>
           <div>
             <ProfileDescriptionTitle>About me</ProfileDescriptionTitle>
             <ProfileDescriptionText>
-              {profileData?.userDetails.bio}
+              {profileData?.userDetails?.bio}
             </ProfileDescriptionText>
           </div>
           <InterestTextStyle>My Interest</InterestTextStyle>
           <HobbiesDisplay>
-            {profileData.userDetails.interests.map((hobby, i) => {
+            {profileData?.userDetails?.interests.map((hobby, i) => {
               return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
             })}
           </HobbiesDisplay>
