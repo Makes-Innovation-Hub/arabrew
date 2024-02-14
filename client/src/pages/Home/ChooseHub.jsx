@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { BriefcaseIcon, Hamburger, LaughEmoji, SmallGlass, UsersIcon } from "../../assets";
 import Header from "../../components/Header";
+import SideBar from "../../components/SideBar";
 import {
   ChooseHubButton,
   ChooseHubTitle,
@@ -8,8 +10,14 @@ import {
 } from "../../styles";
 
 export default function ChooseHub() {
+  const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
+      {isSideBar && (
+        <div>
+          <SideBar openSideBar={setIsSideBar} />
+        </div>
+      )}
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
