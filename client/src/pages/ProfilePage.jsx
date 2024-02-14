@@ -12,11 +12,29 @@ import {
   HobbyBackground,
   HobbiesDisplay,
   CircleIcon,
+  FlagForLang,
+  StyledNationalityContainer,
+  ProfileDetails,
+  ProfileDescriptionTitle,
+  ProfileDescriptionText,
+  ProfileOccupation,
+  ProfileOccupationContainer,
+  ProfileOccupationData,
+  ProfileWorkField,
+  ProfileWorkFieldContainer,
+  ProfileWorkFieldData,
 } from "../styles";
-import { ArrowLeft, LanguageIcon, ChatIcon } from "../assets";
+import {
+  ArrowLeft,
+  LanguageIcon,
+  ChatIcon,
+  LocationIcon,
+  UserIcon,
+} from "../assets";
 import { useContext } from "react";
 import { UserContext } from "../contexts/loggedUser.context";
 import { useSelector } from "react-redux";
+import flags from "../assets/countriesAndFlags/by-code.json";
 const ProfilePage = () => {
   const { userData: profileData1 } = useContext(UserContext);
   const { userData: profileData2 } = useSelector((state) => state.userRegister);
@@ -58,7 +76,32 @@ const ProfilePage = () => {
                   : "En"
               }
             />
+            <StyledNationalityContainer>
+              <FlagForLang
+                flag={flags[profileData.userDetails.nationality]?.image}
+              />
+              <UserIcon />
+            </StyledNationalityContainer>
           </ProfileTitle>
+          <ProfileDetails>
+            <div>{profileData.userDetails.gender}</div>
+            <div>
+              <LocationIcon /> {profileData.userDetails.address},{" "}
+              {flags[profileData.userDetails.nationality].name}
+            </div>
+          </ProfileDetails>
+          <ProfileOccupationContainer>
+            <ProfileOccupation>Occupation</ProfileOccupation>
+            <ProfileOccupationData>
+              {profileData.userDetails.occupation}
+            </ProfileOccupationData>
+          </ProfileOccupationContainer>
+          <div>
+            <ProfileDescriptionTitle>About me</ProfileDescriptionTitle>
+            <ProfileDescriptionText>
+              {profileData?.userDetails.bio}
+            </ProfileDescriptionText>
+          </div>
           <InterestTextStyle>My Interest</InterestTextStyle>
           <HobbiesDisplay>
             {profileData.userDetails.interests.map((hobby, i) => {
