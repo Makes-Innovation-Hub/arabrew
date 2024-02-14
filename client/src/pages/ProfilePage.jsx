@@ -34,14 +34,12 @@ import {
   LocationIcon,
   UserIcon,
 } from "../assets";
-import { useContext } from "react";
-import { UserContext } from "../contexts/loggedUser.context";
-import { useSelector } from "react-redux";
 import flags from "../assets/countriesAndFlags/by-code.json";
 const ProfilePage = () => {
-  const { userData: profileData1 } = useContext(UserContext);
-  const { userData: profileData2 } = useSelector((state) => state.userRegister);
-  const profileData = profileData1 || profileData2;
+  // const { userData: profileData2 } = useSelector((state) => state.userRegister);
+
+  const profileData = JSON.parse(sessionStorage.getItem("loggedUser"));
+
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
