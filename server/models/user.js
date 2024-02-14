@@ -14,6 +14,9 @@ const UserSchema = new mongoose.Schema(
     avatar: {
       type: String,
     },
+    token: {
+      type: String,
+    },
     userDetails: {
       nativeLanguage: {
         type: String,
