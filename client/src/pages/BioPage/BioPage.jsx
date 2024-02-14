@@ -24,41 +24,41 @@ export default function BioPage() {
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const userData = useSelector((state) => state.userRegister);
-  const [registerUser, { isSuccess, isError, error }] =
-    useRegisterUserMutation();
+  // const [registerUser, { isSuccess, isError, error }] =
+  //   useRegisterUserMutation();
   const handleChange = (event) => {
     const inputValue = event.target.value;
     setText({ ...text, value: inputValue });
   };
   const characterCount = text.value.length;
   const navigate = useNavigate();
-  useEffect(() => {
-    if (isDetailAdded) {
-      registerUser(userData);
-    }
-  }, [isDetailAdded]);
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/conversation");
-    }
-    if (isError) {
-      console.error(error);
-    }
-  }, [isSuccess, isError]);
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/conversation");
-    }
-    if (isError) {
-      console.error(error);
-    }
-  }, [isSuccess, isError]);
+  // useEffect(() => {
+  //   if (isDetailAdded) {
+  //     registerUser(userData);
+  //   }
+  // }, [isDetailAdded]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     navigate("/occupation");
+  //   }
+  //   if (isError) {
+  //     console.error(error);
+  //   }
+  // }, [isSuccess, isError]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     navigate("/occupation");
+  //   }
+  //   if (isError) {
+  //     console.error(error);
+  //   }
+  // }, [isSuccess, isError]);
   return (
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <Link to="/occupation">
+          <Link to="/gender">
             <img src={arrowIcon} />
           </Link>
         </div>
@@ -102,10 +102,10 @@ export default function BioPage() {
             <StyledSaveAndNextButton
               onClick={() => {
                 dispatch(addDetail(text));
-                setIsDetailAdded(true);
+                navigate("/occupation");
               }}
             >
-              <i>Save & Finish</i>
+              <i>Save & Next</i>
             </StyledSaveAndNextButton>
           </Flex>
         </Flex>

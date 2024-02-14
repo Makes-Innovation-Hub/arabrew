@@ -89,14 +89,14 @@ const Occupation = () => {
           </StyledSpan>
         </Flex>
         <StyledButton
-          to={"/bioPage"}
+          to={"/resumePage"}
           disabled={!occupationValue || !workFieldValue}
           onClick={() => {
             dispatch(addDetail(occupationInput));
             dispatch(addDetail(workFieldInput));
             setOccupationInput({ ...occupationInput, value: "" });
             setWorkFieldInput({ ...workFieldInput, value: "" });
-            navigate("/bioPage");
+            navigate("/resumePage");
           }}
           bg={occupationValue && workFieldValue ? "#50924E" : "#d7ddd6"}
           hoverBg={occupationValue && workFieldValue ? "#396d37" : "#d7ddd6"}
