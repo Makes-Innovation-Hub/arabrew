@@ -11,7 +11,7 @@ export default function PageLayout() {
     <BackLayout>
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
-        <div style={{ width: "20%" }}>
+        <div style={{ width: "15%" }}>
           <img src={arrowIcon} />
         </div>
         <TitleWrapper>
