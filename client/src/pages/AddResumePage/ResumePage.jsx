@@ -17,6 +17,7 @@ import { addDetail } from "../../features/userRegister/userRegisterSlice";
 import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
 import { useRegisterUserMutation } from "../../features/userDataApi";
 import { useEffect } from "react";
+import Modal from "../../styles/Modal/Modal";
 
 function ResumePage() {
   const dispatch = useDispatch();
@@ -24,20 +25,33 @@ function ResumePage() {
   // const { resume } = useSelector((state) => state.userRegister.userDetails);
   const userData = useSelector((state) => state.userRegister);
   const [isDetailAdded, setIsDetailAdded] = useState(false);
+  const [isMaxError, setIsMaxError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalText, setModalText] = useState("");
   const [registerUser, { isSuccess, isError, error }] =
     useRegisterUserMutation();
   const [resumeInput, setResumeInput] = useState({
     field: "resume",
     value: "",
   });
-  console.log(resumeInput);
+  // console.log(resumeInput);
   const { value } = resumeInput;
+  const characterCount = value.length; // to save the number of char written
   useEffect(() => {
     if (isDetailAdded) {
       const result = registerUser(userData);
       console.log(result);
     }
   }, [isDetailAdded]);
+
+  useEffect(() => {
+    if (value.length === 500) {
+      setIsMaxError(true);
+      setShowModal(true);
+      setModalText("Your bio should not exceed 500 characters");
+    }
+  }, [characterCount]);
+
   useEffect(() => {
     if (isSuccess) {
       // console.log("success");
@@ -75,9 +89,16 @@ function ResumePage() {
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
           <StyledSpan fontSize="12px" color="#7F8790" alignSelf="flex-end">
-            500 Character
+            {500 - characterCount} Character
           </StyledSpan>
         </Flex>
+        {isMaxError && (
+          <Modal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            modalText={modalText}
+          />
+        )}
         <StyledButton
           // to={"/conversation"}
           disabled={!value}
@@ -88,7 +109,7 @@ function ResumePage() {
           }}
           bg={value ? "#50924E" : "#d7ddd6"}
           hoverBg={value ? "#396d37" : "#d7ddd6"}
-          text={"Save & Next"}
+          text={"Save & Finish"}
         ></StyledButton>
       </StyledPage>
     </div>
