@@ -40,7 +40,7 @@ function ResumePage() {
   }, [isDetailAdded]);
   useEffect(() => {
     if (isSuccess) {
-      console.log("success");
+      // console.log("success");
       navigate("/conversation");
     }
     if (isError) {
