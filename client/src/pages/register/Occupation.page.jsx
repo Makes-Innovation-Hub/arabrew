@@ -35,7 +35,7 @@ const Occupation = () => {
     <div>
       <Header
         leftIcon={
-          <Link to="/gender">
+          <Link to="/bioPage">
             <ArrowLeft />
           </Link>
         }

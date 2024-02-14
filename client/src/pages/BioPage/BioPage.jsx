@@ -16,6 +16,8 @@ import { useDispatch } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../features/userDataApi.js";
+import StyledButton from "../../styles/StyledButton.jsx";
+import Modal from "../../styles/Modal/Modal.jsx";
 export default function BioPage() {
   const dispatch = useDispatch();
   const [text, setText] = useState({
@@ -23,6 +25,9 @@ export default function BioPage() {
     field: "bio",
   });
   const [isDetailAdded, setIsDetailAdded] = useState(false);
+  const [isMaxError, setIsMaxError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalText, setModalText] = useState("");
   const userData = useSelector((state) => state.userRegister);
   // const [registerUser, { isSuccess, isError, error }] =
   //   useRegisterUserMutation();
@@ -32,6 +37,15 @@ export default function BioPage() {
   };
   const characterCount = text.value.length;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (text.value.length === 500) {
+      setIsMaxError(true);
+      setShowModal(true);
+      setModalText("Your bio should not exceed 500 characters");
+    }
+  }, [characterCount]);
+
   // useEffect(() => {
   //   if (isDetailAdded) {
   //     registerUser(userData);
@@ -99,14 +113,23 @@ export default function BioPage() {
             </StyledNumberOfCharLabel>
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
-            <StyledSaveAndNextButton
+            {isMaxError && (
+              <Modal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                modalText={modalText}
+              />
+            )}
+            <StyledButton
+              disabled={!text.value}
               onClick={() => {
                 dispatch(addDetail(text));
                 navigate("/occupation");
               }}
-            >
-              <i>Save & Next</i>
-            </StyledSaveAndNextButton>
+              bg={text.value ? "#50924E" : "#d7ddd6"}
+              hoverBg={text.value ? "#396d37" : "#d7ddd6"}
+              text={"Save & Next"}
+            ></StyledButton>
           </Flex>
         </Flex>
       </Container>
