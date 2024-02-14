@@ -57,6 +57,7 @@ import { ProfileWorkField } from "./ProfileWorkField";
 import { ProfileWorkFieldData } from "./ProfileWorkFieldData";
 import { FlagImg } from "./FlagImg";
 import { ProfileAgeData } from "./ProfileAgeData";
+import { FlagContainer } from "./FlagContainer";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -116,4 +117,5 @@ export {
   ProfileWorkFieldData,
   FlagImg,
   ProfileAgeData,
+  FlagContainer,
 };
