@@ -29,7 +29,7 @@ const MeetupSchema = new mongoose.Schema(
       required: [true, "Description is required"],
     },
     price: {
-      type: Number,
+      type: String,
       required: [true, "Price is required"],
     },
     attendees: [
@@ -59,6 +59,6 @@ const MeetupSchema = new mongoose.Schema(
   }
 );
 
-const Meetup = mongoose.model("Meetup", MeetupSchema);
+const Meetup = mongoose.model("meetupCollection", MeetupSchema);
 
 export default Meetup;

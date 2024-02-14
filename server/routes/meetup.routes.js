@@ -1,32 +1,33 @@
 import express from "express";
+import {
+  attendMeetup,
+  createMeetup,
+  deleteMeetup,
+  getMeetupById,
+  getMeetups,
+} from "../controllers/meetup.controller.js";
 
 const router = express.Router();
 
 // Create Meetup
-router.post("/meetups");
+router.post("/", createMeetup);
 
 // Get All Meetups
-router.get("/meetups");
+router.get("/", getMeetups);
 
 // Get Meetup by ID
-router.get("/meetups/:id");
+router.get("/:id", getMeetupById);
 // isAuthenticated, isMeetupOwner
 // Update Meetup
-router.put("/meetups/:id");
+router.put("/:id");
 
 // Delete Meetup
-router.delete("/meetups/:id");
+router.delete("/:id", deleteMeetup);
 
 // Register for Meetup
-router.post("/meetups/:id/register");
-
-// Get Meetups by User
-router.get("/meetups/user/:userId");
-
-// Get Meetups Attending by User
-router.get("/meetups/user/:userId/attending");
+router.patch("/:id/attend", attendMeetup); // add id to attendees array
 
 // Cancel Registration for Meetup
-router.delete("/meetups/:id/register");
+router.delete("/:id/attend");
 
 export default router;
