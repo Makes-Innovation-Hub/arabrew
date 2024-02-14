@@ -14,6 +14,7 @@ import arrowIcon from "../../assets/arrow.svg";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import StyledButton from "../../styles/StyledButton.jsx";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -82,7 +83,12 @@ export default function BirthPage() {
           </BioStyledDiv>
           <Flex style={{ height: "20%", width: "100%" }}>
             {/* <StyledRouterLink to={"/nationality"}> */}
-            <StyledSaveAndNextButton
+            <StyledButton
+              to={
+                selectedYear.value !== undefined || selectedYear.value !== null
+                  ? "/nationalityPage"
+                  : null
+              }
               onClick={() => {
                 if (
                   selectedYear.value !== undefined &&
@@ -94,12 +100,12 @@ export default function BirthPage() {
                       value: selectedYear.value.toString(),
                     })
                   );
-                  navigate("/nationalityPage");
                 }
               }}
-            >
-              <i>Save & Next</i>
-            </StyledSaveAndNextButton>
+              bg={selectedYear.value ? "#50924E" : "#D7DDD6"}
+              hoverBg={selectedYear.value ? "#396D37" : "#D7DDD6"}
+              text={"Save & Next"}
+            ></StyledButton>
             {/* </StyledRouterLink> */}
           </Flex>
         </Flex>
