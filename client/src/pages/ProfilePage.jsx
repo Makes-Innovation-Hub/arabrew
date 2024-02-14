@@ -23,6 +23,8 @@ import {
   ProfileWorkField,
   ProfileWorkFieldContainer,
   ProfileWorkFieldData,
+  FlagImg,
+  ProfileAgeData,
 } from "../styles";
 import {
   ArrowLeft,
@@ -39,6 +41,9 @@ const ProfilePage = () => {
   const { userData: profileData1 } = useContext(UserContext);
   const { userData: profileData2 } = useSelector((state) => state.userRegister);
   const profileData = profileData1 || profileData2;
+  const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+  const age = currentYear - profileData?.userDetails?.yearOfBirth 
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -78,10 +83,18 @@ const ProfilePage = () => {
             />
             {/* adding details */}
             <StyledNationalityContainer>
-              <FlagForLang
+              {/* <FlagForLang
                 flag={flags[profileData?.userDetails?.nationality]?.image}
-              />
+              /> */}
+              <div style={{overflow:"hidden", width:"3rem", height:"3rem", borderRadius:"50%"}}>
+
+              <FlagImg src={flags[profileData?.userDetails?.nationality]?.image}/>
+              </div>
               <UserIcon />
+              <ProfileAgeData>
+              {age}
+
+              </ProfileAgeData>
             </StyledNationalityContainer>
           </ProfileTitle>
           <ProfileDetails>

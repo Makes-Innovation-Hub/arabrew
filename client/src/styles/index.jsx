@@ -45,16 +45,18 @@ import { StyledBorder } from "./StyledBorder";
 import { StyledSocialButton } from "./StyledSocialButton";
 import { StyledSocialIcon } from "./StyledSocialIcon";
 import { StyledHiddenButton } from "./StyledHiddenButton";
-import {StyledNationalityContainer} from './StyledNationalityContainer'
-import {ProfileDetails} from './ProfileDetails'
+import { StyledNationalityContainer } from "./StyledNationalityContainer";
+import { ProfileDetails } from "./ProfileDetails";
 import { ProfileDescriptionTitle } from "./ProfileDescriptionTitle";
 import { ProfileDescriptionText } from "./ProfileDescriptionText";
-import {ProfileOccupationContainer} from './ProfileOccupationContainer'
-import {ProfileOccupation} from './ProfileOccupation'
-import {ProfileOccupationData} from './ProfileOccupationData'
-import {ProfileWorkFieldContainer} from './ProfileWorkFieldContainer'
-import {ProfileWorkField} from './ProfileWorkField'
-import {ProfileWorkFieldData} from './ProfileWorkFieldData'
+import { ProfileOccupationContainer } from "./ProfileOccupationContainer";
+import { ProfileOccupation } from "./ProfileOccupation";
+import { ProfileOccupationData } from "./ProfileOccupationData";
+import { ProfileWorkFieldContainer } from "./ProfileWorkFieldContainer";
+import { ProfileWorkField } from "./ProfileWorkField";
+import { ProfileWorkFieldData } from "./ProfileWorkFieldData";
+import { FlagImg } from "./FlagImg";
+import { ProfileAgeData } from "./ProfileAgeData";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -112,5 +114,6 @@ export {
   ProfileWorkFieldContainer,
   ProfileWorkField,
   ProfileWorkFieldData,
-
+  FlagImg,
+  ProfileAgeData,
 };
