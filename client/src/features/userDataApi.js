@@ -5,6 +5,7 @@ const port = import.meta.env.VITE_SERVER_PORT;
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
+    tagTypes: ["User"],
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -14,6 +15,13 @@ const userDataApi = createApi({
         headers: { "Content-Type": "application/json" },
         body: userObj,
       }),
+      invalidatesTags: ["User"],
+      transformResponse: (response, meta, arg) => {
+        console.log(response);
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        sessionStorage.setItem("loggedUser", JSON.stringify(response.data));
+        return response;
+      },
     }),
     getUsers: builder.query({
       query: (userObj) => {
