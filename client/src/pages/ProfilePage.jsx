@@ -76,6 +76,7 @@ const ProfilePage = () => {
                   : "En"
               }
             />
+            {/* adding details */}
             <StyledNationalityContainer>
               <FlagForLang
                 flag={flags[profileData?.userDetails?.nationality]?.image}
