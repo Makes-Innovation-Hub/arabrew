@@ -17,6 +17,7 @@ import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
+import ChooseHub from "./pages/Home/ChooseHub.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
       { path: "/gender", element: <GenderSelection /> },
       { path: "/resumePage", element: <ResumePage /> },
       { path: "/occupation", element: <Occupation /> },
+      { path: "/chooseHub", element: <ChooseHub /> },
+
     ],
   },
   {
