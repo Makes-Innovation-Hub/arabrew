@@ -4,6 +4,7 @@ import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { ArrowLeft } from "../../assets";
+import Modal from "../../styles/Modal/Modal.jsx";
 import {
   StyledPage,
   StyledMargin,
@@ -26,6 +27,8 @@ const Interests = () => {
   const dispatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [disableSaveBtn, setDisableSaveBtn] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [modalText, setModalText] = useState("");
 
   const { interests } = useSelector((state) => state.userRegister.userDetails);
   const [selectedInterests, setSelectedInterests] = useState({
@@ -45,7 +48,10 @@ const Interests = () => {
       return;
     }
     if (value.length === 5) {
-      return setIsError(true);
+      setIsError(true);
+      setModalText("* Maximum number of interests reached.");
+      setShowModal(true);
+      return;
     }
 
     const newInterestsArr = [...value, newInterest];
@@ -69,15 +75,24 @@ const Interests = () => {
   };
 
   const handleSave = () => {
+    let modalText = "";
+    if (interestsNumber < 5) {
+      modalText = "* Please select at least 5 interests.";
+    }
+    if (modalText) {
+      setShowModal(true);
+      setModalText(modalText);
+      return;
+    }
     dispatch(addDetail(selectedInterests));
     navigate("/agePage");
   };
-  useEffect(() => {
-    if (interestsNumber === 5) {
-      return setDisableSaveBtn(false);
-    }
-    return setDisableSaveBtn(true);
-  }, [interestsNumber]);
+  // useEffect(() => {
+  //   if (interestsNumber === 5) {
+  //     return setDisableSaveBtn(false);
+  //   }
+  //   return setDisableSaveBtn(true);
+  // }, [interestsNumber]);
   useEffect(() => {
     dispatch(addDetail(selectedInterests));
   }, [selectedInterests]);
@@ -100,11 +115,20 @@ const Interests = () => {
         </StyledMargin>
         <Content>
           {isError && (
-            <h1 style={{ color: "red" }}>
-              * max Interests Number, were selected
-            </h1>
+            // <h1 style={{ color: "red" }}>
+            //   * max Interests Number, were selected
+            // </h1>
+            <Modal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              modalText={modalText}
+            />
           )}
-
+          <Modal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            modalText={modalText}
+          />
           <div style={selectedContainer}>
             {value.map((interest) => (
               <button
@@ -129,9 +153,7 @@ const Interests = () => {
           </div>
 
           <ButtonDiv>
-            <Button onClick={handleSave} disabled={disableSaveBtn}>
-              Save & Next
-            </Button>
+            <Button onClick={handleSave}>Save & Next</Button>
           </ButtonDiv>
         </Content>
       </StyledPage>

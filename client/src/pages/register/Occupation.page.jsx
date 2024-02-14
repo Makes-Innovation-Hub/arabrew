@@ -19,8 +19,6 @@ const Occupation = () => {
   const navigate = useNavigate();
   const { occupation } = useSelector((state) => state.userRegister.userDetails);
   const { workField } = useSelector((state) => state.userRegister.userDetails);
-  console.log(workField);
-  console.log(occupation);
   const [occupationInput, setOccupationInput] = useState({
     field: "occupation",
     value: occupation.length > 0 ? occupation : "",
