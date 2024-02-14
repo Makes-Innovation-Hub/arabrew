@@ -8,8 +8,10 @@ import {
   StyledMargin,
   StyledPage,
 } from "../../styles";
+import { useNavigate } from "react-router-dom";
 
-export default function ChooseHub() {
+export default function ChooseHubPage() {
+  const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
@@ -34,7 +36,9 @@ export default function ChooseHub() {
       </StyledMargin>
       <StyledPage>
         <ChooseHubTitle>Choose your hub</ChooseHubTitle>
-        <ChooseHubButton>Arabrew - Work <BriefcaseIcon/> </ChooseHubButton>
+        <ChooseHubButton onClick={() => {
+          navigate('/conversation')
+        }}>Arabrew - Work <BriefcaseIcon/> </ChooseHubButton>
         <ChooseHubButton>Arabrew - Hobbies <LaughEmoji/> </ChooseHubButton>
         <ChooseHubButton>Arabrew - Meetup  <UsersIcon/> </ChooseHubButton>
       </StyledPage>
