@@ -4,7 +4,7 @@ import {
   createMeetup,
   deleteMeetup,
   getMeetupById,
-  getMeetups,
+  getAllMeetups,
 } from "../controllers/meetup.controller.js";
 
 const router = express.Router();
@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/", createMeetup);
 
 // Get All Meetups
-router.get("/", getMeetups);
+router.get("/", getAllMeetups);
 
 // Get Meetup by ID
 router.get("/:id", getMeetupById);
