@@ -66,16 +66,15 @@ export default function SideBar({ openSideBar }) {
             </LiSideBar>
           </LinkSideBar>
           <LinkSideBar>
-            <Link
+            <LiSideBar
               onClick={() => {
                 navigate("/profile", { state: loggedUser });
               }}
             >
-              <LiSideBar>
-                <ProfileIcon />
-                Profile
-              </LiSideBar>
-            </Link>
+              {" "}
+              <ProfileIcon />
+              Profile
+            </LiSideBar>
           </LinkSideBar>
 
           <LiSideBar

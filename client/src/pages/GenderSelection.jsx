@@ -74,7 +74,7 @@ const GenderSelection = () => {
           </StyledLanguageButton>
         </Flex>
         <StyledButton
-          to={value ? "/occupation" : null}
+          to={value ? "/bioPage" : null}
           onClick={() => {
             if (!value) {
               return;
