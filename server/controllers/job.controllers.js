@@ -1,12 +1,16 @@
+import { STATUS_CODES } from "../constants/constants.js";
 import { JobCollection } from "../models/job.js";
 
 // description Get all jobs
 // GET /api/job/
 const getAllJobs = async (req, res, next) => {
   try {
-    const jobs = await JobCollection.find();
+    const jobs = await JobCollection.find()
+      .populate("postedBy")
+      .populate("applicants.user")
+      .lean();
     if (!jobs) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("No jobs were posted yet");
     }
     res.send({ jobs, message: "Success" });
@@ -21,10 +25,10 @@ const createJob = async (req, res, next) => {
   try {
     const newJob = await JobCollection.create(req.body);
     if (!newJob) {
-      res.status(500);
+      res.status(STATUS_CODES.SERVER_ERROR);
       throw new Error("Job couldn't be created");
     }
-    res.send({ newJob, message: "Job created!" });
+    res.status(STATUS_CODES.CREATED).send({ newJob, message: "Job created!" });
   } catch (error) {
     next(error);
   }
@@ -35,9 +39,11 @@ const createJob = async (req, res, next) => {
 const updateJob = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
+
     let job = await JobCollection.findOneAndUpdate(
       {
         _id: jobId,
+        postedBy: req.user._id,
       },
       {
         ...req.body,
@@ -45,7 +51,7 @@ const updateJob = async (req, res, next) => {
       { new: true }
     );
     if (!job) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
 
@@ -60,12 +66,15 @@ const updateJob = async (req, res, next) => {
 const deleteJob = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
-    const job = await JobCollection.findByIdAndDelete(jobId);
+    const job = await JobCollection.findOneAndDelete({
+      _id: jobId,
+      postedBy: req.user._id,
+    });
     if (!job) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
-    res.send({ job, message: `Job with id ${req.params.jobId} was deleted!` });
+    res.send({ job, message: `Job with id ${jobId} was deleted!` });
   } catch (error) {
     next(error);
   }
@@ -80,7 +89,7 @@ const getJob = async (req, res, next) => {
       .populate("postedBy")
       .populate("applicants.user");
     if (!job) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
     res.send({ job, message: `Job sent successfully` });
@@ -93,10 +102,11 @@ const getJob = async (req, res, next) => {
 // GET /api/job/my-job-posts
 const getUserJobPosts = async (req, res, next) => {
   try {
-    const userId = req.params.userId;
-    const jobPosts = await JobCollection.find().where({ postedBy: userId });
+    const jobPosts = await JobCollection.find().where({
+      postedBy: req.user._id,
+    });
     if (!jobPosts) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("You have not posted any jobs yet");
     }
     res.send({
@@ -115,7 +125,7 @@ const applyToJob = async (req, res, next) => {
     const { userId, resume, jobId } = req.body;
     const job = await JobCollection.findById(jobId);
     if (!job) {
-      res.status(404);
+      res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
     const applicant = { user: userId, resume };
