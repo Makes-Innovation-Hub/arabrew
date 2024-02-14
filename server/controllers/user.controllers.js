@@ -8,7 +8,7 @@ import {
   errorLogger,
   eventLogger,
 } from "../middleware/logger.js";
-
+import jwt from "jsonwebtoken";
 Array.prototype.sortByMatching = function () {
   return this.sort((a, b) => b.sortBy - a.sortBy);
 };
@@ -27,8 +27,11 @@ export const registerUser = asyncHandler(async (req, res, next) => {
       errorLogger("error registering user", req, res, next);
       return next(new Error("error registering user", newUser));
     }
+    newUser.token = generateAccessToken(newUser._id);
+    await newUser.save();
     successLogger("registerUser", "User registration succeeded");
 
+    console.log(newUser);
     timingLogger("registerUser", startTime);
     return res.status(201).json({
       success: true,
@@ -137,3 +140,11 @@ export const getUserByName = asyncHandler(async (req, res, next) => {
     data: user,
   });
 });
+
+function generateAccessToken(userId) {
+  const token = jwt.sign(
+    { _id: userId.toString() },
+    process.env.ACCESS_TOKEN_SECRET
+  );
+  return token;
+}
