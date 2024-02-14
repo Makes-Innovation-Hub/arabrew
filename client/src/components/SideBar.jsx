@@ -18,6 +18,9 @@ import {
   ProfileIcon,
 } from "../assets/index.jsx";
 import Eng from "../assets/Eng.png";
+import AR from "../assets/AR.png";
+import HE from "../assets/HE.png";
+
 import { useDispatch } from "react-redux";
 import { setLanguage } from "../features/appLanguage/appLanguageSlice";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,8 +32,8 @@ export default function SideBar({ openSideBar }) {
   const [whichLang, setWhichLang] = useState(0);
   let langArr = [
     [Eng, "English (US)"],
-    [Eng, "עברית"],
-    [Eng, "عربيه"],
+    [HE, "עברית"],
+    [AR, "عربيه"],
   ];
   const { logout } = useAuth0();
   const dispatch = useDispatch();
@@ -63,16 +66,15 @@ export default function SideBar({ openSideBar }) {
             </LiSideBar>
           </LinkSideBar>
           <LinkSideBar>
-            <Link
+            <LiSideBar
               onClick={() => {
                 navigate("/profile", { state: loggedUser });
               }}
             >
-              <LiSideBar>
-                <ProfileIcon />
-                Profile
-              </LiSideBar>
-            </Link>
+              {" "}
+              <ProfileIcon />
+              Profile
+            </LiSideBar>
           </LinkSideBar>
 
           <LiSideBar

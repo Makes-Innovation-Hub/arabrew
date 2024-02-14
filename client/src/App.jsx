@@ -16,6 +16,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
+import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/interests", element: <Interests /> },
       { path: "/location", element: <Location /> },
       { path: "/gender", element: <GenderSelection /> },
+      { path: "/resumePage", element: <ResumePage /> },
       { path: "/occupation", element: <Occupation /> },
     ],
   },

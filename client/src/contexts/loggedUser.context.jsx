@@ -14,6 +14,8 @@ const initialState = {
     address: "",
     gender: "",
     occupation: "",
+    workField: "",
+    resume: "",
     bio: "",
   },
 };
