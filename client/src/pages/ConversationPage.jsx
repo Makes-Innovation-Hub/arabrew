@@ -14,17 +14,17 @@ import {
 import { SmallGlass, Hamburger } from "../assets";
 import ConversationDisplay from "../components/ConversationDisplay";
 import { useGetUserChatsListQuery } from "../features/userDataApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/loggedUser.context";
+import { addAllDetailsConnectedUser } from "../features/userRegister/userRegisterSlice";
 
 const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
   const loggedUser = useSelector((state) => state.userRegister);
-  // const { userData: loggedUser } = useContext(UserContext);
+
   const { data: chats, error, isLoading } = useGetUserChatsListQuery(username);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
