@@ -24,15 +24,7 @@ const ConversationPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
   const loggedUser = useSelector((state) => state.userRegister);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      addAllDetailsConnectedUser(
-        JSON.parse(sessionStorage.getItem("loggedUser"))
-      )
-    );
-  }, []);
-  console.log(loggedUser);
+
   const { data: chats, error, isLoading } = useGetUserChatsListQuery(username);
   if (isLoading) return <div>Loading...</div>;
   if (error) {

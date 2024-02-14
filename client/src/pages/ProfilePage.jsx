@@ -35,11 +35,9 @@ import {
   UserIcon,
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
+import { useSelector } from "react-redux";
 const ProfilePage = () => {
-  // const { userData: profileData2 } = useSelector((state) => state.userRegister);
-
-  const profileData = JSON.parse(sessionStorage.getItem("loggedUser"));
-
+  const profileData = useSelector((state) => state.userRegister);
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
@@ -68,14 +66,14 @@ const ProfilePage = () => {
       </StyledMargin>
       <StyledPage>
         <StyledProfilePage>
-          <ProfileImg src={profileData.avatar} alt="profile" />
+          <ProfileImg src={profileData?.avatar} alt="profile" />
           <ProfileTitle>
-            <ProfileName>{profileData.name}</ProfileName>
+            <ProfileName>{profileData?.name}</ProfileName>
             <LanguageIcon
               letter={
-                profileData.lang === "Arabic"
+                profileData?.lang === "Arabic"
                   ? "ع"
-                  : profileData.lang === "Hebrew"
+                  : profileData?.lang === "Hebrew"
                   ? "He"
                   : "En"
               }
@@ -102,7 +100,7 @@ const ProfilePage = () => {
           <ProfileOccupationContainer>
             <ProfileOccupation>Occupation</ProfileOccupation>
             <ProfileOccupationData>
-              {profileData.userDetails?.occupation}
+              {profileData?.userDetails?.occupation}
             </ProfileOccupationData>
           </ProfileOccupationContainer>
           <div>
