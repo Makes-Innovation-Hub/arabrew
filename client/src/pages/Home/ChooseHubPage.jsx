@@ -36,10 +36,10 @@ export default function ChooseHubPage() {
       </StyledMargin>
       <StyledPage>
         <ChooseHubTitle>Choose your hub</ChooseHubTitle>
+        <ChooseHubButton >Arabrew - Work <BriefcaseIcon/> </ChooseHubButton>
         <ChooseHubButton onClick={() => {
           navigate('/conversation')
-        }}>Arabrew - Work <BriefcaseIcon/> </ChooseHubButton>
-        <ChooseHubButton>Arabrew - Hobbies <LaughEmoji/> </ChooseHubButton>
+        }}>Arabrew - Hobbies <LaughEmoji/> </ChooseHubButton>
         <ChooseHubButton>Arabrew - Meetup  <UsersIcon/> </ChooseHubButton>
       </StyledPage>
     </div>

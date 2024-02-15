@@ -61,7 +61,7 @@ function ResumePage() {
   useEffect(() => {
     if (isSuccess) {
       // console.log("success");
-      navigate("/conversation");
+      navigate("/chooseHub");
     }
     if (isError) {
       console.error(error);
