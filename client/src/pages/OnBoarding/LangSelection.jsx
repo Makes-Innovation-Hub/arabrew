@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Header.jsx";
 import {
   Flex,
   StyledPage,
@@ -10,9 +10,9 @@ import {
   StyledLanguageButton,
   StyledPageTitle,
   StyledHiddenButton,
-} from "../styles";
-import { ArrowLeft, LanguageIcon } from "../assets";
-import { addDetail } from "../features/userRegister/userRegisterSlice.jsx";
+} from "../../styles/index.jsx";
+import { ArrowLeft, LanguageIcon } from "../../assets/index.jsx";
+import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LangSelection = () => {

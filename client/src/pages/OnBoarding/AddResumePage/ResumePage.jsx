@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Header } from "../../components";
+import { Header } from "../../../components";
 import {
   StyledPage,
   StyledMargin,
@@ -11,16 +11,16 @@ import {
   StyledInput,
   StyledSpan,
   Flex,
-} from "../../styles";
-import { ArrowLeft } from "../../assets";
+} from "../../../styles";
+import { ArrowLeft } from "../../../assets";
 import {
   addAllDetailsConnectedUser,
   addDetail,
-} from "../../features/userRegister/userRegisterSlice";
-import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
-import { useRegisterUserMutation } from "../../features/userDataApi";
+} from "../../../features/userRegister/userRegisterSlice";
+import { StyledTextArea } from "../../../styles/BioPage/StyledTextArea";
+import { useRegisterUserMutation } from "../../../features/userDataApi";
 import { useEffect } from "react";
-import Modal from "../../styles/Modal/Modal";
+import Modal from "../../../styles/Modal/Modal";
 
 function ResumePage() {
   const dispatch = useDispatch();

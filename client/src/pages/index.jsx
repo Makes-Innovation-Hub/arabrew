@@ -1,9 +1,9 @@
 import Interests from "./Interests";
 import Age from "./Age";
 import Nationality from "./Nationality";
-import GenderSelection from "./GenderSelection";
+import GenderSelection from "./OnBoarding/GenderSelection";
 import LangSelection from "./LangSelection";
-import Location from "./Location";
+import Location from "./OnBoarding/Location";
 import Occupation from "./Occupation";
 import Bio from "./Bio";
 

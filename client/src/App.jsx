@@ -16,7 +16,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
-import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
+import ResumePage from "./pages/OnBoarding/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
 
 const router = createBrowserRouter([

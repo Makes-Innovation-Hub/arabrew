@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import Header from "../components/Header";
-import SideBar from "../components/SideBar";
+import Header from "../../components/Header";
+import SideBar from "../../components/SideBar";
 import {
   StyledPage,
   StyledMargin,
@@ -10,14 +10,14 @@ import {
   ChatsDisplay,
   ButtonForChats,
   BlockDiv,
-} from "../styles";
-import { SmallGlass, Hamburger } from "../assets";
-import ConversationDisplay from "../components/ConversationDisplay";
-import { useGetUserChatsListQuery } from "../features/userDataApi";
+} from "../../styles";
+import { SmallGlass, Hamburger } from "../../assets";
+import ConversationDisplay from "../../components/ConversationDisplay";
+import { useGetUserChatsListQuery } from "../../features/userDataApi";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { addAllDetailsConnectedUser } from "../features/userRegister/userRegisterSlice";
+import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegisterSlice";
 
 const ConversationPage = () => {
   const navigate = useNavigate();

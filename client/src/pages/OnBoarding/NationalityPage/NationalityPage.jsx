@@ -1,21 +1,21 @@
-import { BackLayout } from "../../styles/PageLayout/BackLayout.jsx";
-import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
-import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
-import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
-import { Container } from "../../styles/PageLayout/Container.jsx";
-import { Flex } from "../../styles/Flex.jsx";
-import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
-import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
-import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import arrowIcon from "../../assets/arrow.svg";
+import { BackLayout } from "../../../styles/PageLayout/BackLayout.jsx";
+import { HeaderWrapper } from "../../../styles/PageLayout/HeaderWrapper.jsx";
+import { TitleWrapper } from "../../../styles/PageLayout/TitleWrapper.jsx";
+import { PageTitle } from "../../../styles/PageLayout/PageTitle.jsx";
+import { Container } from "../../../styles/PageLayout/Container.jsx";
+import { Flex } from "../../../styles/Flex.jsx";
+import { InstructionPrompt } from "../../../styles/BioPage/InstructionPrompt.jsx";
+import { StyledSaveAndNextButton } from "../../../styles/BioPage/StyledSaveAndNextButton.jsx";
+import { BioStyledDiv } from "../../../styles/BioPage/BioStyledDiv.jsx";
+import arrowIcon from "../../../assets/arrow.svg";
 import { useState } from "react";
-import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
-import Option from "../../styles/NationalityPage/CountriesCustomOPtions.jsx";
-import countries from "../../assets/countriesAndFlags/countries.json";
+import CustomDropdown from "../../../styles/BirthPage/StyledDropDown.jsx";
+import Option from "../../../styles/NationalityPage/CountriesCustomOPtions.jsx";
+import countries from "../../../assets/countriesAndFlags/countries.json";
 import { useNavigate, Link } from "react-router-dom";
-import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
+import { addDetail } from "../../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
-import StyledButton from "../../styles/StyledButton.jsx";
+import StyledButton from "../../../styles/StyledButton.jsx";
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",

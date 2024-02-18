@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../components";
+import { Header } from "../../components";
 import {
   StyledPage,
   StyledMargin,
   StyledButton,
   StyledPageTitle,
   StyledInput,
-} from "../styles";
-import { ArrowLeft } from "../assets";
-import { addDetail } from "../features/userRegister/userRegisterSlice";
+} from "../../styles";
+import { ArrowLeft } from "../../assets";
+import { addDetail } from "../../features/userRegister/userRegisterSlice";
 
 const Location = () => {
   const [location, setLocation] = useState({
