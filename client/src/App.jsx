@@ -12,12 +12,14 @@ import {
   SearchFriends,
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import ProfilePageWork from "./pages/ProfilePageWork.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/OnBoarding/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
+import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
   { path: "/profile", element: <ProfilePage /> },
+  { path: "/profile-work", element: <ProfilePageWork /> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
   {
@@ -58,6 +61,11 @@ const router = createBrowserRouter([
   {
     path: "/chooseHub",
     element: <ChooseHubPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/MeetupsHomePage",
+    element: <MeetupsHomePage />,
     errorElement: <>Error...</>,
   },
 ]);

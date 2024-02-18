@@ -24,6 +24,10 @@ const getAllJobs = async (req, res, next) => {
 const createJob = async (req, res, next) => {
   try {
     const newJob = await JobCollection.create(req.body);
+    if (!req.user) {
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("User is not Authorized or token is missing");
+    }
     if (!newJob) {
       res.status(STATUS_CODES.SERVER_ERROR);
       throw new Error("Job couldn't be created");

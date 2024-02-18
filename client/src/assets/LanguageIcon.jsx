@@ -1,8 +1,8 @@
 export default function LanguageIcon({ letter }) {
   return (
     <svg
-      width="15"
-      height="15"
+      width="32"
+      height="32"
       viewBox="0 0 33 33"
       fill=""
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,7 @@ export default function LanguageIcon({ letter }) {
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        fontSize="20"
+        fontSize="15"
         fill="black"
       >
         {letter}
