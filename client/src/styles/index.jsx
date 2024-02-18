@@ -60,6 +60,8 @@ import { ProfileAgeData } from "./ProfileAgeData";
 import { FlagContainer } from "./FlagContainer";
 import { ChooseHubButton } from "./ChooseHubButton";
 import { ChooseHubTitle } from "./ChooseHubTitle";
+import { MeetupsButton } from "./MeetupsButton";
+import { MeetupsTitle } from "./MeetupsTitle";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -122,4 +124,6 @@ export {
   FlagContainer,
   ChooseHubTitle,
   ChooseHubButton,
+  MeetupsTitle,
+  MeetupsButton,
 };
