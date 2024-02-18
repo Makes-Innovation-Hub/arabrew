@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const ProfileName = styled.h1`
-  max-width: 400px;
+  max-width: 290px;
   height: 2.5rem;
   font-family: "Poppins";
   font-style: normal;
