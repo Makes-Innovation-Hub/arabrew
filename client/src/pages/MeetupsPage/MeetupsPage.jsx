@@ -1,22 +1,16 @@
 import { useState } from "react";
-import {
-  BriefcaseIcon,
-  Hamburger,
-  LaughEmoji,
-  SmallGlass,
-  UsersIcon,
-} from "../../assets";
+import { Hamburger, SmallGlass } from "../../assets";
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
 import {
-  ChooseHubButton,
-  ChooseHubTitle,
+  MeetupsButton,
+  MeetupsTitle,
   StyledMargin,
   StyledPage,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
 
-export default function ChooseHubPage() {
+export default function MeetupsHomePage() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   return (
@@ -41,24 +35,10 @@ export default function ChooseHubPage() {
         />
       </StyledMargin>
       <StyledPage>
-        <ChooseHubTitle>Choose your hub</ChooseHubTitle>
-        <ChooseHubButton>
-          Arabrew - Work <BriefcaseIcon />{" "}
-        </ChooseHubButton>
-        <ChooseHubButton
-          onClick={() => {
-            navigate("/conversation");
-          }}
-        >
-          Arabrew - Hobbies <LaughEmoji />{" "}
-        </ChooseHubButton>
-        <ChooseHubButton
-          onClick={() => {
-            navigate("/MeetupsHomePage");
-          }}
-        >
-          Arabrew - Meetup <UsersIcon />{" "}
-        </ChooseHubButton>
+        <MeetupsTitle>Arabrew - Meetups</MeetupsTitle>
+        <MeetupsButton>Upcomming Meetups</MeetupsButton>
+        <MeetupsButton>Post A Meetup</MeetupsButton>
+        <MeetupsButton>My Meetups posts</MeetupsButton>
       </StyledPage>
     </div>
   );

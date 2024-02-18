@@ -5,6 +5,7 @@ import {
   successLogger,
   errorLogger,
 } from "../middleware/logger.js";
+import { User } from "../utils/index.js";
 
 /**
  * @description get all meetups
@@ -121,8 +122,8 @@ export const attendMeetup = async (req, res, next) => {
       return errorLogger("No meetup found with this id", req, res, next);
     const { userId } = req.body;
     // check if user exists
-    if (!userId)
-      return errorLogger("No user found with this id", req, res, next);
+    const user = await User.findById(userId);
+    if (!user) return errorLogger("No user found with this id", req, res, next);
     // check if user already attending
     if (meetup.attendees.includes(userId))
       return errorLogger("User already attending", req, res, next);
