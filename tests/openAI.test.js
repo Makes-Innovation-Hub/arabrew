@@ -1,5 +1,8 @@
 import assert from "assert";
-import { checkProfanity, translateMsg } from "./openAI.js";
+import {
+  checkProfanity,
+  translateMsg,
+} from "../server/services/translation.services.js";
 
 describe("open ai api tests", () => {
   describe("translation test", () => {

@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { BriefcaseIcon, Hamburger, LaughEmoji, SmallGlass, UsersIcon } from "../../assets";
+import {
+  BriefcaseIcon,
+  Hamburger,
+  LaughEmoji,
+  SmallGlass,
+  UsersIcon,
+} from "../../assets";
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
 import {
@@ -36,11 +42,19 @@ export default function ChooseHubPage() {
       </StyledMargin>
       <StyledPage>
         <ChooseHubTitle>Choose your hub</ChooseHubTitle>
-        <ChooseHubButton >Arabrew - Work <BriefcaseIcon/> </ChooseHubButton>
-        <ChooseHubButton onClick={() => {
-          navigate('/conversation')
-        }}>Arabrew - Hobbies <LaughEmoji/> </ChooseHubButton>
-        <ChooseHubButton>Arabrew - Meetup  <UsersIcon/> </ChooseHubButton>
+        <ChooseHubButton>
+          Arabrew - Work <BriefcaseIcon />{" "}
+        </ChooseHubButton>
+        <ChooseHubButton
+          onClick={() => {
+            navigate("/conversation");
+          }}
+        >
+          Arabrew - Hobbies <LaughEmoji />{" "}
+        </ChooseHubButton>
+        <ChooseHubButton>
+          Arabrew - Meetup <UsersIcon />{" "}
+        </ChooseHubButton>
       </StyledPage>
     </div>
   );

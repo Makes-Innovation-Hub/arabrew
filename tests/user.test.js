@@ -1,7 +1,7 @@
 import assert from "assert";
 import fetch from "node-fetch";
 import mongoose from "mongoose";
-import User from "../server/api/user/user.js";
+import User from "../server/models/user.js";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: __dirname + "../.env" });
+dotenv.config({ path: __dirname + "../server/.env" });
 const PORT = process.env.PORT;
 const userId = Math.floor(Math.random() * 1000 + 1000);
 

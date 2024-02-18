@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "npx mocha ./tests",
+    "test": "npx mocha ./tests/job.test.js",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",

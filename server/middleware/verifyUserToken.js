@@ -8,12 +8,27 @@ export const validateToken = async (req, res, next) => {
     let authHeader = req.headers.Authorization || req.headers.authorization;
     if (authHeader && authHeader.startsWith("Bearer")) {
       token = authHeader.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      const decoded = jwt.verify(
+        token,
+        process.env.ACCESS_TOKEN_SECRET,
+        (err, decoded) => {
+          if (err) {
+            // JWT verification Error
+            res.status(STATUS_CODES.UNAUTHORIZED);
+            throw new Error("User is not Authorized or token is missing");
+          } else {
+            // JWT verification successful
+            return decoded;
+          }
+        }
+      );
       const user = await userCollection.findOne({
         _id: decoded._id,
         token: token,
       });
 
+      console.log("verifyToken user info ", user);
+      console.log("verifyToken decoded info ", decoded);
       if (!token || !user) {
         res.status(STATUS_CODES.UNAUTHORIZED);
         throw new Error("User is not Authorized or token is missing");
