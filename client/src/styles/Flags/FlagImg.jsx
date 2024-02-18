@@ -4,6 +4,6 @@ export const FlagImg = styled.img`
   height: 32px;
   background-size: cover;
   background-position: center;
-  margin-top:-8.2px;
-  margin-left:-7.8px
+  margin-top: -8.2px;
+  margin-left: -7.8px;
 `;

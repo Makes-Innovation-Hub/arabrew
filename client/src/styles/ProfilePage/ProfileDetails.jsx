@@ -9,5 +9,5 @@ export const ProfileDetails = styled.div`
   margin-bottom: 1.5vh;
   padding-bottom: 1.5vh;
   font-size: 13px;
-  color: #3D4260
+  color: #3d4260;
 `;
