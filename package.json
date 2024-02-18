@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./server/server.js",
   "scripts": {
-    "test": "npx mocha ./tests/job.test.js",
+    "test": "npx mocha ./tests",
     "prepare": "husky install",
     "start": "node ./server/server.js",
     "dev": "nodemon ./server/server.js",
@@ -47,6 +47,7 @@
     "openai": "^3.2.1",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.0",
+    "sinon": "^17.0.1",
     "socket.io": "^4.6.2"
   }
 }
