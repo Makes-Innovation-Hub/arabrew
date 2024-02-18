@@ -45,7 +45,7 @@ export default function HeaderLayout() {
             }
           }
           if (result.data && result.data.success) {
-            navigate("/conversation");
+            navigate("/chooseHub");
           } else if (
             location.pathname === "/" &&
             result &&

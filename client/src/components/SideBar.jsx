@@ -59,8 +59,8 @@ export default function SideBar({ openSideBar }) {
           <ProfileChat profile={loggedUser.avatar} /> {loggedUser.name}
         </DisplayMe>
         <UlSideBar>
-          <LinkSideBar href="/">
-            <LiSideBar>
+          <LinkSideBar>
+            <LiSideBar onClick={() => navigate("/chooseHub")}>
               <HomeIcon />
               Home
             </LiSideBar>
@@ -85,7 +85,7 @@ export default function SideBar({ openSideBar }) {
           >
             {" "}
             <FlagForLang flag={langArr[whichLang][0]} /> {langArr[whichLang][1]}{" "}
-            {console.log('langArr[whichLang][0]: ', langArr[whichLang][0])}
+            {console.log("langArr[whichLang][0]: ", langArr[whichLang][0])}
             {lenOptions && <ArrowDown />}
           </LiSideBar>
           {lenOptions && (

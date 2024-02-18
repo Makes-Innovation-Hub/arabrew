@@ -17,6 +17,9 @@ import GoogleIcon from "./GoogleIcon";
 import FacebookIcon from "./FacebookIcon";
 import LocationIcon from "./locationIcon";
 import UserIcon from "./userIcon";
+import BriefcaseIcon from "./BriefcaseIcon";
+import LaughEmoji from "./LaughEmoji";
+import UsersIcon from "./UsersIcon"; 
 export {
   Hamburger,
   ArrowLeft,
@@ -36,5 +39,8 @@ export {
   GoogleIcon,
   FacebookIcon,
   LocationIcon,
-  UserIcon
+  UserIcon,
+  BriefcaseIcon,
+  LaughEmoji,
+  UsersIcon,
 };
