@@ -18,6 +18,7 @@ import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
+import PostJob from "./pages/jobs/PostJob.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
   {
     path: "/chooseHub",
     element: <ChooseHubPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/postJob",
+    element: <PostJob />,
     errorElement: <>Error...</>,
   },
 ]);
