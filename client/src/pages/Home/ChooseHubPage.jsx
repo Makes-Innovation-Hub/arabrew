@@ -56,7 +56,11 @@ export default function ChooseHubPage() {
         >
           Arabrew - Hobbies <LaughEmoji />{" "}
         </ChooseHubButton>
-        <ChooseHubButton>
+        <ChooseHubButton
+          onClick={() => {
+            navigate("/MeetupsHomePage");
+          }}
+        >
           Arabrew - Meetup <UsersIcon />{" "}
         </ChooseHubButton>
       </StyledPage>
