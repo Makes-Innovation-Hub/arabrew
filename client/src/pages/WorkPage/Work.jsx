@@ -1,39 +1,27 @@
 import { useState } from "react";
-import {
-  BriefcaseIcon,
-  Hamburger,
-  LaughEmoji,
-  SmallGlass,
-  UsersIcon,
-} from "../../assets";
 import Header from "../../components/Header";
+import { Hamburger, SmallGlass } from "../../assets";
+
 import SideBar from "../../components/SideBar";
 import {
-  ChooseHubButton,
-  ChooseHubTitle,
   StyledMargin,
   StyledPage,
+  ChooseHubTitle,
+  ChooseHubButton,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
 
-export default function ChooseHubPage() {
+export default function WorkPage() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
+
   return (
     <div>
-      {isSideBar && (
-        <div>
-          <SideBar openSideBar={setIsSideBar} />
-        </div>
-      )}
+      {isSideBar && <SideBar openSideBar={setIsSideBar} />}
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <div
-              onClick={() => {
-                setIsSideBar(true);
-              }}
-            >
+            <div onClick={() => setIsSideBar(true)}>
               <Hamburger />
             </div>
           }
@@ -41,15 +29,18 @@ export default function ChooseHubPage() {
         />
       </StyledMargin>
       <StyledPage>
-        <ChooseHubTitle>Choose your hub</ChooseHubTitle>
-        <ChooseHubButton onClick={() => navigate("/work")}>
-          Arabrew - Work <BriefcaseIcon />
-        </ChooseHubButton>
+        <ChooseHubTitle>Arabrew - Work</ChooseHubTitle>
         <ChooseHubButton onClick={() => navigate("/conversation")}>
-          Arabrew - Hobbies <LaughEmoji />
+          Chat
         </ChooseHubButton>
-        <ChooseHubButton>
-          Arabrew - Meetup <UsersIcon />
+        <ChooseHubButton onClick={() => navigate("/job-board")}>
+          Job Board
+        </ChooseHubButton>
+        <ChooseHubButton onClick={() => navigate("/post-job")}>
+          Post A Job
+        </ChooseHubButton>
+        <ChooseHubButton onClick={() => navigate("/my-jobs")}>
+          My Job Posts
         </ChooseHubButton>
       </StyledPage>
     </div>

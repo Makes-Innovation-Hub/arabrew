@@ -18,6 +18,7 @@ import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
+import WorkPage from "./pages/WorkPage/Work.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
   {
     path: "/chooseHub",
     element: <ChooseHubPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/work",
+    element: <WorkPage />,
     errorElement: <>Error...</>,
   },
 ]);
