@@ -12,6 +12,7 @@ import {
   SearchFriends,
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import ProfilePageHobbies from "./pages/ProfilePageHobbies.jsx";
 import ProfilePageWork from "./pages/ProfilePageWork.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
   { path: "/profile", element: <ProfilePage /> },
+  { path: "/profile-hobbies", element: <ProfilePageHobbies /> },
   { path: "/profile-work", element: <ProfilePageWork /> },
   { path: "/agePage", element: <BirthPage />, errorElement: <>Error...</> },
   { path: "/bioPage", element: <BioPage />, errorElement: <>Error...</> },
