@@ -21,6 +21,7 @@ import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
+import WorkPage from "./pages/Work/WorkPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
   {
     path: "/MeetupsHomePage",
     element: <MeetupsHomePage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/work",
+    element: <WorkPage />,
     errorElement: <>Error...</>,
   },
 ]);
