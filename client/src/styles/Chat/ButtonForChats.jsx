@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import prevConversation from "../pages/DemoArrChatsData";
+import prevConversation from "../../pages/DemoArrChatsData";
 export const ButtonForChats = styled.button`
   border-radius: 0.6rem;
   border: none;
