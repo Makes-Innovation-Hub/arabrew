@@ -7,6 +7,7 @@ import {
   DisplayMe,
   Flex,
   ProfileChat,
+  ProfileDescriptionText,
   StyledInput,
   StyledMargin,
   StyledPage,
@@ -27,13 +28,13 @@ function OtherJob() {
         }
         title={"Job Page"}
       />
-      <StyledPage height="1000px">
+      <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
-        <Flex>
-          <StyledMargin direction="horizontal" margin="25rem" />
-          <DisplayMe>
-            <ProfileChat profile={loggedUser.avatar} /> {loggedUser.name}
-          </DisplayMe>
+        <Flex direction="column" alignItems="center">
+          <Flex>
+            <StyledPageTitle>Fullstack developer</StyledPageTitle>
+          </Flex>
+          <ProfileDescriptionText>Google</ProfileDescriptionText>
         </Flex>
       </StyledPage>
     </div>

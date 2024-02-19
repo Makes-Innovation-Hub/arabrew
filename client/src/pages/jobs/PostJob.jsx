@@ -27,9 +27,6 @@ function PostJob() {
   const [modalText, setModalText] = useState("");
   const [isDetailAdded, setIsDetailAdded] = useState(false);
 
-  // const jobData = useSelector((state) => state);
-  // console.log(jobData)
-
   const [createJob, { isSuccess, isError, error }] = useCreateJobMutation();
 
   const [jobTitleInput, setJobTitleInput] = useState({
@@ -89,22 +86,21 @@ function PostJob() {
     }
   }, [jobTitleCharacterCount, companyNameCharacterCount]);
 
-  useEffect(() => {
-    const asyncCreateJob = async () => {
-      if (isDetailAdded) {
-        const jobDetails = {
-          title: jobTitleInput.value,
-          company: companyNameInput.value,
-          city: cityInput.value,
-          model: workModelInput.value,
-          description: workDescriptionInput.value,
-        };
-        const result = await createJob(jobDetails).unwrap();
-        console.log("result", result);
-      }
+  const handlePost = async () => {
+    const jobDetails = {
+      title: jobTitleInput.value,
+      company: companyNameInput.value,
+      city: cityInput.value,
+      model: workModelInput.value,
+      description: workDescriptionInput.value,
     };
-    asyncCreateJob();
-  }, [isDetailAdded]);
+    try {
+      const result = await createJob(jobDetails);
+      console.log(jobDetails);
+    } catch (error) {
+      console.log("error creating job", error);
+    }
+  };
 
   return (
     <div>
@@ -239,14 +235,15 @@ function PostJob() {
             !workDescriptionValue
           }
           onClick={() => {
-            dispatch(addJobDetail(jobTitleInput));
-            dispatch(addJobDetail(companyNameInput));
-            dispatch(addJobDetail(cityInput));
-            dispatch(addJobDetail(workModelInput));
-            dispatch(addJobDetail(workDescriptionInput));
-            setIsDetailAdded(true);
+            // dispatch(addJobDetail(jobTitleInput));
+            // dispatch(addJobDetail(companyNameInput));
+            // dispatch(addJobDetail(cityInput));
+            // dispatch(addJobDetail(workModelInput));
+            // dispatch(addJobDetail(workDescriptionInput));
+            // setIsDetailAdded(true);
             // console.log("successes")
             // navigate("/resumePage");
+            handlePost();
           }}
           bg={
             jobTitleInputValue &&

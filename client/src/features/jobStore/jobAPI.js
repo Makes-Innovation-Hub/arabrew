@@ -29,9 +29,10 @@ const jobApi = createApi({
         method: "POST",
         body: jobObj,
       }),
+
       invalidatesTags: ["Job"],
       transformResponse: (response, meta, arg) => {
-        // console.log(response);
+        console.log(response);
         return response;
       },
     }),
