@@ -5,9 +5,9 @@ export const ProfileDetails = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border-bottom: 0.2rem solid lightgray;
+  border-bottom: 0.1rem solid lightgray;
   margin-bottom: 1.5vh;
   padding-bottom: 1.5vh;
   font-size: 13px;
-  color: #3d4260;
+  color: #3c4474;
 `;
