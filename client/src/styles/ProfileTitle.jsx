@@ -8,6 +8,6 @@ export const ProfileTitle = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: 2rem;
-  margin-top: 1.5vh;
+  margin-top: 2.5vh;
 `;
 export default ProfileTitle;
