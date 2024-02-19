@@ -9,8 +9,23 @@ import {
 
 // description Get all jobs
 // GET /api/job/
+// const getAllJobs = async (req, res, next) => {
+//   try {
+//     const jobs = await JobCollection.find()
+//       .populate("postedBy")
+//       .populate("applicants.user")
+//       .lean();
+//     if (!jobs) {
+//       res.status(STATUS_CODES.NOT_FOUND);
+//       throw new Error("No jobs were posted yet");
+//     }
+//     res.send({ jobs, message: "Success" });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 const getAllJobs = async (req, res, next) => {
-  controllerLogger("getJobs", {}, "starting to fetch all jobs");
+  controllerLogger("getJobs", {}, "Starting to fetch all jobs");
   const startTime = Date.now();
   try {
     const jobs = await JobCollection.find()
@@ -19,13 +34,23 @@ const getAllJobs = async (req, res, next) => {
       .lean();
     if (!jobs || jobs.length < 1) {
       res.status(STATUS_CODES.NOT_FOUND);
-      throw new Error("No jobs were posted yet");
+      throw new Error("Jobs are yet to be posted");
+      // return errorLogger("DB is empty, general error", req, res, next);
     }
-    successLogger("getJobs", "jobs retrieval succeeded");
+    successLogger("getJobs", "Jobs retrieval succeeded");
     timingLogger("getJobs", startTime);
-    res.send({ jobs, message: "Success" });
+    return res.status(200).json({
+      success: true,
+      data: jobs,
+    });
   } catch (error) {
-    return errorLogger(error, req, res, next);
+    errorLogger({ success: false, message: error.message }, req, res, next);
+    next(error);
+
+    // res.status(404).json({
+    //   success: false,
+    //   message: error.message,
+    // });
   }
 };
 
@@ -36,6 +61,10 @@ const createJob = async (req, res, next) => {
   const startTime = Date.now();
   try {
     const newJob = await JobCollection.create(req.body);
+    if (!req.user) {
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("User is not Authorized or token is missing");
+    }
     if (!newJob) {
       res.status(STATUS_CODES.SERVER_ERROR);
       throw new Error("Job couldn't be created");
@@ -86,18 +115,18 @@ const deleteJob = async (req, res, next) => {
 
   try {
     const jobId = req.params.jobId;
-    const job = await JobCollection.findOneAndDelete({
-      _id: jobId,
-      postedBy: req.user._id,
-    });
+    const job = await JobCollection.findById(jobId);
     if (!job) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
-    successLogger("deleteJob", "Job  deletion completed");
-    timingLogger("deleteJob", startTime);
+    if (!job.postedBy.equals(req.user._id)) {
+      res.status(STATUS_CODES.FORBIDDEN);
+      throw new Error("You are not authorized to remove this job post");
+    }
 
-    res.send({ job, message: `Job with id ${jobId} was deleted!` });
+    const deletedJobPost = await JobCollection.deleteOne({ _id: jobId });
+    res.send({ deletedJobPost, message: `Job with id ${jobId} was deleted!` });
   } catch (error) {
     errorLogger(error, req, res, next);
   }

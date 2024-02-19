@@ -13,7 +13,10 @@ import {
   Flex,
 } from "../../styles";
 import { ArrowLeft } from "../../assets";
-import { addDetail } from "../../features/userRegister/userRegisterSlice";
+import {
+  addAllDetailsConnectedUser,
+  addDetail,
+} from "../../features/userRegister/userRegisterSlice";
 import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
 import { useRegisterUserMutation } from "../../features/userDataApi";
 import { useEffect } from "react";
@@ -38,10 +41,13 @@ function ResumePage() {
   const { value } = resumeInput;
   const characterCount = value.length; // to save the number of char written
   useEffect(() => {
-    if (isDetailAdded) {
-      const result = registerUser(userData);
-      console.log(result);
-    }
+    const asyncRegister = async () => {
+      if (isDetailAdded) {
+        const result = await registerUser(userData).unwrap();
+        dispatch(addAllDetailsConnectedUser(result.data));
+      }
+    };
+    asyncRegister();
   }, [isDetailAdded]);
 
   useEffect(() => {
@@ -55,7 +61,7 @@ function ResumePage() {
   useEffect(() => {
     if (isSuccess) {
       // console.log("success");
-      navigate("/conversation");
+      navigate("/chooseHub");
     }
     if (isError) {
       console.error(error);

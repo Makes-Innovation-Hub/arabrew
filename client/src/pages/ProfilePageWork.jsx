@@ -27,6 +27,9 @@ import {
   ProfileAgeData,
   FlagContainer,
 } from "../styles";
+import { ProfileWorkResume } from "../styles/ProfileWorkResume";
+import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
+import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
 import {
   ArrowLeft,
   LanguageIcon,
@@ -36,7 +39,8 @@ import {
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
-const ProfilePage = () => {
+
+const ProfilePageWork = () => {
   const profileData = useSelector((state) => state.userRegister);
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -103,21 +107,22 @@ const ProfilePage = () => {
               {profileData?.userDetails?.occupation}
             </ProfileOccupationData>
           </ProfileOccupationContainer>
-          <div>
-            <ProfileDescriptionTitle>About me</ProfileDescriptionTitle>
-            <ProfileDescriptionText>
-              {profileData?.userDetails?.bio}
-            </ProfileDescriptionText>
-          </div>
-          <InterestTextStyle>My Interest</InterestTextStyle>
-          <HobbiesDisplay>
-            {profileData?.userDetails?.interests.map((hobby, i) => {
-              return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
-            })}
-          </HobbiesDisplay>
+          <ProfileWorkFieldContainer>
+            <ProfileWorkField>Work Field </ProfileWorkField>
+            <ProfileWorkFieldData>
+              {" "}
+              {profileData?.userDetails?.workField}
+            </ProfileWorkFieldData>
+          </ProfileWorkFieldContainer>
+          <ProfileWorkResumeContainer>
+            <ProfileWorkResume>Work Resume</ProfileWorkResume>
+            <ProfileWorkResumeData>
+              {profileData?.userDetails?.resume}
+            </ProfileWorkResumeData>
+          </ProfileWorkResumeContainer>
         </StyledProfilePage>
       </StyledPage>
     </div>
   );
 };
-export default ProfilePage;
+export default ProfilePageWork;

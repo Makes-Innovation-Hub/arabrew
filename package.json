@@ -32,11 +32,12 @@
     "assert": "^2.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "mocha": "^10.2.0",
+    "mocha": "^10.3.0",
     "nodemon": "^2.0.22",
     "prettier": "2.8.8"
   },
   "dependencies": {
+    "chai": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
@@ -46,6 +47,7 @@
     "openai": "^3.2.1",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.0",
+    "sinon": "^17.0.1",
     "socket.io": "^4.6.2"
   }
 }
