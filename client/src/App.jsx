@@ -20,6 +20,7 @@ import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
 import PostJob from "./pages/jobs/PostJob.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
+import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
   {
     path: "/postJob",
     element: <PostJob />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/jobPage",
+    element: <OtherJob />,
     errorElement: <>Error...</>,
   },
 ]);

@@ -8,7 +8,10 @@ const initialState = {
   description: "",
   postedBy: "",
 };
-const storedUser = sessionStorage.getItem("loggedUser");
+
+const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+// console.log(storedUser)
+
 export const jobSlice = createSlice({
   name: "job",
   initialState: initialState,
@@ -16,7 +19,14 @@ export const jobSlice = createSlice({
     addJobDetail: function (state, { payload }) {
       const { field, value } = payload;
       state[field] = value;
-      state.postedBy = storedUser._id;
+      if (storedUser) {
+        state.postedBy = storedUser._id;
+        // console.log(storedUser._id)
+      }
     },
   },
 });
+// console.log(initialState)
+export const { addJobDetail } = jobSlice.actions;
+
+export default jobSlice.reducer;

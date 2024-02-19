@@ -16,6 +16,8 @@ import { addDetail } from "../../features/userRegister/userRegisterSlice";
 import StyledWorkModelDropDown from "./StyledWorkModelDropDown";
 import Modal from "../../styles/Modal/Modal";
 import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
+import { useCreateJobMutation } from "../../features/jobStore/jobAPI";
+import { addJobDetail } from "../../features/jobStore/JobSlice";
 
 function PostJob() {
   const dispatch = useDispatch();
@@ -23,6 +25,12 @@ function PostJob() {
   const [isMaxError, setIsMaxError] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
+  const [isDetailAdded, setIsDetailAdded] = useState(false);
+
+  // const jobData = useSelector((state) => state);
+  // console.log(jobData)
+
+  const [createJob, { isSuccess, isError, error }] = useCreateJobMutation();
 
   const [jobTitleInput, setJobTitleInput] = useState({
     field: "jobTitle",
@@ -80,6 +88,23 @@ function PostJob() {
       setModalText("Description should not exceed 30 characters");
     }
   }, [jobTitleCharacterCount, companyNameCharacterCount]);
+
+  useEffect(() => {
+    const asyncCreateJob = async () => {
+      if (isDetailAdded) {
+        const jobDetails = {
+          title: jobTitleInput.value,
+          company: companyNameInput.value,
+          city: cityInput.value,
+          model: workModelInput.value,
+          description: workDescriptionInput.value,
+        };
+        const result = await createJob(jobDetails).unwrap();
+        console.log("result", result);
+      }
+    };
+    asyncCreateJob();
+  }, [isDetailAdded]);
 
   return (
     <div>
@@ -206,16 +231,41 @@ function PostJob() {
 
         <StyledButton
           to={"#"}
-          // disabled={!occupationValue || !workFieldValue}
+          disabled={
+            !jobTitleInputValue ||
+            !companyNameValue ||
+            !cityValue ||
+            !workModelValue ||
+            !workDescriptionValue
+          }
           onClick={() => {
-            // dispatch(addDetail(occupationInput));
-            // dispatch(addDetail(workFieldInput));
-            // setOccupationInput({ ...occupationInput, value: "" });
-            // setWorkFieldInput({ ...workFieldInput, value: "" });
+            dispatch(addJobDetail(jobTitleInput));
+            dispatch(addJobDetail(companyNameInput));
+            dispatch(addJobDetail(cityInput));
+            dispatch(addJobDetail(workModelInput));
+            dispatch(addJobDetail(workDescriptionInput));
+            setIsDetailAdded(true);
+            // console.log("successes")
             // navigate("/resumePage");
           }}
-          // bg={occupationValue && workFieldValue ? "#50924E" : "#d7ddd6"}
-          // hoverBg={occupationValue && workFieldValue ? "#396d37" : "#d7ddd6"}
+          bg={
+            jobTitleInputValue &&
+            companyNameValue &&
+            cityValue &&
+            workModelValue &&
+            workDescriptionValue
+              ? "#50924E"
+              : "#d7ddd6"
+          }
+          hoverBg={
+            jobTitleInputValue &&
+            companyNameValue &&
+            cityValue &&
+            workModelValue &&
+            workDescriptionValue
+              ? "#396d37"
+              : "#d7ddd6"
+          }
           text={"Post Job"}
         ></StyledButton>
       </StyledPage>
