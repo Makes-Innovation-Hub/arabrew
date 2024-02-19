@@ -52,7 +52,6 @@ export default function HeaderLayout() {
             !result.data?.success
           ) {
             const subId = user.sub.split("|")[1];
-            console.log(user);
             const { name, picture } = user;
             updateUserData({ name, avatar: picture, subId });
             dispatch(addAuth0Details({ name, avatar: picture, subId }));

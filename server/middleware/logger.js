@@ -51,7 +51,7 @@ const controllerLogger = (serviceName, params, message) => {
 // Middleware function for logging errors
 const errorLogger = (err, req, res, next) => {
   logger.error(err);
-  // next(err);
+  next(err);
 };
 
 // Middleware function for logging database queries
