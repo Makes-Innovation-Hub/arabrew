@@ -7,7 +7,7 @@ const token =
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
 headers.append("Authorization", `Bearer ${token}`);
-
+let globalJobId = "";
 describe("Job Tests", async () => {
   describe("Job Creation", async () => {
     it("Should create new job post and save to database should return 201", async () => {
@@ -25,8 +25,11 @@ describe("Job Tests", async () => {
         body: JSON.stringify(body),
       };
       const result = await fetch(baseURL, requestOptions);
+
       //   console.log(result);
       assert.strictEqual(result.status, 201);
+      const response = await result.json();
+      globalJobId = response.newJob.id;
     });
   });
   describe("GET Job Posts", async () => {
@@ -52,7 +55,7 @@ describe("Job Tests", async () => {
         method: "GET",
         headers: headers,
       };
-      const result = await fetch(baseURL + `/${jobId}`, requestOptions);
+      const result = await fetch(baseURL + `/${globalJobId}`, requestOptions);
       assert.strictEqual(result.status, 200);
     });
     it("Should Get job by id post with wrong job id and return 404 ", async () => {
@@ -79,7 +82,7 @@ describe("Job Tests", async () => {
         headers: headers,
         body: JSON.stringify(body),
       };
-      const result = await fetch(baseURL + `/${jobId}`, requestOptions);
+      const result = await fetch(baseURL + `/${globalJobId}`, requestOptions);
       assert.strictEqual(result.status, 200);
     });
     it("Update Job info invalid job id should return 404", async () => {
@@ -109,7 +112,7 @@ describe("Job Tests", async () => {
       const body = {
         userId: "65d1cfa07a3d8bd3ec5898c1",
         resume: "someUrl",
-        jobId: "65d1cf417a3d8bd3ec5898b7",
+        jobId: globalJobId,
       };
       const requestOptions = {
         method: "PATCH",
@@ -162,6 +165,20 @@ describe("Job Tests", async () => {
       const result = await fetch(baseURL, requestOptions);
       //   console.log(result);
       assert.strictEqual(result.status, 401);
+    });
+  });
+  describe("delete job with given id", async () => {
+    it(`delete job with id ${globalJobId}`, async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
+      const requestOptions = {
+        method: "DELETE",
+        headers: headers,
+      };
+      const result = await fetch(baseURL + `/${globalJobId}`, requestOptions);
+      //   console.log(result);
+      assert.strictEqual(result.status, 200);
     });
   });
 });
