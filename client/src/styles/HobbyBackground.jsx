@@ -4,7 +4,7 @@ export const HobbyBackground = styled.div`
   height: 2.3rem;
   background: #edf2f7;
   border-radius: 1.5rem;
-  color: #161616;
+  color: #3c4474;
   font-size: 1.2rem;
 `;
 export default HobbyBackground;

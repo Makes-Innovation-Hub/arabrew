@@ -5,7 +5,7 @@ export const ProfileWorkResumeContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border-bottom: 0.2rem solid lightgray;
+  border-bottom: 0.1rem solid lightgray;
   margin-bottom: 1.5vh;
   padding-bottom: 1.5vh;
 `;

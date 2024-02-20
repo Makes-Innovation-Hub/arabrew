@@ -38,11 +38,11 @@ export default function MeetupsHomePage() {
         <MeetupsTitle>Arabrew - Meetups</MeetupsTitle>
         <MeetupsButton
           onClick={() => {
-            navigate("/UpcommingMeetupPage");
+            navigate("/UpcomingMeetupPage");
           }}
         >
           {" "}
-          Upcomming Meetups
+          Upcoming Meetups
         </MeetupsButton>
         <MeetupsButton>Post A Meetup</MeetupsButton>
         <MeetupsButton>My Meetups posts</MeetupsButton>
