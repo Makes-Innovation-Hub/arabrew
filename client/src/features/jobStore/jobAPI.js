@@ -7,6 +7,7 @@ const token = storedUser ? storedUser.token : null;
 
 // console.log(token);
 const jobApi = createApi({
+  reducerPath: "jobApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
     tagTypes: ["Job"],
@@ -29,47 +30,46 @@ const jobApi = createApi({
         method: "POST",
         body: jobObj,
       }),
-
       invalidatesTags: ["Job"],
       transformResponse: (response, meta, arg) => {
         console.log(response);
         return response;
       },
-      getAllJobs: builder.query({
-        query: () => "/job",
-        providesTags: ["Job"],
+    }),
+    getAllJobs: builder.query({
+      query: () => "/job",
+      providesTags: ["Job"],
+    }),
+    getJobById: builder.query({
+      query: (id) => `/job/${id}`,
+      providesTags: ["Job"],
+    }),
+    getUserJobPosts: builder.query({
+      query: () => "/job/my-job-posts",
+      providesTags: ["Job"],
+    }),
+    deleteJob: builder.mutation({
+      query: (jobId) => ({
+        url: `/job/${jobId}`,
+        method: "DELETE",
       }),
-      getJobById: builder.query({
-        query: (jobId) => `/job/${jobId}`,
-        providesTags: ["Job"],
+      invalidatesTags: ["Job"],
+    }),
+    updateJob: builder.mutation({
+      query: ({ jobId, ...jobUpdates }) => ({
+        url: `/job/${jobId}`,
+        method: "PATCH",
+        body: jobUpdates,
       }),
-      getUserJobPosts: builder.query({
-        query: () => "/job/my-job-posts",
-        providesTags: ["UserJobPosts"],
+      invalidatesTags: ["Job"],
+    }),
+    applyToJob: builder.mutation({
+      query: ({ userId, resume, jobId }) => ({
+        url: "/job/apply",
+        method: "PATCH",
+        body: { userId, resume, jobId },
       }),
-      deleteJob: builder.mutation({
-        query: (jobId) => ({
-          url: `/job/${jobId}`,
-          method: "DELETE",
-        }),
-        invalidatesTags: ["Job"],
-      }),
-      updateJob: builder.mutation({
-        query: ({ jobId, ...jobUpdates }) => ({
-          url: `/job/${jobId}`,
-          method: "PATCH",
-          body: jobUpdates,
-        }),
-        invalidatesTags: ["Job"],
-      }),
-      applyToJob: builder.mutation({
-        query: ({ userId, resume, jobId }) => ({
-          url: "/job/apply",
-          method: "PATCH",
-          body: { userId, resume, jobId },
-        }),
-        invalidatesTags: ["Job"],
-      }),
+      invalidatesTags: ["Job"],
     }),
   }),
 });
@@ -82,3 +82,4 @@ export const {
   useDeleteJobMutation,
   useUpdateJobMutation,
 } = jobApi;
+export default jobApi;
