@@ -56,18 +56,18 @@ const UpcomingMeetupPage = () => {
 
         {Array.isArray(meetups) && meetups.length !== 0 ? (
           <MeetupListStyle>
-            <div>
-              {meetups.map((meetup, i) => (
-                <UpcomingDisplay
-                  key={i}
-                  title={meetup.title}
-                  date={meetup.date}
-                  time={meetup.time}
-                  location={meetup.location}
-                  attendeesCount={meetup.attendees.length}
-                />
-              ))}
-            </div>
+            {/* <div> */}
+            {meetups.map((meetup, i) => (
+              <UpcomingDisplay
+                key={i}
+                title={meetup.title}
+                date={meetup.date}
+                time={meetup.time}
+                location={meetup.location}
+                attendeesCount={meetup.attendees.length}
+              />
+            ))}
+            {/* </div> */}
           </MeetupListStyle>
         ) : (
           <CenteredText>

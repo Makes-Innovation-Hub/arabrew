@@ -66,6 +66,8 @@ import { MeetupListStyle } from "./MeetupListStyle";
 import { UpcomingDisplay } from "./UpcomingDisplay";
 import { UpcomingStyledPage } from "./UpcomingStyledPage";
 import { CenteredText } from "./CenteredText";
+import { MeetupsElementFromList } from "./MeetupsElementFromList";
+
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -134,4 +136,5 @@ export {
   UpcomingDisplay,
   UpcomingStyledPage,
   CenteredText,
+  MeetupsElementFromList,
 };

@@ -4,6 +4,7 @@ const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
 const meetupDataApi = createApi({
+  reducerPath: "meetupDataApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
     tagTypes: ["Meetup"],
@@ -11,6 +12,7 @@ const meetupDataApi = createApi({
   endpoints: (builder) => ({
     getAllMeetups: builder.query({
       query: () => "/meetup",
+      providesTags: ["Meetup"],
     }),
   }),
 });

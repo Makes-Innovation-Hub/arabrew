@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 const MeetupWrapper = styled.div`
   margin-bottom: 20px;
-  margin-left: 10px;
+  padding: 2px 0px;
+  /* margin-left: 10px; */
+  border-bottom: 1px solid var(--gray-200, #e2e8f0);
+  width: 100%;
 `;
 
 const Title = styled.h3`
@@ -56,7 +59,6 @@ export const UpcomingDisplay = ({
       <InfoText fontWeight={500}>{adjustedTime}</InfoText>
       <InfoText>{location}</InfoText>
       <InfoattendeesText>{attendeesCount} attendees</InfoattendeesText>
-      <hr />
     </MeetupWrapper>
   );
 };
