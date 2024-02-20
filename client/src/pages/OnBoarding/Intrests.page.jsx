@@ -3,14 +3,14 @@ import { useNavigate, Link } from "react-router-dom";
 import { interestsList } from "../../data/interest.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
-import { ArrowLeft } from "../../assets";
+import { ArrowLeft } from "../../assets/index.jsx";
 import Modal from "../../styles/Modal/Modal.jsx";
 import {
   StyledPage,
   StyledMargin,
   StyledPageTitle,
   StyledButton,
-} from "../../styles";
+} from "../../styles/index.jsx";
 import {
   Content,
   ButtonDiv,

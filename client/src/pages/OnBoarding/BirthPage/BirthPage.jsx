@@ -1,20 +1,20 @@
-import { BackLayout } from "../../styles/PageLayout/BackLayout.jsx";
-import { HeaderWrapper } from "../../styles/PageLayout/HeaderWrapper.jsx";
-import { TitleWrapper } from "../../styles/PageLayout/TitleWrapper.jsx";
-import { PageTitle } from "../../styles/PageLayout/PageTitle.jsx";
-import { Container } from "../../styles/PageLayout/Container.jsx";
-import { StyledRouterLink } from "../../styles/StyledRouterLink.jsx";
-import { Flex } from "../../styles/Flex.jsx";
-import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
-import { StyledSaveAndNextButton } from "../../styles/BioPage/StyledSaveAndNextButton.jsx";
-import { BioStyledDiv } from "../../styles/BioPage/BioStyledDiv.jsx";
-import CustomDropdown from "../../styles/BirthPage/StyledDropDown.jsx";
+import { BackLayout } from "../../../styles/PageLayout/BackLayout.jsx";
+import { HeaderWrapper } from "../../../styles/PageLayout/HeaderWrapper.jsx";
+import { TitleWrapper } from "../../../styles/PageLayout/TitleWrapper.jsx";
+import { PageTitle } from "../../../styles/PageLayout/PageTitle.jsx";
+import { Container } from "../../../styles/PageLayout/Container.jsx";
+import { StyledRouterLink } from "../../../styles/StyledRouterLink.jsx";
+import { Flex } from "../../../styles/Flex.jsx";
+import { InstructionPrompt } from "../../../styles/BioPage/InstructionPrompt.jsx";
+import { StyledSaveAndNextButton } from "../../../styles/BioPage/StyledSaveAndNextButton.jsx";
+import { BioStyledDiv } from "../../../styles/BioPage/BioStyledDiv.jsx";
+import CustomDropdown from "../../../styles/BirthPage/StyledDropDown.jsx";
 import { useState, useEffect } from "react";
-import arrowIcon from "../../assets/arrow.svg";
+import arrowIcon from "../../../assets/arrow.svg";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { addDetail } from "../../features/userRegister/userRegisterSlice.jsx";
-import StyledButton from "../../styles/StyledButton.jsx";
+import { addDetail } from "../../../features/userRegister/userRegisterSlice.jsx";
+import StyledButton from "../../../styles/StyledButton.jsx";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import Header from "../components/Header";
-import userRegisterSlice from "../features/userRegister/userRegisterSlice";
+import Header from "../../components/Header";
+import userRegisterSlice from "../../features/userRegister/userRegisterSlice";
 import {
   ProfileName,
   InterestTextStyle,
@@ -26,18 +26,19 @@ import {
   FlagImg,
   ProfileAgeData,
   FlagContainer,
-} from "../styles";
-import { ProfileWorkResume } from "../styles/ProfileWorkResume";
-import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
-import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
+} from "../../styles";
+
 import {
   ArrowLeft,
   LanguageIcon,
   ChatIcon,
   LocationIcon,
   UserIcon,
-} from "../assets";
-import flags from "../assets/countriesAndFlags/by-code.json";
+} from "../../assets";
+import flags from "../../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
 
 const ProfilePageWork = () => {

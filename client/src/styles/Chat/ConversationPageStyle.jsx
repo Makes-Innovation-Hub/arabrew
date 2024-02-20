@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import prevConversation from "../pages/DemoArrChatsData";
+import prevConversation from "../../pages/DemoArrChatsData";
 export const ConversationPageStyle = styled.div`
   width: 98vw;
   height: 90vh;

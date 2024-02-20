@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../components";
+import { Header } from "../../components";
 import {
   Flex,
   StyledPage,
@@ -9,9 +9,9 @@ import {
   StyledButton,
   StyledLanguageButton,
   StyledPageTitle,
-} from "../styles";
-import { ArrowLeft, MaleIcon, FemaleIcon } from "../assets";
-import { addDetail } from "../features/userRegister/userRegisterSlice";
+} from "../../styles";
+import { ArrowLeft, MaleIcon, FemaleIcon } from "../../assets";
+import { addDetail } from "../../features/userRegister/userRegisterSlice";
 
 const GenderSelection = () => {
   const [gender, setGender] = useState({

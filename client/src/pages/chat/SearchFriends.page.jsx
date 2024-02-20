@@ -1,19 +1,19 @@
 import { useContext, useEffect } from "react";
-import { useLazyGetUsersQuery } from "../features/userDataApi.js";
-import { FriendsList } from "../components/index.js";
+import { useLazyGetUsersQuery } from "../../features/userDataApi.js";
+import { FriendsList } from "../../components/index.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Header } from "../components";
+import { Header } from "../../components/index.js";
 import {
   StyledPage,
   StyledMargin,
   StyledPageTitle,
   StyledHobby,
   StyledHobbiesContainer,
-} from "../styles";
-import { ArrowLeft, SmallGlass } from "../assets";
+} from "../../styles/index.jsx";
+import { ArrowLeft, SmallGlass } from "../../assets/index.jsx";
 import { useSelector } from "react-redux";
-import { UserContext } from "../contexts/loggedUser.context.jsx";
+import { UserContext } from "../../contexts/loggedUser.context.jsx";
 const SearchFriends = () => {
   const { userData: contextUser } = useContext(UserContext);
   const loggedUser = useSelector((state) => state.userRegister);
