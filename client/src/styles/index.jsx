@@ -55,9 +55,6 @@ import { ProfileOccupationData } from "./ProfilePage/ProfileOccupationData";
 import { ProfileWorkFieldContainer } from "./ProfilePage/ProfileWorkFieldContainer";
 import { ProfileWorkField } from "./ProfilePage/ProfileWorkField";
 import { ProfileWorkFieldData } from "./ProfilePage/ProfileWorkFieldData";
-import { ProfileWorkResume } from "./ProfilePage/ProfileWorkResume";
-import { ProfileWorkResumeData } from "./ProfilePage/ProfileWorkResumeData";
-import { ProfileWorkResumeContainer } from "./ProfilePage/ProfileWorkResumeContainer";
 import { FlagImg } from "./Flags/FlagImg";
 import { ProfileAgeData } from "./ProfilePage/ProfileAgeData";
 import { FlagContainer } from "./Flags/FlagContainer";
@@ -69,7 +66,9 @@ import { MeetupListStyle } from "./Meetups/MeetupListStyle";
 import { UpcomingDisplay } from "./UpcomingDisplay";
 import { UpcomingStyledPage } from "./UpcomingStyledPage";
 import { CenteredText } from "./CenteredText";
-
+import { ProfileWorkResume } from "./ProfilePage/ProfileWorkResume";
+import { ProfileWorkResumeData } from "./ProfilePage/ProfileWorkResumeData";
+import { ProfileWorkResumeContainer } from "./ProfilePage/ProfileWorkResumeContainer";
 export {
   CircleIcon,
   HobbiesDisplay,

@@ -26,9 +26,6 @@ import {
   FlagImg,
   ProfileAgeData,
   FlagContainer,
-  ProfileWorkResume,
-  ProfileWorkResumeData,
-  ProfileWorkResumeContainer,
 } from "../../styles";
 
 import {
@@ -40,7 +37,11 @@ import {
 } from "../../assets";
 import flags from "../../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
-
+import {
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
+} from "../../styles/index";
 const ProfilePageWork = () => {
   const profileData = useSelector((state) => state.userRegister);
   const currentDate = new Date();
@@ -58,7 +59,7 @@ const ProfilePageWork = () => {
           title="Profile"
           rightIcon={
             <>
-              {userRegisterSlice.name !== "userRegister" && (
+              {userRegisterSlice.name !== userRegister && (
                 <CircleIcon>
                   <Link to="/">
                     <ChatIcon />

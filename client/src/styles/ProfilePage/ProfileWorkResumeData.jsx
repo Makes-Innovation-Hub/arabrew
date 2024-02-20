@@ -6,4 +6,3 @@ export const ProfileWorkResumeData = styled.div`
   color: #3c4474;
   margin-top: 2vh;
 `;
-export default ProfileWorkResumeData;

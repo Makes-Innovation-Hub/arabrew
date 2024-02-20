@@ -9,4 +9,3 @@ export const ProfileWorkResumeContainer = styled.div`
   margin-bottom: 1.5vh;
   padding-bottom: 1.5vh;
 `;
-export default ProfileWorkResumeContainer;
