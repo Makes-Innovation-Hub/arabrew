@@ -11,6 +11,15 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       required: [true, "💥💥 registeration failed, please provide a name 💥💥"],
     },
+    email: {
+      type: String,
+      required: [
+        true,
+        "💥💥 registeration failed, please provide an email 💥💥",
+      ],
+      unique: [true, "🥶🥶 Email already exists in DB! 🥶🥶"],
+    },
+
     avatar: {
       type: String,
     },

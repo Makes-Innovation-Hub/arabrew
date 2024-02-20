@@ -48,10 +48,20 @@ export default function HeaderLayout() {
             !result.data?.success
           ) {
             const subId = user.sub.split("|")[1];
-            const { name, picture, email } = user;
-            console.log("user", user);
-            updateUserData({ name, avatar: picture, subId });
-            dispatch(addAuth0Details({ name, email, avatar: picture, subId }));
+            let newUserData = {
+              subId,
+              avatar: user.picture,
+              email: user.email,
+            };
+            if (user.email_verified) {
+              newUserData.name = user.name;
+            } else {
+              newUserData.name = user.nickname;
+            }
+            // console.log("user", user);
+            // console.log("newUserData", newUserData);
+            updateUserData(newUserData);
+            dispatch(addAuth0Details(newUserData));
             navigate("/lang");
           }
         }
