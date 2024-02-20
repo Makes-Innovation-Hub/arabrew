@@ -90,7 +90,7 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
   {
-    path: "/MyPostedJob",
+    path: "/MyPostedJob/:id",
     element: <MyPostedJob />,
     errorElement: <>Error...</>,
   },
