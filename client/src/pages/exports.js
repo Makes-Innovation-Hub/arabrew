@@ -1,15 +1,14 @@
-import LangSelection from "./LangSelection.jsx";
-import Interests from "./register/Intrests.page.jsx";
-import Occupation from "./register/Occupation.page.jsx";
-import ConversationPage from "./ConversationPage.jsx";
-import BirthPage from "./BirthPage/BirthPage.jsx";
+import LangSelection from "./OnBoarding/LangSelection.jsx";
+import Interests from "./OnBoarding/Intrests.page.jsx";
+import Occupation from "./OnBoarding/Occupation.page.jsx";
+import ConversationPage from "./chat/ConversationPage.jsx";
+import BirthPage from "./OnBoarding/BirthPage/BirthPage.jsx";
 import Chat from "./chat/Chat.page.jsx";
-import NationalityPage from "./NationalityPage/NationalityPage.jsx";
-import GenderSelection from "./GenderSelection.jsx";
-import BioPage from "./BioPage/BioPage.jsx";
-import Location from "./Location.jsx";
-import CommonInterests from "./CommonInterests.jsx";
-import SearchFriends from "./SearchFriends.page.jsx";
+import NationalityPage from "./OnBoarding/NationalityPage/NationalityPage.jsx";
+import GenderSelection from "./OnBoarding/GenderSelection.jsx";
+import BioPage from "./OnBoarding/BioPage/BioPage.jsx";
+import Location from "./OnBoarding/Location.jsx";
+import SearchFriends from "./chat/SearchFriends.page.jsx";
 export {
   BirthPage,
   LangSelection,
@@ -22,5 +21,4 @@ export {
   BioPage,
   Location,
   SearchFriends,
-  CommonInterests,
 };

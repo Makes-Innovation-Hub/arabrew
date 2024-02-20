@@ -3,11 +3,11 @@ import { useLocation, useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 import { useSelector } from "react-redux";
-import { ChatLayout } from "../../styles/Chat/ChatLayout";
+import { ChatLayout } from "../../styles/Chat/ChatLayout.jsx";
 import { InputArea } from "../../components/index.js";
-import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea";
+import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea.jsx";
 
-import Header from "../../components/Chat/Header/Header";
+import Header from "../../components/Chat/Header/Header.jsx";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 
 const ENDPOINT =

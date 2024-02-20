@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import Header from "../components/Header";
-import { useGetLoggedUserQuery } from "../features/userDataApi";
+import Header from "../../components/Header";
+import userRegisterSlice from "../../features/userRegister/userRegisterSlice";
 import {
   ProfileName,
   InterestTextStyle,
@@ -12,6 +12,7 @@ import {
   HobbyBackground,
   HobbiesDisplay,
   CircleIcon,
+  FlagForLang,
   StyledNationalityContainer,
   ProfileDetails,
   ProfileDescriptionTitle,
@@ -19,41 +20,33 @@ import {
   ProfileOccupation,
   ProfileOccupationContainer,
   ProfileOccupationData,
+  ProfileWorkField,
+  ProfileWorkFieldContainer,
+  ProfileWorkFieldData,
   FlagImg,
   ProfileAgeData,
   FlagContainer,
-} from "../styles";
+} from "../../styles";
+
 import {
   ArrowLeft,
   LanguageIcon,
   ChatIcon,
   LocationIcon,
   UserIcon,
-} from "../assets";
-import flags from "../assets/countriesAndFlags/by-code.json";
+} from "../../assets";
+import flags from "../../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
-
-const ProfilePageHobbies = () => {
+import {
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
+} from "../../styles/index";
+const ProfilePageWork = () => {
   const profileData = useSelector((state) => state.userRegister);
-  console.log("profileData :", profileData);
-  const { data: loggedUser } = useGetLoggedUserQuery(profileData.subId);
-  console.log("loggedUser:", loggedUser);
-
-  // Check if the profile being viewed is the logged-in user's own profile
-  const isOwnProfile = loggedUser?.data?.subId === profileData?.subId;
-  console.log("isOwnProfile :", isOwnProfile);
-  // Render the ChatIcon only if the profile is not the logged-in user's own profile
-  const renderChatIcon = !isOwnProfile ? (
-    <CircleIcon>
-      <Link to="/">
-        <ChatIcon />
-      </Link>
-    </CircleIcon>
-  ) : null;
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
-
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -64,7 +57,17 @@ const ProfilePageHobbies = () => {
             </Link>
           }
           title="Profile"
-          rightIcon={renderChatIcon}
+          rightIcon={
+            <>
+              {userRegisterSlice.name !== userRegister && (
+                <CircleIcon>
+                  <Link to="/">
+                    <ChatIcon />
+                  </Link>
+                </CircleIcon>
+              )}
+            </>
+          }
         />
       </StyledMargin>
       <StyledPage>
@@ -106,21 +109,22 @@ const ProfilePageHobbies = () => {
               {profileData?.userDetails?.occupation}
             </ProfileOccupationData>
           </ProfileOccupationContainer>
-          <div>
-            <ProfileDescriptionTitle>About me</ProfileDescriptionTitle>
-            <ProfileDescriptionText>
-              {profileData?.userDetails?.bio}
-            </ProfileDescriptionText>
-          </div>
-          <InterestTextStyle>My Interest</InterestTextStyle>
-          <HobbiesDisplay>
-            {profileData?.userDetails?.interests.map((hobby, i) => {
-              return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
-            })}
-          </HobbiesDisplay>
+          <ProfileWorkFieldContainer>
+            <ProfileWorkField>Work Field </ProfileWorkField>
+            <ProfileWorkFieldData>
+              {" "}
+              {profileData?.userDetails?.workField}
+            </ProfileWorkFieldData>
+          </ProfileWorkFieldContainer>
+          <ProfileWorkResumeContainer>
+            <ProfileWorkResume>Work Resume</ProfileWorkResume>
+            <ProfileWorkResumeData>
+              {profileData?.userDetails?.resume}
+            </ProfileWorkResumeData>
+          </ProfileWorkResumeContainer>
         </StyledProfilePage>
       </StyledPage>
     </div>
   );
 };
-export default ProfilePageHobbies;
+export default ProfilePageWork;
