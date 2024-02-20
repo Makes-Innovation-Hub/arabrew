@@ -27,9 +27,9 @@ import {
   ProfileAgeData,
   FlagContainer,
 } from "../styles";
-import { ProfileWorkResume } from "../styles/ProfileWorkResume";
-import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
-import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
+import { ProfileWorkResume } from "../styles/ProfilePage/ProfileWorkResume";
+import { ProfileWorkResumeData } from "../styles/ProfilePage/ProfileWorkResumeData";
+import ProfileWorkResumeContainer from "../styles/ProfilePage/ProfileWorkResumeContainer";
 import {
   ArrowLeft,
   LanguageIcon,

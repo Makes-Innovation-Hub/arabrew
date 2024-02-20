@@ -13,7 +13,6 @@ import {
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ProfilePageHobbies from "./pages/ProfilePageHobbies.jsx";
-import ProfilePageWork from "./pages/ProfilePageWork.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
