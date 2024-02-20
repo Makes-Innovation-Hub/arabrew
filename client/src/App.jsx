@@ -20,6 +20,7 @@ import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
 import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
+import PostJob from "./pages/jobs/PostJob.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 import WorkPage from "./pages/Work/WorkPage.jsx";
 
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
   {
     path: "/MeetupsHomePage",
     element: <MeetupsHomePage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/postJob",
+    element: <PostJob />,
     errorElement: <>Error...</>,
   },
   {
