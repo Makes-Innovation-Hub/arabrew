@@ -10,7 +10,6 @@ import {
 } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 import { useLazyGetLoggedUserQuery } from "../features/userDataApi";
-
 export default function HeaderLayout() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,10 +17,8 @@ export default function HeaderLayout() {
   const { user, isAuthenticated, isLoading, error, loginWithRedirect } =
     useAuth0();
   const [trigger, result, lastPromiseInfo] = useLazyGetLoggedUserQuery();
-
   // context
   const { userData, updateUserData, getEmptyUserObj } = useContext(UserContext);
-
   useEffect(() => {
     async function handleNav() {
       if (error) {
@@ -33,7 +30,6 @@ export default function HeaderLayout() {
         if (location.pathname === "/" && user) {
           const subId = user.sub.split("|")[1];
           const fetchedUserData = await trigger(subId);
-
           if (Object.keys(fetchedUserData.data.data).length > 0) {
             const userData = fetchedUserData.data.data;
             if (userData) {
@@ -52,9 +48,10 @@ export default function HeaderLayout() {
             !result.data?.success
           ) {
             const subId = user.sub.split("|")[1];
-            const { name, picture } = user;
+            const { name, picture, email } = user;
+            console.log("user", user);
             updateUserData({ name, avatar: picture, subId });
-            dispatch(addAuth0Details({ name, avatar: picture, subId }));
+            dispatch(addAuth0Details({ name, email, avatar: picture, subId }));
             navigate("/lang");
           }
         }
@@ -62,7 +59,6 @@ export default function HeaderLayout() {
     }
     handleNav();
   }, [isLoading, result, error]);
-
   return (
     <div>
       <StyledHeader />
