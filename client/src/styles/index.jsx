@@ -58,10 +58,8 @@ import { ProfileWorkFieldData } from "./ProfilePage/ProfileWorkFieldData";
 import { FlagImg } from "./Flags/FlagImg";
 import { ProfileAgeData } from "./ProfilePage/ProfileAgeData";
 import { FlagContainer } from "./Flags/FlagContainer";
-import { ChooseHubButton } from "./ChooseHubButton";
-import { ChooseHubTitle } from "./ChooseHubTitle";
-import { MeetupsButton } from "./Meetups/MeetupsButton";
-import { MeetupsTitle } from "./Meetups/MeetupsTitle";
+import { MainButton } from "./MainButton";
+import { PageTitle24 } from "./PageTitle24";
 import { MeetupListStyle } from "./Meetups/MeetupListStyle";
 import { UpcomingDisplay } from "./UpcomingDisplay";
 import { UpcomingStyledPage } from "./UpcomingStyledPage";
@@ -132,10 +130,8 @@ export {
   FlagImg,
   ProfileAgeData,
   FlagContainer,
-  ChooseHubTitle,
-  ChooseHubButton,
-  MeetupsTitle,
-  MeetupsButton,
+  PageTitle24,
+  MainButton,
   MeetupListStyle,
   UpcomingDisplay,
   UpcomingStyledPage,
