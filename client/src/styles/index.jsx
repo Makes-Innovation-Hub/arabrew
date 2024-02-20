@@ -65,11 +65,10 @@ import { ChooseHubButton } from "./ChooseHubButton";
 import { ChooseHubTitle } from "./ChooseHubTitle";
 import { MeetupsButton } from "./Meetups/MeetupsButton";
 import { MeetupsTitle } from "./Meetups/MeetupsTitle";
-import { MeetupListStyle } from "./MeetupListStyle";
+import { MeetupListStyle } from "./Meetups/MeetupListStyle";
 import { UpcomingDisplay } from "./UpcomingDisplay";
 import { UpcomingStyledPage } from "./UpcomingStyledPage";
 import { CenteredText } from "./CenteredText";
-import { MeetupsElementFromList } from "./MeetupsElementFromList";
 
 export {
   CircleIcon,
@@ -142,5 +141,4 @@ export {
   UpcomingDisplay,
   UpcomingStyledPage,
   CenteredText,
-  MeetupsElementFromList,
 };

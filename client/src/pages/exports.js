@@ -8,7 +8,6 @@ import NationalityPage from "./OnBoarding/NationalityPage/NationalityPage.jsx";
 import GenderSelection from "./OnBoarding/GenderSelection.jsx";
 import BioPage from "./OnBoarding/BioPage/BioPage.jsx";
 import Location from "./OnBoarding/Location.jsx";
-import CommonInterests from "./CommonInterests.jsx";
 import SearchFriends from "./chat/SearchFriends.page.jsx";
 export {
   BirthPage,
@@ -22,5 +21,4 @@ export {
   BioPage,
   Location,
   SearchFriends,
-  CommonInterests,
 };
