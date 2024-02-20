@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   subId: "",
   name: "",
+  email: "",
   avatar: "",
   userDetails: {
     nativeLanguage: "",
@@ -27,9 +28,10 @@ export const userRegisterSlice = createSlice({
       state.userDetails[field] = value;
     },
     addAuth0Details: function (state, { payload }) {
-      const { subId, name, avatar } = payload;
+      const { subId, name, avatar, email } = payload;
       state.subId = subId;
       state.name = name;
+      state.email = email;
       state.avatar = avatar;
     },
     addAllDetailsConnectedUser: function (state, { payload }) {

@@ -44,7 +44,7 @@ export default function ChooseHubPage() {
         <ChooseHubTitle>Choose your hub</ChooseHubTitle>
         <ChooseHubButton
           onClick={() => {
-            navigate("/conversation");
+            navigate("/work");
           }}
         >
           Arabrew - Work <BriefcaseIcon />{" "}
