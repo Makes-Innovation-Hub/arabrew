@@ -25,7 +25,7 @@ const Occupation = () => {
   });
   const [workFieldInput, setWorkFieldInput] = useState({
     field: "workField",
-    value: workField.length > 0 ? workField : "",
+    value: "",
   });
 
   const { value: occupationValue } = occupationInput;

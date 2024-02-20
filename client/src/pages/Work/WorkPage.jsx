@@ -37,7 +37,7 @@ export default function WorkPage() {
         <ChooseHubButton onClick={() => navigate("/job-board")}>
           Job Board
         </ChooseHubButton>
-        <ChooseHubButton onClick={() => navigate("/post-job")}>
+        <ChooseHubButton onClick={() => navigate("/postJob")}>
           Post A Job
         </ChooseHubButton>
         <ChooseHubButton onClick={() => navigate("/my-jobs")}>
