@@ -7,7 +7,7 @@ export const InterestTextStyle = styled.h1`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 100%;
   color: #161616;
 `;
