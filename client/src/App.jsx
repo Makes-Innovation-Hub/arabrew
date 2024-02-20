@@ -13,14 +13,18 @@ import {
 } from "./pages/exports.js";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ProfilePageHobbies from "./pages/ProfilePageHobbies.jsx";
-import ProfilePageWork from "./pages/ProfilePageWork.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HeaderLayout from "./components/HeaderLayout";
 import prevConversation from "./pages/DemoArrChatsData";
 import { UserProvider } from "./contexts/loggedUser.context.jsx";
-import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
+import ResumePage from "./pages/OnBoarding/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
+import PostJob from "./pages/jobs/PostJob.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
+import ProfilePageWork from "./pages/Work/ProfilePageWork.jsx";
+import WorkPage from "./pages/Work/WorkPage.jsx";
+import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
+import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +72,26 @@ const router = createBrowserRouter([
   {
     path: "/MeetupsHomePage",
     element: <MeetupsHomePage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/UpcomingMeetupPage",
+    element: <UpcomingMeetupPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/postJob",
+    element: <PostJob />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/work",
+    element: <WorkPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/MyPostedJob",
+    element: <MyPostedJob />,
     errorElement: <>Error...</>,
   },
 ]);
