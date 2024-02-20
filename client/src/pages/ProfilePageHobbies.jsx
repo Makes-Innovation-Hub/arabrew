@@ -27,9 +27,6 @@ import {
   ProfileAgeData,
   FlagContainer,
 } from "../styles";
-import { ProfileWorkResume } from "../styles/ProfileWorkResume";
-import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
-import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
 import {
   ArrowLeft,
   LanguageIcon,
@@ -39,8 +36,7 @@ import {
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
-
-const ProfilePage = () => {
+const ProfilePageHobbies = () => {
   const profileData = useSelector((state) => state.userRegister);
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -97,8 +93,7 @@ const ProfilePage = () => {
           <ProfileDetails>
             <div>{profileData?.userDetails?.gender}</div>
             <div>
-              <LocationIcon />
-              {profileData?.userDetails?.address},{" "}
+              <LocationIcon /> {profileData?.userDetails?.address},{" "}
               {flags[profileData?.userDetails?.nationality]?.name}
             </div>
           </ProfileDetails>
@@ -120,22 +115,9 @@ const ProfilePage = () => {
               return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
             })}
           </HobbiesDisplay>
-          <ProfileWorkFieldContainer>
-            <ProfileWorkField>Work Field </ProfileWorkField>
-            <ProfileWorkFieldData>
-              {" "}
-              {profileData?.userDetails?.workField}
-            </ProfileWorkFieldData>
-          </ProfileWorkFieldContainer>
-          <ProfileWorkResumeContainer>
-            <ProfileWorkResume>Work Resume</ProfileWorkResume>
-            <ProfileWorkResumeData>
-              {profileData?.userDetails?.resume}
-            </ProfileWorkResumeData>
-          </ProfileWorkResumeContainer>
         </StyledProfilePage>
       </StyledPage>
     </div>
   );
 };
-export default ProfilePage;
+export default ProfilePageHobbies;

@@ -1,21 +1,56 @@
 import { STATUS_CODES } from "../constants/constants.js";
 import { JobCollection } from "../models/job.js";
+import {
+  controllerLogger,
+  timingLogger,
+  successLogger,
+  errorLogger,
+} from "../middleware/logger.js";
 
 // description Get all jobs
 // GET /api/job/
+// const getAllJobs = async (req, res, next) => {
+//   try {
+//     const jobs = await JobCollection.find()
+//       .populate("postedBy")
+//       .populate("applicants.user")
+//       .lean();
+//     if (!jobs) {
+//       res.status(STATUS_CODES.NOT_FOUND);
+//       throw new Error("No jobs were posted yet");
+//     }
+//     res.send({ jobs, message: "Success" });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 const getAllJobs = async (req, res, next) => {
+  controllerLogger("getJobs", {}, "Starting to fetch all jobs");
+  const startTime = Date.now();
   try {
     const jobs = await JobCollection.find()
       .populate("postedBy")
       .populate("applicants.user")
       .lean();
-    if (!jobs) {
+    if (!jobs || jobs.length < 1) {
       res.status(STATUS_CODES.NOT_FOUND);
-      throw new Error("No jobs were posted yet");
+      throw new Error("Jobs are yet to be posted");
+      // return errorLogger("DB is empty, general error", req, res, next);
     }
-    res.send({ jobs, message: "Success" });
+    successLogger("getJobs", "Jobs retrieval succeeded");
+    timingLogger("getJobs", startTime);
+    return res.status(200).json({
+      success: true,
+      data: jobs,
+    });
   } catch (error) {
+    errorLogger({ success: false, message: error.message }, req, res, next);
     next(error);
+
+    // res.status(404).json({
+    //   success: false,
+    //   message: error.message,
+    // });
   }
 };
 
@@ -70,15 +105,18 @@ const updateJob = async (req, res, next) => {
 const deleteJob = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
-    const job = await JobCollection.findOneAndDelete({
-      _id: jobId,
-      postedBy: req.user._id,
-    });
+    const job = await JobCollection.findById(jobId);
     if (!job) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
-    res.send({ job, message: `Job with id ${jobId} was deleted!` });
+    if (!job.postedBy.equals(req.user._id)) {
+      res.status(STATUS_CODES.FORBIDDEN);
+      throw new Error("You are not authorized to remove this job post");
+    }
+
+    const deletedJobPost = await JobCollection.deleteOne({ _id: jobId });
+    res.send({ deletedJobPost, message: `Job with id ${jobId} was deleted!` });
   } catch (error) {
     next(error);
   }

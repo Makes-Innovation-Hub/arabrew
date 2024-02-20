@@ -40,7 +40,7 @@ import {
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
 
-const ProfilePage = () => {
+const ProfilePageWork = () => {
   const profileData = useSelector((state) => state.userRegister);
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -97,8 +97,7 @@ const ProfilePage = () => {
           <ProfileDetails>
             <div>{profileData?.userDetails?.gender}</div>
             <div>
-              <LocationIcon />
-              {profileData?.userDetails?.address},{" "}
+              <LocationIcon /> {profileData?.userDetails?.address},{" "}
               {flags[profileData?.userDetails?.nationality]?.name}
             </div>
           </ProfileDetails>
@@ -108,18 +107,6 @@ const ProfilePage = () => {
               {profileData?.userDetails?.occupation}
             </ProfileOccupationData>
           </ProfileOccupationContainer>
-          <div>
-            <ProfileDescriptionTitle>About me</ProfileDescriptionTitle>
-            <ProfileDescriptionText>
-              {profileData?.userDetails?.bio}
-            </ProfileDescriptionText>
-          </div>
-          <InterestTextStyle>My Interest</InterestTextStyle>
-          <HobbiesDisplay>
-            {profileData?.userDetails?.interests.map((hobby, i) => {
-              return <HobbyBackground key={i}> {hobby}</HobbyBackground>;
-            })}
-          </HobbiesDisplay>
           <ProfileWorkFieldContainer>
             <ProfileWorkField>Work Field </ProfileWorkField>
             <ProfileWorkFieldData>
@@ -138,4 +125,4 @@ const ProfilePage = () => {
     </div>
   );
 };
-export default ProfilePage;
+export default ProfilePageWork;
