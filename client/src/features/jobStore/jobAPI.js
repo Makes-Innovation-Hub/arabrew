@@ -5,7 +5,7 @@ const port = import.meta.env.VITE_SERVER_PORT;
 const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 const token = storedUser ? storedUser.token : null;
 
-console.log(token);
+// console.log(token);
 const jobApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
@@ -35,9 +35,50 @@ const jobApi = createApi({
         console.log(response);
         return response;
       },
+      getAllJobs: builder.query({
+        query: () => "/job",
+        providesTags: ["Job"],
+      }),
+      getJobById: builder.query({
+        query: (jobId) => `/job/${jobId}`,
+        providesTags: ["Job"],
+      }),
+      getUserJobPosts: builder.query({
+        query: () => "/job/my-job-posts",
+        providesTags: ["UserJobPosts"],
+      }),
+      deleteJob: builder.mutation({
+        query: (jobId) => ({
+          url: `/job/${jobId}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: ["Job"],
+      }),
+      updateJob: builder.mutation({
+        query: ({ jobId, ...jobUpdates }) => ({
+          url: `/job/${jobId}`,
+          method: "PATCH",
+          body: jobUpdates,
+        }),
+        invalidatesTags: ["Job"],
+      }),
+      applyToJob: builder.mutation({
+        query: ({ userId, resume, jobId }) => ({
+          url: "/job/apply",
+          method: "PATCH",
+          body: { userId, resume, jobId },
+        }),
+        invalidatesTags: ["Job"],
+      }),
     }),
   }),
 });
 
-export const { useCreateJobMutation } = jobApi;
-// export default jobApi;
+export const {
+  useCreateJobMutation,
+  useGetAllJobsQuery,
+  useGetJobByIdQuery,
+  useGetUserJobPostsQuery,
+  useDeleteJobMutation,
+  useUpdateJobMutation,
+} = jobApi;
