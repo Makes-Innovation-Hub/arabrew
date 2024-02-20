@@ -2,22 +2,28 @@ import assert from "assert";
 import { describe, it } from "mocha";
 import fetch from "node-fetch";
 const baseURL = "http://localhost:5001/api/job";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQxYzczN2Y3NWU3OWY5YmQwMjBjNTgiLCJpYXQiOjE3MDgyNDY4NDB9.Fcs1KQ1_HrFGmFH5KT4yaFpGGNzymgCOdtiCL6IVonA";
-const headers = new Headers();
-headers.append("Content-Type", "application/json");
-headers.append("Authorization", `Bearer ${token}`);
+
+// from any user in your db get user token and id and paste it here
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0NzQwZDQyNWFmMzMxNGViYzc1ODYiLCJpYXQiOjE3MDg0MjIxNTd9.kKGkVeMUorXs7QVUYvjTw1NJgJYJrygsdBMxWqIKpAE";
+const userId = "65d4740d425af3314ebc7586";
+
+// this id will be generated automatically once you start running the tests
 let globalJobId = "";
+
 describe("Job Tests", async () => {
   describe("Job Creation", async () => {
     it("Should create new job post and save to database should return 201", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const body = {
         title: "Junior Web Developer",
         company: "Amdocs",
         city: "Jerusalem",
         model: "On-Site",
         description: "full time junior Web Developer Position.",
-        postedBy: "65d1c737f75e79f9bd020c58",
+        postedBy: userId,
       };
       const requestOptions = {
         method: "POST",
@@ -34,6 +40,9 @@ describe("Job Tests", async () => {
   });
   describe("GET Job Posts", async () => {
     it("Should Get my job posts and return 200 ", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const requestOptions = {
         method: "GET",
         headers: headers,
@@ -42,6 +51,9 @@ describe("Job Tests", async () => {
       assert.strictEqual(result.status, 200);
     });
     it("Should Get All job posts and return 200 ", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const requestOptions = {
         method: "GET",
         headers: headers,
@@ -50,6 +62,9 @@ describe("Job Tests", async () => {
       assert.strictEqual(result.status, 200);
     });
     it("Should Get job by id post and return 200 ", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const jobId = "65d1cf417a3d8bd3ec5898b7";
       const requestOptions = {
         method: "GET",
@@ -59,6 +74,9 @@ describe("Job Tests", async () => {
       assert.strictEqual(result.status, 200);
     });
     it("Should Get job by id post with wrong job id and return 404 ", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const jobId = "65d1cf417a3d8bd3ec5898b9";
       const requestOptions = {
         method: "GET",
@@ -70,6 +88,9 @@ describe("Job Tests", async () => {
   });
   describe("Update Job", async () => {
     it("Update Job info valid should return 200", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const jobId = "65d1cf417a3d8bd3ec5898b7";
       const body = {
         title: "Junior FullStack Developer NEW NEW NEW",
@@ -86,6 +107,9 @@ describe("Job Tests", async () => {
       assert.strictEqual(result.status, 200);
     });
     it("Update Job info invalid job id should return 404", async () => {
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Authorization", `Bearer ${token}`);
       const jobId = "65d1cf417a3d8bd3ec5898b8";
       const body = {
         title: "Junior FullStack Developer NEW NEW NEW",

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import jobApi from "./jobAPI";
 
 const initialState = {
   title: "",
