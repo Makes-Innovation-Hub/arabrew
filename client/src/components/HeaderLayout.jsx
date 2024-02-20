@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAllDetailsConnectedUser,
   addAuth0Details,
-  mergeDetails,
+  // mergeDetails,
 } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 import { useLazyGetLoggedUserQuery } from "../features/userDataApi";
+import { useGetAllMeetupsQuery } from "../features/meetupDataApi";
 
 export default function HeaderLayout() {
   const navigate = useNavigate();
@@ -18,7 +19,8 @@ export default function HeaderLayout() {
   const { user, isAuthenticated, isLoading, error, loginWithRedirect } =
     useAuth0();
   const [trigger, result, lastPromiseInfo] = useLazyGetLoggedUserQuery();
-
+  const { data } = useGetAllMeetupsQuery();
+  console.log("data", data);
   // context
   const { userData, updateUserData, getEmptyUserObj } = useContext(UserContext);
 
