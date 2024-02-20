@@ -59,7 +59,7 @@ const ProfilePageWork = () => {
           title="Profile"
           rightIcon={
             <>
-              {userRegisterSlice.name !== "userRegister" && (
+              {userRegisterSlice.name !== userRegister && (
                 <CircleIcon>
                   <Link to="/">
                     <ChatIcon />
