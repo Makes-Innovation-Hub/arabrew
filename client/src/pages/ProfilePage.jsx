@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
-import userRegisterSlice from "../features/userRegister/userRegisterSlice";
+import { useGetLoggedUserQuery } from "../features/userDataApi";
 import {
   ProfileName,
   InterestTextStyle,
@@ -12,7 +12,6 @@ import {
   HobbyBackground,
   HobbiesDisplay,
   CircleIcon,
-  FlagForLang,
   StyledNationalityContainer,
   ProfileDetails,
   ProfileDescriptionTitle,
@@ -26,10 +25,10 @@ import {
   FlagImg,
   ProfileAgeData,
   FlagContainer,
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
 } from "../styles";
-import { ProfileWorkResume } from "../styles/ProfileWorkResume";
-import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
-import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
 import {
   ArrowLeft,
   LanguageIcon,
@@ -42,9 +41,25 @@ import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
   const profileData = useSelector((state) => state.userRegister);
+  console.log("profileData :", profileData);
+  const { data: loggedUser } = useGetLoggedUserQuery(profileData.subId);
+  console.log("loggedUser:", loggedUser);
+
+  // Check if the profile being viewed is the logged-in user's own profile
+  const isOwnProfile = loggedUser?.data?.subId === profileData?.subId;
+  console.log("isOwnProfile :", isOwnProfile);
+  // Render the ChatIcon only if the profile is not the logged-in user's own profile
+  const renderChatIcon = !isOwnProfile ? (
+    <CircleIcon>
+      <Link to="/">
+        <ChatIcon />
+      </Link>
+    </CircleIcon>
+  ) : null;
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -55,17 +70,7 @@ const ProfilePage = () => {
             </Link>
           }
           title="Profile"
-          rightIcon={
-            <>
-              {userRegisterSlice.name !== "userRegister" && (
-                <CircleIcon>
-                  <Link to="/">
-                    <ChatIcon />
-                  </Link>
-                </CircleIcon>
-              )}
-            </>
-          }
+          rightIcon={renderChatIcon}
         />
       </StyledMargin>
       <StyledPage>

@@ -6,4 +6,3 @@ line-height : 18px;
 font-weight: 500;
 color:#161616";
 `;
-export default ProfileWorkField;

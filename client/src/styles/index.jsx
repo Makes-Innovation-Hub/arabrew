@@ -62,6 +62,9 @@ import { ChooseHubButton } from "./ChooseHubButton";
 import { ChooseHubTitle } from "./ChooseHubTitle";
 import { MeetupsButton } from "./MeetupsButton";
 import { MeetupsTitle } from "./MeetupsTitle";
+import { ProfileWorkResume } from "./ProfileWorkResume";
+import { ProfileWorkResumeData } from "./ProfileWorkResumeData";
+import { ProfileWorkResumeContainer } from "./ProfileWorkResumeContainer";
 export {
   CircleIcon,
   HobbiesDisplay,
@@ -126,4 +129,7 @@ export {
   ChooseHubButton,
   MeetupsTitle,
   MeetupsButton,
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
 };

@@ -6,4 +6,3 @@ export const ProfileWorkFieldData = styled.div`
   font-weight: normal;
   color: #3c4474;
 `;
-export default ProfileWorkFieldData;

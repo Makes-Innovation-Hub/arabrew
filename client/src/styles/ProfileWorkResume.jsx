@@ -6,5 +6,3 @@ export const ProfileWorkResume = styled.div`
   font-weight: 500;
   color: #161616;
 `;
-
-export default ProfileWorkResume;
