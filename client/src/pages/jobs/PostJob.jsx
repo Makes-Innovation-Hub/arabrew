@@ -63,6 +63,7 @@ function PostJob() {
   const workDescriptionCharacterCount = workDescriptionValue.length;
   const jobTitleCharacterCount = jobTitleInputValue.length;
   const companyNameCharacterCount = companyNameValue.length;
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 
   const workModelOptions = [
     { label: "On-site", value: "On-site" },
@@ -93,10 +94,12 @@ function PostJob() {
       city: cityInput.value,
       model: workModelInput.value,
       description: workDescriptionInput.value,
+      postedBy: storedUser.id,
     };
     try {
       const result = await createJob(jobDetails);
-      console.log(jobDetails);
+      // console.log(storedUser.id)
+      //   console.log(jobDetails);
     } catch (error) {
       console.log("error creating job", error);
     }
@@ -234,17 +237,7 @@ function PostJob() {
             !workModelValue ||
             !workDescriptionValue
           }
-          onClick={() => {
-            // dispatch(addJobDetail(jobTitleInput));
-            // dispatch(addJobDetail(companyNameInput));
-            // dispatch(addJobDetail(cityInput));
-            // dispatch(addJobDetail(workModelInput));
-            // dispatch(addJobDetail(workDescriptionInput));
-            // setIsDetailAdded(true);
-            // console.log("successes")
-            // navigate("/resumePage");
-            handlePost();
-          }}
+          onClick={handlePost}
           bg={
             jobTitleInputValue &&
             companyNameValue &&
