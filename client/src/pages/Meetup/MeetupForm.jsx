@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import axios from "axios";
 import { useCreateMeetupMutation } from "../../features/meetupApi";
@@ -15,6 +15,7 @@ import {
 import { ArrowLeft, ChatIcon } from "../../assets";
 
 const MeetupForm = () => {
+  const navigate = useNavigate();
   const myUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -40,8 +41,9 @@ const MeetupForm = () => {
     };
     console.log("Meetup Data: ffffffff", meetupData);
     try {
-      const response = await createMeetup(meetupData);
+      const response = await createMeetup(meetupData).unwrap();
       console.log("Meetup created successfully:", response);
+      navigate("/UpcomingMeetupPage");
     } catch (error) {
       console.error("Error creating meetup:", error);
       console.error("Error response:", error.response);
