@@ -25,6 +25,7 @@ import ProfilePageWork from "./pages/Work/ProfilePageWork.jsx";
 import WorkPage from "./pages/Work/WorkPage.jsx";
 import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
 import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
+import MeetupForm from "./pages/Meetup/MeetupForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,7 @@ const router = createBrowserRouter([
     element: <MyPostedJob />,
     errorElement: <>Error...</>,
   },
+  { path: "/MeetupForm", element: <MeetupForm />, errorElement: <>Error...</> },
 ]);
 
 function App() {
