@@ -44,7 +44,9 @@ export default function MeetupsHomePage() {
           {" "}
           Upcoming Meetups
         </MeetupsButton>
-        <MeetupsButton>Post A Meetup</MeetupsButton>
+        <MeetupsButton onClick={() => navigate("/MeetupForm")}>
+          Post A Meetup
+        </MeetupsButton>
         <MeetupsButton>My Meetups posts</MeetupsButton>
       </StyledPage>
     </div>

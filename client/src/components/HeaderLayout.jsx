@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAllDetailsConnectedUser,
   addAuth0Details,
-  mergeDetails,
+  // mergeDetails,
 } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 import { useLazyGetLoggedUserQuery } from "../features/userDataApi";

@@ -6,11 +6,12 @@ import userDataApi from "../features/userDataApi";
 import conversationApi from "../features/conversations/conversationApi.slice.js";
 import meetupDataApi from "../features/meetupDataApi.js";
 import jobApi from "../features/jobStore/jobAPI.js";
+import { meetupApi } from "../features/meetupApi.js";
 export const store = configureStore({
   reducer: {
     [userDataApi.reducerPath]: userDataApi.reducer,
     [conversationApi.reducerPath]: conversationApi.reducer,
-    [meetupDataApi.reducerPath]: meetupDataApi.reducer,
+    [meetupApi.reducerPath]: meetupApi.reducer,
     [jobApi.reducerPath]: jobApi.reducer,
     userRegister: userRegisterSlice.reducer,
     chatUser: chatUserSlice.reducer,
@@ -20,7 +21,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat([
       userDataApi.middleware,
       conversationApi.middleware,
-      meetupDataApi.middleware,
+      meetupApi.middleware,
       jobApi.middleware,
     ]),
 });
