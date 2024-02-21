@@ -20,6 +20,7 @@ const userDataApi = createApi({
         console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         sessionStorage.setItem("loggedUser", JSON.stringify(response.data));
+        console.log(response);
         return response;
       },
     }),
