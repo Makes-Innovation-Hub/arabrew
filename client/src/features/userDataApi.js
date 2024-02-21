@@ -17,10 +17,8 @@ const userDataApi = createApi({
       }),
       invalidatesTags: ["User"],
       transformResponse: (response, meta, arg) => {
-        console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         sessionStorage.setItem("loggedUser", JSON.stringify(response.data));
-        console.log(response);
         return response;
       },
     }),
