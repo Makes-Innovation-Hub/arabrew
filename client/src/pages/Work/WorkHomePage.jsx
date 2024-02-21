@@ -11,7 +11,7 @@ import {
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
 
-export default function WorkPage() {
+export default function WorkHomePage() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
 
