@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
-import userRegisterSlice from "../features/userRegister/userRegisterSlice";
+import { useGetLoggedUserQuery } from "../features/userDataApi";
 import {
   ProfileName,
   InterestTextStyle,
@@ -12,7 +12,6 @@ import {
   HobbyBackground,
   HobbiesDisplay,
   CircleIcon,
-  FlagForLang,
   StyledNationalityContainer,
   ProfileDetails,
   ProfileDescriptionTitle,
@@ -27,9 +26,11 @@ import {
   ProfileAgeData,
   FlagContainer,
 } from "../styles";
-import { ProfileWorkResume } from "../styles/ProfileWorkResume";
-import { ProfileWorkResumeData } from "../styles/ProfileWorkResumeData";
-import ProfileWorkResumeContainer from "../styles/ProfileWorkResumeContainer";
+import {
+  ProfileWorkResume,
+  ProfileWorkResumeData,
+  ProfileWorkResumeContainer,
+} from "../styles/index";
 import {
   ArrowLeft,
   LanguageIcon,
@@ -45,6 +46,7 @@ const ProfilePage = () => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -55,17 +57,6 @@ const ProfilePage = () => {
             </Link>
           }
           title="Profile"
-          rightIcon={
-            <>
-              {userRegisterSlice.name !== "userRegister" && (
-                <CircleIcon>
-                  <Link to="/">
-                    <ChatIcon />
-                  </Link>
-                </CircleIcon>
-              )}
-            </>
-          }
         />
       </StyledMargin>
       <StyledPage>

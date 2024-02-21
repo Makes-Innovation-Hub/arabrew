@@ -1,7 +1,15 @@
 import pino from "pino";
 // import PinoPretty from "pino-pretty";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import fs from "fs";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const logFilePath = new URL("./logs/info.log", `file://${__dirname}`).pathname;
 // Create a Pino logger instance
+const fileLogger = pino({ destination: fs.createWriteStream("app.log") });
 const logger = pino({
   transport: {
     target: "pino-pretty",
@@ -23,6 +31,8 @@ const requestLogger = (req, res, next) => {
     },
     "Incoming request"
   );
+  // logger.flush();
+  // console.log("this is the log", log)
   next();
 };
 
@@ -45,7 +55,8 @@ const responseLogger = (req, res, next) => {
 
 // Middleware function for logging controller events
 const controllerLogger = (serviceName, params, message) => {
-  logger.info({ serviceName, params }, message);
+  const log = logger.info({ serviceName, params }, message);
+  console.log("this is the log", log);
 };
 
 // Middleware function for logging errors

@@ -124,7 +124,6 @@ const deleteJob = async (req, res, next) => {
       res.status(STATUS_CODES.FORBIDDEN);
       throw new Error("You are not authorized to remove this job post");
     }
-
     const deletedJobPost = await JobCollection.deleteOne({ _id: jobId });
     res.send({ deletedJobPost, message: `Job with id ${jobId} was deleted!` });
   } catch (error) {
