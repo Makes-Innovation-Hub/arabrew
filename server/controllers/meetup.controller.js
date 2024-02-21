@@ -185,7 +185,7 @@ export const getUserMeetups = async (req, res, next) => {
   const startTime = Date.now();
   try {
     const meetups = await Meetup.find().where({
-      postedBy: req.user._id,
+      owner: req.user._id,
     });
     if (!meetups || meetups.length < 1) {
       res.status(STATUS_CODES.NOT_FOUND);
