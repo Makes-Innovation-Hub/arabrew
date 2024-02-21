@@ -58,6 +58,8 @@ export const getUser = asyncHandler(async (req, res, next) => {
         data: {},
       });
     }
+    user.token = generateAccessToken(user.id);
+    await user.save();
     eventLogger(`user found in db`);
     return res.status(200).json({
       success: true,
