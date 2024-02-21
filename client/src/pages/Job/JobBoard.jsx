@@ -10,6 +10,7 @@ import {
   ChooseHubTitle,
   ChooseHubButton,
 } from "../../styles";
+
 import { useNavigate } from "react-router-dom";
 
 export default function JobBoardPage() {
