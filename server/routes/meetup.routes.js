@@ -17,6 +17,9 @@ router.post("/", validateToken, createMeetup);
 // Get All Meetups
 router.get("/", getAllMeetups);
 
+// get user's created meetups
+router.get("/my-meetups", validateToken, getUserMeetups);
+
 // Get Meetup by ID
 router.get("/:id", getMeetupById);
 // isAuthenticated, isMeetupOwner
@@ -32,6 +35,4 @@ router.patch("/:id/attend", attendMeetup); // add id to attendees array
 // Cancel Registration for Meetup
 router.delete("/:id/attend");
 
-// get user's created meetups
-router.get("/my-meetups", validateToken, getUserMeetups);
 export default router;

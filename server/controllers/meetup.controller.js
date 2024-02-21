@@ -174,8 +174,7 @@ export const deleteMeetup = async (req, res, next) => {
 
 /**
  * @description get user meetups by userId
- * @route   DELETE /api/meetup/:userId
- * ! @access  NOT SET YET
+ * @route   GET /api/meetup/my-meetups * ! @access  NOT SET YET
  */
 export const getUserMeetups = async (req, res, next) => {
   controllerLogger(
