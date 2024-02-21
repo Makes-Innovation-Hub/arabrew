@@ -97,7 +97,9 @@ function PostJob() {
       postedBy: storedUser.id,
     };
     try {
-      const result = await createJob(jobDetails);
+      const result = await createJob(jobDetails).unwrap();
+      // console.log(result);
+      navigate(`/myPostedJob/${result.newJob.id}`);
       // console.log(storedUser.id)
       //   console.log(jobDetails);
     } catch (error) {

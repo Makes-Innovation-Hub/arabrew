@@ -1,39 +1,55 @@
-import React from "react";
-import { StyledMargin, StyledPage, StyledTitle } from "../../../styles";
-import { Header } from "../../../components";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { StyledButton, StyledMargin } from "../../../styles";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "../../../assets";
 import {
-  StyledMyJobPage,
-  Title,
-  StyledJobText,
-  ContentWrapper,
+  AppliedSection,
   Center,
+  DescriptionSection,
   FirstSection,
-  StyledImg,
-  StyledName,
-  StyledUnderName,
+  OtherPageButton,
   ProfileSection,
   SecondSection,
-  DescriptionSection,
-  AppliedSection,
-} from "./StyledMyJobPage";
+  StyledImg,
+  StyledJobText,
+  StyledMyJobPage,
+  StyledName,
+  StyledUnderName,
+  Title,
+} from "../myPostedJobspage/StyledMyJobPage";
+import { Header } from "../../../components";
 import {
-  useGetAllJobsQuery,
+  useApplyToJobMutation,
   useGetJobByIdQuery,
 } from "../../../features/jobStore/jobAPI";
 
-function MyPostedJob() {
+function OtherJob() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
+  const [applyToJob] = useApplyToJobMutation();
+  console.log(job);
+
+  const handleApplyButton = async () => {
+    try {
+      const { data } = await applyToJob({
+        userId: job.job.postedBy.id,
+        resume: job.job.postedBy.userDetails.resume,
+        jobId: job.job.id,
+      });
+
+      console.log("Job application successful:", data);
+      //   navigate('')
+    } catch (error) {
+      console.log("error applying to job", error);
+    }
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (isError) {
     return <div>Error fetching job details</div>;
   }
-
-  // console.log(job)
-
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -76,10 +92,16 @@ function MyPostedJob() {
           </DescriptionSection>
           <StyledMargin direction="vertical" margin="1.8rem" />
           <AppliedSection>{job?.job.applicants.length} Applied</AppliedSection>
+
+          <StyledMargin direction="vertical" margin="35rem" />
+
+          <OtherPageButton onClick={handleApplyButton}>
+            Send Resume
+          </OtherPageButton>
         </StyledMyJobPage>
       )}
     </div>
   );
 }
 
-export default MyPostedJob;
+export default OtherJob;
