@@ -15,6 +15,7 @@ import {
 import { ArrowLeft, ChatIcon } from "../../assets";
 
 const MeetupForm = () => {
+  const myUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, settime] = useState("");
@@ -24,6 +25,7 @@ const MeetupForm = () => {
   const [remainingChars, setRemainingChars] = useState(30);
 
   const [createMeetup, { isLoading, isError }] = useCreateMeetupMutation();
+  console.log(myUser.id);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,6 +36,7 @@ const MeetupForm = () => {
       price,
       description,
       location,
+      owner: myUser.id,
     };
     console.log("Meetup Data: ffffffff", meetupData);
     try {
