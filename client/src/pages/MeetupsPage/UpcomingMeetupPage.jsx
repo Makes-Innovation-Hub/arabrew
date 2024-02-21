@@ -10,12 +10,12 @@ import {
   CenteredText,
 } from "../../styles";
 import { SmallGlass, ArrowLeft } from "../../assets";
-import { useGetAllMeetupsQuery } from "../../features/meetupDataApi";
+import { useGetAllMeetupsQuery } from "../../features/meetupApi";
 
 const UpcomingMeetupPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const { data, error, isLoading, refetch } = useGetAllMeetupsQuery();
-
+  console.log(data);
   useEffect(() => {
     // Automatically refetch data every 10 seconds
     const intervalId = setInterval(() => {

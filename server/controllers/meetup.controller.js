@@ -6,6 +6,7 @@ import {
   errorLogger,
 } from "../middleware/logger.js";
 import { User } from "../utils/index.js";
+import { STATUS_CODES } from "../constants/constants.js";
 
 /**
  * @description get all meetups
@@ -18,8 +19,10 @@ export const getAllMeetups = async (req, res, next) => {
   try {
     const meetups = await Meetup.find();
     // if no meetups found
-    if (!meetups || meetups.length < 1)
-      return errorLogger("Db is Empty, or minor Error", req, res, next);
+    if (!meetups || meetups.length < 1) {
+      res.status(404);
+      throw new Error("Db is Empty, or minor Error");
+    }
     // sort meetups by date
     meetups.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
@@ -35,10 +38,7 @@ export const getAllMeetups = async (req, res, next) => {
       data: meetups,
     });
   } catch (error) {
-    res.status(404).json({
-      success: false,
-      message: error.message,
-    });
+    errorLogger(error, req, res, next);
   }
 };
 
@@ -53,7 +53,10 @@ export const createMeetup = async (req, res, next) => {
   // retrieve meetup data from request body
   const meetup = req.body;
   // empty meetup object
-  if (!meetup) return errorLogger("No meetup data", req, res, next);
+  if (!meetup) {
+    res.status(409);
+    throw new Error("No meetup data");
+  }
 
   const newMeetup = new Meetup(meetup);
   try {
@@ -67,7 +70,7 @@ export const createMeetup = async (req, res, next) => {
       data: newMeetup,
     });
   } catch (error) {
-    res.status(409).json({ success: false, message: error.message });
+    errorLogger(error, req, res, next);
   }
 };
 
@@ -86,7 +89,10 @@ export const getMeetupById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const meetup = await Meetup.findById(id);
-    if (!meetup) return errorLogger(`No meetup with id ${id}`, req, res, next);
+    if (!meetup) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error(`No meetup with id ${id}`);
+    }
     // populate owner details
     await Meetup.populate(meetup, { path: "owner" });
     // populate attendees details
@@ -98,7 +104,7 @@ export const getMeetupById = async (req, res, next) => {
       data: meetup,
     });
   } catch (error) {
-    res.status(404).json({ success: false, message: error.message });
+    errorLogger(error, req, res, next);
   }
 };
 
@@ -118,15 +124,22 @@ export const attendMeetup = async (req, res, next) => {
   try {
     const meetup = await Meetup.findById(id);
     // check if meetup exists
-    if (!meetup)
-      return errorLogger("No meetup found with this id", req, res, next);
+    if (!meetup) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("No meetup found with this id");
+    }
     const { userId } = req.body;
     // check if user exists
     const user = await User.findById(userId);
-    if (!user) return errorLogger("No user found with this id", req, res, next);
+    if (!user) {
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("No user found with this id");
+    }
     // check if user already attending
-    if (meetup.attendees.includes(userId))
-      return errorLogger("User already attending", req, res, next);
+    if (meetup.attendees.includes(userId)) {
+      res.status(STATUS_CODES.FORBIDDEN);
+      throw new Error("User already attending");
+    }
     // add user to attendees and save
     meetup.attendees.push(userId);
     await meetup.save();
@@ -139,7 +152,7 @@ export const attendMeetup = async (req, res, next) => {
       data: meetup,
     });
   } catch (error) {
-    res.status(404).json({ success: false, message: error.message });
+    errorLogger(error, req, res, next);
   }
 };
 
@@ -158,8 +171,10 @@ export const deleteMeetup = async (req, res, next) => {
   const { id } = req.params;
   try {
     const meetup = await Meetup.findByIdAndDelete(id);
-    if (!meetup)
-      return errorLogger("No meetup found with this id", req, res, next);
+    if (!meetup) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("No meetup found with this id");
+    }
     successLogger("deleteMeetup", "Meetup deletion succeeded");
     timingLogger("deleteMeetup", startTime);
     return res.status(200).json({
@@ -167,6 +182,73 @@ export const deleteMeetup = async (req, res, next) => {
       data: meetup,
     });
   } catch (error) {
-    res.status(404).json({ success: false, message: error.message });
+    errorLogger(error, req, res, next);
+  }
+};
+
+/**
+ * @description get user meetups by userId
+ * @route   GET /api/meetup/my-meetups * ! @access  NOT SET YET
+ */
+export const getUserMeetups = async (req, res, next) => {
+  controllerLogger(
+    "get user meetups",
+    req.params,
+    "starting to get user meetups by user id"
+  );
+  const startTime = Date.now();
+  try {
+    const meetups = await Meetup.find().where({
+      owner: req.user._id,
+    });
+    if (!meetups || meetups.length < 1) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("No meetups found with this user id");
+    }
+
+    successLogger("getMyMeetups", "get my meetups succeeded");
+    timingLogger("getMyMeetups", startTime);
+    return res.status(200).json({
+      success: true,
+      data: meetups,
+    });
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
+
+/**
+ * @description update a meetup by id
+ * @route   PATCH /api/meetup/:id
+ * ! @access  NOT SET YET
+ */
+export const updateMeetup = async (req, res, next) => {
+  controllerLogger("update meetup data", req.params, "updating meetup...");
+  const startTime = Date.now();
+  try {
+    const meetupId = req.params.id;
+    const meetup = await Meetup.findOneAndUpdate(
+      {
+        _id: meetupId,
+        owner: req.user._id,
+      },
+      {
+        ...req.body,
+      },
+      { new: true }
+    );
+    if (!meetup) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("Meetup couldn't be found");
+    }
+
+    successLogger("getMyMeetups", "Updating meetup succeeded");
+    timingLogger("updateMeetup", startTime);
+    return res.status(200).json({
+      success: true,
+      data: meetup,
+    });
+  } catch (error) {
+    errorLogger(error, req, res, next);
   }
 };
