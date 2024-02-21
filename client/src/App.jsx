@@ -22,6 +22,7 @@ import ResumePage from "./pages/AddResumePage/ResumePage.jsx";
 import ChooseHubPage from "./pages/Home/ChooseHubPage.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 import WorkPage from "./pages/Work/WorkPage.jsx";
+import JobBoardPage from "./pages/Job/JobBoard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
   {
     path: "/work",
     element: <WorkPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/job-board",
+    element: <JobBoardPage />,
     errorElement: <>Error...</>,
   },
 ]);
