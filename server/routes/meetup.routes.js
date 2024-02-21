@@ -6,6 +6,7 @@ import {
   getMeetupById,
   getAllMeetups,
   getUserMeetups,
+  updateMeetup,
 } from "../controllers/meetup.controller.js";
 import { validateToken } from "../middleware/verifyUserToken.js";
 
@@ -22,9 +23,10 @@ router.get("/my-meetups", validateToken, getUserMeetups);
 
 // Get Meetup by ID
 router.get("/:id", getMeetupById);
+
 // isAuthenticated, isMeetupOwner
 // Update Meetup
-router.put("/:id");
+router.patch("/:id", validateToken, updateMeetup);
 
 // Delete Meetup
 router.delete("/:id", validateToken, deleteMeetup);
