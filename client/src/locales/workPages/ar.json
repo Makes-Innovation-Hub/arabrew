@@ -1,0 +1,67 @@
+{
+    "newUser-page": {
+      "title": "لا محادثات",
+      "paragraph": ".أضف بعض الزملاء وابدأ الدردشة معهم، ستظهر محادثاتك هنا",
+      "button": "إبحث عن زملاء"
+    },
+    "conversation-page": {
+      "title": "محادثات",
+      "button": "إبحث عن زملاء للدردشة"
+    },
+    "searchColleagues-page": {
+      "title": "إبحث عن زملاء"
+    },
+    "profile-page": {
+      "header-title": "الملف الشخصي",
+      "occupation": "وظيفة",
+      "field": "مجال العمل",
+      "resume": "سيرة ذاتية"
+    },
+    "sideBar": {
+      "home": "رئيسة",
+      "profile": "الملف الشخصي"
+    },
+    "home-page": {
+      "title": "عربرو - العمل",
+      "buttons": ["دردشة", "قائمة الوظائف", "انشر وظيفة", "منشوراتي الوظيفية"]
+    },
+    "PostAJob-page": {
+      "header-title": "انشر وظيفة",
+      "inputs": [
+        {
+          "label": "أضف المسمى الوظيفي",
+          "placeholder": "أكتب هنا...على سبيل المثال: طباخ"
+        },
+        {
+          "label": "أضف اسم الشركة",
+          "placeholder": "اكتب هنا... على سبيل المثال: جوجل"
+        },
+        {
+          "label": "أضف مدينة",
+          "placeholder": "اكتب هنا... على سبيل المثال: نيويورك"
+        },
+        { "label": "نموذج العمل", "placeholder": "اختار" }
+      ],
+      "textarea": {
+        "label": "أضف الوصف الوظيفي",
+        "placeholder": "أكتب هنا...مثال: مطلوب شيف ذو خبرة في مطعم 'سمير' في الرملة"
+      },
+      "jobTitleMaxCharacters": "30 حرف",
+      "companyNameMaxCharacters": "30 حرف",
+      "jobDescriptionMaxCharacters": "500 حرف"
+    },
+    "jobBoard-page": {
+      "header-title": "قائمة الوظائف",
+      "title": "وظائف شاغرة"
+    },
+    "otherJob-page": {
+      "title": ""
+    },
+    "appliers-page": {
+      "title": "المتقدمين للوظيفة"
+    },
+    "myJobPosts-page": {
+      "title": "منشوراتي الوظيفية"
+    }
+  }
+  

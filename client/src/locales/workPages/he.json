@@ -1,0 +1,67 @@
+{
+    "newUser-page": {
+      "title": "בלי שיחות",
+      "paragraph": "הוסף כמה עמיתים והתחיל לשוחח איתם, השיחות שלך יופיעו כאן.",
+      "button": "חפש עמיתים"
+    },
+    "conversation-page": {
+      "title": "שיחות",
+      "button": "חפש עמיתים לשוחח"
+    },
+    "searchColleagues-page": {
+      "title": "חפש עמיתים"
+    },
+    "profile-page": {
+      "header-title": "פּרוֹפִיל",
+      "occupation": "מקצוע",
+      "field": "תחום עבודה",
+      "resume": "קורות חיים"
+    },
+    "sideBar": {
+      "home": "בית",
+      "profile": "פּרוֹפִיל"
+    },
+    "home-page": {
+      "title": "ארברו - עבודה",
+      "buttons": ["לְשׂוֹחֵחַ", "לוח דרושים", "לפרסם עבודה", "משרות העבודה שלי"]
+    },
+    "PostAJob-page": {
+      "header-title": "לפרסם עבודה",
+      "inputs": [
+        {
+          "label": "הוסף כותרת עבודה",
+          "placeholder": "כתוב כאן...לדוגמה: שף"
+        },
+        {
+          "label": "הוסף שם חברה",
+          "placeholder": "כתוב כאן...לדוגמה: גוגל"
+        },
+        {
+          "label": "הוסף עיר",
+          "placeholder": "כתוב כאן...לדוגמה: ניו יורק"
+        },
+        { "label": "מודל עבודה", "placeholder": "בחר" }
+      ],
+      "textarea": {
+        "label": "הוסף תיאור תפקיד",
+        "placeholder": "כתוב כאן...לדוגמה: דרוש שף מנוסה במסעדת 'סמיר' ברמלה"
+      },
+      "jobTitleMaxCharacters": "30 אותיות מקסימום",
+      "companyNameMaxCharacters": "30 אותיות מקסימום",
+      "jobDescriptionMaxCharacters": "500 אותיות מקסימום"
+    },
+    "jobBoard-page": {
+      "header-title": "לוח דרושים",
+      "title": "משרות פתוחות"
+    },
+    "otherJob-page": {
+      "title": ""
+    },
+    "appliers-page": {
+      "title": "מיישמים"
+    },
+    "myJobPosts-page": {
+      "title": "משרות העבודה שלי"
+    }
+  }
+  
