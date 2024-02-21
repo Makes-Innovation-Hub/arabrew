@@ -98,7 +98,7 @@ function PostJob() {
     };
     try {
       const result = await createJob(jobDetails).unwrap();
-      console.log(result);
+      // console.log(result);
       navigate(`/myPostedJob/${result.newJob.id}`);
       // console.log(storedUser.id)
       //   console.log(jobDetails);

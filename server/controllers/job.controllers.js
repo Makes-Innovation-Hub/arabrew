@@ -6,24 +6,10 @@ import {
   successLogger,
   errorLogger,
 } from "../middleware/logger.js";
+import { err } from "pino-std-serializers";
 
 // description Get all jobs
 // GET /api/job/
-// const getAllJobs = async (req, res, next) => {
-//   try {
-//     const jobs = await JobCollection.find()
-//       .populate("postedBy")
-//       .populate("applicants.user")
-//       .lean();
-//     if (!jobs) {
-//       res.status(STATUS_CODES.NOT_FOUND);
-//       throw new Error("No jobs were posted yet");
-//     }
-//     res.send({ jobs, message: "Success" });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 const getAllJobs = async (req, res, next) => {
   controllerLogger("getJobs", {}, "Starting to fetch all jobs");
   const startTime = Date.now();
@@ -44,8 +30,8 @@ const getAllJobs = async (req, res, next) => {
       data: jobs,
     });
   } catch (error) {
-    errorLogger({ success: false, message: error.message }, req, res, next);
-    next(error);
+    errorLogger(error, req, res, next);
+    // next(error);
 
     // res.status(404).json({
     //   success: false,
@@ -192,6 +178,10 @@ const applyToJob = async (req, res, next) => {
       throw new Error("Job couldn't be found");
     }
     const applicant = { user: userId, resume };
+    if (job.applicant.includes(applicant)) {
+      res.status(STATUS_CODES.FORBIDDEN);
+      throw new Error("You Already Applied to this job");
+    }
     job.applicants.push(applicant);
     await job.save();
     successLogger("applyToJob", "Applying to job succeded");
