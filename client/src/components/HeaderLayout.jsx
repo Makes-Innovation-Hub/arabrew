@@ -6,11 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAllDetailsConnectedUser,
   addAuth0Details,
-  mergeDetails,
+  // mergeDetails,
 } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 import { useLazyGetLoggedUserQuery } from "../features/userDataApi";
-
 export default function HeaderLayout() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,10 +17,8 @@ export default function HeaderLayout() {
   const { user, isAuthenticated, isLoading, error, loginWithRedirect } =
     useAuth0();
   const [trigger, result, lastPromiseInfo] = useLazyGetLoggedUserQuery();
-
   // context
   const { userData, updateUserData, getEmptyUserObj } = useContext(UserContext);
-
   useEffect(() => {
     async function handleNav() {
       if (error) {
@@ -33,7 +30,6 @@ export default function HeaderLayout() {
         if (location.pathname === "/" && user) {
           const subId = user.sub.split("|")[1];
           const fetchedUserData = await trigger(subId);
-
           if (Object.keys(fetchedUserData.data.data).length > 0) {
             const userData = fetchedUserData.data.data;
             if (userData) {
@@ -52,9 +48,20 @@ export default function HeaderLayout() {
             !result.data?.success
           ) {
             const subId = user.sub.split("|")[1];
-            const { name, picture } = user;
-            updateUserData({ name, avatar: picture, subId });
-            dispatch(addAuth0Details({ name, avatar: picture, subId }));
+            let newUserData = {
+              subId,
+              avatar: user.picture,
+              email: user.email,
+            };
+            if (user.email_verified) {
+              newUserData.name = user.name;
+            } else {
+              newUserData.name = user.nickname;
+            }
+            // console.log("user", user);
+            // console.log("newUserData", newUserData);
+            updateUserData(newUserData);
+            dispatch(addAuth0Details(newUserData));
             navigate("/lang");
           }
         }
@@ -62,7 +69,6 @@ export default function HeaderLayout() {
     }
     handleNav();
   }, [isLoading, result, error]);
-
   return (
     <div>
       <StyledHeader />

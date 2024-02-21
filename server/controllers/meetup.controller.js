@@ -6,6 +6,7 @@ import {
   errorLogger,
 } from "../middleware/logger.js";
 import { User } from "../utils/index.js";
+import { STATUS_CODES } from "../constants/constants.js";
 
 /**
  * @description get all meetups
@@ -168,5 +169,36 @@ export const deleteMeetup = async (req, res, next) => {
     });
   } catch (error) {
     res.status(404).json({ success: false, message: error.message });
+  }
+};
+
+/**
+ * @description get user meetups by userId
+ * @route   GET /api/meetup/my-meetups * ! @access  NOT SET YET
+ */
+export const getUserMeetups = async (req, res, next) => {
+  controllerLogger(
+    "get user meetups",
+    req.params,
+    "starting to get user meetups by user id"
+  );
+  const startTime = Date.now();
+  try {
+    const meetups = await Meetup.find().where({
+      owner: req.user._id,
+    });
+    if (!meetups || meetups.length < 1) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("No meetups found with this user id");
+    }
+
+    successLogger("getMyMeetups", "get my meetups succeeded");
+    timingLogger("getMyMeetups", startTime);
+    return res.status(200).json({
+      success: true,
+      data: meetups,
+    });
+  } catch (error) {
+    errorLogger(error, req, res, next);
   }
 };

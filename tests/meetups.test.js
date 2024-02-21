@@ -18,25 +18,8 @@ const path1 = path.join(__dirname, "../server/.env");
 dotenv.config({ path: path1 });
 
 const PORT = process.env.PORT;
-const ownerId = "65c88dc843b77ad0b9cf1982";
-
-describe("get all meeting from db test", () => {
-  it("should GET All  meetings ", async function () {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-    };
-
-    const res = await fetch(
-      `http://localhost:${PORT}/api/meetup`,
-      requestOptions
-    );
-    assert.equal(res.status, 200);
-  });
-});
+// from any user in your db get user id and paste it here
+const ownerId = "65d4740d425af3314ebc7586";
 
 describe("Create Meetup Test", () => {
   let createdMeetupId;
@@ -49,7 +32,7 @@ describe("Create Meetup Test", () => {
       date: "2024-02-22",
       time: "16:00",
       location: "Jerusalem",
-      owner: "65c88dc843b77ad0b9cf1982",
+      owner: ownerId,
       description: "lorem ipsum dolor sit amet",
       price: "free",
     };
@@ -67,11 +50,29 @@ describe("Create Meetup Test", () => {
 
     const responseData = await res.json();
     createdMeetupId = responseData.data.id;
-    console.log(createdMeetupId);
+    // console.log(createdMeetupId);
 
     assert.strictEqual(res.status, 201);
   });
   // After all tests are finished, delete the created meetup
+
+  describe("get all meeting from db test", () => {
+    it("should GET All  meetings ", async function () {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+      };
+
+      const res = await fetch(
+        `http://localhost:${PORT}/api/meetup`,
+        requestOptions
+      );
+      assert.equal(res.status, 200);
+    });
+  });
 
   after(async function () {
     if (createdMeetupId) {
@@ -80,7 +81,7 @@ describe("Create Meetup Test", () => {
           `http://localhost:${PORT}/api/meetup/${createdMeetupId}`,
           { method: "DELETE" }
         );
-        console.log(deleteResponse);
+        // console.log(deleteResponse);
         assert.strictEqual(deleteResponse.status, 200);
       } catch (error) {
         console.error("Error deleting meetup:", error);
@@ -102,7 +103,7 @@ describe("Get Meeting from DB Test", () => {
       date: "2024-02-22",
       time: "16:00",
       location: "Jerusalem",
-      owner: "65c88dc843b77ad0b9cf1982",
+      owner: ownerId,
       description: "lorem ipsum dolor sit amet",
       price: "free",
     };
@@ -119,7 +120,7 @@ describe("Get Meeting from DB Test", () => {
     );
     const responseData = await res.json();
     createdMeetupId = responseData.data.id;
-    console.log(createdMeetupId);
+    // console.log(createdMeetupId);
   });
 
   it("should GET the specific meeting by meetingId", async function () {
@@ -145,7 +146,7 @@ describe("Get Meeting from DB Test", () => {
           `http://localhost:${PORT}/api/meetup/${createdMeetupId}`,
           { method: "DELETE" }
         );
-        console.log(deleteResponse);
+        // console.log(deleteResponse);
         assert.strictEqual(deleteResponse.status, 200);
       } catch (error) {
         console.error("Error deleting meetup:", error);
@@ -167,7 +168,7 @@ describe("Attend Meetup Test", () => {
       date: "2024-02-22",
       time: "16:00",
       location: "Jerusalem",
-      owner: "65c9e7db9669cd2c433f65f9", // Assuming ownerId is defined somewhere in your code
+      owner: ownerId, // Assuming ownerId is defined somewhere in your code
       description: "Lorem ipsum dolor sit amet",
       price: "free",
     };
@@ -189,7 +190,7 @@ describe("Attend Meetup Test", () => {
 
   it("should attend a meetup", async function () {
     const body = {
-      userId: "65c9e7db9669cd2c433f65f9",
+      userId: ownerId,
     };
 
     const requestOptions = {
