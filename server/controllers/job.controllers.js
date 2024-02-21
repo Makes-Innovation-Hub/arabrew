@@ -156,7 +156,7 @@ const applyToJob = async (req, res, next) => {
       throw new Error("Job couldn't be found");
     }
     const applicant = { user: userId, resume };
-    if (job.applicant.includes(applicant)) {
+    if (job.applicants.includes(applicant)) {
       res.status(STATUS_CODES.FORBIDDEN);
       throw new Error("You Already Applied to this job");
     }
@@ -167,7 +167,7 @@ const applyToJob = async (req, res, next) => {
       message: `Application was sent successfully!`,
     });
   } catch (error) {
-    next(error);
+    errorLogger(error, req, res, next);
   }
 };
 
