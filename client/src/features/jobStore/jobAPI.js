@@ -3,7 +3,18 @@ const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
 const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-const token = storedUser ? storedUser.token : null;
+// const token = storedUser ? storedUser.token : null;
+
+const getToken = () => {
+  const tokenString = localStorage.getItem("token");
+
+  if (tokenString) {
+    // Parse the JSON string back to its original format (string)
+    const token = JSON.parse(tokenString);
+    return token; // Return the token string
+  }
+  return null; // Return null if the token isn't found // Example: Get the token from local storage
+};
 
 // console.log(token);
 const jobApi = createApi({
@@ -13,7 +24,7 @@ const jobApi = createApi({
     tagTypes: ["Job"],
     prepareHeaders: (headers) => {
       // Call your function to get the authentication token
-      // const token = getToken();
+      const token = getToken();
       // console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
@@ -81,5 +92,6 @@ export const {
   useGetUserJobPostsQuery,
   useDeleteJobMutation,
   useUpdateJobMutation,
+  useApplyToJobMutation,
 } = jobApi;
 export default jobApi;
