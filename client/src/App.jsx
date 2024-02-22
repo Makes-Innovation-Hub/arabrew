@@ -30,6 +30,7 @@ import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
 import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
 import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
+import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -118,6 +119,11 @@ const router = createBrowserRouter([
   {
     path: "/MeetupPage",
     element: <MyMeetupsPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/myJobsPosted",
+    element: <MyJobPosts />,
     errorElement: <>Error...</>,
   },
 ]);
