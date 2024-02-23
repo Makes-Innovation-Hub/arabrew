@@ -16,7 +16,7 @@ import HebrewIcon from "./HebrewIcon";
 import GoogleIcon from "./GoogleIcon";
 import FacebookIcon from "./FacebookIcon";
 import LocationIcon from "./LocationIcon";
-import UserIcon from "./userIcon";
+import UserIcon from "./UserIcon";
 import BriefcaseIcon from "./BriefcaseIcon";
 import LaughEmoji from "./LaughEmoji";
 import UsersIcon from "./UsersIcon"; 
