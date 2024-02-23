@@ -36,6 +36,12 @@ export const meetupApi = createApi({
         body: meetupData,
       }),
       invalidatesTags: ["Meetup"],
+      transformResponse: (response) => {
+        console.log("response from rtk", response);
+      },
+      transformErrorResponse: (response) => {
+        console.log("response from rtk", response);
+      },
     }),
     getAllMeetups: builder.query({
       query: () => "/meetup",

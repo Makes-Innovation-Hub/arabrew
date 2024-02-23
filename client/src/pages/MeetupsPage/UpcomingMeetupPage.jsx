@@ -14,16 +14,8 @@ import { useGetAllMeetupsQuery } from "../../features/meetupApi";
 
 const UpcomingMeetupPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
-  const { data, error, isLoading, refetch } = useGetAllMeetupsQuery();
+  const { data, error, isLoading } = useGetAllMeetupsQuery();
   console.log(data);
-  useEffect(() => {
-    // Automatically refetch data every 10 seconds
-    const intervalId = setInterval(() => {
-      refetch();
-    }, 10 * 1000);
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, []);
 
   if (isLoading) return <div>Loading...</div>;
 

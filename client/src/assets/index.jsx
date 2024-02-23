@@ -15,11 +15,11 @@ import MessageIcon from "./MessageIcon";
 import HebrewIcon from "./HebrewIcon";
 import GoogleIcon from "./GoogleIcon";
 import FacebookIcon from "./FacebookIcon";
-import LocationIcon from "./locationIcon";
+import LocationIcon from "./LocationIcon";
 import UserIcon from "./userIcon";
 import BriefcaseIcon from "./BriefcaseIcon";
 import LaughEmoji from "./LaughEmoji";
-import UsersIcon from "./UsersIcon"; 
+import UsersIcon from "./UsersIcon";
 export {
   Hamburger,
   ArrowLeft,
