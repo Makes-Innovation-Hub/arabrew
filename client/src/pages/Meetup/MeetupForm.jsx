@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import axios from "axios";
 import { useCreateMeetupMutation } from "../../features/meetupApi";
 
 import { StyledMargin, StyledPage } from "../../styles";
