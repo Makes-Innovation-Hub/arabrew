@@ -24,9 +24,11 @@ import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 import MeetupForm from "./pages/Meetup/MeetupForm.jsx";
 import ProfilePageWork from "./pages/Work/ProfilePageWork.jsx";
 import WorkHomePage from "./pages/Work/WorkHomePage.jsx";
+import JobBoardPage from "./pages/Job/JobBoard.jsx";
 import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
 import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
 import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
+import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
 
 const router = createBrowserRouter([
@@ -93,6 +95,11 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
   {
+    path: "/job-board",
+    element: <JobBoardPage />,
+    errorElement: <>Error...</>,
+  },
+  {
     path: "/MyPostedJob/:id",
     element: <MyPostedJob />,
     errorElement: <>Error...</>,
@@ -103,6 +110,11 @@ const router = createBrowserRouter([
     errorElement: <>Error...</>,
   },
   { path: "/MeetupForm", element: <MeetupForm />, errorElement: <>Error...</> },
+  {
+    path: "/appliers/:id",
+    element: <Appliers />,
+    errorElement: <>Error...</>,
+  },
   {
     path: "/MeetupPage",
     element: <MyMeetupsPage />,
