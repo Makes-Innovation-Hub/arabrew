@@ -6,12 +6,12 @@ import SideBar from "../../components/SideBar";
 import {
   StyledMargin,
   StyledPage,
-  ChooseHubTitle,
-  ChooseHubButton,
+  PageTitle24,
+  MainButton,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
 
-export default function WorkPage() {
+export default function WorkHomePage() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
 
@@ -30,20 +30,15 @@ export default function WorkPage() {
         />
       </StyledMargin>
       <StyledPage>
-        <ChooseHubTitle>Arabrew - Work</ChooseHubTitle>
-        <ChooseHubButton onClick={() => navigate("/conversation")}>
-          Chat
-        </ChooseHubButton>
-        <ChooseHubButton onClick={() => navigate("/job-board")}>
+        <PageTitle24>Arabrew - Work</PageTitle24>
+        <MainButton onClick={() => navigate("/conversation")}>Chat</MainButton>
+        <MainButton onClick={() => navigate("/job-board")}>
           Job Board
-        </ChooseHubButton>
-        <ChooseHubButton onClick={() => navigate("/postJob")}>
-          Post A Job
-        </ChooseHubButton>
-        <ChooseHubButton onClick={() => navigate("/my-jobs")}>
+        </MainButton>
+        <MainButton onClick={() => navigate("/postJob")}>Post A Job</MainButton>
+        <MainButton onClick={() => navigate("/my-jobs")}>
           My Job Posts
-        </ChooseHubButton>
-        {/* added the same style used in the ChooseHubButton- no need to create a new style  */}
+        </MainButton>
       </StyledPage>
     </div>
   );
