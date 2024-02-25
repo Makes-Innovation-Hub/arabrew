@@ -1,7 +1,7 @@
 import React from "react";
 import { FlagContainer, FlagImg, StyledMargin } from "../../../styles";
 import { Header } from "../../../components";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, SmallGlass } from "../../../assets";
 import {
   Center,
@@ -29,13 +29,12 @@ function Appliers() {
   } else if (isError) {
     return <div>Error fetching job details</div>;
   }
-  console.log(job);
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <Link to="/myJobsPosted">
               <ArrowLeft />
             </Link>
           }
