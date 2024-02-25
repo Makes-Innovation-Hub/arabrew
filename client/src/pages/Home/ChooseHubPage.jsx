@@ -9,8 +9,8 @@ import {
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
 import {
-  ChooseHubButton,
-  ChooseHubTitle,
+  MainButton,
+  PageTitle24,
   StyledMargin,
   StyledPage,
 } from "../../styles";
@@ -41,28 +41,28 @@ export default function ChooseHubPage() {
         />
       </StyledMargin>
       <StyledPage>
-        <ChooseHubTitle>Choose your hub</ChooseHubTitle>
-        <ChooseHubButton
+        <PageTitle24>Choose your hub</PageTitle24>
+        <MainButton
           onClick={() => {
             navigate("/work");
           }}
         >
-          Arabrew - Work <BriefcaseIcon />{" "}
-        </ChooseHubButton>
-        <ChooseHubButton
+          Arabrew - Work <BriefcaseIcon />
+        </MainButton>
+        <MainButton
           onClick={() => {
             navigate("/conversation");
           }}
         >
-          Arabrew - Hobbies <LaughEmoji />{" "}
-        </ChooseHubButton>
-        <ChooseHubButton
+          Arabrew - Hobbies <LaughEmoji />
+        </MainButton>
+        <MainButton
           onClick={() => {
             navigate("/MeetupsHomePage");
           }}
         >
-          Arabrew - Meetup <UsersIcon />{" "}
-        </ChooseHubButton>
+          Arabrew - Meetup <UsersIcon />
+        </MainButton>
       </StyledPage>
     </div>
   );

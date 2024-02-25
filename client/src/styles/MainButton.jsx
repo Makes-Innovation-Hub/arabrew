@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MeetupsButton = styled.button`
+export const MainButton = styled.button`
   background-color: #50924e;
   color: white;
   font-family: ABeeZee;

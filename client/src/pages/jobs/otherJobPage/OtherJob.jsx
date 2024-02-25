@@ -28,7 +28,6 @@ function OtherJob() {
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
   const [applyToJob] = useApplyToJobMutation();
-  console.log(job);
 
   const handleApplyButton = async () => {
     try {
@@ -37,7 +36,6 @@ function OtherJob() {
         resume: job.job.postedBy.userDetails.resume,
         jobId: job.job.id,
       });
-
       console.log("Job application successful:", data);
       //   navigate('')
     } catch (error) {

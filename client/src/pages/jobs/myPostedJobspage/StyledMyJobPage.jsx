@@ -144,6 +144,7 @@ export const AppliedSection = styled.div`
   font-weight: 500;
   line-height: 150%; /* 18px */
   border-bottom: 1px solid var(--gray-200, #e2e8f0);
+  cursor: pointer;
 `;
 export const OtherPageButton = styled.button`
   border-radius: 0.6rem;
@@ -164,22 +165,11 @@ export const OtherPageButton = styled.button`
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
-
-// export const OtherPageButton = styled.button`
-//     width: 343px;
-//     height: 48px;
-//     top: 686px;
-//     left: 18px;
-//     transform: translate(11%);
-//     padding: 16px 8px;
-//     border-radius: 6px;
-//     gap: 8px;
-//     background-color: ${({ bg }) => bg || "#50924E"};
-//     border: none;
-//     color: white;
-//     text-align: center;
-//     text-decoration: none;
-//     display: inline-block;
-//     font-size: 16px;
-//     cursor: pointer;
-// `;
+export const StyledAppliersTitle = styled.h1`
+  color: #161616;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+`;

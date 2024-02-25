@@ -4,8 +4,8 @@ import { useGetAllJobsQuery } from "../../features/jobStore/jobAPI";
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
 import { StyledMargin, StyledPage } from "../../styles";
-import { ArrowLeft } from "../../assets";
-import { JobList, JobItem } from "./StyledJobBoard";
+
+import { useNavigate } from "react-router-dom";
 
 export default function JobBoardPage() {
   const navigate = useNavigate();
