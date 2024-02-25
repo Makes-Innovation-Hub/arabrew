@@ -12,7 +12,7 @@ export const JobItem = styled.div`
   margin-bottom: 8px;
   background-color: white;
   width: 100%;
-  border-bottom: 1px solid var(--gray-200, #e2e8f0);
+  border-bottom: 1px solid #e2e8f0;
 
   &:hover {
     background-color: #f8f8f8;

@@ -3,7 +3,7 @@ const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
 // const token = storedUser ? storedUser.token : null;
-console.log(storedUser);
+// console.log(storedUser);
 
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
