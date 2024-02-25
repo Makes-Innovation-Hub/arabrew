@@ -21,6 +21,8 @@ export const ContainerSection = styled.div`
   border-bottom: 1px solid var(--gray-200, #e2e8f0);
   &:hover {
     box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    cursor: pointer;
   }
   cursor: pointer;
   @media (min-width: 1000px) {
