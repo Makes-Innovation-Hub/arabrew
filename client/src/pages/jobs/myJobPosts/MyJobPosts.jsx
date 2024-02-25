@@ -17,7 +17,7 @@ import {
   useGetAllJobsQuery,
   useGetUserJobPostsQuery,
 } from "../../../features/jobStore/jobAPI";
-import MyJobPostsComponent from "./MyJobPostscomponent";
+import MyJobPostsComponent from "./MyJobPostsComponent";
 
 function MyJobPosts() {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
