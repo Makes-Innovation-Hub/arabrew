@@ -3,6 +3,7 @@ const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
 // const token = storedUser ? storedUser.token : null;
+// console.log(storedUser);
 
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
@@ -23,8 +24,10 @@ const jobApi = createApi({
     tagTypes: ["Job"],
     prepareHeaders: (headers) => {
       // Call your function to get the authentication token
-      const token = getToken();
       // console.log(token);
+
+      const token = getToken();
+      console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
