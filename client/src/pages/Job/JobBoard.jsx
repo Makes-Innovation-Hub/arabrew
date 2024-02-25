@@ -4,12 +4,7 @@ import { Hamburger, SmallGlass, ArrowLeft } from "../../assets";
 import { InstructionPrompt } from "../../styles/BioPage/InstructionPrompt.jsx";
 
 import SideBar from "../../components/SideBar";
-import {
-  StyledMargin,
-  StyledPage,
-  ChooseHubTitle,
-  ChooseHubButton,
-} from "../../styles";
+import { StyledMargin, StyledPage } from "../../styles";
 
 import { useNavigate } from "react-router-dom";
 

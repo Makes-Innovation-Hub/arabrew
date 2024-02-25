@@ -11,7 +11,7 @@ const WorkConversationsPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   return (
     <div>
-       {isSideBar && (
+      {isSideBar && (
         <div>
           <SideBar openSideBar={setIsSideBar} />
         </div>

@@ -23,7 +23,7 @@ import PostJob from "./pages/jobs/PostJob.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 import MeetupForm from "./pages/Meetup/MeetupForm.jsx";
 import ProfilePageWork from "./pages/Work/ProfilePageWork.jsx";
-import WorkPage from "./pages/Work/WorkPage.jsx";
+import WorkHomePage from "./pages/Work/WorkHomePage.jsx";
 import JobBoardPage from "./pages/Job/JobBoard.jsx";
 import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
 import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/work",
-    element: <WorkPage />,
+    element: <WorkHomePage />,
     errorElement: <>Error...</>,
   },
   {
