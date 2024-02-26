@@ -43,7 +43,7 @@ function MyPostedJob() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <Link to="/myJobsPosted">
               <ArrowLeft />
             </Link>
           }
