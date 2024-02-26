@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledMargin, StyledPage, StyledTitle } from "../../../styles";
 import { Header } from "../../../components";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "../../../assets";
 import {
   StyledMyJobPage,
@@ -24,6 +24,7 @@ import {
 } from "../../../features/jobStore/jobAPI";
 
 function MyPostedJob() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
   if (isLoading) {
@@ -33,6 +34,9 @@ function MyPostedJob() {
   }
 
   // console.log(job)
+  const handleAppliers = () => {
+    navigate(`/appliers/${job?.job.id}`);
+  };
 
   return (
     <div>
@@ -75,7 +79,10 @@ function MyPostedJob() {
             <StyledMargin direction="vertical" margin="1.8rem" />
           </DescriptionSection>
           <StyledMargin direction="vertical" margin="1.8rem" />
-          <AppliedSection>{job?.job.applicants.length} Applied</AppliedSection>
+
+          <AppliedSection onClick={handleAppliers}>
+            {job?.job.applicants.length} Applied
+          </AppliedSection>
         </StyledMyJobPage>
       )}
     </div>

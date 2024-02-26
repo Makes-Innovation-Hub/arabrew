@@ -126,13 +126,11 @@ describe("Job Tests", async () => {
   });
   describe("Apply to Job", async () => {
     it("Apply user to job with valid info should return 200", async () => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQxY2ZhMDdhM2Q4YmQzZWM1ODk4YzEiLCJpYXQiOjE3MDgyNDg5OTJ9.KwHArm7MhF2npt3wzcwTQcMtXGFR-eiyhQrf1OZ5jF4";
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
       headers.append("Authorization", `Bearer ${token}`);
       const body = {
-        userId: "65d1cfa07a3d8bd3ec5898c1",
+        userId: "65d5ba984b29b94ea90f595c",
         resume: "someUrl",
         jobId: globalJobId,
       };
@@ -145,8 +143,6 @@ describe("Job Tests", async () => {
       assert.strictEqual(result.status, 200);
     });
     it("Apply user to job with invalid jobId info should return 404", async () => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQxY2ZhMDdhM2Q4YmQzZWM1ODk4YzEiLCJpYXQiOjE3MDgyNDg5OTJ9.KwHArm7MhF2npt3wzcwTQcMtXGFR-eiyhQrf1OZ5jF4";
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
       headers.append("Authorization", `Bearer ${token}`);

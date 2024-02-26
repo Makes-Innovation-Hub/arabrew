@@ -39,3 +39,25 @@ export const MeetupButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
 `;
+
+export const DividerLine = styled.hr`
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+`;
+
+export const Circle = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-right: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
