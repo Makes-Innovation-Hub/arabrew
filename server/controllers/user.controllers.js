@@ -108,6 +108,32 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
   res.status(200).json(sorted_matchingUsers);
 });
 
+//$ @desc    get all users in the same work field (execlude the logged user)
+//$ @route   GET /api/user/get-work-users
+//! @access  NOT SET YET
+export const getWorkUsers = async (req, res, next) => {
+  try {
+    let workUsers = await User.find({
+      _id: { $ne: req.user._id },
+      "userDetails.workField": {
+        $regex: new RegExp(
+          "^" + req.user.userDetails.workField.toLowerCase(),
+          "i"
+        ),
+      },
+    })
+      .select("-token")
+      .lean();
+    if (!workUsers || workUsers.length < 0) {
+      res.status(404);
+      throw new Error("No Users found!");
+    }
+    res.send({ data: workUsers, success: true });
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
+
 //$ @desc    get all users in random order (execlude the logged user)
 //$ @route   GET /api/user/:subId/get-users
 //! @access  NOT SET YET
