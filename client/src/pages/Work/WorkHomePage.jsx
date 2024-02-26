@@ -36,7 +36,7 @@ export default function WorkHomePage() {
           Job Board
         </MainButton>
         <MainButton onClick={() => navigate("/postJob")}>Post A Job</MainButton>
-        <MainButton onClick={() => navigate("/my-jobs")}>
+        <MainButton onClick={() => navigate("/myJobsPosted")}>
           My Job Posts
         </MainButton>
       </StyledPage>
