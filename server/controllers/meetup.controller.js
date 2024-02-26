@@ -135,17 +135,20 @@ export const attendMeetup = async (req, res, next) => {
       res.status(STATUS_CODES.UNAUTHORIZED);
       throw new Error("No user found with this id");
     }
-    // check if user already attending
-    if (meetup.attendees.includes(userId)) {
-      res.status(STATUS_CODES.FORBIDDEN);
-      throw new Error("User already attending");
+
+    // toggle whether user is attending or not
+    const userIndex = meetup.attendees.indexOf(user._id);
+    if (userIndex === -1) {
+      // User hasn't attended the meeting yet, add user
+      meetup.attendees.push(userId);
+    } else {
+      // User has already attended the meeting, remove like
+      meetup.attendees.splice(userIndex, 1);
     }
-    // add user to attendees and save
-    meetup.attendees.push(userId);
     await meetup.save();
     //todo: add meetup to attending user's meetups
 
-    successLogger("attendMeetup", "Meetup attendance succeeded");
+    successLogger("attendMeetup", "Toggling meetup attendance successful");
     timingLogger("attendMeetup", startTime);
     return res.status(200).json({
       success: true,
