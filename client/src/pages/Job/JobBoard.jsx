@@ -10,23 +10,14 @@ import { JobList, JobItem } from "./StyledJobBoard";
 export default function JobBoardPage() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  // const [isError, setIsError] = useState (false);
-  // const [isLoading, setIsLoading]= useState (true);
 
   // Fetch all jobs
-  // const   jobs  = useGetAllJobsQuery();
-  const { data, isLoading, isError, isSuccess } = useGetAllJobsQuery();
-  // console.log(data);
+  const { data, isLoading, isError } = useGetAllJobsQuery();
 
   if (!data) {
     return <div>Loading...</div>;
   }
   const jobs = Array.isArray(data.data) ? data.data : [];
-  console.log(jobs);
-
-  // useEffect(() => {
-  //   refetch(); // refetch jobs when the component updated.....
-  // }, [refetch]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching jobs</div>;
