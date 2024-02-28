@@ -28,7 +28,6 @@ function OtherJob() {
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-  console.log(storedUser);
   const [applyToJob] = useApplyToJobMutation();
 
   const handleApplyButton = async () => {
@@ -65,7 +64,7 @@ function OtherJob() {
       {isSuccess && (
         <StyledMyJobPage>
           <Center>
-            <Title>{job?.job.title}</Title>
+            <Title>{job?.job?.title}</Title>
           </Center>
           <StyledMargin direction="vertical" margin="1.8rem" />
 
@@ -78,20 +77,22 @@ function OtherJob() {
           <StyledMargin direction="vertical" margin="1.8rem" />
 
           <SecondSection>
-            <StyledImg src={job?.job.postedBy.avatar} alt="Description" />
+            <StyledImg src={job?.job?.postedBy?.avatar} alt="Description" />
             <ProfileSection>
-              <StyledName>{job?.job.postedBy.name}</StyledName>
+              <StyledName>{job?.job?.postedBy?.name}</StyledName>
               <StyledUnderName>
-                {job?.job.postedBy.userDetails.occupation}
+                {job?.job?.postedBy?.userDetails?.occupation}
               </StyledUnderName>
             </ProfileSection>
           </SecondSection>
           <DescriptionSection>
-            {job?.job.description}
+            {job?.job?.description}
             <StyledMargin direction="vertical" margin="1.8rem" />
           </DescriptionSection>
           <StyledMargin direction="vertical" margin="1.8rem" />
-          <AppliedSection>{job?.job.applicants.length} Applied</AppliedSection>
+          <AppliedSection>
+            {job?.job?.applicants?.length} Applied
+          </AppliedSection>
 
           <StyledMargin direction="vertical" margin="35rem" />
 
