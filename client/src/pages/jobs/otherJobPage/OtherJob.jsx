@@ -27,13 +27,15 @@ function OtherJob() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  console.log(storedUser);
   const [applyToJob] = useApplyToJobMutation();
 
   const handleApplyButton = async () => {
     try {
       const { data } = await applyToJob({
-        userId: job.job.postedBy.id,
-        resume: job.job.postedBy.userDetails.resume,
+        userId: storedUser.id,
+        resume: storedUser.userDetails.resume,
         jobId: job.job.id,
       });
       console.log("Job application successful:", data);

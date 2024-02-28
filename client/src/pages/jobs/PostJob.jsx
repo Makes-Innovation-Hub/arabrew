@@ -111,7 +111,7 @@ function PostJob() {
     <div>
       <Header
         leftIcon={
-          <Link to="/">
+          <Link to="/work">
             <ArrowLeft />
           </Link>
         }
