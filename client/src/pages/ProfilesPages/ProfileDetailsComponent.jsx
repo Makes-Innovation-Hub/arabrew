@@ -37,6 +37,9 @@ function ProfileDetailsComponent({ userId }) {
   const profileData = useSelector((state) => state.userRegister);
   const { data: loggedUser } = useGetLoggedUserQuery(userId);
   const isOwnProfile = loggedUser?.data?.subId === profileData?.subId;
+  const handleBack = () => {
+    window.history.back();
+  };
   // Render the ChatIcon only if the profile is not the logged-in user's own profile
   const renderChatIcon = !isOwnProfile ? (
     <CircleIcon>
@@ -53,9 +56,9 @@ function ProfileDetailsComponent({ userId }) {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <div onClick={handleBack}>
               <ArrowLeft />
-            </Link>
+            </div>
           }
           title="Profile"
           rightIcon={renderChatIcon}
