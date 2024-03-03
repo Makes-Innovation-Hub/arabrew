@@ -7,7 +7,7 @@ const port = import.meta.env.VITE_SERVER_PORT;
 
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-  console.log("storedUser: ", storedUser);
+  // console.log("storedUser: ", storedUser);
   const token = storedUser.token;
 
   if (token) {
@@ -27,7 +27,7 @@ const jobApi = createApi({
       // console.log(token);
 
       const token = getToken();
-      console.log(token);
+      // console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
