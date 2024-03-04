@@ -56,9 +56,7 @@ function Appliers() {
             {job?.job.applicants.map((applicant) => (
               <Container key={applicant._id}>
                 <FirstRow>
-                  <Link
-                    to={`/profiled?type=work&userId=${applicant.user.subId}`}
-                  >
+                  <Link to={`/profiled?type=work&userId=${applicant.user.id}`}>
                     <StyledApplierImg src={applicant.user.avatar} alt="pic" />
                   </Link>
                   <FlagContainer>
