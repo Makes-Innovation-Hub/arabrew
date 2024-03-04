@@ -5,15 +5,20 @@ const port = import.meta.env.VITE_SERVER_PORT;
 // const token = storedUser ? storedUser.token : null;
 // console.log(storedUser);
 
-const getToken = () => {
-  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-  console.log("storedUser: ", storedUser);
-  const token = storedUser.token;
+export const getToken = () => {
+  try {
+    const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+    console.log("storedUser: ", storedUser);
+    const token = storedUser.token;
 
-  if (token) {
-    return token; // Return the token string
+    if (token) {
+      return token; // Return the token string
+    }
+  } catch (error) {
+    return null;
   }
-  return null; // Return null if the token isn't found // Example: Get the token from session storage
+
+  // Return null if the token isn't found // Example: Get the token from session storage
 };
 
 // console.log(token);

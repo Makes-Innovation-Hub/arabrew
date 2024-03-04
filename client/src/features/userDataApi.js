@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getToken } from "./jobStore/jobAPI";
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
@@ -6,6 +7,19 @@ const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
     tagTypes: ["User"],
+    prepareHeaders: (headers) => {
+      // Call your function to get the authentication token
+      // console.log(token);
+
+      const token = getToken();
+      console.log(token);
+      // If the token exists, set the Authorization header
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -32,6 +46,15 @@ const userDataApi = createApi({
         };
       },
     }),
+    getWork: builder.query({
+      query: () => ({
+        url: "user/get-work-users",
+        method: "GET",
+      }),
+      providesTags: ["User"],
+      transformResponse: (response) => response.data,
+    }),
+
     getChatByNames: builder.query({
       query: ([usersArr, userLang]) => {
         const [sender, reciever] = usersArr;
@@ -57,5 +80,6 @@ export const {
   useGetLoggedUserQuery,
   useGetUserChatsListQuery,
   useLazyGetLoggedUserQuery,
+  useGetWorkQuery,
 } = userDataApi;
 export default userDataApi;

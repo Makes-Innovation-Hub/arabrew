@@ -92,7 +92,7 @@ const ConversationPage = () => {
             </ContentConversationPage>
             <ButtonForChats
               onClick={() => {
-                navigate("/search-friends");
+                navigate("/SearchColleguges");
               }}
             >
               Search for friends to chat
