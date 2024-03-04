@@ -1,7 +1,7 @@
 import React from "react";
 import { FlagContainer, FlagImg, StyledMargin } from "../../../styles";
 import { Header } from "../../../components";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, SmallGlass } from "../../../assets";
 import {
   Center,
@@ -24,19 +24,23 @@ import flags from "../../../assets/countriesAndFlags/by-code.json";
 function Appliers() {
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
+  const navigate = useNavigate();
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (isError) {
     return <div>Error fetching job details</div>;
   }
+  const handleBack = (jobId) => {
+    navigate(`/MyPostedJob/${jobId}`);
+  };
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/myJobsPosted">
+            <div onClick={() => handleBack(job.job.id)}>
               <ArrowLeft />
-            </Link>
+            </div>
           }
           title={<SmallGlass />}
         />
@@ -52,7 +56,11 @@ function Appliers() {
             {job?.job.applicants.map((applicant) => (
               <Container key={applicant._id}>
                 <FirstRow>
-                  <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                  <Link
+                    to={`/profiled?type=work&userId=${applicant.user.subId}`}
+                  >
+                    <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                  </Link>
                   <FlagContainer>
                     <FlagImg
                       src={flags[applicant.user.userDetails.nationality]?.image}

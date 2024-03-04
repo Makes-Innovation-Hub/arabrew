@@ -5,18 +5,16 @@ const port = import.meta.env.VITE_SERVER_PORT;
 // const token = storedUser ? storedUser.token : null;
 // console.log(storedUser);
 
-export const getToken = () => {
-  try {
-    const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-    console.log("storedUser: ", storedUser);
-    const token = storedUser.token;
+const getToken = () => {
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  // console.log("storedUser: ", storedUser);
+  const token = storedUser.token;
 
-    if (token) {
-      return token; // Return the token string
-    }
-  } catch (error) {
-    return null;
+  if (token) {
+    return token; // Return the token string
   }
+
+  return null;
 
   // Return null if the token isn't found // Example: Get the token from session storage
 };
@@ -32,7 +30,7 @@ const jobApi = createApi({
       // console.log(token);
 
       const token = getToken();
-      console.log(token);
+      // console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
