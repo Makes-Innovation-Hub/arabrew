@@ -57,14 +57,22 @@ function Appliers() {
               <Container key={applicant._id}>
                 <FirstRow>
                   <Link to={`/profiled?type=work&userId=${applicant.user.id}`}>
-                    <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                    {applicant.user && applicant.user.avatar ? (
+                      <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                    ) : (
+                      <div>No Avatar</div>
+                    )}
                   </Link>
                   <FlagContainer>
                     <FlagImg
-                      src={flags[applicant.user.userDetails.nationality]?.image}
+                      src={
+                        flags[applicant?.user?.userDetails?.nationality]?.image
+                      }
                     />
                   </FlagContainer>
-                  <StyledName>{applicant.user.name.split(" ")[0]}</StyledName>
+                  <StyledName>
+                    {applicant?.user?.name?.split(" ")[0]}
+                  </StyledName>
                 </FirstRow>
                 <SecondRow>
                   <svg

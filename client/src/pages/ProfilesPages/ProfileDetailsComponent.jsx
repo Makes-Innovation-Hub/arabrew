@@ -53,7 +53,9 @@ function ProfileDetailsComponent({ userId }) {
   ) : null;
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const age = currentYear - loggedUser?.data?.userDetails?.yearOfBirth;
+  const age = (
+    currentYear - loggedUser?.data?.userDetails?.yearOfBirth
+  ).toString();
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
