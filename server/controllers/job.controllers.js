@@ -7,6 +7,7 @@ import {
   errorLogger,
 } from "../middleware/logger.js";
 import { err } from "pino-std-serializers";
+import User from "../models/user.js";
 
 // description Get all jobs
 // GET /api/job/
@@ -151,13 +152,15 @@ const applyToJob = async (req, res, next) => {
   try {
     const { userId, resume, jobId } = req.body;
     const job = await JobCollection.findById(jobId);
+    const user = await User.findById(userId);
+
     if (!job) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");
     }
-    const applicant = { user: userId, resume };
+    const applicant = { user, resume };
     const applicantIndex = job.applicants.findIndex(
-      (appl) => appl.userId.toString() === userId
+      (appl) => appl.user._id === userId
     );
 
     if (applicantIndex === -1) {

@@ -74,7 +74,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
 //$ @route   GET /api/user/get-by-id/:Id
 //! @access  NOT SET YET
 export const getUserById = asyncHandler(async (req, res, next) => {
-  controllerLogger("GetUser", req.params, "starting to fetch user");
+  controllerLogger("GetUserById", req.params, "starting to fetch user");
   const { id } = req.params;
   try {
     const user = await User.findById(id);
@@ -85,6 +85,7 @@ export const getUserById = asyncHandler(async (req, res, next) => {
         data: {},
       });
     }
+    console.log("helooooooo", user);
     user.token = generateAccessToken(user.id);
     await user.save();
     eventLogger(`user found in db`);
