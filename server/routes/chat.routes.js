@@ -9,6 +9,7 @@ import {
 } from "../controllers/chat.controllers.js";
 
 import { requestLogger } from "../middleware/logger.js";
+import { validateToken } from "../middleware/verifyUserToken.js";
 
 const router = express.Router();
 

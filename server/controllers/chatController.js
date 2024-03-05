@@ -1,0 +1,200 @@
+import ChatCollection from "../models/chat.js";
+import {
+  controllerLogger,
+  successLogger,
+  errorLogger,
+  timingLogger,
+  databaseLogger,
+  eventLogger,
+} from "../middleware/logger.js";
+import { STATUS_CODES } from "../constants/constants.js";
+import { latestMessage } from "../utils/chat.utils.js";
+
+//$ @desc    create new Chat (between 2 users)
+//$ @route   POST /api/chat/
+//! @access  NOT SET YET
+export const createChat = async (req, res, next) => {
+  try {
+    let user1Id = req.body.user1Id;
+    let user2Id = req.body.user2Id;
+    let hub = req.body.hub;
+    if (user1Id !== req.user.id && user2Id !== req.user.id) {
+      console.log(user1Id === req.user.id);
+      console.log(user2Id === req.user.id);
+      console.log("token owner id", req.user.id);
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("User is not authorized for this operation");
+    }
+    if (!user1Id || !user2Id) {
+      res.status(404);
+      throw new Error("User ID is missing");
+    }
+    if (!hub) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Chat Must Belong To A Hub");
+    }
+
+    //find the chat between these two users or make a new one
+    let foundChat = await ChatCollection.findOne({
+      $or: [{ users: [user1Id, user2Id] }, { users: [user2Id, user1Id] }],
+    });
+    //if there's no existing chat, then make a new one
+    if (!foundChat) {
+      foundChat = new ChatCollection();
+      foundChat.users = [user1Id, user2Id];
+      foundChat.hub = hub;
+      foundChat.messages = [];
+      await foundChat.save();
+    }
+    return res.status(200).json(foundChat.toJSON());
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
+
+//$ @desc    get chat by  id
+//$ @route   POST /api/chat/:chatId
+//! @access  NOT SET YET
+export const getChatById = async (req, res, next) => {
+  try {
+    const chat = await ChatCollection.findById(req.params.chatId);
+
+    if (!chat) {
+      res.status(404);
+      throw new Error("No chat with this Id");
+    }
+    // console.log("check request user ", req.user.id);
+    if (
+      chat.users.every((userId) => {
+        // console.log(userId);
+        // console.log(userId.toString() !== req.user.id);
+        return userId.toString() !== req.user.id;
+      })
+    ) {
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("User not authorized");
+    }
+    return res.status(200).json(chat.toJSON());
+  } catch (error) {
+    errorLogger(error, req, res, next);
+    // next(error);
+  }
+};
+
+//$ @desc    get user Chats list with names and last message
+//$ @route   GET /api/chat/open-conversations/?hub="work"||"hobbies"
+//! @access  NOT SET YET
+export const getUserChatsList = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const hub = req.query.hub || "";
+    if (!userId || !hub) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Must Provide userId and hub");
+    }
+    //* const {userLang}=req.body
+    // Logging controller event
+    controllerLogger(
+      "getUserChatsList",
+      { userId },
+      "Retrieving user chats list"
+    );
+    const startTime = Date.now();
+    // Logging database query
+    databaseLogger(
+      "Service: getUserChatsList, Find chat by user name",
+      { userId },
+      "Getting chats list"
+    );
+    let userChats = await Chat.find({
+      users: { $all: [userId] },
+      hub: hub,
+    })
+      .populate("users")
+      .sort({ updatedAt: -1 })
+      .lean();
+    if (!userChats) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("failed retrieving no chats were found");
+    }
+    if (userChats.length > 0) {
+      userChats = await Promise.all(
+        userChats.map(async (chat) => {
+          const { users, messages } = chat;
+          const receiverUser = users.find((user) => user.id !== userId);
+          const senderUser = users.find((user) => user.id === userId);
+          const senderLang = senderUser.userDetails.nativeLanguage;
+          const lastMessageContent = latestMessage(messages)?.originalContent;
+          //   currently no translation return original message
+          // latestMessage(messages)?.translated_Content[senderLang];
+          return {
+            avatar: receiverUser.avatar,
+            name: receiverUser.name,
+            lastMessageContent,
+          };
+        })
+      ).catch((err) => {
+        console.log("err in finding chat msg", err);
+      });
+    }
+
+    // Logging timing
+    timingLogger("getUserChatsList", startTime);
+
+    res.status(200).json(userChats);
+  } catch (error) {
+    // Logging error
+    errorLogger(error, req, res, next);
+
+    next(error);
+  }
+};
+
+// @desc add new message to chat
+// @route PATCH api/chat/:chatId
+export const addMessage = async (req, res, next) => {
+  try {
+    const chatId = req.params.chatId;
+    if (!chatId) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Must Provide Chat ID");
+    }
+    const chat = await ChatCollection.findById(chatId);
+    if (!chat) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error(`No Chat With this Chat ID`);
+    }
+    let sender = req.user.id;
+    let originalContent = req.body.content;
+    let newMessage = {
+      sender,
+      originalContent,
+      date: new Date(),
+      translatedContent: {},
+    };
+    chat.messages.push(newMessage);
+    await chat.save();
+    res.send(newMessage);
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
+
+// @desc delete chat
+// @route DELETE api/chat/:chatId
+export const removeChat = async (req, res, next) => {
+  try {
+    const chatId = req.params.chatId;
+    const deletedChat = await ChatCollection.findByIdAndDelete(chatId);
+    if (!deletedChat) {
+      res.status(404);
+      throw new Error("Could not find and delete the chat");
+    }
+    res.json({
+      success: true,
+      message: `Deleted chat with id ${chatId}`,
+    });
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};

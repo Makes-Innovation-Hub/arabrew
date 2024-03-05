@@ -157,7 +157,7 @@ const applyToJob = async (req, res, next) => {
     }
     const applicant = { user: userId, resume };
     const applicantIndex = job.applicants.findIndex(
-      (appl) => appl.userId.toString() === userId
+      (appl) => appl.userId === userId
     );
 
     if (applicantIndex === -1) {
