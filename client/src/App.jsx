@@ -31,6 +31,7 @@ import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
 import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
 import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
+import WorkConversationPage from "./pages/Work_Home_newUserPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage />,
   },
+  { path: "/work-conversation", element: <WorkConversationPage /> },
   {
     path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
     element: <Chat />,
@@ -118,7 +120,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/myMeetupsPage",
-    element: <MyMeetupPage />,
+    element: <MyMeetupsPage />,
     errorElement: <>Error...</>,
   },
   {
@@ -129,6 +131,12 @@ const router = createBrowserRouter([
   {
     path: "/myJobsPosted",
     element: <MyJobPosts />,
+    errorElement: <>Error...</>,
+  },
+
+  {
+    path: "/search-colleagues",
+    element: <SearchColleagues />,
     errorElement: <>Error...</>,
   },
 ]);
