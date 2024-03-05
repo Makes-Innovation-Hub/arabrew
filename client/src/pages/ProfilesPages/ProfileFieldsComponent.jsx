@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useGetLoggedUserQuery } from "../../features/userDataApi";
+import {
+  useGetLoggedUserQuery,
+  useGetUserByIdQuery,
+} from "../../features/userDataApi";
 import {
   StyledProfilePage,
   ProfileDescriptionTitle,
@@ -19,7 +22,7 @@ import {
 import { StyledProfileRenderPage } from "./ProfilePageStyles";
 
 function ProfileFieldsComponent({ profileType, userId }) {
-  const { data: loggedUser } = useGetLoggedUserQuery(userId);
+  const { data: loggedUser } = useGetUserByIdQuery(userId);
   if (!loggedUser || !loggedUser.data) return null;
   const renderProfileComponents = () => {
     if (profileType === "hobbies") {

@@ -70,6 +70,34 @@ export const getUser = asyncHandler(async (req, res, next) => {
   }
 });
 
+//$ @desc    GET user by Id
+//$ @route   GET /api/user/get-by-id/:Id
+//! @access  NOT SET YET
+export const getUserById = asyncHandler(async (req, res, next) => {
+  controllerLogger("GetUserById", req.params, "starting to fetch user");
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      eventLogger(`user not found`);
+      return res.status(200).json({
+        success: false,
+        data: {},
+      });
+    }
+    console.log("helooooooo", user);
+    user.token = generateAccessToken(user.id);
+    await user.save();
+    eventLogger(`user found in db`);
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+});
+
 //$ @desc    find friends by interests Array, (user id to execlude him )
 //$ @route   GET /api/user/:subId/get-users?interests=Dancing,Gaming...
 //! @access  NOT SET YET

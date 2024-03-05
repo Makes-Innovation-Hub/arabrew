@@ -56,17 +56,23 @@ function Appliers() {
             {job?.job.applicants.map((applicant) => (
               <Container key={applicant._id}>
                 <FirstRow>
-                  <Link
-                    to={`/profiled?type=work&userId=${applicant.user.subId}`}
-                  >
-                    <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                  <Link to={`/profiled?type=work&userId=${applicant.user.id}`}>
+                    {applicant.user && applicant.user.avatar ? (
+                      <StyledApplierImg src={applicant.user.avatar} alt="pic" />
+                    ) : (
+                      <div>No Avatar</div>
+                    )}
                   </Link>
                   <FlagContainer>
                     <FlagImg
-                      src={flags[applicant.user.userDetails.nationality]?.image}
+                      src={
+                        flags[applicant?.user?.userDetails?.nationality]?.image
+                      }
                     />
                   </FlagContainer>
-                  <StyledName>{applicant.user.name.split(" ")[0]}</StyledName>
+                  <StyledName>
+                    {applicant?.user?.name?.split(" ")[0]}
+                  </StyledName>
                 </FirstRow>
                 <SecondRow>
                   <svg
