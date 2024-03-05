@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/Header";
-import { useGetLoggedUserQuery } from "../../features/userDataApi";
+import {
+  useGetLoggedUserQuery,
+  useGetUserByIdQuery,
+} from "../../features/userDataApi";
 import {
   ProfileName,
   InterestTextStyle,
@@ -35,7 +38,7 @@ import { useSelector } from "react-redux";
 
 function ProfileDetailsComponent({ userId }) {
   const profileData = useSelector((state) => state.userRegister);
-  const { data: loggedUser } = useGetLoggedUserQuery(userId);
+  const { data: loggedUser } = useGetUserByIdQuery(userId);
   const isOwnProfile = loggedUser?.data?.subId === profileData?.subId;
   const handleBack = () => {
     window.history.back();

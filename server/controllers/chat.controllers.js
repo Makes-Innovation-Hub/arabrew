@@ -240,10 +240,12 @@ export const getUserChatsList = asyncHandler(async (req, res, next) => {
           const senderUser = await User.findOne({ name }).lean();
           const senderLang = senderUser.userDetails.nativeLanguage;
           const userAvatar = reciverUser ? reciverUser.avatar : null;
+          const userId = reciverUser ? reciverUser._id : null;
           const lastMessage = newestMessage(messagesHistory, name, senderLang);
           return {
             profile: userAvatar,
             name: recieverName,
+            userId: userId,
             lastCon: lastMessage,
           };
         })
