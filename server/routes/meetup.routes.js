@@ -32,9 +32,6 @@ router.patch("/:id", validateToken, updateMeetup);
 router.delete("/:id", validateToken, deleteMeetup);
 
 // Register for Meetup
-router.patch("/:id/attend", attendMeetup); // add id to attendees array
-
-// Cancel Registration for Meetup
-router.delete("/:id/attend");
+router.patch("/:id/attend", validateToken, attendMeetup); // add id to attendees array
 
 export default router;

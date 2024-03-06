@@ -9,7 +9,7 @@ export const MainButton = styled.button`
   font-size: 14px;
   line-height: 22px;
   text-align: center;
-  width: 343px;
+  width: 80%;
   margin: 8px;
   padding: 16px 8px 16px 8px;
   border-radius: 6px;
