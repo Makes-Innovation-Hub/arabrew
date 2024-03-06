@@ -31,7 +31,9 @@ export default function WorkHomePage() {
       </StyledMargin>
       <StyledPage>
         <PageTitle24>Arabrew - Work</PageTitle24>
-        <MainButton onClick={() => navigate("/conversation")}>Chat</MainButton>
+        <MainButton onClick={() => navigate("/Work-conversation?hub=work")}>
+          Chat
+        </MainButton>
         <MainButton onClick={() => navigate("/job-board")}>
           Job Board
         </MainButton>

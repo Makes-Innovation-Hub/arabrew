@@ -18,15 +18,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegisterSlice";
+import { NoConversationStyleTitle } from "../../styles/Chat/NoConversationStyle";
 
-const ConversationPage = () => {
+function SearchColleaguesConversation() {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
   const loggedUser = useSelector((state) => state.userRegister);
-  // const url = useLocation();
+  const { search } = useLocation();
+  const hub = search.split("=")[1];
 
-  const { data: chats, error, isLoading } = useGetUserChatsListQuery("hobbies");
+  const { data: chats, error, isLoading } = useGetUserChatsListQuery(hub);
   console.log(chats);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
@@ -71,7 +73,7 @@ const ConversationPage = () => {
                           ]
                         : ""
                     }
-                    profile={chat.profile}
+                    profile={chat.avatar}
                     userId={chat.userId}
                   />
                 );
@@ -80,30 +82,33 @@ const ConversationPage = () => {
             <BlockDiv />
             <ButtonForChats
               onClick={() => {
-                navigate("/search-friends");
+                navigate("/Search-colleagues");
               }}
             >
-              Search for friends to chat
+              Search for colleagues
             </ButtonForChats>
           </ConversationPageStyle>
         ) : (
           <ConversationPageStyle>
-            <NoConversationStyle>No Conversation</NoConversationStyle>
+            <NoConversationStyleTitle>
+              No Conversations
+            </NoConversationStyleTitle>
             <ContentConversationPage>
-              Add some friends and start chatting with them, Your conversations
-              will show up here.
+              Add some colleagues and start chatting with them, Your
+              conversations will show up here.
             </ContentConversationPage>
             <ButtonForChats
               onClick={() => {
-                navigate("/search-friends");
+                navigate("/Search-colleagues");
               }}
             >
-              Search for friends to chat
+              Search for colleagues
             </ButtonForChats>
           </ConversationPageStyle>
         )}
       </StyledPage>
     </div>
   );
-};
-export default ConversationPage;
+}
+
+export default SearchColleaguesConversation;
