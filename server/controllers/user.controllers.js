@@ -70,6 +70,33 @@ export const getUser = asyncHandler(async (req, res, next) => {
   }
 });
 
+//$ @desc    GET user by Id
+//$ @route   GET /api/user/get-by-id/:Id
+//! @access  NOT SET YET
+export const getUserById = asyncHandler(async (req, res, next) => {
+  controllerLogger("GetUser", req.params, "starting to fetch user");
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      eventLogger(`user not found`);
+      return res.status(200).json({
+        success: false,
+        data: {},
+      });
+    }
+    user.token = generateAccessToken(user.id);
+    await user.save();
+    eventLogger(`user found in db`);
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+});
+
 //$ @desc    find friends by interests Array, (user id to execlude him )
 //$ @route   GET /api/user/:subId/get-users?interests=Dancing,Gaming...
 //! @access  NOT SET YET
@@ -107,6 +134,32 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
   });
   res.status(200).json(sorted_matchingUsers);
 });
+
+//$ @desc    get all users in the same work field (execlude the logged user)
+//$ @route   GET /api/user/get-work-users
+//! @access  NOT SET YET
+export const getWorkUsers = async (req, res, next) => {
+  try {
+    let workUsers = await User.find({
+      _id: { $ne: req.user._id },
+      "userDetails.workField": {
+        $regex: new RegExp(
+          "^" + req.user.userDetails.workField.toLowerCase(),
+          "i"
+        ),
+      },
+    })
+      .select("-token")
+      .lean();
+    if (!workUsers || workUsers.length < 0) {
+      res.status(404);
+      throw new Error("No Users found!");
+    }
+    res.send({ data: workUsers, success: true });
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
 
 //$ @desc    get all users in random order (execlude the logged user)
 //$ @route   GET /api/user/:subId/get-users

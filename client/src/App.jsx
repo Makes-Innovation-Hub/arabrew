@@ -32,7 +32,6 @@ import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
 import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
 import WorkConversationPage from "./pages/Work_Home_newUserPage.jsx";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -126,17 +125,6 @@ const router = createBrowserRouter([
   {
     path: "/myJobsPosted",
     element: <MyJobPosts />,
-    errorElement: <>Error...</>,
-  },
-  {
-    path: "/myJobsPosted",
-    element: <MyJobPosts />,
-    errorElement: <>Error...</>,
-  },
-
-  {
-    path: "/search-colleagues",
-    element: <SearchColleagues />,
     errorElement: <>Error...</>,
   },
 ]);

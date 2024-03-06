@@ -6,12 +6,17 @@ import {
   getAllUsers,
   getUserByName,
   getUser,
+  getWorkUsers,
+  getUserById,
 } from "../controllers/user.controllers.js";
 import { requestLogger } from "../middleware/logger.js";
+import { validateToken } from "../middleware/verifyUserToken.js";
 const router = express.Router();
 router.use(requestLogger);
 router.route("/register").post(registerUser);
+router.route("/get-work-users").get(validateToken, getWorkUsers);
 router.route("/:subId").get(getUser);
+router.route("/get-by-id/:id").get(getUserById);
 router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);

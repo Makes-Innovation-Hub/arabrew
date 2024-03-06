@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetAllJobsQuery } from "../../features/jobStore/jobAPI";
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
@@ -38,13 +38,12 @@ export default function JobBoardPage() {
 
   return (
     <div>
-      {isSideBar && <SideBar openSideBar={setIsSideBar} />}
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <div onClick={() => setIsSideBar(true)}>
+            <Link to="/work">
               <ArrowLeft />
-            </div>
+            </Link>
           }
           title={"Job Board"}
         />
