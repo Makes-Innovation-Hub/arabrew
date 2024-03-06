@@ -8,7 +8,7 @@ const chatSchema = new mongoose.Schema(
           ref: "userCollection",
         },
       ],
-      validate: [checkUsers, "chat with same ids exists,or missing receiverId"],
+      // validate: [checkUsers, "chat with same ids exists,or missing receiverId"],
     },
     hub: {
       type: String,

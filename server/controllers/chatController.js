@@ -106,7 +106,7 @@ export const getUserChatsList = async (req, res, next) => {
       { userId },
       "Getting chats list"
     );
-    let userChats = await Chat.find({
+    let userChats = await ChatCollection.find({
       users: { $all: [userId] },
       hub: hub,
     })
@@ -123,11 +123,13 @@ export const getUserChatsList = async (req, res, next) => {
           const { users, messages } = chat;
           const receiverUser = users.find((user) => user.id !== userId);
           const senderUser = users.find((user) => user.id === userId);
-          const senderLang = senderUser.userDetails.nativeLanguage;
+          // const senderLang = senderUser.userDetails.nativeLanguage;
           const lastMessageContent = latestMessage(messages)?.originalContent;
           //   currently no translation return original message
           // latestMessage(messages)?.translated_Content[senderLang];
+          console.log("chat info", chat);
           return {
+            chatId: chat._id,
             avatar: receiverUser.avatar,
             name: receiverUser.name,
             lastMessageContent,
@@ -165,10 +167,10 @@ export const addMessage = async (req, res, next) => {
       throw new Error(`No Chat With this Chat ID`);
     }
     let sender = req.user.id;
-    let originalContent = req.body.content;
+    let { content } = req.body;
     let newMessage = {
       sender,
-      originalContent,
+      originalContent: content,
       date: new Date(),
       translatedContent: {},
     };
@@ -191,6 +193,7 @@ export const removeChat = async (req, res, next) => {
       throw new Error("Could not find and delete the chat");
     }
     res.json({
+      data: deletedChat,
       success: true,
       message: `Deleted chat with id ${chatId}`,
     });
