@@ -153,7 +153,6 @@ const applyToJob = async (req, res, next) => {
     const { userId, resume, jobId } = req.body;
     const job = await JobCollection.findById(jobId);
     const user = await User.findById(userId);
-
     if (!job) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Job couldn't be found");

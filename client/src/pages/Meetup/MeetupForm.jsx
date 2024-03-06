@@ -42,7 +42,7 @@ const MeetupForm = () => {
     try {
       const response = await createMeetup(meetupData).unwrap();
       console.log("Meetup created successfully:", response);
-      navigate("/UpcomingMeetupPage");
+      navigate("/My-meetups-page");
     } catch (error) {
       console.error("Error creating meetup:", error);
       console.error("Error response:", error.response);
