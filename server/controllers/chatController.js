@@ -18,6 +18,7 @@ export const createChat = async (req, res, next) => {
     let user1Id = req.body.user1Id;
     let user2Id = req.body.user2Id;
     let hub = req.body.hub;
+    let message = req.body.message;
     if (user1Id !== req.user.id && user2Id !== req.user.id) {
       console.log(user1Id === req.user.id);
       console.log(user2Id === req.user.id);
@@ -33,6 +34,10 @@ export const createChat = async (req, res, next) => {
       res.status(STATUS_CODES.VALIDATION_ERROR);
       throw new Error("Chat Must Belong To A Hub");
     }
+    if (!message) {
+      res.status(STATUS_CODES.FORBIDDEN);
+      throw new Error("Must contain message content");
+    }
 
     //find the chat between these two users or make a new one
     let foundChat = await ChatCollection.findOne({
@@ -44,6 +49,13 @@ export const createChat = async (req, res, next) => {
       foundChat.users = [user1Id, user2Id];
       foundChat.hub = hub;
       foundChat.messages = [];
+      let newMessage = {
+        sender: req.user.id,
+        originalContent: message,
+        date: new Date(),
+        translatedContent: {},
+      };
+      foundChat.messages.push(newMessage);
       await foundChat.save();
     }
     return res.status(200).json(foundChat.toJSON());
