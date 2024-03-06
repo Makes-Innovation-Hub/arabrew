@@ -2,10 +2,27 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
 
+const getToken = () => {
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  const token = storedUser?.token;
+
+  if (token) {
+    return token;
+  }
+  return null;
+};
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}:${port}/api`,
     tagTypes: ["User"],
+    prepareHeaders: (headers) => {
+      const token = getToken();
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -45,6 +62,10 @@ const userDataApi = createApi({
       query: (subId) => `/user/${subId}`,
       method: "GET",
     }),
+    getWorkUsers: builder.query({
+      query: () => `user/get-work-users`,
+      method: "GET",
+    }),
     getUserById: builder.query({
       query: (id) => `/user/get-by-id/${id}`,
       method: "GET",
@@ -62,5 +83,6 @@ export const {
   useGetUserChatsListQuery,
   useGetUserByIdQuery,
   useLazyGetLoggedUserQuery,
+  useGetWorkUsersQuery,
 } = userDataApi;
 export default userDataApi;

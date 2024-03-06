@@ -35,6 +35,7 @@ import Profile from "./pages/ProfilesPages/Profile.jsx";
 import MeetupDetailsPage from "./pages/MeetupsPage/MeetupDetailsPage.jsx";
 import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
 import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
+import SearchColleaguesPage from "./pages/search-colleagues/SearchColleaguesPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -148,6 +149,11 @@ const router = createBrowserRouter([
   {
     path: "/SpecificMeetupPage/:id",
     element: <SpecificMeetup />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/Search-colleagues",
+    element: <SearchColleaguesPage />,
     errorElement: <>Error...</>,
   },
 ]);
