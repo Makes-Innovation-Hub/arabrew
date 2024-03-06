@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const getToken = () => {
-  const tokenString = localStorage.getItem("token");
-
-  if (tokenString) {
-    const token = JSON.parse(tokenString);
-    return token;
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  // console.log("storedUser: ", storedUser);
+  const token = storedUser.token;
+  if (token) {
+    return token; // Return the token string
   }
-  return null;
+  return null; // Return null if the token isn't found // Example: Get the token from session storage
 };
 
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
@@ -20,7 +20,8 @@ export const meetupApi = createApi({
     tagTypes: ["Meetup"],
     prepareHeaders: (headers) => {
       const token = getToken();
-      console.log(token);
+      // console.log(token);
+      // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
@@ -41,6 +42,10 @@ export const meetupApi = createApi({
     }),
     getAllMeetups: builder.query({
       query: () => "/meetup",
+      providesTags: ["Meetup"],
+    }),
+    getMyMeetups: builder.query({
+      query: () => "/meetup/my-meetups",
       providesTags: ["Meetup"],
     }),
     updateMeetup: builder.mutation({
@@ -80,4 +85,5 @@ export const {
   useGetMeetupByIdQuery,
   useAttendMeetupMutation,
   useCancelAttendMeetupMutation,
+  useGetMyMeetupsQuery,
 } = meetupApi;

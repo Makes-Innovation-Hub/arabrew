@@ -46,7 +46,9 @@ export default function MeetupsHomePage() {
         <MainButton onClick={() => navigate("/MeetupForm")}>
           Post A Meetup
         </MainButton>
-        <MainButton>My Meetups posts</MainButton>
+        <MainButton onClick={() => navigate("/My-meetups-page")}>
+          My Meetups posts
+        </MainButton>
       </StyledPage>
     </div>
   );

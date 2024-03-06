@@ -17,16 +17,16 @@ import {
 
 function MyMeetups() {
   const [isSideBar, setIsSideBar] = useState(false);
-  const { data, error, isLoading } = useGetAllMeetupsQuery();
+  const { data, error, isLoading } = useGetMyMeetupsQuery();
   const navigation = useNavigate();
   console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) {
-    console.log(error);
-    return <div>Error occurred while fetching meetups.</div>;
-  }
+  // if (error) {
+  //   console.log(error);
+  //   return <div>Error occurred while fetching meetups.</div>;
+  // }
 
   const handleNavigation = (meetupId) => {
     navigation(`/myMeetupPage/${meetupId}`);
@@ -50,9 +50,9 @@ function MyMeetups() {
         />
       </StyledMargin>
       <UpcomingStyledPage>
-        <CenteredText>Upcoming Meetups</CenteredText>
+        <CenteredText>My Meetups Posts</CenteredText>
 
-        {Array.isArray(data.data) && data.data.length !== 0 ? (
+        {Array.isArray(data?.data) && data?.data.length !== 0 ? (
           <MeetupListStyle>
             {/* <div> */}
             {data?.data?.map((meetup, i) => (
@@ -64,16 +64,17 @@ function MyMeetups() {
                 time={meetup.time}
                 location={meetup.location}
                 attendeesCount={meetup.attendees.length}
-                ownerId={meetup.owner.id}
+                ownerId={meetup.owner}
               />
             ))}
             {/* </div> */}
           </MeetupListStyle>
         ) : (
           <CenteredText>
-            <div>No upcoming meetups</div>
+            <div>No Meetups Posted</div>
           </CenteredText>
         )}
+        {/* {error && <CenteredText>No Meetups Posted</CenteredText>}  */}
       </UpcomingStyledPage>
     </div>
   );
