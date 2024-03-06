@@ -1,11 +1,11 @@
 import Meetup from "../models/meetup.js";
+import User from "../models/user.js";
 import {
   controllerLogger,
   timingLogger,
   successLogger,
   errorLogger,
 } from "../middleware/logger.js";
-import { User } from "../utils/index.js";
 import { STATUS_CODES } from "../constants/constants.js";
 
 /**
@@ -123,24 +123,20 @@ export const attendMeetup = async (req, res, next) => {
   const { id } = req.params;
   try {
     const meetup = await Meetup.findById(id);
+    const user = await User.findById(req.user._id);
+    console.log("attend mettup user heloooo", user);
     // check if meetup exists
     if (!meetup) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("No meetup found with this id");
     }
-    const { userId } = req.body;
-    // check if user exists
-    const user = await User.findById(userId);
-    if (!user) {
-      res.status(STATUS_CODES.UNAUTHORIZED);
-      throw new Error("No user found with this id");
-    }
 
     // toggle whether user is attending or not
-    const userIndex = meetup.attendees.indexOf(user._id);
+    const userIndex = meetup.attendees.indexOf(user.id);
+    console.log(userIndex);
     if (userIndex === -1) {
       // User hasn't attended the meeting yet, add user
-      meetup.attendees.push(userId);
+      meetup.attendees.push(user);
     } else {
       // User has already attended the meeting, remove like
       meetup.attendees.splice(userIndex, 1);

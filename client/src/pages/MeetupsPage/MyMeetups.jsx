@@ -23,10 +23,10 @@ function MyMeetups() {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) {
-    console.log(error);
-    return <div>Error occurred while fetching meetups.</div>;
-  }
+  // if (error) {
+  //   console.log(error);
+  //   return <div>Error occurred while fetching meetups.</div>;
+  // }
 
   const handleNavigation = (meetupId) => {
     navigation(`/myMeetupPage/${meetupId}`);
@@ -52,7 +52,7 @@ function MyMeetups() {
       <UpcomingStyledPage>
         <CenteredText>My Meetups Posts</CenteredText>
 
-        {Array.isArray(data.data) && data.data.length !== 0 ? (
+        {Array.isArray(data?.data) && data?.data.length !== 0 ? (
           <MeetupListStyle>
             {/* <div> */}
             {data?.data?.map((meetup, i) => (
@@ -64,6 +64,7 @@ function MyMeetups() {
                 time={meetup.time}
                 location={meetup.location}
                 attendeesCount={meetup.attendees.length}
+                ownerId={meetup.owner}
               />
             ))}
             {/* </div> */}
@@ -73,6 +74,7 @@ function MyMeetups() {
             <div>No Meetups Posted</div>
           </CenteredText>
         )}
+        {/* {error && <CenteredText>No Meetups Posted</CenteredText>}  */}
       </UpcomingStyledPage>
     </div>
   );
