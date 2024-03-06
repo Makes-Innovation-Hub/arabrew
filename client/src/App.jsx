@@ -34,6 +34,7 @@ import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
 import Profile from "./pages/ProfilesPages/Profile.jsx";
 import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
 import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
+import Work_Home_NewUser from "./pages/WorkPages/Work_Home_NewUser.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,8 @@ const router = createBrowserRouter([
     path: "/conversation",
     element: <ConversationPage />,
   },
+  { path: "/work-conversation", element: <Work_Home_NewUser /> },
+
   {
     path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
     element: <Chat />,
