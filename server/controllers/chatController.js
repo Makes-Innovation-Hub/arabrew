@@ -42,8 +42,12 @@ export const createChat = async (req, res, next) => {
     //find the chat between these two users or make a new one
     let foundChat = await ChatCollection.findOne({
       $or: [{ users: [user1Id, user2Id] }, { users: [user2Id, user1Id] }],
+      hub,
     });
-    //if there's no existing chat, then make a new one
+    //if there's no existing chat with the given hub, then make a new one
+    if (foundChat && foundChat.hub !== hub) {
+      foundChat = undefined;
+    }
     if (!foundChat) {
       foundChat = new ChatCollection();
       foundChat.users = [user1Id, user2Id];
