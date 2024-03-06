@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const getToken = () => {
-  const tokenString = localStorage.getItem("token");
 
-  if (tokenString) {
-    // Parse the JSON string back to its original format (string)
-    const token = JSON.parse(tokenString);
+const getToken = () => {
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  // console.log("storedUser: ", storedUser);
+  const token = storedUser.token;
+  if (token) {
     return token; // Return the token string
   }
-  return null; // Return null if the token isn't found // Example: Get the token from local storage
+  return null; // Return null if the token isn't found // Example: Get the token from session storage
 };
 const baseUrl = "http://localhost:5001/api";
 
@@ -19,7 +19,7 @@ export const meetupApi = createApi({
     prepareHeaders: (headers) => {
       // Call your function to get the authentication token
       const token = getToken();
-      console.log(token);
+      // console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
@@ -44,6 +44,10 @@ export const meetupApi = createApi({
       query: () => "/meetup",
       providesTags: ["Meetup"],
     }),
+    getMyMeetups: builder.query({
+      query: () => "/meetup/my-meetups",
+      providesTags: ["Meetup"],
+    }),
     updateMeetup: builder.mutation({
       query: ({ meetupId, meetupData }) => ({
         url: `/meetup/${meetupId}`,
@@ -63,4 +67,5 @@ export const {
   useGetAllMeetupsQuery,
   useUpdateMeetupMutation,
   useGetMeetupByIdQuery,
+  useGetMyMeetupsQuery,
 } = meetupApi;

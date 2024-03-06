@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SideBar from "../../components/SideBar";
 import {
   UpcomingStyledPage,
@@ -10,11 +10,16 @@ import {
   CenteredText,
 } from "../../styles";
 import { SmallGlass, ArrowLeft } from "../../assets";
-import { useGetAllMeetupsQuery } from "../../features/meetupApi";
+import {
+  useGetAllMeetupsQuery,
+  useGetMyMeetupsQuery,
+} from "../../features/meetupApi";
 
-const UpcomingMeetupPage = () => {
+function MyMeetups() {
   const [isSideBar, setIsSideBar] = useState(false);
-  const { data, error, isLoading, refetch } = useGetAllMeetupsQuery();
+  const { data, error, isLoading } = useGetMyMeetupsQuery();
+  const navigation = useNavigate();
+  console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -23,7 +28,9 @@ const UpcomingMeetupPage = () => {
     return <div>Error occurred while fetching meetups.</div>;
   }
 
-  const meetups = data?.data;
+  const handleNavigation = (meetupId) => {
+    navigation(`/myMeetupPage/${meetupId}`);
+  };
 
   return (
     <div>
@@ -43,14 +50,15 @@ const UpcomingMeetupPage = () => {
         />
       </StyledMargin>
       <UpcomingStyledPage>
-        <CenteredText>Upcoming</CenteredText>
+        <CenteredText>My Meetups Posts</CenteredText>
 
-        {Array.isArray(meetups) && meetups.length !== 0 ? (
+        {Array.isArray(data.data) && data.data.length !== 0 ? (
           <MeetupListStyle>
             {/* <div> */}
-            {meetups.map((meetup, i) => (
+            {data?.data?.map((meetup, i) => (
               <UpcomingDisplay
-                key={i}
+                meetupId={meetup.id}
+                key={meetup.id}
                 title={meetup.title}
                 date={meetup.date}
                 time={meetup.time}
@@ -62,12 +70,12 @@ const UpcomingMeetupPage = () => {
           </MeetupListStyle>
         ) : (
           <CenteredText>
-            <div>No Upcoming</div>
+            <div>No Meetups Posted</div>
           </CenteredText>
         )}
       </UpcomingStyledPage>
     </div>
   );
-};
+}
 
-export default UpcomingMeetupPage;
+export default MyMeetups;
