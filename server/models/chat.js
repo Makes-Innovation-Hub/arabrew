@@ -4,28 +4,29 @@ const chatSchema = new mongoose.Schema(
     users: {
       type: [
         {
-          trim: true,
-          type: String,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "userCollection",
         },
       ],
-      validate: [checkUsers, "chat with same ids exists,or missing receiverId"],
+      // validate: [checkUsers, "chat with same ids exists,or missing receiverId"],
     },
-
-    messagesHistory: [
+    hub: {
+      type: String,
+      required: [
+        true,
+        "⛔⛔ chat type is missing should be work or hobbies ⛔⛔",
+      ],
+      enum: ["work", "hobbies"],
+    },
+    messages: [
       {
         sender: {
-          type: String,
-          trim: true,
+          type: mongoose.Types.ObjectId,
+          ref: "userCollection",
         },
-        receiver: {
-          type: String,
-          trim: true,
-        },
-        content_HE: String,
-        content_AR: String,
-        createdAt: {
-          type: String,
-        },
+        originalContent: { type: String, required: true },
+        translatedContent: { language: String, content: String },
+        date: { type: Date },
       },
     ],
   },
@@ -67,3 +68,9 @@ async function checkUsers(usersArr) {
 
 const ChatCollection = mongoose.model("ChatCollection", chatSchema);
 export default ChatCollection;
+
+/**
+ * hub - string hobbies/work
+ * participants array
+ * messages array (userId,original_content,translated_content[{lang"HE"||"AR":translation}],timestamp)
+ */
