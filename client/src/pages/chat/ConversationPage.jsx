@@ -13,10 +13,10 @@ import {
 } from "../../styles";
 import { SmallGlass, Hamburger } from "../../assets";
 import ConversationDisplay from "../../components/ConversationDisplay";
-import { useGetUserChatsListQuery } from "../../features/userDataApi";
+import { useGetUserChatsListQuery } from "../../features/chatDataApi";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegisterSlice";
 
 const ConversationPage = () => {
@@ -24,8 +24,10 @@ const ConversationPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const username = useSelector((state) => state.userRegister.name);
   const loggedUser = useSelector((state) => state.userRegister);
+  // const url = useLocation();
 
-  const { data: chats, error, isLoading } = useGetUserChatsListQuery(username);
+  const { data: chats, error, isLoading } = useGetUserChatsListQuery("work");
+  console.log(chats);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);
