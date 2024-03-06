@@ -9,22 +9,22 @@ const getToken = () => {
   }
   return null; // Return null if the token isn't found // Example: Get the token from session storage
 };
-const baseUrl = "http://localhost:5001/api";
+
+const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
+const port = import.meta.env.VITE_SERVER_PORT;
 
 export const meetupApi = createApi({
   reducerPath: "meetupApi",
   baseQuery: fetchBaseQuery({
-    baseUrl,
+    baseUrl: `${baseUrl}:${port}/api`,
     tagTypes: ["Meetup"],
     prepareHeaders: (headers) => {
-      // Call your function to get the authentication token
       const token = getToken();
       // console.log(token);
       // If the token exists, set the Authorization header
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
-
       return headers;
     },
   }),
@@ -58,6 +58,22 @@ export const meetupApi = createApi({
     }),
     getMeetupById: builder.query({
       query: (meetupId) => `/meetup/${meetupId}`,
+      providesTags: ["Meetup"],
+    }),
+    attendMeetup: builder.mutation({
+      query: ({ meetupId, isAttending }) => ({
+        url: `/meetup/${meetupId}/attend`,
+        method: "PATCH",
+        body: { isAttending },
+      }),
+      invalidatesTags: ["Meetup"],
+    }),
+    cancelAttendMeetup: builder.mutation({
+      query: ({ meetupId }) => ({
+        url: `/meetup/${meetupId}/attend`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Meetup"],
     }),
   }),
 });
@@ -67,5 +83,7 @@ export const {
   useGetAllMeetupsQuery,
   useUpdateMeetupMutation,
   useGetMeetupByIdQuery,
+  useAttendMeetupMutation,
+  useCancelAttendMeetupMutation,
   useGetMyMeetupsQuery,
 } = meetupApi;

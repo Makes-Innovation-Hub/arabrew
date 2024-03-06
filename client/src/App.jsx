@@ -32,6 +32,7 @@ import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
 import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
 import Profile from "./pages/ProfilesPages/Profile.jsx";
+import MeetupDetailsPage from "./pages/MeetupsPage/MeetupDetailsPage.jsx";
 import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
 import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
 import SearchColleaguesPage from "./pages/search-colleagues/SearchColleaguesPage.jsx";
@@ -138,6 +139,11 @@ const router = createBrowserRouter([
   {
     path: "/My-meetups-page",
     element: <MyMeetups />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/MeetupDetailsPage/:meetupId",
+    element: <MeetupDetailsPage />,
     errorElement: <>Error...</>,
   },
   {
