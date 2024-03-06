@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
 import SideBar from "../../components/SideBar";
 import {
   UpcomingStyledPage,
@@ -9,30 +9,17 @@ import {
   UpcomingDisplay,
   CenteredText,
 } from "../../styles";
-import { SmallGlass, ArrowLeft } from "../../assets";
+import { ArrowLeft } from "../../assets";
 import { useGetAllMeetupsQuery } from "../../features/meetupApi";
 
 const UpcomingMeetupPage = () => {
+  const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  const { data, error, isLoading, refetch } = useGetAllMeetupsQuery();
-  console.log(data);
-  useEffect(() => {
-    // Automatically refetch data every 10 seconds
-    const intervalId = setInterval(() => {
-      refetch();
-    }, 10 * 1000);
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, []);
+  const { data, error, isLoading } = useGetAllMeetupsQuery();
 
-  if (isLoading) return <div>Loading...</div>;
-
-  if (error) {
-    console.log(error);
-    return <div>Error occurred while fetching meetups.</div>;
-  }
-
-  const meetups = data?.data;
+  const handleMeetupClick = (meetupId) => {
+    navigate(`/meetupDetailsPage/${meetupId}`);
+  };
 
   return (
     <div>
@@ -54,12 +41,13 @@ const UpcomingMeetupPage = () => {
       <UpcomingStyledPage>
         <CenteredText>Upcoming</CenteredText>
 
-        {Array.isArray(meetups) && meetups.length !== 0 ? (
+        {Array.isArray(data?.data) && data?.data.length !== 0 ? (
           <MeetupListStyle>
-            {/* <div> */}
-            {meetups.map((meetup, i) => (
+            {data?.data.map((meetup, i) => (
               <UpcomingDisplay
                 key={i}
+                onClick={() => handleMeetupClick(meetup.id)}
+                style={{ cursor: "pointer" }}
                 title={meetup.title}
                 date={meetup.date}
                 time={meetup.time}
@@ -67,12 +55,9 @@ const UpcomingMeetupPage = () => {
                 attendeesCount={meetup.attendees.length}
               />
             ))}
-            {/* </div> */}
           </MeetupListStyle>
         ) : (
-          <CenteredText>
-            <div>No Upcoming</div>
-          </CenteredText>
+          <CenteredText>No Upcoming</CenteredText>
         )}
       </UpcomingStyledPage>
     </div>

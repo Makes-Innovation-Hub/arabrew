@@ -4,9 +4,9 @@ import styled from "styled-components";
 const MeetupWrapper = styled.div`
   margin-bottom: 20px;
   padding: 2px 0px;
-  /* margin-left: 10px; */
   border-bottom: 1px solid var(--gray-200, #e2e8f0);
   width: 100%;
+  cursor: pointer; /* Add cursor pointer to the entire wrapper */
 `;
 
 const Title = styled.h3`
@@ -27,6 +27,7 @@ const InfoText = styled.p`
   font-weight: ${({ fontWeight }) => fontWeight || 500};
   line-height: 150%;
 `;
+
 const InfoattendeesText = styled.p`
   color: #3d4260a9;
   font-family: Poppins;
@@ -43,6 +44,7 @@ export const UpcomingDisplay = ({
   location,
   attendeesCount,
   timezone,
+  onClick, // Add an onClick prop
 }) => {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
@@ -54,7 +56,9 @@ export const UpcomingDisplay = ({
   const adjustedTime = `${formattedDate} ${time} ${timezone || "PM"}`;
 
   return (
-    <MeetupWrapper>
+    <MeetupWrapper onClick={onClick}>
+      {" "}
+      {/* Use the onClick prop here */}
       <Title>{title}</Title>
       <InfoText fontWeight={500}>{adjustedTime}</InfoText>
       <InfoText>{location}</InfoText>
