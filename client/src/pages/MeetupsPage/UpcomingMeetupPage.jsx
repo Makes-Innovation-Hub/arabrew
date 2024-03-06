@@ -64,7 +64,7 @@ function MyMeetups() {
                 time={meetup.time}
                 location={meetup.location}
                 attendeesCount={meetup.attendees.length}
-                ownerId={meetup.owner.id}
+                ownerId={meetup.owner}
               />
             ))}
             {/* </div> */}
