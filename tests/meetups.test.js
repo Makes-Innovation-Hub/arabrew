@@ -18,7 +18,9 @@ const path1 = path.join(__dirname, "../server/.env");
 dotenv.config({ path: path1 });
 
 const PORT = process.env.PORT;
-// from any user in your db get user id and paste it here
+// from any user in your db get user token and id and paste it here
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0NzQwZDQyNWFmMzMxNGViYzc1ODYiLCJpYXQiOjE3MDg0MjIxNTd9.kKGkVeMUorXs7QVUYvjTw1NJgJYJrygsdBMxWqIKpAE";
 const ownerId = "65d4740d425af3314ebc7586";
 
 describe("Create Meetup Test", () => {
@@ -26,6 +28,7 @@ describe("Create Meetup Test", () => {
   it("should return a 201 status code", async function () {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
     const body = {
       title: "Ai for developers",
@@ -60,7 +63,7 @@ describe("Create Meetup Test", () => {
     it("should GET All  meetings ", async function () {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
+      myHeaders.append("Authorization", `Bearer ${token}`);
       const requestOptions = {
         method: "GET",
         headers: myHeaders,
@@ -77,9 +80,16 @@ describe("Create Meetup Test", () => {
   after(async function () {
     if (createdMeetupId) {
       try {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        const requestOptions = {
+          method: "DELETE",
+          headers: myHeaders,
+        };
         const deleteResponse = await fetch(
           `http://localhost:${PORT}/api/meetup/${createdMeetupId}`,
-          { method: "DELETE" }
+          requestOptions
         );
         // console.log(deleteResponse);
         assert.strictEqual(deleteResponse.status, 200);
@@ -94,6 +104,7 @@ describe("Create Meetup Test", () => {
 describe("Get Meeting from DB Test", () => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${token}`);
   let createdMeetupId;
 
   before(async function () {
@@ -142,9 +153,16 @@ describe("Get Meeting from DB Test", () => {
   after(async function () {
     if (createdMeetupId) {
       try {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        const requestOptions = {
+          method: "DELETE",
+          headers: myHeaders,
+        };
         const deleteResponse = await fetch(
           `http://localhost:${PORT}/api/meetup/${createdMeetupId}`,
-          { method: "DELETE" }
+          requestOptions
         );
         // console.log(deleteResponse);
         assert.strictEqual(deleteResponse.status, 200);
@@ -159,6 +177,7 @@ describe("Get Meeting from DB Test", () => {
 describe("Attend Meetup Test", () => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${token}`);
   let createdMeetupId;
 
   before(async function () {
@@ -213,9 +232,16 @@ describe("Attend Meetup Test", () => {
     // Clean up: Delete the created meetup
     if (createdMeetupId) {
       try {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        const requestOptions = {
+          method: "DELETE",
+          headers: myHeaders,
+        };
         const deleteResponse = await fetch(
           `http://localhost:${PORT}/api/meetup/${createdMeetupId}`,
-          { method: "DELETE" }
+          requestOptions
         );
         assert.strictEqual(deleteResponse.status, 200);
       } catch (error) {
