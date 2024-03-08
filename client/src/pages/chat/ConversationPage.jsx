@@ -26,7 +26,7 @@ const ConversationPage = () => {
   const loggedUser = useSelector((state) => state.userRegister);
   // const url = useLocation();
 
-  const { data: chats, error, isLoading } = useGetUserChatsListQuery("work");
+  const { data: chats, error, isLoading } = useGetUserChatsListQuery("hobbies");
   console.log(chats);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
@@ -65,14 +65,11 @@ const ConversationPage = () => {
                     key={i}
                     nameCon={chat.name}
                     contentCon={
-                      chat?.lastCon
-                        ? chat.lastCon[
-                            `content_${loggedUser.userDetails.nativeLanguage}`
-                          ]
-                        : ""
+                      chat.lastMessageContent ? chat.lastMessageContent : ""
                     }
-                    profile={chat.profile}
+                    profile={chat.avatar}
                     userId={chat.userId}
+                    chatId={chat.chatId}
                   />
                 );
               })}
