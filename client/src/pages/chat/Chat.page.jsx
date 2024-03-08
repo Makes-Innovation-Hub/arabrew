@@ -86,15 +86,15 @@ const Chat = () => {
   return (
     <ChatLayout>
       <Header receiver={{ name: receiver?.name, img: receiver?.avatar }} />
-      {/* {isLoading && <h2>LOADING...</h2>} */}
-      {/* {isSuccess && <ChatDisplayArea messages={messages} />} */}
-      <ChatDisplayArea messages={messages} />
+      {isLoading && <h2>LOADING...</h2>}
+      {isSuccess && <ChatDisplayArea messages={messages} />}
+      {/* <ChatDisplayArea messages={messages} /> */}
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}
         handleSendMsg={handleSendMsg}
         loggedUserDetails={loggedUserDetails}
-        chatUserDetails={loggedUserDetails}
+        chatUserDetails={receiver}
         currentSuggestions={suggestions}
         setSuggestions={addSuggestionToMsgs}
       />

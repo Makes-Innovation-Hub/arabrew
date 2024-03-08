@@ -17,10 +17,9 @@ export default function MessageBox({ message, loggedUser }) {
         margin: "1rem",
         boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.15)",
         width: "70%",
-        alignSelf:
-          message.sender === loggedUser.name ? "flex-end" : "flex-start",
+        alignSelf: message.sender === loggedUser.id ? "flex-end" : "flex-start",
         borderRadius:
-          message.sender === loggedUser.name
+          message.sender === loggedUser.id
             ? "0.9rem 0.9rem 0 0.9rem"
             : "0 0.9rem 0.9rem 0.9rem",
         backgroundColor:
@@ -28,7 +27,8 @@ export default function MessageBox({ message, loggedUser }) {
         color: "#3D4260",
       }}
     >
-      <p>{message.isProfanity ? message.profanity : message.content}</p>
+      {/* <p>{message.isProfanity ? message.profanity : message.content}</p> */}
+      <p>{message?.originalContent}</p>
     </div>
   );
 }
