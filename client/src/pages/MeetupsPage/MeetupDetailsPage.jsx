@@ -90,6 +90,7 @@ const MeetupDetailsPage = () => {
       <UpcomingStyledPage>
         {data && data.data && (
           <MeetupDetailsDisplay
+            key={data.data._id}
             title={data.data.title}
             date={data.data.date}
             time={data.data.time}

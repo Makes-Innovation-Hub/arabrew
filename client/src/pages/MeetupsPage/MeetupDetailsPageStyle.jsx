@@ -93,7 +93,10 @@ export const MeetupDetailsDisplay = ({
 
       <AttendeesAvatarIcon>
         {attendees.map((attendee) => (
-          <Link to={`/profiled?type=hobbies&userId=${attendee.id}`}>
+          <Link
+            key={attendee.id}
+            to={`/profiled?type=hobbies&userId=${attendee.id}`}
+          >
             <img key={attendee.id} src={attendee.avatar} alt={attendee.name} />
           </Link>
         ))}
