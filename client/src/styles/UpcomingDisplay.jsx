@@ -59,8 +59,6 @@ export const UpcomingDisplay = ({
 
   const moveToMeetupInfo = (meetupId) => {
     const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-    console.log(storedUser.id);
-    if (ownerId === storedUser.id) console.log("i'm the owner");
     if (ownerId === storedUser.id) {
       navigate(`/SpecificMeetupPage/${meetupId}`);
     } else {

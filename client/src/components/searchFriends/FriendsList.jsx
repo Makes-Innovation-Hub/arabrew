@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 import Friend from "../Friend.jsx";
+import StyledLink from "./StyleSearchFriendList.jsx";
 const FriendsList = ({ friendsArr, userName, originLang }) => {
+  console.log(friendsArr);
   return friendsArr.map((user) => {
-    const { name: friend, avatar, subId, userDetails } = user;
+    const { name: friend, avatar, subId, userDetails, _id } = user;
     const { nationality, interests, nativeLanguage: targetLang } = userDetails;
     return (
       <Friend

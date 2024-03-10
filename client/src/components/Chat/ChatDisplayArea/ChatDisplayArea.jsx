@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import PopupBubble from "../../../assets/PopupBubble.jsx";
 
 function ChatDisplayArea({ messages }) {
+  // console.log(messages);
   // const { userData: contextUser } = useContext(UserContext);
   const [isPopupDisplaying, setIsPopupDisplaying] = useState(() => {
     const currentIsFirst = sessionStorage.getItem("isFirst");
@@ -31,7 +32,7 @@ function ChatDisplayArea({ messages }) {
         <MessageBox
           message={message}
           loggedUser={loggedUser}
-          key={message.id}
+          key={message._id}
         />
       ))}
       {isPopupDisplaying && <PopupBubble onClickFn={clickHandler} />}

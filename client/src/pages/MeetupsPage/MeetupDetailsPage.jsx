@@ -8,59 +8,36 @@ import {
 } from "../../features/meetupApi";
 import { ArrowLeft } from "../../assets";
 import { UpcomingStyledPage, StyledMargin } from "../../styles";
-import { MeetupDetailsDisplay } from "./MeetupDetailsPageStyle";
+import MeetupDetailsDisplay from "./MeetupDetailsPageStyle";
 
 const MeetupDetailsPage = () => {
   const { meetupId } = useParams();
   const { data, error, isLoading } = useGetMeetupByIdQuery(meetupId);
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [isAttending, setIsAttending] = useState(false);
-
+  const [isOwner, setIsOwner] = useState(false);
   const [attendMeetup] = useAttendMeetupMutation();
-
   useEffect(() => {
-    // Retrieve the stored attendance status from local storage
-    const storedStatus = localStorage.getItem(`meetup_attendance_${meetupId}`);
-
-    // Set initial state based on the stored status or the user's attendance status
     setIsAttending(
-      storedStatus === "attended" ||
-        (data && data.data && data.data.isAttending)
+      data?.data?.attendees.some((user) => user.id === storedUser?.id)
     );
-  }, [data, meetupId]);
+    setIsOwner(data?.data?.owner.id === storedUser?.id);
+  }, [data, meetupId, storedUser, setIsAttending]);
 
   const handleAttendButtonClick = async () => {
     try {
-      // isAttending value
-      const newIsAttending = !isAttending;
-
-      // Call the mutation with the updated isAttending value and the user token in headers
       const response = await attendMeetup({
         meetupId,
-        isAttending: newIsAttending,
+        isAttending: !isAttending,
       });
-      console.log(response);
 
-      // Check for success status in the response
       if (response.error) {
         console.error("Error updating attendance:", response.error);
         console.error("Error data:", response.error.data);
-        console.error("Original status:", response.error.originalStatus);
+        console.error("Original statusss:", response.error.originalStatus);
         return;
       }
-
-      // Log the attendance status
-      console.log(
-        `Attendance status: ${newIsAttending ? "Attended" : "Not Attended"}`
-      );
-
-      // Update the local state with the new isAttending value
-      setIsAttending(newIsAttending);
-
-      // Store the updated status in local storage
-      localStorage.setItem(
-        `meetup_attendance_${meetupId}`,
-        newIsAttending ? "attended" : "cancelled"
-      );
+      setIsAttending(!isAttending);
     } catch (error) {
       console.error("Error updating attendance:", error);
     }
@@ -90,6 +67,7 @@ const MeetupDetailsPage = () => {
       <UpcomingStyledPage>
         {data && data.data && (
           <MeetupDetailsDisplay
+            key={data.data._id}
             title={data.data.title}
             date={data.data.date}
             time={data.data.time}
@@ -99,6 +77,8 @@ const MeetupDetailsPage = () => {
             isAttending={isAttending}
             attendees={data.data.attendees}
             onAttendClick={handleAttendButtonClick}
+            meetupId={meetupId}
+            isOwner={isOwner}
           />
         )}
       </UpcomingStyledPage>
