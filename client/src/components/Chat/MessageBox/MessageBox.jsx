@@ -2,6 +2,8 @@ import CoffeMug from "../../../assets/CoffeeMugWithGreenBG.svg";
 import { Suggestion, SuggestionText } from "../../styles/Suggestion";
 
 export default function MessageBox({ message, loggedUser }) {
+  console.log(message);
+  console.log(loggedUser);
   if (message.sender === "server") {
     return (
       <Suggestion>
@@ -23,8 +25,8 @@ export default function MessageBox({ message, loggedUser }) {
             ? "0.9rem 0.9rem 0 0.9rem"
             : "0 0.9rem 0.9rem 0.9rem",
         backgroundColor:
-          message.sender === loggedUser.name ? "#50924E" : "#FFFFFF",
-        color: "#3D4260",
+          message.sender === loggedUser.id ? "#50924E" : "#FFFFFF",
+        color: message.sender === loggedUser.id ? "#FFFFFF" : "#3D4260",
       }}
     >
       {/* <p>{message.isProfanity ? message.profanity : message.content}</p> */}

@@ -19,7 +19,7 @@ function ChatDisplayArea({ messages }) {
     }
     return true;
   });
-  const { name: loggedUser } = useSelector((state) => state.userRegister);
+  const loggedUser = useSelector((state) => state.userRegister);
   const clickHandler = () => {
     setIsPopupDisplaying(false);
     sessionStorage.setItem("isFirst", false);

@@ -9,7 +9,10 @@ import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayAr
 
 import Header from "../../components/Chat/Header/Header.jsx";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
-import { useGetChatByIdQuery } from "../../features/chatDataApi.js";
+import {
+  useAddMessageMutation,
+  useGetChatByIdQuery,
+} from "../../features/chatDataApi.js";
 
 const ENDPOINT =
   import.meta.env.VITE_SERVER_BASE_URL + ":" + import.meta.env.VITE_SERVER_PORT;
@@ -56,7 +59,12 @@ const Chat = () => {
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = () => {
-    socket.emit("new_message", chatData);
+    // socket.emit("new_message", data);
+    const { data, isError, isSuccess, isLoading } = useAddMessageMutation(
+      params.chatId,
+      msgText
+    );
+    console.log(data);
     setMsgText("");
   };
 
@@ -73,7 +81,7 @@ const Chat = () => {
 
   // useEffect(() => {
   //   socket = io(ENDPOINT);
-  //   socket.emit("room_setup", chatData);
+  //   socket.emit("room_setup", data);
   //   socket.on("message_to_reciever", (newMsg) => {
   //     setMessages((prev) => [...prev, newMsg]);
   //   });

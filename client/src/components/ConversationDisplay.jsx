@@ -11,7 +11,10 @@ export const ConversationDisplay = ({
 }) => {
   console.log("chat id", chatId);
   return (
-    <Link to={`/chat-page/${chatId}`}>
+    <Link
+      to={`/chat-page/${chatId}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
       <DisplayChatsStyle>
         <ProfileChat profile={profile} />
         <ContentChat>

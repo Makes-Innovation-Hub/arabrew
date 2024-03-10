@@ -22,8 +22,8 @@ import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegi
 const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  const username = useSelector((state) => state.userRegister.name);
-  const loggedUser = useSelector((state) => state.userRegister);
+  // const username = useSelector((state) => state.userRegister.name);
+  // const loggedUser = useSelector((state) => state.userRegister);
   // const url = useLocation();
 
   const { data: chats, error, isLoading } = useGetUserChatsListQuery("hobbies");
