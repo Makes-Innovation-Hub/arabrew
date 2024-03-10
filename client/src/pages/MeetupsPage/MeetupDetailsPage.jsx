@@ -34,7 +34,7 @@ const MeetupDetailsPage = () => {
       if (response.error) {
         console.error("Error updating attendance:", response.error);
         console.error("Error data:", response.error.data);
-        console.error("Original status:", response.error.originalStatus);
+        console.error("Original statusss:", response.error.originalStatus);
         return;
       }
       setIsAttending(!isAttending);
