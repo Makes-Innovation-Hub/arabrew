@@ -29,7 +29,7 @@ import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
 import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
 import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
 import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
-import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
+import MyMeetupPage from "./pages/Meetup/MyMeetupsPage.jsx";
 import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
 import Profile from "./pages/ProfilesPages/Profile.jsx";
 import MeetupDetailsPage from "./pages/MeetupsPage/MeetupDetailsPage.jsx";
@@ -37,12 +37,32 @@ import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
 import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
 import SearchColleaguesPage from "./pages/search-colleagues/SearchColleaguesPage.jsx";
 import SearchColleaguesConversation from "./pages/chat/SearchColleaguesConversation.jsx";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translations from "../Translate/i18n.js";
+
+import { I18nextProvider } from "react-i18next";
+
+const initialLanguage = localStorage.getItem("lang") || "en";
+
+i18n.use(initReactI18next).init({
+  resources: translations,
+  lng: initialLanguage,
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 import Attendeespage from "./pages/MeetupsPage/Attendeespage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HeaderLayout />,
+    element: (
+      <I18nextProvider i18n={i18n}>
+        <HeaderLayout />
+      </I18nextProvider>
+    ),
     errorElement: <>Error...</>,
     children: [
       { path: "/lang", element: <LangSelection /> },
@@ -125,7 +145,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/MeetupPage",
-    element: <MyMeetupsPage />,
+    element: <MyMeetupPage />,
     errorElement: <>Error...</>,
   },
   {
@@ -171,7 +191,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

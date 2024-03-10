@@ -56,6 +56,12 @@ export const meetupApi = createApi({
       }),
       invalidatesTags: ["Meetup"],
     }),
+
+    getMyMeetups: builder.query({
+      query: () => "/meetup/my-meetups",
+      providesTags: ["Meetup"],
+    }),
+
     getMeetupById: builder.query({
       query: (meetupId) => `/meetup/${meetupId}`,
       providesTags: ["Meetup"],
