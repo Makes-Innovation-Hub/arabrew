@@ -5,7 +5,6 @@ import Header from "../../components/Header";
 import { ArrowLeft } from "../../assets";
 import { useGetMeetupByIdQuery } from "../../features/meetupApi";
 import {
-  AttendeesAvatarIcon,
   AttendeesPageContainer,
   AttendeesPageName,
   AttendeesPageStyle,
