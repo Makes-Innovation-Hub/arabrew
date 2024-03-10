@@ -14,9 +14,7 @@ const getToken = () => {
     return token; // Return the token string
   }
 
-  return null;
-
-  // Return null if the token isn't found // Example: Get the token from session storage
+  return null; // Return null if the token isn't found // Example: Get the token from session storage
 };
 
 // console.log(token);

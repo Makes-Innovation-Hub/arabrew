@@ -37,6 +37,7 @@ import flags from "../../assets/countriesAndFlags/by-code.json";
 
 const SearchColleagues = () => {
   const { data: colleagues, isLoading, isError } = useGetWorkQuery();
+  console.log(colleagues);
   // console.log(colleagues[0].userDetails.occupation)
 
   if (isLoading) return <h1>Loading...</h1>;

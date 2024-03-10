@@ -113,6 +113,7 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
 //! @access  NOT SET YET
 export const getWorkUsers = async (req, res, next) => {
   try {
+    console.log("hello jj", req.user._id);
     let workUsers = await User.find({
       _id: { $ne: req.user._id },
       "userDetails.workField": {
