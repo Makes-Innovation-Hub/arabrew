@@ -21,6 +21,7 @@ let socket;
 
 const Chat = () => {
   const params = useParams();
+  const chatId = params.chatId;
   const [messages, setMessages] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [msgText, setMsgText] = useState("");
@@ -30,6 +31,7 @@ const Chat = () => {
   const { data, error, isSuccess, isLoading } = useGetChatByIdQuery(
     params.chatId
   );
+  console.log(chatId);
   // const { sender, receiver, originLang, targetLang } = params;
   // const usersArr = [sender, receiver];
 
@@ -47,24 +49,23 @@ const Chat = () => {
   // const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
   //   [usersArr, originLang]
   // );
-
+  const [addMessage] = useAddMessageMutation(params.chatId, msgText);
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
       console.log(data);
-      setMessages((prev) => [...prev, ...data.chat.messages]);
+      setMessages((prev) => [...data.chat.messages]);
       setReceiver(data.receiverUser);
     }
   }, [data, isSuccess, isLoading]);
 
   const handleChange = (e) => setMsgText(e.target.value);
 
-  const handleSendMsg = () => {
+  const handleSendMsg = async () => {
     // socket.emit("new_message", data);
-    const { data, isError, isSuccess, isLoading } = useAddMessageMutation(
-      params.chatId,
-      msgText
-    );
-    console.log(data);
+    console.log("message: ", msgText);
+    const response = await addMessage({ chatId, content: msgText });
+    console.log(response);
+    // console.log(data);
     setMsgText("");
   };
 

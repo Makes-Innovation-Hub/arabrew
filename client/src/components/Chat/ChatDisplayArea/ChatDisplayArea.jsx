@@ -31,7 +31,7 @@ function ChatDisplayArea({ messages }) {
         <MessageBox
           message={message}
           loggedUser={loggedUser}
-          key={message._id}
+          key={message.id}
         />
       ))}
       {isPopupDisplaying && <PopupBubble onClickFn={clickHandler} />}

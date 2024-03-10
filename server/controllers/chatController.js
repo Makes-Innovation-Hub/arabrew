@@ -193,10 +193,11 @@ export const addMessage = async (req, res, next) => {
       throw new Error(`No Chat With this Chat ID`);
     }
     let sender = req.user.id;
-    let { content } = req.body;
+    let originalContent = req.body.content;
+    console.log("add message req body", req.body);
     let newMessage = {
       sender,
-      originalContent: content,
+      originalContent,
       date: new Date(),
       translatedContent: {},
     };

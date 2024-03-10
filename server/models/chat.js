@@ -24,7 +24,7 @@ const chatSchema = new mongoose.Schema(
           type: mongoose.Types.ObjectId,
           ref: "userCollection",
         },
-        originalContent: { type: String, required: true },
+        originalContent: { type: String },
         translatedContent: { language: String, content: String },
         date: { type: Date },
       },
