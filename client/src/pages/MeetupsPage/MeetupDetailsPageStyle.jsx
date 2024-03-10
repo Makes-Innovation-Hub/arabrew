@@ -21,7 +21,7 @@ import {
 } from "./StyledSpecificMeetup";
 import { StyledMargin } from "../../styles";
 
-export const MeetupDetailsDisplay = ({
+const MeetupDetailsDisplay = ({
   title,
   date,
   time,
@@ -32,6 +32,7 @@ export const MeetupDetailsDisplay = ({
   attendees,
   onAttendClick,
   meetupId,
+  isOwner,
 }) => {
   const navigate = useNavigate();
 
@@ -102,9 +103,13 @@ export const MeetupDetailsDisplay = ({
         ))}
       </AttendeesAvatarIcon>
 
-      <AttendButton isAttending={isAttending} onClick={onAttendClick}>
-        {isAttending ? "Cancel Attend" : "Attend"}
-      </AttendButton>
+      {!isOwner && (
+        <AttendButton isAttending={isAttending} onClick={onAttendClick}>
+          {isAttending ? "Cancel Attend" : "Attend"}
+        </AttendButton>
+      )}
     </MeetupWrapper>
   );
 };
+
+export default MeetupDetailsDisplay;

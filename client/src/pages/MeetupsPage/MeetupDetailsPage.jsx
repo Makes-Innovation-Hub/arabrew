@@ -8,15 +8,15 @@ import {
 } from "../../features/meetupApi";
 import { ArrowLeft } from "../../assets";
 import { UpcomingStyledPage, StyledMargin } from "../../styles";
-import { MeetupDetailsDisplay } from "./MeetupDetailsPageStyle";
+import MeetupDetailsDisplay from "./MeetupDetailsPageStyle";
 
 const MeetupDetailsPage = () => {
   const { meetupId } = useParams();
   const { data, error, isLoading } = useGetMeetupByIdQuery(meetupId);
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [isAttending, setIsAttending] = useState(false);
-
+  const [isOwner, setIsOwner] = useState(false);
   const [attendMeetup] = useAttendMeetupMutation();
-
   useEffect(() => {
     // Retrieve the stored attendance status from local storage
     const storedStatus = localStorage.getItem(`meetup_attendance_${meetupId}`);
@@ -26,7 +26,8 @@ const MeetupDetailsPage = () => {
       storedStatus === "attended" ||
         (data && data.data && data.data.isAttending)
     );
-  }, [data, meetupId]);
+    setIsOwner(data?.data?.owner.id === storedUser?.id);
+  }, [data, meetupId, storedUser]);
 
   const handleAttendButtonClick = async () => {
     try {
@@ -101,6 +102,7 @@ const MeetupDetailsPage = () => {
             attendees={data.data.attendees}
             onAttendClick={handleAttendButtonClick}
             meetupId={meetupId}
+            isOwner={isOwner}
           />
         )}
       </UpcomingStyledPage>
