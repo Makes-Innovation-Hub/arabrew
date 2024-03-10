@@ -1,0 +1,66 @@
+{
+  "newUser-page": {
+    "title": "No Conversations",
+    "paragraph": "Add some colleagues and start chatting with them, Your conversations will show up here.",
+    "button": "Search Colleagues"
+  },
+  "conversation-page": {
+    "title": "Conversations",
+    "button": "Search for Colleagues to chat"
+  },
+  "searchColleagues-page": {
+    "title": "Search Colleagues"
+  },
+  "profile-page": {
+    "header-title": "Profile",
+    "occupation": "Occupation",
+    "field": "Work Field",
+    "resume": "Work Resume"
+  },
+  "sideBar": {
+    "home": "Home",
+    "profile": "Profile"
+  },
+  "home-page": {
+    "title": "Arabrew - Work",
+    "buttons": ["Chat", "Job Board", "Post A Job", "My Job Posts"]
+  },
+  "PostAJob-page": {
+    "header-title": "Post a Job",
+    "inputs": [
+      {
+        "label": "Add Job Title",
+        "placeholder": "Write Here...For example: Chef"
+      },
+      {
+        "label": "Add Company Name",
+        "placeholder": "Write Here...For example: Google"
+      },
+      {
+        "label": "Add City",
+        "placeholder": "Write Here...For example: New York"
+      },
+      { "label": "Work Model", "placeholder": "Select" }
+    ],
+    "textarea": {
+      "label": "Add Job Description",
+      "placeholder": "Write Here...For example: Experienced Chef is needed in “Samir” restaurant at Ramla"
+    },
+    "jobTitleMaxCharacters": "30 Character",
+    "companyNameMaxCharacters": "30 Character",
+    "jobDescriptionMaxCharacters": "500 Character"
+  },
+  "jobBoard-page": {
+    "header-title": "Job Board",
+    "title": "Open Jobs"
+  },
+  "otherJob-page": {
+    "title": ""
+  },
+  "appliers-page": {
+    "title": "Appliers"
+  },
+  "myJobPosts-page": {
+    "title": "My Job Posts"
+  }
+}
