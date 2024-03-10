@@ -1,0 +1,53 @@
+{
+  "name": "arabrew",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "npx mocha ./tests",
+    "prepare": "husky install",
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js",
+    "generate-env": "bash scripts/generateConfig.sh",
+    "install-all": "npm install; npm install --prefix ./client",
+    "build-client": "npm run build --prefix ./client",
+    "populate-dummy-data": "node ./scripts/populateDBData.js",
+    "delete-dummy-data": "node ./scripts/deleteDBData.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Makes-Innovation-Hub/arabrew.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Makes-Innovation-Hub/arabrew/issues"
+  },
+  "homepage": "https://github.com/Makes-Innovation-Hub/arabrew#readme",
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "mocha": "^10.3.0",
+    "nodemon": "^2.0.22",
+    "prettier": "2.8.8"
+  },
+  "dependencies": {
+    "chai": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.2",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.1.1",
+    "node-fetch": "^3.3.1",
+    "openai": "^3.2.1",
+    "pino": "^8.14.1",
+    "pino-pretty": "^10.0.0",
+    "sinon": "^17.0.1",
+    "socket.io": "^4.6.2"
+  }
+}
