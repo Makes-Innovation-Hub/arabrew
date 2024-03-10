@@ -37,11 +37,13 @@ const AttendeesPage = () => {
         <AttendeesPageContainer>
           {data?.data?.attendees.map((attendee) => (
             <AttendeesPageStyle key={attendee.id}>
-              <StyledApplierImg
-                key={attendee.id}
-                src={attendee.avatar}
-                alt={attendee.name}
-              />
+              <Link to={`/profiled?type=hobbies&userId=${attendee.id}`}>
+                <StyledApplierImg
+                  key={attendee.id}
+                  src={attendee.avatar}
+                  alt={attendee.name}
+                />
+              </Link>
               <AttendeesPageName>
                 {attendee.name.split(" ")[0]}
               </AttendeesPageName>

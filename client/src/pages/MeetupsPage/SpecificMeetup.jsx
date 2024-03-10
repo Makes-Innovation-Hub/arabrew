@@ -114,11 +114,13 @@ function SpecificMeetup() {
         {attendees.length > 0 ? (
           <AttendeesSection>
             {attendees.map((attendee, index) => (
-              <MyMeetupImage
-                key={index}
-                src={attendee.avatar}
-                alt={attendee.name}
-              />
+              <Link to={`/profiled?type=hobbies&userId=${attendee.id}`}>
+                <MyMeetupImage
+                  key={index}
+                  src={attendee.avatar}
+                  alt={attendee.name}
+                />
+              </Link>
             ))}
           </AttendeesSection>
         ) : (
