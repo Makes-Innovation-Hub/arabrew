@@ -204,7 +204,10 @@ export const getUserMeetups = async (req, res, next) => {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("No meetups found with this user id");
     }
-
+    // populate owner details
+    await Meetup.populate(meetups, { path: "owner" });
+    // populate attendees details
+    await Meetup.populate(meetups, { path: "attendees" });
     successLogger("getMyMeetups", "get my meetups succeeded");
     timingLogger("getMyMeetups", startTime);
     return res.status(200).json({

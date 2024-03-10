@@ -18,50 +18,26 @@ const MeetupDetailsPage = () => {
   const [isOwner, setIsOwner] = useState(false);
   const [attendMeetup] = useAttendMeetupMutation();
   useEffect(() => {
-    // Retrieve the stored attendance status from local storage
-    const storedStatus = localStorage.getItem(`meetup_attendance_${meetupId}`);
-
-    // Set initial state based on the stored status or the user's attendance status
     setIsAttending(
-      storedStatus === "attended" ||
-        (data && data.data && data.data.isAttending)
+      data?.data?.attendees.some((user) => user.id === storedUser?.id)
     );
     setIsOwner(data?.data?.owner.id === storedUser?.id);
-  }, [data, meetupId, storedUser]);
+  }, [data, meetupId, storedUser, setIsAttending]);
 
   const handleAttendButtonClick = async () => {
     try {
-      // isAttending value
-      const newIsAttending = !isAttending;
-
-      // Call the mutation with the updated isAttending value and the user token in headers
       const response = await attendMeetup({
         meetupId,
-        isAttending: newIsAttending,
+        isAttending: !isAttending,
       });
-      console.log(response);
 
-      // Check for success status in the response
       if (response.error) {
         console.error("Error updating attendance:", response.error);
         console.error("Error data:", response.error.data);
         console.error("Original status:", response.error.originalStatus);
         return;
       }
-
-      // Log the attendance status
-      console.log(
-        `Attendance status: ${newIsAttending ? "Attended" : "Not Attended"}`
-      );
-
-      // Update the local state with the new isAttending value
-      setIsAttending(newIsAttending);
-
-      // Store the updated status in local storage
-      localStorage.setItem(
-        `meetup_attendance_${meetupId}`,
-        newIsAttending ? "attended" : "cancelled"
-      );
+      setIsAttending(!isAttending);
     } catch (error) {
       console.error("Error updating attendance:", error);
     }
