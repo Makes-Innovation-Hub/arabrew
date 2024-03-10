@@ -2,7 +2,7 @@ import React from "react";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { RiPriceTag2Line } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   MeetupWrapper,
   Title,
@@ -93,7 +93,9 @@ export const MeetupDetailsDisplay = ({
 
       <AttendeesAvatarIcon>
         {attendees.map((attendee) => (
-          <img key={attendee.id} src={attendee.avatar} alt={attendee.name} />
+          <Link to={`/profiled?type=hobbies&userId=${attendee.id}`}>
+            <img key={attendee.id} src={attendee.avatar} alt={attendee.name} />
+          </Link>
         ))}
       </AttendeesAvatarIcon>
 
