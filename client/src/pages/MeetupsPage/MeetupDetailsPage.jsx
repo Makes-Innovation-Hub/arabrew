@@ -99,6 +99,7 @@ const MeetupDetailsPage = () => {
             isAttending={isAttending}
             attendees={data.data.attendees}
             onAttendClick={handleAttendButtonClick}
+            meetupId={meetupId}
           />
         )}
       </UpcomingStyledPage>
