@@ -9,10 +9,13 @@ import {
   StyledPage,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function MeetupsHomePage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
+
   return (
     <div>
       {isSideBar && (
@@ -35,19 +38,19 @@ export default function MeetupsHomePage() {
         />
       </StyledMargin>
       <StyledPage>
-        <PageTitle24>Arabrew - Meetups</PageTitle24>
+        <PageTitle24>{t("meetups_title")}</PageTitle24>
         <MainButton
           onClick={() => {
             navigate("/UpcomingMeetupPage");
           }}
         >
-          Upcoming Meetups
+          {t("upcoming_meetups")}
         </MainButton>
         <MainButton onClick={() => navigate("/MeetupForm")}>
-          Post A Meetup
+          {t("post_meetup")}
         </MainButton>
         <MainButton onClick={() => navigate("/My-meetups-page")}>
-          My Meetups posts
+          {t("my_meetup_posts")}
         </MainButton>
       </StyledPage>
     </div>

@@ -13,6 +13,8 @@ import {
 } from "../../styles/Meetup/MeetupStyledPage";
 import { ArrowLeft, ChatIcon } from "../../assets";
 
+import { useTranslation } from "react-i18next";
+
 const MeetupForm = () => {
   const navigate = useNavigate();
   const myUser = JSON.parse(sessionStorage.getItem("loggedUser"));
@@ -25,7 +27,9 @@ const MeetupForm = () => {
   const [remainingChars, setRemainingChars] = useState(30);
 
   const [createMeetup, { isLoading, isError }] = useCreateMeetupMutation();
-  console.log(myUser.id);
+
+  const { t, i18n } = useTranslation();
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -55,8 +59,14 @@ const MeetupForm = () => {
     setRemainingChars(30 - inputText.length);
   };
 
+  // Set text direction to left-to-right for Hebrew or Arabic
+  const getTextDirection = () => {
+    const lang = i18n.language;
+    return lang === "he" || lang === "ar" ? "rtl" : "ltr";
+  };
+
   return (
-    <div>
+    <div dir={getTextDirection()}>
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
@@ -64,7 +74,7 @@ const MeetupForm = () => {
               <ArrowLeft />
             </Link>
           }
-          title="Post a Meetup"
+          title={t("post_meetup")}
           rightIcon={
             <Link to="/">
               <ChatIcon />
@@ -76,21 +86,21 @@ const MeetupForm = () => {
         <MeetupFormWrapper>
           <form onSubmit={handleFormSubmit}>
             <div>
-              <h3>Add Title</h3>
+              <h3>{t("add_title")}</h3>
               <MeetupInput
                 type="text"
-                placeholder="Write Here...For example: AI For Dev"
+                placeholder={t("write_here")}
                 value={title}
                 onChange={handleTitleChange}
                 maxLength={30}
                 required
               />
               <p style={{ marginRight: "auto", color: "#666" }}>
-                {remainingChars} Character
+                {remainingChars} {t("character")}
               </p>
             </div>
             <div>
-              <h3>Add Date</h3>
+              <h3>{t("add_date")}</h3>
               <MeetupInput
                 type="date"
                 placeholder="WED,  JAN 22"
@@ -100,7 +110,7 @@ const MeetupForm = () => {
               />
             </div>
             <div>
-              <h3>Add Hour</h3>
+              <h3>{t("add_hour")}</h3>
               <MeetupInput
                 type="time"
                 placeholder="09:00 PM GMT+2"
@@ -110,33 +120,33 @@ const MeetupForm = () => {
               />
             </div>
             <div>
-              <h3>Location</h3>
+              <h3>{t("location")}</h3>
               <MeetupInput
                 type="text"
-                placeholder="Enter meetup location"
+                placeholder={t("location")}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
             </div>
             <div>
-              <h3>Cost</h3>
+              <h3>{t("cost")}</h3>
               <MeetupInput
                 type="text"
-                placeholder="Free, 5 $..."
+                placeholder={t("cost_holder")}
                 value={price}
                 onChange={(e) => setprice(e.target.value)}
               />
             </div>
             <div>
-              <h3>Add Event Description</h3>
+              <h3>{t("add_event_description")}</h3>
               <MeetupTextArea
-                placeholder="Write Here...For example an amazing event in down town new york.."
+                placeholder={t("add_event_description")}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
               />
             </div>
-            <MeetupButton type="submit">Post Meetup</MeetupButton>
+            <MeetupButton type="submit">{t("post_meetup")}</MeetupButton>
           </form>
         </MeetupFormWrapper>
       </StyledPage>
