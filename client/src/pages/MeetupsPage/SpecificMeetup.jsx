@@ -54,6 +54,11 @@ function SpecificMeetup() {
     window.history.back();
   };
 
+  const handleAttendeesClick = (meetupId) => {
+    // Navigate to the attendees page
+    navigate(`/Attendeespage/${meetupId}`);
+  };
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -101,7 +106,9 @@ function SpecificMeetup() {
         </MyMeetupDescriptionSection>
 
         <StyledMargin direction="vertical" margin="4rem" />
-        <MyMeetupH1>Attendees</MyMeetupH1>
+        <MyMeetupH1 onClick={() => handleAttendeesClick(data?.data?.id)}>
+          Attendees
+        </MyMeetupH1>
 
         <StyledMargin direction="vertical" margin="1.8rem" />
         {attendees.length > 0 ? (

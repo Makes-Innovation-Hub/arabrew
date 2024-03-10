@@ -9,11 +9,8 @@ import {
   UpcomingDisplay,
   CenteredText,
 } from "../../styles";
-import { SmallGlass, ArrowLeft } from "../../assets";
-import {
-  useGetAllMeetupsQuery,
-  useGetMyMeetupsQuery,
-} from "../../features/meetupApi";
+import { ArrowLeft } from "../../assets";
+import { useGetAllMeetupsQuery } from "../../features/meetupApi";
 
 function MyMeetups() {
   const [isSideBar, setIsSideBar] = useState(false);

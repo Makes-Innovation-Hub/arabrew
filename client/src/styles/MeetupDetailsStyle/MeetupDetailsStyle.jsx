@@ -37,6 +37,25 @@ export const InfoText = styled.p`
   margin-bottom: 20px;
   padding: 2px 0px;
   border-bottom: 1px solid var(--gray-200, #e2e8f0);
+  width: 245px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 8px;
+  }
+`;
+export const AboutmeText = styled.p`
+  color: #3d4260;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: ${({ fontWeight }) => fontWeight || 500};
+  line-height: 150%;
+  margin-bottom: 20px;
+  padding: 2px 0px;
+  border-bottom: 1px solid var(--gray-200, #e2e8f0);
   width: 100%;
   display: flex;
   align-items: center;
@@ -45,6 +64,7 @@ export const InfoText = styled.p`
     margin-right: 8px;
   }
 `;
+
 export const AttendeesHeaderText = styled.h2`
   color: #161616;
   font-family: Poppins;
@@ -95,4 +115,24 @@ export const AttendButton = styled.button`
   gap: 8px;
   margin: 80px 20px;
   cursor: pointer;
+`;
+export const AttendeesPageStyle = styled.div`
+  display: flex;
+  justify-content: start; /* Align icons to the right */
+  align-items: center;
+  gap: 10px;
+`;
+export const AttendeesPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start; /* Align icons to the right */
+  align-items: self-start;
+  gap: 20px;
+`;
+export const AttendeesPageName = styled.h1`
+  color: #161616;
+  font-family: poppins;
+  font-size: 15px;
+  font-weight: 500px;
+  line-height: 18px;
 `;

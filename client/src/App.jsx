@@ -53,6 +53,7 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 });
+import Attendeespage from "./pages/MeetupsPage/Attendeespage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -180,6 +181,11 @@ const router = createBrowserRouter([
   {
     path: "/Work-conversation",
     element: <SearchColleaguesConversation />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/Attendeespage/:id",
+    element: <Attendeespage />,
     errorElement: <>Error...</>,
   },
 ]);
