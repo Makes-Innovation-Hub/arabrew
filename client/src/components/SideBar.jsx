@@ -83,7 +83,12 @@ export default function SideBar({ openSideBar }) {
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar>
-            <LiSideBar onClick={() => navigate("/chooseHub")}>
+            <LiSideBar
+              onClick={() => {
+                navigate("/chooseHub");
+                openSideBar(false);
+              }}
+            >
               <HomeIcon />
               {t("home")}
             </LiSideBar>

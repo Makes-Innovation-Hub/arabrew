@@ -21,12 +21,14 @@ import {
 import {
   useGetAllJobsQuery,
   useGetJobByIdQuery,
+  useDeleteJobMutation,
 } from "../../../features/jobStore/jobAPI";
 
 function MyPostedJob() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
+
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (isError) {
