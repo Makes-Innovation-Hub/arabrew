@@ -28,7 +28,7 @@ function MyPostedJob() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
-  const [deleteJob] = useDeleteJobMutation();
+
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (isError) {
@@ -38,22 +38,6 @@ function MyPostedJob() {
   // console.log(job)
   const handleAppliers = () => {
     navigate(`/appliers/${job?.job.id}`);
-  };
-
-  const handleDelete = async () => {
-    try {
-      const response = await deleteJob(id);
-      if (response.error) {
-        console.error("Error deleting job:", response.error);
-        console.error("Error data:", response.error.data);
-        console.error("Original status:", response.error.originalStatus);
-        return;
-      }
-      console.log("Job deleted successfully");
-      navigate("/myJobsPosted");
-    } catch (error) {
-      console.error("Error deleting job:", error);
-    }
   };
 
   return (
@@ -101,8 +85,6 @@ function MyPostedJob() {
           <AppliedSection onClick={handleAppliers}>
             {job?.job.applicants.length} Applied
           </AppliedSection>
-
-          <button onClick={handleDelete}>Delete</button>
         </StyledMyJobPage>
       )}
     </div>
