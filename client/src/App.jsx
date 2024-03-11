@@ -78,7 +78,7 @@ const router = createBrowserRouter([
     element: <ConversationPage />,
   },
   {
-    path: "/chat-page/:sender/:reciever/:originLang/:targetLang",
+    path: "/chat-page/:chatId",
     element: <Chat />,
     errorElement: <>Error...</>,
   },

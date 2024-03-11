@@ -53,10 +53,10 @@ export const addMessageToChat = async (
   try {
     const updatedChat = await Chat.findOneAndUpdate(
       { $or: [{ users: usersArr }, { users: usersArrSwitched }] },
-      { $push: { messagesHistory: newMsgObj } },
+      { $push: { messages: newMsgObj } },
       options
     );
-    const messagesHistory = updatedChat.messagesHistory;
+    const messagesHistory = updatedChat.messages;
     return newMsgObj;
   } catch (error) {
     console.log("error", error);
