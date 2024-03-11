@@ -118,14 +118,14 @@ export const AttendButton = styled.button`
 `;
 export const AttendeesPageStyle = styled.div`
   display: flex;
-  justify-content: start; /* Align icons to the right */
+  justify-content: start;
   align-items: center;
   gap: 10px;
 `;
 export const AttendeesPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: start; /* Align icons to the right */
+  justify-content: start;
   align-items: self-start;
   gap: 20px;
 `;
