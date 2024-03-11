@@ -51,6 +51,21 @@
     "post_job_button": "Post Job",
     "modal_max_character_error": "Description should not exceed 500 characters",
     "modal_max_character_error_title_company": "Description should not exceed 30 characters",
-    "select": "Select"
+    "select": "Select",
+    "open_jobs": "Open Jobs",
+    "error_fetching_jobs": "Error fetching jobs",
+    "user_not_found": "User not found. Please log in.",
+    "error_fetching_job_details": "Error fetching job details",
+    "my_post_job_title": "My Job Posts",
+    "my_posted_job_page": "My Posted Job Page",
+    "applied": "Applied",
+    "send_resume": "Send Resume",
+    "meetups": "Meetups",
+    "no_upcoming_meetups": "No upcoming meetups",
+    "error_fetching_meetup_details": "Error occurred while fetching meetup details.",
+    "meetup_page": "Meetup Page",
+    "no_meetups_posted": "No Meetups Posted",
+    "my_meetups_posts": "My Meetups Posts",
+    "delete_meetup_button": "Delete Meetup"
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useCreateMeetupMutation } from "../../features/meetupApi";
@@ -60,10 +60,10 @@ const MeetupForm = () => {
   };
 
   // Set text direction to left-to-right for Hebrew or Arabic
-  const getTextDirection = () => {
+  const getTextDirection = useCallback(() => {
     const lang = i18n.language;
     return lang === "he" || lang === "ar" ? "rtl" : "ltr";
-  };
+  }, [localStorage.getItem("lang")]);
 
   return (
     <div dir={getTextDirection()}>

@@ -18,21 +18,27 @@ import {
   useGetUserJobPostsQuery,
 } from "../../../features/jobStore/jobAPI";
 import MyJobPostsComponent from "./MyJobPostsComponent";
+import { useTranslation } from "react-i18next";
 
 function MyJobPosts() {
+  const { t } = useTranslation();
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const navigate = useNavigate();
+
   if (!storedUser) {
-    return <div>User not found. Please log in.</div>;
+    return <div>{t("user_not_found")}</div>;
   }
+
   const { data, isLoading, isError, isSuccess } = useGetUserJobPostsQuery();
+
   if (!data) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   }
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   } else if (isError) {
-    return <div>Error fetching job details</div>;
+    return <div>{t("error_fetching_job_details")}</div>;
   }
 
   const handleClick = (jobId) => {
@@ -53,7 +59,7 @@ function MyJobPosts() {
       </StyledMargin>
       <StyledMyJobPage>
         <Center>
-          <StyledMyPostJobTitle> My Job Posts</StyledMyPostJobTitle>
+          <StyledMyPostJobTitle>{t("my_job_posts")}</StyledMyPostJobTitle>
         </Center>
         <StyledMargin direction="vertical" margin="1.8rem" />
         {data.jobPosts.map((job) => (
