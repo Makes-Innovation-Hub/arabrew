@@ -22,8 +22,8 @@ import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegi
 const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  const username = useSelector((state) => state.userRegister.name);
-  const loggedUser = useSelector((state) => state.userRegister);
+  // const username = useSelector((state) => state.userRegister.name);
+  // const loggedUser = useSelector((state) => state.userRegister);
   // const url = useLocation();
 
   const { data: chats, error, isLoading } = useGetUserChatsListQuery("hobbies");
@@ -65,14 +65,11 @@ const ConversationPage = () => {
                     key={i}
                     nameCon={chat.name}
                     contentCon={
-                      chat?.lastCon
-                        ? chat.lastCon[
-                            `content_${loggedUser.userDetails.nativeLanguage}`
-                          ]
-                        : ""
+                      chat.lastMessageContent ? chat.lastMessageContent : ""
                     }
-                    profile={chat.profile}
+                    profile={chat.avatar}
                     userId={chat.userId}
+                    chatId={chat.chatId}
                   />
                 );
               })}

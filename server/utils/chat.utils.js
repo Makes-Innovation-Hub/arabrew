@@ -5,5 +5,5 @@ export const newestMessage = (messagesArr) => {
 };
 
 export const latestMessage = (messagesArr) => {
-  return messagesArr.sort((a, b) => a.date - b.date)[0];
+  return messagesArr.sort((a, b) => b.date - a.date)[0];
 };
