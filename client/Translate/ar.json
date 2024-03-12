@@ -66,6 +66,7 @@
     "meetup_page": "صفحة الاجتماع",
     "no_meetups_posted": "لا توجد اجتماعات معلنة",
     "my_meetups_posts": "منشوراتي للاجتماعات",
-    "delete_meetup_button": "حذف اللقاء"
+    "delete_meetup_button": "حذف اللقاء",
+    "delete_job_button": "حذف الوظيفة"
   }
 }
