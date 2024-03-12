@@ -1,5 +1,5 @@
-import React from "react";
-import { StyledMargin } from "../../styles";
+import React, { useState } from "react";
+import { StyledMargin, UpcomingStyledPage } from "../../styles";
 import { Header } from "../../components";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "../../assets";
@@ -21,12 +21,28 @@ import {
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { RiPriceTag2Line } from "react-icons/ri";
-import { useGetMeetupByIdQuery } from "../../features/meetupApi";
+import {
+  useGetMeetupByIdQuery,
+  useDeleteMeetupMutation,
+} from "../../features/meetupApi";
 
 function SpecificMeetup() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading, isError, isSuccess } = useGetMeetupByIdQuery(id);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteMeetup] = useDeleteMeetupMutation();
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteMeetup(id);
+      navigate("/meetupsHomePage");
+    } catch (error) {
+      console.error("Error deleting meetup:", error);
+      setIsDeleting(false);
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -54,6 +70,11 @@ function SpecificMeetup() {
     window.history.back();
   };
 
+  const handleAttendeesClick = (meetupId) => {
+    // Navigate to the attendees page
+    navigate(`/Attendeespage/${meetupId}`);
+  };
+
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -66,6 +87,22 @@ function SpecificMeetup() {
           title={"Meetup Page"}
         />
       </StyledMargin>
+      <UpcomingStyledPage>
+        {data && data.data && (
+          <MeetupDetailsDisplay
+            key={data.data._id}
+            title={title}
+            date={date}
+            time={time}
+            location={location}
+            price={price}
+            description={description}
+            attendees={attendees}
+            meetupId={id}
+            isOwner={true}
+          />
+        )}
+      </UpcomingStyledPage>
       <StyledMyJobPage>
         <MyMeetupTitle>{title}</MyMeetupTitle>
 
@@ -117,10 +154,14 @@ function SpecificMeetup() {
         ) : (
           <div>No attendees yet</div>
         )}
+
+        <StyledMargin direction="vertical" margin="2rem" />
+        <button onClick={handleDelete} disabled={isDeleting}>
+          {isDeleting ? "Deleting..." : "Delete Meetup"}
+        </button>
       </StyledMyJobPage>
     </div>
   );
-  //<MyMeetupImage src='https://s3-alpha-sig.figma.com/img/64d9/8869/c74d361618fe50c4acd83255cee94bde?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HoAynPkVjlWjoDRKRiO7fORemUY7uwfg3e~hhD8p75jL0T4FO9ER5GwEnMd-Fq3hpbLzumMJQhF1xBjlFccEaRQ39vSgqxMVy2bFsSJ6FAJel6GQD2cFhU90pg49BnIDETuEinU4vOT-PGCRDF4dwL3vmmFX6HvoEu7ucv6SXNfVV6OAhJfpK0cAYiO2JD6pYjdhe9JXtdhLEFzwLrsa4QYin90Zq3FEDIxOUvgoLJ1Nqiuh63uoqB4lSC-xXV5GbzTWLrUpV9~qg6ZfF8dyhww3g5fseki0WGlAVKE8dK73wmWoXOCwRGg6KHd-UYaIdDHJZXSF-ERWZyK6WRZLOw__'/>
 }
 
 export default SpecificMeetup;

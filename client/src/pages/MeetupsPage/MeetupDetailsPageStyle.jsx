@@ -1,4 +1,8 @@
 import React from "react";
+import { IoCalendarNumberOutline } from "react-icons/io5";
+import { CiLocationOn } from "react-icons/ci";
+import { RiPriceTag2Line } from "react-icons/ri";
+import { Link, useNavigate } from "react-router-dom";
 import {
   MeetupWrapper,
   Title,
@@ -7,58 +11,105 @@ import {
   AttendeesHeaderText,
   AttendeesAvatarIcon,
   AttendButton,
+  AboutmeText,
 } from "../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 import {
-  TimeIcon,
-  LocationIcon,
-  CostIcon,
-} from "../../styles/MeetupDetailsIcons/Icons";
+  MyMeetupDescriptionSection,
+  MyMeetupH1,
+  MyMeetupText,
+  StyledRow,
+} from "./StyledSpecificMeetup";
+import { StyledMargin } from "../../styles";
 
-export const MeetupDetailsDisplay = ({
+const MeetupDetailsDisplay = ({
   title,
   date,
   time,
   location,
   price,
   description,
-  timezone,
   isAttending,
   attendees,
   onAttendClick,
+  meetupId,
+  isOwner,
 }) => {
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
+  const navigate = useNavigate();
 
-  // Adjust the time based on the provided timezone
-  const adjustedTime = `${formattedDate} ${time} ${timezone || "PM"}`;
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      timeZoneName: "short",
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  }
+
+  const handleAttendeesClick = (meetupId) => {
+    // Navigate to the attendees page
+    navigate(`/Attendeespage/${meetupId}`);
+  };
 
   return (
     <MeetupWrapper>
       <Title>{title}</Title>
-      <InfoText fontWeight={500}>
-        <TimeIcon /> {adjustedTime}
-      </InfoText>
-      <InfoText>
-        <LocationIcon /> {location}
-      </InfoText>
-      <InfoText>
-        <CostIcon /> {price}
-      </InfoText>
-      <HeaderText>About</HeaderText>
-      <InfoText>{description}</InfoText>
-      <AttendeesHeaderText>Attendees</AttendeesHeaderText>
+
+      <StyledRow>
+        <IoCalendarNumberOutline />
+        <MyMeetupText>
+          {formatDate(date)}, {time}
+        </MyMeetupText>
+      </StyledRow>
+
+      <StyledMargin direction="vertical" margin="1.8rem" />
+
+      <StyledRow>
+        <CiLocationOn size={18} />
+        <MyMeetupText>{location}</MyMeetupText>
+      </StyledRow>
+
+      <StyledMargin direction="vertical" margin="1.8rem" />
+
+      <StyledRow>
+        <RiPriceTag2Line />
+        <MyMeetupText>{price}</MyMeetupText>
+      </StyledRow>
+
+      <StyledMargin direction="vertical" margin="4rem" />
+      <MyMeetupH1>About</MyMeetupH1>
+
+      <MyMeetupDescriptionSection>
+        {description}
+        <StyledMargin direction="vertical" margin="1.8rem" />
+      </MyMeetupDescriptionSection>
+
+      <StyledMargin direction="vertical" margin="4rem" />
+      <AttendeesHeaderText onClick={() => handleAttendeesClick(meetupId)}>
+        Attendees
+      </AttendeesHeaderText>
+
       <AttendeesAvatarIcon>
         {attendees.map((attendee) => (
-          <img key={attendee.id} src={attendee.avatar} alt={attendee.name} />
+          <Link
+            key={attendee.id}
+            to={`/profiled?type=hobbies&userId=${attendee.id}`}
+          >
+            <img key={attendee.id} src={attendee.avatar} alt={attendee.name} />
+          </Link>
         ))}
       </AttendeesAvatarIcon>
 
-      <AttendButton isAttending={isAttending} onClick={onAttendClick}>
-        {isAttending ? "Cancel Attend" : "Attend"}
-      </AttendButton>
+      {!isOwner && (
+        <AttendButton isAttending={isAttending} onClick={onAttendClick}>
+          {isAttending ? "Cancel Attend" : "Attend"}
+        </AttendButton>
+      )}
     </MeetupWrapper>
   );
 };
+
+export default MeetupDetailsDisplay;

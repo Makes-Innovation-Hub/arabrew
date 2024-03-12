@@ -73,7 +73,9 @@ export const createChat = async (req, res, next) => {
 //! @access  NOT SET YET
 export const getChatById = async (req, res, next) => {
   try {
-    const chat = await ChatCollection.findById(req.params.chatId);
+    const chat = await ChatCollection.findById(req.params.chatId).populate(
+      "users"
+    );
 
     if (!chat) {
       res.status(404);
@@ -81,16 +83,19 @@ export const getChatById = async (req, res, next) => {
     }
     // console.log("check request user ", req.user.id);
     if (
-      chat.users.every((userId) => {
+      chat.users.every((user) => {
         // console.log(userId);
         // console.log(userId.toString() !== req.user.id);
-        return userId.toString() !== req.user.id;
+        return !user._id.equals(req.user.id);
       })
     ) {
       res.status(STATUS_CODES.UNAUTHORIZED);
       throw new Error("User not authorized");
     }
-    return res.status(200).json(chat.toJSON());
+    const receiverUser = chat.users.find(
+      (user) => !user._id.equals(req.user.id)
+    );
+    return res.status(200).json({ chat: chat.toJSON(), receiverUser });
   } catch (error) {
     errorLogger(error, req, res, next);
     // next(error);
@@ -134,17 +139,22 @@ export const getUserChatsList = async (req, res, next) => {
       throw new Error("failed retrieving no chats were found");
     }
     if (userChats.length > 0) {
+      console.log("userChats", userChats);
       userChats = await Promise.all(
         userChats.map(async (chat) => {
           const { users, messages } = chat;
-          const receiverUser = users.find((user) => user.id !== userId);
-          const senderUser = users.find((user) => user.id === userId);
+          const receiverUser = users.find((user) => !user._id.equals(userId));
+          const senderUser = users.find((user) => user._id.equals(userId));
           // const senderLang = senderUser.userDetails.nativeLanguage;
           const lastMessageContent = latestMessage(messages)?.originalContent;
           //   currently no translation return original message
           // latestMessage(messages)?.translated_Content[senderLang];
           console.log("chat info", chat);
           return {
+            userId,
+            users,
+            receiverUser,
+            senderUser,
             chatId: chat._id,
             avatar: receiverUser.avatar,
             name: receiverUser.name,
@@ -183,10 +193,11 @@ export const addMessage = async (req, res, next) => {
       throw new Error(`No Chat With this Chat ID`);
     }
     let sender = req.user.id;
-    let { content } = req.body;
+    let originalContent = req.body.content;
+    console.log("add message req body", req.body);
     let newMessage = {
       sender,
-      originalContent: content,
+      originalContent,
       date: new Date(),
       translatedContent: {},
     };

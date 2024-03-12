@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   BriefcaseIcon,
   Hamburger,
@@ -15,11 +15,15 @@ import {
   StyledPage,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import * as Constants from "../../../constants/constants";
 
 export default function ChooseHubPage() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
+
   return (
     <div>
       {isSideBar && (
@@ -42,27 +46,27 @@ export default function ChooseHubPage() {
         />
       </StyledMargin>
       <StyledPage>
-        <PageTitle24>Choose your hub</PageTitle24>
+        <PageTitle24>{t("choose_your_hub")}</PageTitle24>
         <MainButton
           onClick={() => {
             navigate(Constants.PATHS.WORK);
           }}
         >
-          Arabrew - Work <BriefcaseIcon />
+          {t("work")} - Work <BriefcaseIcon />{" "}
         </MainButton>
         <MainButton
           onClick={() => {
             navigate(Constants.PATHS.CONVERSATION);
           }}
         >
-          Arabrew - Hobbies <LaughEmoji />
+          {t("hobbies")} - Hobbies <LaughEmoji />{" "}
         </MainButton>
         <MainButton
           onClick={() => {
             navigate(Constants.PATHS.MEETUPS_HOMEPAGE);
           }}
         >
-          Arabrew - Meetup <UsersIcon />
+          {t("meetup")} - Meetup <UsersIcon />{" "}
         </MainButton>
       </StyledPage>
     </div>

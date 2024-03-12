@@ -10,13 +10,14 @@ import {
   MainButton,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-export default function WorkHomePage() {
+export default function WorkPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
 
   return (
-    // same style as the other pages-Get
     <div>
       {isSideBar && <SideBar openSideBar={setIsSideBar} />}
       <StyledMargin direction="vertical" margin="5%">
@@ -30,16 +31,18 @@ export default function WorkHomePage() {
         />
       </StyledMargin>
       <StyledPage>
-        <PageTitle24>Arabrew - Work</PageTitle24>
+        <PageTitle24>{t("work_page")}</PageTitle24>
         <MainButton onClick={() => navigate("/Work-conversation?hub=work")}>
-          Chat
+          {t("chat")}
         </MainButton>
         <MainButton onClick={() => navigate("/job-board")}>
-          Job Board
+          {t("job_board")}
         </MainButton>
-        <MainButton onClick={() => navigate("/postJob")}>Post A Job</MainButton>
+        <MainButton onClick={() => navigate("/postJob")}>
+          {t("post_job")}
+        </MainButton>
         <MainButton onClick={() => navigate("/myJobsPosted")}>
-          My Job Posts
+          {t("my_job_posts")}
         </MainButton>
       </StyledPage>
     </div>

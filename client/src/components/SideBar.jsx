@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import {
   ModalSideBar,
   StyledSideBar,
@@ -28,10 +28,29 @@ import { cleanUser } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
 import * as Constants from "../../constants/constants.js";
-
+import { useTranslation } from "react-i18next";
 export default function SideBar({ openSideBar }) {
+  const { t, i18n } = useTranslation();
   const [lenOptions, setLenOptions] = useState(false);
-  const [whichLang, setWhichLang] = useState(0);
+  const [whichLang, setWhichLang] = useState(() => {
+    const savedLang = localStorage.getItem("lang");
+    return savedLang === "ar" ? 2 : savedLang === "he" ? 1 : 0;
+  });
+
+  useEffect(() => {
+    // Save the chosen language to local storage
+    if (whichLang === 2) {
+      localStorage.setItem("lang", "ar");
+    } else if (whichLang === 1) {
+      localStorage.setItem("lang", "he");
+    } else {
+      localStorage.setItem("lang", "en");
+    }
+
+    const langKey = whichLang === 2 ? "ar" : whichLang === 1 ? "he" : "en";
+    i18n.changeLanguage(langKey);
+  }, [whichLang, i18n]);
+
   let langArr = [
     [Eng, Constants.LANGUAGES.ENGLISH],
     [HE, Constants.LANGUAGES.HEBREW],
@@ -42,6 +61,7 @@ export default function SideBar({ openSideBar }) {
   const navigate = useNavigate();
   const { userData: loggedUser } = useContext(UserContext);
   const baseClientUrl = `${import.meta.env.VITE_SERVER_BASE_URL}:5173`;
+
   return (
     <>
       <ModalSideBar
@@ -62,9 +82,14 @@ export default function SideBar({ openSideBar }) {
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar>
-            <LiSideBar onClick={() => navigate(Constants.PATHS.CHOOSE_HUB)}>
+            <LiSideBar
+              onClick={() => {
+                navigate(Constants.PATHS.CHOOSE_HUB);
+                openSideBar(false);
+              }}
+            >
               <HomeIcon />
-              Home
+              {t("home")}
             </LiSideBar>
           </LinkSideBar>
           <LinkSideBar>
@@ -75,7 +100,7 @@ export default function SideBar({ openSideBar }) {
             >
               {" "}
               <ProfileIcon />
-              Profile
+              {t("profile")}
             </LiSideBar>
           </LinkSideBar>
 
@@ -115,11 +140,11 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 dispatch(cleanUser());
-                sessionStorage.removeItem("loggedUser");
+                sessionStorage.removeItem(Constants.MENU_ITEMS.LOGOUT);
                 logout({ returnTo: baseClientUrl });
               }}
             >
-              Log Out
+              {t("logout")}
             </StyledHiddenButton>
           </LiSideBar>
         </UlSideBar>

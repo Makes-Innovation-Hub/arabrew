@@ -18,6 +18,7 @@ import Modal from "../../styles/Modal/Modal";
 import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
 import { useCreateJobMutation } from "../../features/jobStore/jobAPI";
 import { addJobDetail } from "../../features/jobStore/JobSlice";
+import { useTranslation } from "react-i18next";
 import * as Constants from "../../../constants/constants";
 
 function PostJob() {
@@ -27,6 +28,7 @@ function PostJob() {
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
   const [isDetailAdded, setIsDetailAdded] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const [createJob, { isSuccess, isError, error }] = useCreateJobMutation();
 
@@ -76,7 +78,7 @@ function PostJob() {
     if (workDescriptionValue.length === 500) {
       setIsMaxError(true);
       setShowModal(true);
-      setModalText("Description should not exceed 500 characters");
+      setModalText(t("modal_max_character_error"));
     }
   }, [workDescriptionCharacterCount]);
 
@@ -84,7 +86,7 @@ function PostJob() {
     if (jobTitleInputValue.length === 30 || companyNameValue.length === 30) {
       setIsMaxError(true);
       setShowModal(true);
-      setModalText("Description should not exceed 30 characters");
+      setModalText(t("modal_max_character_error_title_company"));
     }
   }, [jobTitleCharacterCount, companyNameCharacterCount]);
 
@@ -99,29 +101,31 @@ function PostJob() {
     };
     try {
       const result = await createJob(jobDetails).unwrap();
-      // console.log(result);
       navigate(`/myPostedJob/${result.newJob.id}`);
-      // console.log(storedUser.id)
-      //   console.log(jobDetails);
     } catch (error) {
       console.log("error creating job", error);
     }
   };
 
+  const getTextDirection = () => {
+    const lang = i18n.language;
+    return lang === "he" || lang === "ar" ? "rtl" : "ltr";
+  };
+
   return (
-    <div>
+    <div dir={getTextDirection()}>
       <Header
         leftIcon={
           <Link to={Constants.PATHS.WORK}>
             <ArrowLeft />
           </Link>
         }
-        title={"Post a Job"}
+        title={t("post_job")}
       />
       <StyledPage height="1000px">
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add Job Title</StyledPageTitle>
+          <StyledPageTitle>{t("add_job_title")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledInput
@@ -131,20 +135,20 @@ function PostJob() {
           onChange={(e) =>
             setJobTitleInput({ ...jobTitleInput, value: e.target.value })
           }
-          placeholder="Write Here...For example: Chef"
+          placeholder={t("write_here_job_title")}
         />
         <StyledMargin direction="vertical" margin="2.6rem" />
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
           <StyledSpan fontSize="12px" color="#7F8790" alignSelf="flex-end">
-            {30 - jobTitleCharacterCount} Character
+            {30 - jobTitleCharacterCount} {t("character")}
           </StyledSpan>
         </Flex>
 
         {/* Company Info */}
         <StyledMargin direction="vertical" margin="2.5rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add Company Name</StyledPageTitle>
+          <StyledPageTitle>{t("add_company_name")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledInput
@@ -154,20 +158,20 @@ function PostJob() {
           onChange={(e) =>
             setCompanyNameInput({ ...companyNameInput, value: e.target.value })
           }
-          placeholder="Write Here...For example: Google"
+          placeholder={t("write_here_company_name")}
         />
         <StyledMargin direction="vertical" margin="2.6rem" />
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
           <StyledSpan fontSize="12px" color="#7F8790" alignSelf="flex-end">
-            {30 - companyNameCharacterCount} Character
+            {30 - companyNameCharacterCount} {t("character")}
           </StyledSpan>
         </Flex>
         {/* add city */}
 
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add City</StyledPageTitle>
+          <StyledPageTitle>{t("add_city")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledInput
@@ -177,19 +181,19 @@ function PostJob() {
           onChange={(e) =>
             setCityInput({ ...cityInput, value: e.target.value })
           }
-          placeholder="Write Here...For example: New York"
+          placeholder={t("write_here_city")}
         />
         <StyledMargin direction="vertical" margin="2.6rem" />
 
         {/* work model */}
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Work Model</StyledPageTitle>
+          <StyledPageTitle>{t("work_model")}</StyledPageTitle>
         </StyledMargin>
 
         <StyledWorkModelDropDown
           optionsArray={workModelOptions}
-          placeHolder="Select"
+          placeHolder={t("select")}
           selected={workModelInput}
           setSelected={setWorkModelInput}
           isSearchable={false}
@@ -199,13 +203,12 @@ function PostJob() {
         {/* Add Job Description*/}
         <StyledMargin direction="vertical" margin="2.5rem" />
         <StyledMargin direction="horizontal" margin="35rem">
-          <StyledPageTitle>Add Job Description</StyledPageTitle>
+          <StyledPageTitle>{t("add_job_description")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
         <StyledTextArea
           value={workDescriptionValue}
-          placeholder="Write Here...For example: Experienced Chef is needed in “Samir” restaurant at Ramla 
-                    "
+          placeholder={t("write_here_job_description")}
           maxLength={500}
           onChange={(e) =>
             setWorkDescriptionInputInput({
@@ -218,7 +221,7 @@ function PostJob() {
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
           <StyledSpan fontSize="12px" color="#7F8790" alignSelf="flex-end">
-            {500 - workDescriptionCharacterCount} Character
+            {500 - workDescriptionCharacterCount} {t("character")}
           </StyledSpan>
         </Flex>
 
@@ -259,7 +262,7 @@ function PostJob() {
               ? "#396d37"
               : "#d7ddd6"
           }
-          text={"Post Job"}
+          text={t("post_job")}
         ></StyledButton>
       </StyledPage>
     </div>

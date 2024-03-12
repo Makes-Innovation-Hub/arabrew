@@ -15,19 +15,16 @@ import {
   useGetMyMeetupsQuery,
 } from "../../features/meetupApi";
 import * as Constants from "../../../constants/constants";
+import { useTranslation } from "react-i18next";
 
 function MyMeetups() {
+  const { t } = useTranslation();
   const [isSideBar, setIsSideBar] = useState(false);
   const { data, error, isLoading } = useGetMyMeetupsQuery();
   const navigation = useNavigate();
   console.log(data);
 
-  if (isLoading) return <div>Loading...</div>;
-
-  // if (error) {
-  //   console.log(error);
-  //   return <div>Error occurred while fetching meetups.</div>;
-  // }
+  if (isLoading) return <div>{t("loading")}</div>;
 
   const handleNavigation = (meetupId) => {
     navigation(`/myMeetupPage/${meetupId}`);
@@ -47,15 +44,14 @@ function MyMeetups() {
               <ArrowLeft />
             </Link>
           }
-          title="Meetups"
+          title={t("meetups")}
         />
       </StyledMargin>
       <UpcomingStyledPage>
-        <CenteredText>My Meetups Posts</CenteredText>
+        <CenteredText>{t("my_meetups_posts")}</CenteredText>
 
         {Array.isArray(data?.data) && data?.data.length !== 0 ? (
           <MeetupListStyle>
-            {/* <div> */}
             {data?.data?.map((meetup, i) => (
               <UpcomingDisplay
                 meetupId={meetup.id}
@@ -68,14 +64,10 @@ function MyMeetups() {
                 ownerId={meetup.owner}
               />
             ))}
-            {/* </div> */}
           </MeetupListStyle>
         ) : (
-          <CenteredText>
-            <div>No Meetups Posted</div>
-          </CenteredText>
+          <CenteredText>{t("no_meetups_posted")}</CenteredText>
         )}
-        {/* {error && <CenteredText>No Meetups Posted</CenteredText>}  */}
       </UpcomingStyledPage>
     </div>
   );

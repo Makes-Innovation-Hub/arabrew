@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const DisplayChatsStyle = styled.div`
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   background-color: #ffffff;
   display: flex;
   align-items: center;

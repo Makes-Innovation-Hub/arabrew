@@ -21,7 +21,18 @@ export const PATHS = {
 };
 
 export const LANGUAGES = {
+  LANG: "lang",
   ENGLISH: "English (US)",
   ARABIC: "عربية",
   HEBREW: "עברית",
+};
+
+export const MENU_ITEMS = {
+  HOME: "home",
+  PROFILE: "profile",
+  LOGOUT: "logout",
+};
+
+export const SESSION_STORAGE_KEYS = {
+  LOGGED_USER: "loggedUser",
 };
