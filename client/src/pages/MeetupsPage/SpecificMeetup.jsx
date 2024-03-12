@@ -23,8 +23,9 @@ import { CiLocationOn } from "react-icons/ci";
 import { RiPriceTag2Line } from "react-icons/ri";
 import {
   useGetMeetupByIdQuery,
-  useDeleteMeetupMutation,
+  useUpdateMeetupMutation,
 } from "../../features/meetupApi";
+import MeetupDetailsDisplay from "./MeetupDetailsPageStyle";
 
 function SpecificMeetup() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function SpecificMeetup() {
       setIsDeleting(false);
     }
   };
+  const [showModal, setShowModal] = useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;

@@ -175,3 +175,25 @@ export const StyledAppliersTitle = styled.h1`
   font-weight: 600;
   line-height: 24px;
 `;
+
+export const SendButton = styled.button`
+  background-color: ${({ isSent }) => (isSent ? "#ff0000" : "#50924e")};
+  color: white;
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  width: 80%;
+  margin: 8px;
+  padding: 16px 8px 16px 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 80px 20px;
+  cursor: pointer;
+`;

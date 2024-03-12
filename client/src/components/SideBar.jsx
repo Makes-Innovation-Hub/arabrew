@@ -29,6 +29,7 @@ import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
 import * as Constants from "../../constants/constants.js";
 import { useTranslation } from "react-i18next";
+
 export default function SideBar({ openSideBar }) {
   const { t, i18n } = useTranslation();
   const [lenOptions, setLenOptions] = useState(false);
