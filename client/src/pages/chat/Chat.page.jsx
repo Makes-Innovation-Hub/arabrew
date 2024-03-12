@@ -35,9 +35,6 @@ const Chat = () => {
   // const { sender, receiver, originLang, targetLang } = params;
   // const usersArr = [sender, receiver];
 
-  // const chatUserDetails = state.userDetails;
-  const loggedUserDetails = loggedUser.userDetails;
-
   // const chatData = {
   //   chatId: genChatId(usersArr),
   //   sender: sender,
@@ -61,11 +58,11 @@ const Chat = () => {
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = async () => {
-    // socket.emit("new_message", data);
-    console.log("message: ", msgText);
     if (!msgText) return;
-    const response = await addMessage({ chatId, content: msgText });
-    console.log(response);
+    socket.emit("new_message", msgText, chatId, loggedUser, receiver);
+    // console.log("message: ", msgText);
+    // const response = await addMessage({ chatId, content: msgText });
+    // console.log(response);
     // console.log(data);
     setMsgText("");
   };
@@ -81,17 +78,19 @@ const Chat = () => {
     setMessages((prev) => [...prev, suggestionObj]);
   };
 
-  // useEffect(() => {
-  //   socket = io(ENDPOINT);
-  //   socket.emit("room_setup", data);
-  //   socket.on("message_to_reciever", (newMsg) => {
-  //     setMessages((prev) => [...prev, newMsg]);
-  //   });
-  //   socket.on("message_to_sender", (newMsg) => {
-  //     setMessages((prev) => [...prev, newMsg]);
-  //   });
-  //   // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
-  // }, []);
+  useEffect(() => {
+    if (!chatId) return;
+    socket = io(ENDPOINT);
+    const chatData = { chatId, sender: loggedUser, receiver };
+    socket.emit("room_setup", chatData);
+    socket.on("message_to_receiver", (newMsg) => {
+      setMessages((prev) => [...prev, newMsg]);
+    });
+    socket.on("message_to_sender", (newMsg) => {
+      setMessages((prev) => [...prev, newMsg]);
+    });
+    // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
+  }, [chatId, loggedUser, receiver]);
 
   return (
     <ChatLayout>
@@ -103,7 +102,7 @@ const Chat = () => {
         typedMsg={msgText}
         handleChange={handleChange}
         handleSendMsg={handleSendMsg}
-        loggedUserDetails={loggedUserDetails}
+        loggedUserDetails={loggedUser.userDetails}
         chatUserDetails={receiver}
         currentSuggestions={suggestions}
         setSuggestions={addSuggestionToMsgs}

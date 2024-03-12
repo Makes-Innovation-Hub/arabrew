@@ -191,6 +191,10 @@ export const addMessage = async (req, res, next) => {
     }
     let sender = req.user.id;
     let originalContent = req.body.content;
+    if (!originalContent) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Missing Content");
+    }
     console.log("add message req body", req.body);
     let newMessage = {
       sender,

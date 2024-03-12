@@ -12,6 +12,7 @@ import {
   addMessageToChat,
 } from "./utils/chat_socketIo.js";
 import { requestLogger } from "./middleware/logger.js";
+import ChatCollection from "./models/chat.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -49,8 +50,10 @@ const socket_io = new Server(server, {
 socket_io.on("connection", (socket) => {
   console.log("🟢🟢 Socket.io is active 🟢🟢");
   socket.on("room_setup", (chatData) => {
-    const { chatId, sender, reciever } = chatData;
-    access_chatCollection([sender, reciever])
+    if (!chatData.chatId) return;
+    const { chatId, sender, receiver } = chatData;
+    socket.join(chatId);
+    access_chatCollection([sender, receiver])
       .then((isSuccess) => {
         if (!isSuccess)
           throw new Error("error by finding chat , in room_setup");
@@ -58,33 +61,31 @@ socket_io.on("connection", (socket) => {
       })
       .catch((err) => console.error(err));
   });
-  socket.on("new_message", (newMsg) => {
-    const { chatId, content, sender, reciever, originLang, targetLang } =
-      newMsg;
-    CheckAndTranslateMsg(content, originLang, targetLang)
-      .then((result) => {
+
+  socket.on("new_message", (message, chatId, sender, receiver) => {
+    CheckAndTranslateMsg(
+      message,
+      sender?.userDetails.nativeLanguage,
+      receiver?.userDetails.nativeLanguage
+    )
+      .then(async (result) => {
         if (result.isProfanity) return socket.emit("message_to_sender", result);
         const { translatedMsg } = result;
-        const content_HE = originLang === "HE" ? content : translatedMsg;
-        const content_AR = originLang === "AR" ? content : translatedMsg;
-        addMessageToChat(sender, reciever, content_AR, content_HE)
-          .then((savedMsg) => {
-            if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
-            //*send the message back to the sender
-            const savedMsg_sender = Object.assign({}, savedMsg);
-            savedMsg_sender.content = savedMsg_sender["content_" + originLang];
-            delete savedMsg_sender["content_" + originLang];
-            delete savedMsg_sender["content_" + targetLang];
-            socket.emit("message_to_sender", savedMsg_sender);
-            //*send the message to the reciever
-            const savedMsg_reciever = Object.assign({}, savedMsg);
-            savedMsg_reciever.content =
-              savedMsg_reciever["content_" + targetLang];
-            delete savedMsg_reciever["content_" + targetLang];
-            delete savedMsg_reciever["content_" + originLang];
-            socket.in(chatId).emit("message_to_reciever", savedMsg_reciever);
-          })
-          .catch((err) => console.error(err));
+        const content_HE =
+          sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
+        const content_AR =
+          sender?.userDetails.nativeLanguage === "AR" ? message : translatedMsg;
+        const chat = await ChatCollection.findById(chatId);
+        let newMessage = {
+          sender: sender.id,
+          originalContent: message,
+          date: new Date(),
+          translatedContent: { HE: content_HE, AR: content_AR },
+        };
+        socket.to(chatId).emit("message_to_sender", newMessage);
+        chat.messages.push(newMessage);
+        await chat.save();
+        socket.to(chatId).emit("message_to_receiver", newMessage);
       })
       .catch((err) => console.error(err));
   });
