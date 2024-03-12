@@ -66,6 +66,7 @@
     "meetup_page": "דף פגישה",
     "no_meetups_posted": "לא פורסמו פגישות",
     "my_meetups_posts": "פגישות שלי",
-    "delete_meetup_button": "מחק מפגש"
+    "delete_meetup_button": "מחק מפגש",
+    "delete_job_button": "מחק משרה"
   }
 }

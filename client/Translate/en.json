@@ -66,6 +66,7 @@
     "meetup_page": "Meetup Page",
     "no_meetups_posted": "No Meetups Posted",
     "my_meetups_posts": "My Meetups Posts",
-    "delete_meetup_button": "Delete Meetup"
+    "delete_meetup_button": "Delete Meetup",
+    "delete_job_button": "Delete job"
   }
 }
