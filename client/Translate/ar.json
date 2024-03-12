@@ -51,6 +51,21 @@
     "post_job_button": "نشر الوظيفة",
     "modal_max_character_error": "الوصف لا يجب أن يتجاوز 500 حرف",
     "modal_max_character_error_title_company": "الوصف لا يجب أن يتجاوز 30 حرفًا",
-    "select": "اختر"
+    "select": "اختر",
+    "open_jobs": "الوظائف المتاحة",
+    "error_fetching_jobs": "حدث خطأ أثناء جلب الوظائف",
+    "user_not_found": "المستخدم غير موجود. يرجى تسجيل الدخول.",
+    "error_fetching_job_details": "حدث خطأ أثناء جلب تفاصيل الوظيفة",
+    "my_post_job_title": "منشوراتي الوظيفية",
+    "my_posted_job_page": "صفحة الوظيفة التي نشرتها",
+    "applied": "تم التقديم",
+    "send_resume": "أرسل السيرة الذاتية",
+    "meetups": "الاجتماعات",
+    "no_upcoming_meetups": "لا توجد اجتماعات قادمة",
+    "error_fetching_meetup_details": "حدث خطأ أثناء جلب تفاصيل الاجتماع.",
+    "meetup_page": "صفحة الاجتماع",
+    "no_meetups_posted": "لا توجد اجتماعات معلنة",
+    "my_meetups_posts": "منشوراتي للاجتماعات",
+    "delete_meetup_button": "حذف اللقاء"
   }
 }
