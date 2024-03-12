@@ -16,13 +16,12 @@ import { useTranslation } from "react-i18next";
 function MyMeetups() {
   const { t } = useTranslation();
   const [isSideBar, setIsSideBar] = useState(false);
-  const { data, error, isLoading } = useGetAllMeetupsQuery();
+  const { data, isError, isLoading } = useGetAllMeetupsQuery();
   const navigation = useNavigate();
 
   if (isLoading) return <div>{t("loading")}</div>;
 
-  if (error) {
-    console.log(error);
+  if (isError) {
     return <div>{t("error_fetching_meetups")}</div>;
   }
 
@@ -50,7 +49,7 @@ function MyMeetups() {
       <UpcomingStyledPage>
         <CenteredText>{t("upcoming_meetups")}</CenteredText>
 
-        {Array.isArray(data.data) && data.data.length !== 0 ? (
+        {Array.isArray(data.data) && data.data.length > 0 ? (
           <MeetupListStyle>
             {data?.data?.map((meetup, i) => (
               <UpcomingDisplay

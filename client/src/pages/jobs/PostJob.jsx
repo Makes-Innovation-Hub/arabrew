@@ -19,6 +19,8 @@ import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
 import { useCreateJobMutation } from "../../features/jobStore/jobAPI";
 import { addJobDetail } from "../../features/jobStore/JobSlice";
 import { useTranslation } from "react-i18next";
+import { MeetupButton } from "../../styles/Meetup/MeetupStyledPage";
+import { JopPostButton } from "./myPostedJobspage/StyledMyJobPage";
 
 function PostJob() {
   const dispatch = useDispatch();
@@ -90,6 +92,18 @@ function PostJob() {
   }, [jobTitleCharacterCount, companyNameCharacterCount]);
 
   const handlePost = async () => {
+    if (
+      !jobTitleInputValue ||
+      !companyNameValue ||
+      !cityValue ||
+      !workModelValue ||
+      !workDescriptionValue
+    ) {
+      setIsMaxError(true);
+      setShowModal(true);
+      setModalText("Please fill out all fields");
+      return;
+    }
     const jobDetails = {
       title: jobTitleInput.value,
       company: companyNameInput.value,
@@ -121,7 +135,7 @@ function PostJob() {
         }
         title={t("post_job")}
       />
-      <StyledPage height="1000px">
+      <StyledPage>
         <StyledMargin direction="vertical" margin="1.75rem" />
         <StyledMargin direction="horizontal" margin="35rem">
           <StyledPageTitle>{t("add_job_title")}</StyledPageTitle>
@@ -231,38 +245,10 @@ function PostJob() {
             modalText={modalText}
           />
         )}
-        <StyledMargin direction="vertical" margin="5rem" />
-
-        <StyledButton
-          to={"#"}
-          disabled={
-            !jobTitleInputValue ||
-            !companyNameValue ||
-            !cityValue ||
-            !workModelValue ||
-            !workDescriptionValue
-          }
-          onClick={handlePost}
-          bg={
-            jobTitleInputValue &&
-            companyNameValue &&
-            cityValue &&
-            workModelValue &&
-            workDescriptionValue
-              ? "#50924E"
-              : "#d7ddd6"
-          }
-          hoverBg={
-            jobTitleInputValue &&
-            companyNameValue &&
-            cityValue &&
-            workModelValue &&
-            workDescriptionValue
-              ? "#396d37"
-              : "#d7ddd6"
-          }
-          text={t("post_job")}
-        ></StyledButton>
+        <StyledMargin direction="vertical" margin="3rem" />
+        <JopPostButton onClick={handlePost} text={t("post_job")}>
+          Post Job
+        </JopPostButton>
       </StyledPage>
     </div>
   );
