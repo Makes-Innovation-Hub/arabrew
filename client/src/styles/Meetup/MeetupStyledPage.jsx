@@ -83,6 +83,7 @@ export const TimeIcon = () => (
     </svg>
   </TimeIconWrapper>
 );
+
 export const UpdateButton = styled.button`
   width: 100%;
   padding: 10px 20px;

@@ -27,6 +27,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { cleanUser } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
+import * as Constants from "../../constants/constants.js";
 import { useTranslation } from "react-i18next";
 
 export default function SideBar({ openSideBar }) {
@@ -52,9 +53,9 @@ export default function SideBar({ openSideBar }) {
   }, [whichLang, i18n]);
 
   let langArr = [
-    [Eng, "English (US)"],
-    [HE, "עברית"],
-    [AR, "عربيه"],
+    [Eng, Constants.LANGUAGES.ENGLISH],
+    [HE, Constants.LANGUAGES.HEBREW],
+    [AR, Constants.LANGUAGES.ARABIC],
   ];
   const { logout } = useAuth0();
   const dispatch = useDispatch();
@@ -84,7 +85,7 @@ export default function SideBar({ openSideBar }) {
           <LinkSideBar>
             <LiSideBar
               onClick={() => {
-                navigate("/chooseHub");
+                navigate(Constants.PATHS.CHOOSE_HUB);
                 openSideBar(false);
               }}
             >
@@ -95,7 +96,7 @@ export default function SideBar({ openSideBar }) {
           <LinkSideBar>
             <LiSideBar
               onClick={() => {
-                navigate("/profile", { state: loggedUser });
+                navigate(Constants.PATHS.PROFILE, { state: loggedUser });
               }}
             >
               {" "}
@@ -140,7 +141,7 @@ export default function SideBar({ openSideBar }) {
             <StyledHiddenButton
               onClick={() => {
                 dispatch(cleanUser());
-                sessionStorage.removeItem("loggedUser");
+                sessionStorage.removeItem(Constants.MENU_ITEMS.LOGOUT);
                 logout({ returnTo: baseClientUrl });
               }}
             >

@@ -13,6 +13,8 @@ import {
 } from "../../styles";
 import { ArrowLeft } from "../../assets";
 import { addDetail } from "../../features/userRegister/userRegisterSlice";
+import * as Constants from "../../../constants/constants";
+
 const popularWorkFields = [
   "Accounting",
   "Aerospace",
@@ -105,13 +107,13 @@ const Occupation = () => {
     dispatch(addDetail(workFieldInput));
     setOccupationInput({ ...occupationInput, value: "" });
     setWorkFieldInput({ ...workFieldInput, value: "" });
-    navigate("/resumePage");
+    navigate(Constants.PATHS.RESUME_PAGE);
   };
   return (
     <div>
       <Header
         leftIcon={
-          <Link to="/bioPage">
+          <Link to={Constants.PATHS.BIO_PAGE}>
             <ArrowLeft />
           </Link>
         }
@@ -206,7 +208,7 @@ const Occupation = () => {
           </StyledSpan>
         </Flex>
         <StyledButton
-          to={"/resumePage"}
+          to={Constants.PATHS.RESUME_PAGE}
           disabled={!occupationValue || !workFieldValue}
           onClick={handleSaveAndNext}
           bg={occupationValue && workFieldValue ? "#50924E" : "#D7DDD6"}

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import {
@@ -17,9 +17,8 @@ import {
   UpdateButton,
 } from "../../styles/Meetup/MeetupStyledPage";
 import { ArrowLeft, ChatIcon } from "../../assets";
-
+import * as Constants from "../../../constants/constants";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 const MeetupForm = () => {
   const navigate = useNavigate();
@@ -81,7 +80,7 @@ const MeetupForm = () => {
     try {
       const response = await createMeetup(meetupData).unwrap();
       console.log("Meetup created successfully:", response);
-      navigate("/My-meetups-page");
+      navigate(Constants.PATHS.MY_MEETUPS_PAGE);
     } catch (error) {
       console.error("Error creating meetup:", error);
       console.error("Error response:", error.response);
@@ -137,7 +136,7 @@ const MeetupForm = () => {
           }
           title={t("post_meetup")}
           rightIcon={
-            <Link to="/">
+            <Link to={Constants.PATHS.HOME}>
               <ChatIcon />
             </Link>
           }

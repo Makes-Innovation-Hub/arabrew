@@ -11,6 +11,7 @@ import {
   useAttendMeetupMutation,
   useDeleteMeetupMutation,
 } from "../../features/meetupApi";
+import * as Constants from "../../../constants/constants";
 
 const MeetupDetailsPage = () => {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ const MeetupDetailsPage = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/UpcomingMeetupPage">
+            <Link to={Constants.PATHS.UPCOMING_MEETUP_PAGE}>
               <ArrowLeft />
             </Link>
           }

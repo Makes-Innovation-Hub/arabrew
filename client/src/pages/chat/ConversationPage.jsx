@@ -15,9 +15,9 @@ import { SmallGlass, Hamburger } from "../../assets";
 import ConversationDisplay from "../../components/ConversationDisplay";
 import { useGetUserChatsListQuery } from "../../features/chatDataApi";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegisterSlice";
+import * as Constants from "../../../constants/constants";
 
 const ConversationPage = () => {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const ConversationPage = () => {
             <BlockDiv />
             <ButtonForChats
               onClick={() => {
-                navigate("/search-friends");
+                navigate(Constants.PATHS.SEARCH_FRIENDS);
               }}
             >
               Search for friends to chat
@@ -92,7 +92,7 @@ const ConversationPage = () => {
             </ContentConversationPage>
             <ButtonForChats
               onClick={() => {
-                navigate("/search-friends");
+                navigate(Constants.PATHS.SEARCH_FRIENDS);
               }}
             >
               Search for friends to chat

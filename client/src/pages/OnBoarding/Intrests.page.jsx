@@ -21,6 +21,7 @@ import {
   selectedContainer,
   wrapper,
 } from "../../components/index.js";
+import * as Constants from "../../../constants/constants.js";
 
 const Interests = () => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const Interests = () => {
       return;
     }
     dispatch(addDetail(selectedInterests));
-    navigate("/agePage");
+    navigate(Constants.PATHS.AGE_PAGE);
   };
   // useEffect(() => {
   //   if (interestsNumber === 5) {
@@ -100,7 +101,7 @@ const Interests = () => {
     <div style={wrapper}>
       <Header
         leftIcon={
-          <Link to="/lang">
+          <Link to={Constants.PATHS.LANG}>
             <ArrowLeft />
           </Link>
         }

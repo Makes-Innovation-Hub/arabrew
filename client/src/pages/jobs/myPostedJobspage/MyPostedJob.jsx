@@ -25,6 +25,7 @@ import {
   useDeleteJobMutation,
 } from "../../../features/jobStore/jobAPI";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../../../constants/constants";
 
 function MyPostedJob() {
   const { t } = useTranslation();
@@ -47,7 +48,7 @@ function MyPostedJob() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/myJobsPosted">
+            <Link to={Constants.PATHS.MY_JOBS_POSTED}>
               <ArrowLeft />
             </Link>
           }

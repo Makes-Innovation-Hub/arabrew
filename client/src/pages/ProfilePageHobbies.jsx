@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
-import { useGetLoggedUserQuery } from "../features/userDataApi";
+import userRegisterSlice from "../features/userRegister/userRegisterSlice";
 import {
   ProfileName,
   InterestTextStyle,
@@ -12,6 +12,7 @@ import {
   HobbyBackground,
   HobbiesDisplay,
   CircleIcon,
+  FlagForLang,
   StyledNationalityContainer,
   ProfileDetails,
   ProfileDescriptionTitle,
@@ -19,6 +20,9 @@ import {
   ProfileOccupation,
   ProfileOccupationContainer,
   ProfileOccupationData,
+  ProfileWorkField,
+  ProfileWorkFieldContainer,
+  ProfileWorkFieldData,
   FlagImg,
   ProfileAgeData,
   FlagContainer,
@@ -32,28 +36,11 @@ import {
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
-
 const ProfilePageHobbies = () => {
   const profileData = useSelector((state) => state.userRegister);
-  console.log("profileData :", profileData);
-  const { data: loggedUser } = useGetLoggedUserQuery(profileData.subId);
-  console.log("loggedUser:", loggedUser);
-
-  // Check if the profile being viewed is the logged-in user's own profile
-  const isOwnProfile = loggedUser?.data?.subId === profileData?.subId;
-  console.log("isOwnProfile :", isOwnProfile);
-  // Render the ChatIcon only if the profile is not the logged-in user's own profile
-  const renderChatIcon = !isOwnProfile ? (
-    <CircleIcon>
-      <Link to="/">
-        <ChatIcon />
-      </Link>
-    </CircleIcon>
-  ) : null;
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const age = currentYear - profileData?.userDetails?.yearOfBirth;
-
   return (
     <div>
       <StyledMargin direction="vertical" margin="5%">
@@ -64,7 +51,17 @@ const ProfilePageHobbies = () => {
             </Link>
           }
           title="Profile"
-          rightIcon={renderChatIcon}
+          rightIcon={
+            <>
+              {userRegisterSlice.name !== "userRegister" && (
+                <CircleIcon>
+                  <Link to="/">
+                    <ChatIcon />
+                  </Link>
+                </CircleIcon>
+              )}
+            </>
+          }
         />
       </StyledMargin>
       <StyledPage>

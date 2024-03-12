@@ -19,6 +19,7 @@ import {
 } from "../../../features/jobStore/jobAPI";
 import MyJobPostsComponent from "./MyJobPostsComponent";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../../../constants/constants";
 
 function MyJobPosts() {
   const { t } = useTranslation();
@@ -42,7 +43,7 @@ function MyJobPosts() {
   }
 
   const handleClick = (jobId) => {
-    navigate(`/otherJob/${jobId}`);
+    navigate(`/MyPostedJob/${jobId}`);
   };
 
   return (
@@ -50,7 +51,7 @@ function MyJobPosts() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/work">
+            <Link to={Constants.PATHS.WORK}>
               <ArrowLeft />
             </Link>
           }

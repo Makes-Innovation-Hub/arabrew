@@ -31,6 +31,19 @@ function SpecificMeetup() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading, isError, isSuccess } = useGetMeetupByIdQuery(id);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteMeetup] = useDeleteMeetupMutation();
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteMeetup(id);
+      navigate("/meetupsHomePage");
+    } catch (error) {
+      console.error("Error deleting meetup:", error);
+      setIsDeleting(false);
+    }
+  };
   const [showModal, setShowModal] = useState(false);
 
   if (isLoading) {

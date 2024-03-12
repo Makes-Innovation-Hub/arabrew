@@ -19,6 +19,7 @@ import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
 import { useCreateJobMutation } from "../../features/jobStore/jobAPI";
 import { addJobDetail } from "../../features/jobStore/JobSlice";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../../constants/constants";
 
 function PostJob() {
   const dispatch = useDispatch();
@@ -115,7 +116,7 @@ function PostJob() {
     <div dir={getTextDirection()}>
       <Header
         leftIcon={
-          <Link to="/work">
+          <Link to={Constants.PATHS.WORK}>
             <ArrowLeft />
           </Link>
         }

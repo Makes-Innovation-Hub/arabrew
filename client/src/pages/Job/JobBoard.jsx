@@ -6,6 +6,7 @@ import { StyledMargin, StyledPage } from "../../styles";
 import { ArrowLeft } from "../../assets";
 import { JobList, JobItem } from "./StyledJobBoard";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../../constants/constants";
 
 export default function JobBoardPage() {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ export default function JobBoardPage() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/work">
+            <Link to={Constants.PATHS.WORK}>
               <ArrowLeft />
             </Link>
           }

@@ -52,6 +52,7 @@ export const InfoText = styled.p`
     margin-right: 8px;
   }
 `;
+
 export const AboutmeText = styled.p`
   color: #3d4260;
   font-family: Poppins;

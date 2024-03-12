@@ -10,6 +10,8 @@ import {
 } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context.jsx";
 import { useLazyGetLoggedUserQuery } from "../features/userDataApi";
+import * as Constants from "../../constants/constants.js";
+
 export default function HeaderLayout() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,9 +43,9 @@ export default function HeaderLayout() {
             }
           }
           if (result.data && result.data.success) {
-            navigate("/chooseHub");
+            navigate(Constants.PATHS.CHOOSE_HUB);
           } else if (
-            location.pathname === "/" &&
+            location.pathname === Constants.PATHS.HOME &&
             result &&
             !result.data?.success
           ) {
@@ -62,7 +64,7 @@ export default function HeaderLayout() {
             // console.log("newUserData", newUserData);
             updateUserData(newUserData);
             dispatch(addAuth0Details(newUserData));
-            navigate("/lang");
+            navigate(Constants.PATHS.LANG);
           }
         }
       }

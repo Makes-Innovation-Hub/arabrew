@@ -16,6 +16,7 @@ import {
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../../constants/constants";
 
 export default function ChooseHubPage() {
   const { t } = useTranslation();
@@ -48,21 +49,21 @@ export default function ChooseHubPage() {
         <PageTitle24>{t("choose_your_hub")}</PageTitle24>
         <MainButton
           onClick={() => {
-            navigate("/work");
+            navigate(Constants.PATHS.WORK);
           }}
         >
           {t("work")} - Work <BriefcaseIcon />{" "}
         </MainButton>
         <MainButton
           onClick={() => {
-            navigate("/conversation");
+            navigate(Constants.PATHS.CONVERSATION);
           }}
         >
           {t("hobbies")} - Hobbies <LaughEmoji />{" "}
         </MainButton>
         <MainButton
           onClick={() => {
-            navigate("/MeetupsHomePage");
+            navigate(Constants.PATHS.MEETUPS_HOMEPAGE);
           }}
         >
           {t("meetup")} - Meetup <UsersIcon />{" "}

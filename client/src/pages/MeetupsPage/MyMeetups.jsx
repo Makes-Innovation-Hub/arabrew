@@ -14,6 +14,7 @@ import {
   useGetAllMeetupsQuery,
   useGetMyMeetupsQuery,
 } from "../../features/meetupApi";
+import * as Constants from "../../../constants/constants";
 import { useTranslation } from "react-i18next";
 
 function MyMeetups() {
@@ -39,7 +40,7 @@ function MyMeetups() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/meetupsHomePage">
+            <Link to={Constants.PATHS.MEETUPS_HOMEPAGE}>
               <ArrowLeft />
             </Link>
           }

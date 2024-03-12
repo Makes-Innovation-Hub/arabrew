@@ -38,6 +38,7 @@ import {
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useTranslation } from "react-i18next";
+import * as Constants from "../../constants/constants";
 
 const ProfilePage = () => {
   const { t, i18n } = useTranslation();
@@ -51,7 +52,7 @@ const ProfilePage = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <Link to={Constants.PATHS.HOME}>
               <ArrowLeft />
             </Link>
           }

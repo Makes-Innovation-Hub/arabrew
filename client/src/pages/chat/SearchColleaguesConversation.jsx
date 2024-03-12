@@ -15,10 +15,10 @@ import { SmallGlass, Hamburger } from "../../assets";
 import ConversationDisplay from "../../components/ConversationDisplay";
 import { useGetUserChatsListQuery } from "../../features/chatDataApi";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegisterSlice";
 import { NoConversationStyleTitle } from "../../styles/Chat/NoConversationStyle";
+import * as Constants from "../../../constants/constants";
 
 function SearchColleaguesConversation() {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ function SearchColleaguesConversation() {
             <BlockDiv />
             <ButtonForChats
               onClick={() => {
-                navigate("/Search-colleagues");
+                navigate(Constants.PATHS.SEARCH_COLLEAGUES);
               }}
             >
               Search for colleagues
@@ -99,7 +99,7 @@ function SearchColleaguesConversation() {
             </ContentConversationPage>
             <ButtonForChats
               onClick={() => {
-                navigate("/Search-colleagues");
+                navigate(Constants.PATHS.SEARCH_COLLEAGUES);
               }}
             >
               Search for colleagues
