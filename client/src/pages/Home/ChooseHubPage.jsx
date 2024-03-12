@@ -15,6 +15,7 @@ import {
   StyledPage,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import * as Constants from "../../../constants/constants";
 
 export default function ChooseHubPage() {
   const navigate = useNavigate();
@@ -44,21 +45,21 @@ export default function ChooseHubPage() {
         <PageTitle24>Choose your hub</PageTitle24>
         <MainButton
           onClick={() => {
-            navigate("/work");
+            navigate(Constants.PATHS.WORK);
           }}
         >
           Arabrew - Work <BriefcaseIcon />
         </MainButton>
         <MainButton
           onClick={() => {
-            navigate("/conversation");
+            navigate(Constants.PATHS.CONVERSATION);
           }}
         >
           Arabrew - Hobbies <LaughEmoji />
         </MainButton>
         <MainButton
           onClick={() => {
-            navigate("/MeetupsHomePage");
+            navigate(Constants.PATHS.MEETUPS_HOMEPAGE);
           }}
         >
           Arabrew - Meetup <UsersIcon />

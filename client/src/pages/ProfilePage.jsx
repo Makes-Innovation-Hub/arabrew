@@ -40,6 +40,7 @@ import {
 } from "../assets";
 import flags from "../assets/countriesAndFlags/by-code.json";
 import { useSelector } from "react-redux";
+import * as Constants from "../../constants/constants";
 
 const ProfilePage = () => {
   const profileData = useSelector((state) => state.userRegister);
@@ -52,7 +53,7 @@ const ProfilePage = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/">
+            <Link to={Constants.PATHS.HOME}>
               <ArrowLeft />
             </Link>
           }

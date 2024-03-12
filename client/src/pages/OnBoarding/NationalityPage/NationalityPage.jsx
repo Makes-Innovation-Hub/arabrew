@@ -16,6 +16,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../../features/userRegister/userRegisterSlice.jsx";
 import { useDispatch } from "react-redux";
 import StyledButton from "../../../styles/StyledButton.jsx";
+import * as Constants from "../../../../constants/constants.js";
+
 export default function NationalityPage() {
   const [selectedNationality, setSelectedNationality] = useState({
     value: "",
@@ -28,7 +30,7 @@ export default function NationalityPage() {
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <Link to="/agePage">
+          <Link to={Constants.PATHS.AGE_PAGE}>
             <img src={arrowIcon} />
           </Link>
         </div>

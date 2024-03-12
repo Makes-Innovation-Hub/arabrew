@@ -21,6 +21,7 @@ import { StyledTextArea } from "../../../styles/BioPage/StyledTextArea";
 import { useRegisterUserMutation } from "../../../features/userDataApi";
 import { useEffect } from "react";
 import Modal from "../../../styles/Modal/Modal";
+import * as Constants from "../../../../constants/constants";
 
 function ResumePage() {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function ResumePage() {
   useEffect(() => {
     if (isSuccess) {
       // console.log("success");
-      navigate("/chooseHub");
+      navigate(Constants.PATHS.CHOOSE_HUB);
     }
     if (isError) {
       console.error(error);
@@ -71,7 +72,7 @@ function ResumePage() {
     <div>
       <Header
         leftIcon={
-          <Link to="/occupation">
+          <Link to={Constants.PATHS.OCCUPATION}>
             <ArrowLeft />
           </Link>
         }

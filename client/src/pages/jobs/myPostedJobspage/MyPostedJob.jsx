@@ -22,6 +22,7 @@ import {
   useGetAllJobsQuery,
   useGetJobByIdQuery,
 } from "../../../features/jobStore/jobAPI";
+import * as Constants from "../../../../constants/constants";
 
 function MyPostedJob() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ function MyPostedJob() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/myJobsPosted">
+            <Link to={Constants.PATHS.MY_JOBS_POSTED}>
               <ArrowLeft />
             </Link>
           }

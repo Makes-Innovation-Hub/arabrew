@@ -9,6 +9,7 @@ import {
 import { ArrowLeft } from "../../assets";
 import { UpcomingStyledPage, StyledMargin } from "../../styles";
 import { MeetupDetailsDisplay } from "./MeetupDetailsPageStyle";
+import * as Constants from "../../../constants/constants";
 
 const MeetupDetailsPage = () => {
   const { meetupId } = useParams();
@@ -80,7 +81,7 @@ const MeetupDetailsPage = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/UpcomingMeetupPage">
+            <Link to={Constants.PATHS.UPCOMING_MEETUP_PAGE}>
               <ArrowLeft />
             </Link>
           }

@@ -12,6 +12,7 @@ import {
   MeetupButton,
 } from "../../styles/Meetup/MeetupStyledPage";
 import { ArrowLeft, ChatIcon } from "../../assets";
+import * as Constants from "../../../constants/constants";
 
 const MeetupForm = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const MeetupForm = () => {
     try {
       const response = await createMeetup(meetupData).unwrap();
       console.log("Meetup created successfully:", response);
-      navigate("/My-meetups-page");
+      navigate(Constants.PATHS.MY_MEETUPS_PAGE);
     } catch (error) {
       console.error("Error creating meetup:", error);
       console.error("Error response:", error.response);
@@ -60,13 +61,13 @@ const MeetupForm = () => {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/MeetupsHomePage">
+            <Link to={Constants.PATHS.MEETUPS_HOMEPAGE}>
               <ArrowLeft />
             </Link>
           }
           title="Post a Meetup"
           rightIcon={
-            <Link to="/">
+            <Link to={Constants.PATHS.HOME}>
               <ChatIcon />
             </Link>
           }

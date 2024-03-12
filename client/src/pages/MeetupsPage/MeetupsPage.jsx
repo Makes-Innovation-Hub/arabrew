@@ -9,6 +9,7 @@ import {
   StyledPage,
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import * as Constants from "../../../constants/constants";
 
 export default function MeetupsHomePage() {
   const navigate = useNavigate();
@@ -38,15 +39,15 @@ export default function MeetupsHomePage() {
         <PageTitle24>Arabrew - Meetups</PageTitle24>
         <MainButton
           onClick={() => {
-            navigate("/UpcomingMeetupPage");
+            navigate(Constants.PATHS.UPCOMING_MEETUP_PAGE);
           }}
         >
           Upcoming Meetups
         </MainButton>
-        <MainButton onClick={() => navigate("/MeetupForm")}>
+        <MainButton onClick={() => navigate(Constants.PATHS.MEETUP_FORM)}>
           Post A Meetup
         </MainButton>
-        <MainButton onClick={() => navigate("/My-meetups-page")}>
+        <MainButton onClick={() => navigate(Constants.PATHS.MY_MEETUPS_PAGE)}>
           My Meetups posts
         </MainButton>
       </StyledPage>

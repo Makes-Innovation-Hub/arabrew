@@ -3,6 +3,7 @@ import arrowIcon from "../../../assets/arrow.svg";
 import { HeaderWrapper } from "../../../styles/Chat/Header/HeaderWrapper";
 import { ImageWrapper } from "../../../styles/Chat/Header/ImageWrapper";
 import { useNavigate } from "react-router-dom";
+import * as Constants from "../../../../constants/constants";
 
 export default function Header({ reciever }) {
   const { img, name } = reciever;
@@ -12,7 +13,7 @@ export default function Header({ reciever }) {
       <img
         src={arrowIcon}
         onClick={() => {
-          navigate("/search-friends");
+          navigate(Constants.PATHS.SEARCH_FRIENDS);
         }}
       />
       <ImageWrapper>

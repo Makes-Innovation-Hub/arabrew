@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { addDetail } from "../../../features/userRegister/userRegisterSlice.jsx";
 import StyledButton from "../../../styles/StyledButton.jsx";
+import * as Constants from "../../../../constants/constants.js";
 
 export default function BirthPage() {
   const [startYear, setStartYear] = useState(1980);
@@ -42,7 +43,7 @@ export default function BirthPage() {
       <HeaderWrapper>
         {/* do not remove this div even if it is empty */}
         <div style={{ width: "20%" }}>
-          <Link to="/interests">
+          <Link to={Constants.PATHS.INTERESTS}>
             <img src={arrowIcon} />
           </Link>
         </div>
@@ -86,7 +87,7 @@ export default function BirthPage() {
             <StyledButton
               to={
                 selectedYear.value !== undefined || selectedYear.value !== null
-                  ? "/nationalityPage"
+                  ? Constants.PATHS.NATIONALITY_PAGE
                   : null
               }
               onClick={() => {

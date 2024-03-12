@@ -27,13 +27,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { cleanUser } from "../features/userRegister/userRegisterSlice";
 import { UserContext } from "../contexts/loggedUser.context";
 import { Link, useNavigate } from "react-router-dom";
+import * as Constants from "../../constants/constants.js";
+
 export default function SideBar({ openSideBar }) {
   const [lenOptions, setLenOptions] = useState(false);
   const [whichLang, setWhichLang] = useState(0);
   let langArr = [
-    [Eng, "English (US)"],
-    [HE, "עברית"],
-    [AR, "عربيه"],
+    [Eng, Constants.LANGUAGES.ENGLISH],
+    [HE, Constants.LANGUAGES.HEBREW],
+    [AR, Constants.LANGUAGES.ARABIC],
   ];
   const { logout } = useAuth0();
   const dispatch = useDispatch();
@@ -60,7 +62,7 @@ export default function SideBar({ openSideBar }) {
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar>
-            <LiSideBar onClick={() => navigate("/chooseHub")}>
+            <LiSideBar onClick={() => navigate(Constants.PATHS.CHOOSE_HUB)}>
               <HomeIcon />
               Home
             </LiSideBar>
@@ -68,7 +70,7 @@ export default function SideBar({ openSideBar }) {
           <LinkSideBar>
             <LiSideBar
               onClick={() => {
-                navigate("/profile", { state: loggedUser });
+                navigate(Constants.PATHS.PROFILE, { state: loggedUser });
               }}
             >
               {" "}

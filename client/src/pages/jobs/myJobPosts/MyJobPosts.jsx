@@ -18,6 +18,7 @@ import {
   useGetUserJobPostsQuery,
 } from "../../../features/jobStore/jobAPI";
 import MyJobPostsComponent from "./MyJobPostsComponent";
+import * as Constants from "../../../../constants/constants";
 
 function MyJobPosts() {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
@@ -44,7 +45,7 @@ function MyJobPosts() {
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/work">
+            <Link to={Constants.PATHS.WORK}>
               <ArrowLeft />
             </Link>
           }

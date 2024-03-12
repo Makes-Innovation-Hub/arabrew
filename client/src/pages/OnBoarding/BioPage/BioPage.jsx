@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 import { useRegisterUserMutation } from "../../../features/userDataApi.js";
 import StyledButton from "../../../styles/StyledButton.jsx";
 import Modal from "../../../styles/Modal/Modal.jsx";
+import * as Constants from "../../../../constants/constants.js";
+
 export default function BioPage() {
   const dispatch = useDispatch();
   const [text, setText] = useState({
@@ -124,7 +126,7 @@ export default function BioPage() {
               disabled={!text.value}
               onClick={() => {
                 dispatch(addDetail(text));
-                navigate("/occupation");
+                navigate(Constants.PATHS.OCCUPATION);
               }}
               bg={text.value ? "#50924E" : "#d7ddd6"}
               hoverBg={text.value ? "#396d37" : "#d7ddd6"}
