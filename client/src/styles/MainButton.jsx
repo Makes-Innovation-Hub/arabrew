@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MeetupsButton = styled.button`
+export const MainButton = styled.button`
   background-color: #50924e;
   color: white;
   font-family: ABeeZee;
@@ -9,7 +9,7 @@ export const MeetupsButton = styled.button`
   font-size: 14px;
   line-height: 22px;
   text-align: center;
-  width: 343px;
+  width: 80%;
   margin: 8px;
   padding: 16px 8px 16px 8px;
   border-radius: 6px;

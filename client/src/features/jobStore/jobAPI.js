@@ -1,19 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const port = import.meta.env.VITE_SERVER_PORT;
-
-const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-// const token = storedUser ? storedUser.token : null;
-
 const getToken = () => {
-  const tokenString = localStorage.getItem("token");
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  // console.log("storedUser: ", storedUser);
+  const token = storedUser.token;
 
-  if (tokenString) {
-    // Parse the JSON string back to its original format (string)
-    const token = JSON.parse(tokenString);
+  if (token) {
     return token; // Return the token string
   }
-  return null; // Return null if the token isn't found // Example: Get the token from local storage
+  return null; // Return null if the token isn't found // Example: Get the token from session storage
 };
 
 // console.log(token);
@@ -24,6 +20,8 @@ const jobApi = createApi({
     tagTypes: ["Job"],
     prepareHeaders: (headers) => {
       // Call your function to get the authentication token
+      // console.log(token);
+
       const token = getToken();
       // console.log(token);
       // If the token exists, set the Authorization header

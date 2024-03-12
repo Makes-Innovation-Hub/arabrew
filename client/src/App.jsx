@@ -23,13 +23,20 @@ import PostJob from "./pages/jobs/PostJob.jsx";
 import MeetupsHomePage from "./pages/MeetupsPage/MeetupsPage.jsx";
 import MeetupForm from "./pages/Meetup/MeetupForm.jsx";
 import ProfilePageWork from "./pages/Work/ProfilePageWork.jsx";
-import WorkPage from "./pages/Work/WorkPage.jsx";
+import WorkHomePage from "./pages/Work/WorkHomePage.jsx";
 import JobBoardPage from "./pages/Job/JobBoard.jsx";
 import MyPostedJob from "./pages/jobs/myPostedJobspage/MyPostedJob.jsx";
 import UpcomingMeetupPage from "./pages/MeetupsPage/UpcomingMeetupPage.jsx";
 import OtherJob from "./pages/jobs/otherJobPage/OtherJob.jsx";
 import Appliers from "./pages/jobs/jobAppliers/Appliers.jsx";
 import MyMeetupsPage from "./pages/Meetup/MyMeetupsPage.jsx";
+import MyJobPosts from "./pages/jobs/myJobPosts/MyJobPosts.jsx";
+import Profile from "./pages/ProfilesPages/Profile.jsx";
+import MeetupDetailsPage from "./pages/MeetupsPage/MeetupDetailsPage.jsx";
+import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
+import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
+import SearchColleaguesPage from "./pages/search-colleagues/SearchColleaguesPage.jsx";
+import SearchColleaguesConversation from "./pages/chat/SearchColleaguesConversation.jsx";
 
 const router = createBrowserRouter([
   {
@@ -91,7 +98,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/work",
-    element: <WorkPage />,
+    element: <WorkHomePage />,
     errorElement: <>Error...</>,
   },
   {
@@ -118,6 +125,41 @@ const router = createBrowserRouter([
   {
     path: "/MeetupPage",
     element: <MyMeetupsPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/myJobsPosted",
+    element: <MyJobPosts />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/profiled",
+    element: <Profile />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/My-meetups-page",
+    element: <MyMeetups />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/MeetupDetailsPage/:meetupId",
+    element: <MeetupDetailsPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/SpecificMeetupPage/:id",
+    element: <SpecificMeetup />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/Search-colleagues",
+    element: <SearchColleaguesPage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/Work-conversation",
+    element: <SearchColleaguesConversation />,
     errorElement: <>Error...</>,
   },
 ]);

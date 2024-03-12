@@ -1,12 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MeetupWrapper = styled.div`
   margin-bottom: 20px;
   padding: 2px 0px;
-  /* margin-left: 10px; */
   border-bottom: 1px solid var(--gray-200, #e2e8f0);
   width: 100%;
+  cursor: pointer; /* Add cursor pointer to the entire wrapper */
 `;
 
 const Title = styled.h3`
@@ -27,6 +28,7 @@ const InfoText = styled.p`
   font-weight: ${({ fontWeight }) => fontWeight || 500};
   line-height: 150%;
 `;
+
 const InfoattendeesText = styled.p`
   color: #3d4260a9;
   font-family: Poppins;
@@ -43,18 +45,30 @@ export const UpcomingDisplay = ({
   location,
   attendeesCount,
   timezone,
+  meetupId,
+  ownerId,
 }) => {
+  const navigate = useNavigate();
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
   });
-
   // Adjust the time based on the provided timezone
   const adjustedTime = `${formattedDate} ${time} ${timezone || "PM"}`;
 
+  const moveToMeetupInfo = (meetupId) => {
+    const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+    console.log(storedUser.id);
+    if (ownerId === storedUser.id) console.log("i'm the owner");
+    if (ownerId === storedUser.id) {
+      navigate(`/SpecificMeetupPage/${meetupId}`);
+    } else {
+      navigate(`/MeetupDetailsPage/${meetupId}`);
+    }
+  };
   return (
-    <MeetupWrapper>
+    <MeetupWrapper onClick={() => moveToMeetupInfo(meetupId)}>
       <Title>{title}</Title>
       <InfoText fontWeight={500}>{adjustedTime}</InfoText>
       <InfoText>{location}</InfoText>

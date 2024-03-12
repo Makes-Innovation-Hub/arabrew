@@ -3,8 +3,8 @@ import { Hamburger, SmallGlass } from "../../assets";
 import Header from "../../components/Header";
 import SideBar from "../../components/SideBar";
 import {
-  MeetupsButton,
-  MeetupsTitle,
+  MainButton,
+  PageTitle24,
   StyledMargin,
   StyledPage,
 } from "../../styles";
@@ -35,19 +35,20 @@ export default function MeetupsHomePage() {
         />
       </StyledMargin>
       <StyledPage>
-        <MeetupsTitle>Arabrew - Meetups</MeetupsTitle>
-        <MeetupsButton
+        <PageTitle24>Arabrew - Meetups</PageTitle24>
+        <MainButton
           onClick={() => {
             navigate("/UpcomingMeetupPage");
           }}
         >
-          {" "}
           Upcoming Meetups
-        </MeetupsButton>
-        <MeetupsButton onClick={() => navigate("/MeetupForm")}>
+        </MainButton>
+        <MainButton onClick={() => navigate("/MeetupForm")}>
           Post A Meetup
-        </MeetupsButton>
-        <MeetupsButton>My Meetups posts</MeetupsButton>
+        </MainButton>
+        <MainButton onClick={() => navigate("/My-meetups-page")}>
+          My Meetups posts
+        </MainButton>
       </StyledPage>
     </div>
   );
