@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledButton, StyledMargin } from "../../../styles";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "../../../assets";
@@ -10,6 +10,7 @@ import {
   OtherPageButton,
   ProfileSection,
   SecondSection,
+  SendButton,
   StyledImg,
   StyledJobText,
   StyledMyJobPage,
@@ -97,6 +98,7 @@ function OtherJob() {
           <StyledMargin direction="vertical" margin="35rem" />
 
           <OtherPageButton onClick={handleApplyButton}>
+            {" "}
             Send Resume
           </OtherPageButton>
         </StyledMyJobPage>

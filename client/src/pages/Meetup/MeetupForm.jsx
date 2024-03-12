@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import { useCreateMeetupMutation } from "../../features/meetupApi";
+import {
+  useCreateMeetupMutation,
+  useGetMeetupByIdQuery,
+  useUpdateMeetupMutation,
+} from "../../features/meetupApi";
 
 import { StyledMargin, StyledPage } from "../../styles";
 
@@ -10,13 +14,17 @@ import {
   MeetupInput,
   MeetupTextArea,
   MeetupButton,
+  UpdateButton,
 } from "../../styles/Meetup/MeetupStyledPage";
 import { ArrowLeft, ChatIcon } from "../../assets";
 
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const MeetupForm = () => {
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const meetupId = search.split("=")[1];
   const myUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -25,11 +33,37 @@ const MeetupForm = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [remainingChars, setRemainingChars] = useState(30);
+  const [isMeetingId, setIsMeetingId] = useState(false);
 
   const [createMeetup, { isLoading, isError }] = useCreateMeetupMutation();
-
+  const [updateMeetupMutation] = useUpdateMeetupMutation();
+  const { data, isSuccess } = useGetMeetupByIdQuery(meetupId);
   const { t, i18n } = useTranslation();
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
+
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  };
+
+  useEffect(() => {
+    setIsMeetingId(!!meetupId);
+    if (isSuccess && data) {
+      const { title, date, time, price, location, description } = data.data;
+      setTitle(title);
+      settime(time);
+      setprice(price);
+      setLocation(location);
+      setDescription(description);
+      setDate(formatDate(date));
+    }
+  }, [meetupId, isSuccess, data]);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -53,6 +87,28 @@ const MeetupForm = () => {
     }
   };
 
+  const handleUpdateMeetup = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedData = {
+        title,
+        date,
+        time,
+        price,
+        description,
+        location,
+      };
+      const response = await updateMeetupMutation({
+        meetupId: meetupId,
+        meetupData: updatedData,
+      });
+      console.log("Meetup updated successfully:", response.data);
+      navigate(`/MeetupDetailsPage/${meetupId}`);
+    } catch (error) {
+      console.error("Error updating meetup:", error);
+    }
+  };
+
   const handleTitleChange = (e) => {
     const inputText = e.target.value;
     setTitle(inputText);
@@ -65,14 +121,18 @@ const MeetupForm = () => {
     return lang === "he" || lang === "ar" ? "rtl" : "ltr";
   };
 
+  const handleBack = () => {
+    window.history.back();
+  };
+
   return (
     <div dir={getTextDirection()}>
       <StyledMargin direction="vertical" margin="5%">
         <Header
           leftIcon={
-            <Link to="/MeetupsHomePage">
+            <div onClick={handleBack}>
               <ArrowLeft />
-            </Link>
+            </div>
           }
           title={t("post_meetup")}
           rightIcon={
@@ -146,7 +206,11 @@ const MeetupForm = () => {
                 required
               />
             </div>
-            <MeetupButton type="submit">{t("post_meetup")}</MeetupButton>
+            {isMeetingId ? (
+              <UpdateButton onClick={handleUpdateMeetup}>Update</UpdateButton>
+            ) : (
+              <MeetupButton type="submit">{t("post_meetup")}</MeetupButton>
+            )}
           </form>
         </MeetupFormWrapper>
       </StyledPage>

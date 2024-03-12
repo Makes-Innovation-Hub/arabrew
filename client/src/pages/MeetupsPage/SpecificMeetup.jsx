@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledMargin, UpcomingStyledPage } from "../../styles";
 import { Header } from "../../components";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -21,13 +21,17 @@ import {
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { RiPriceTag2Line } from "react-icons/ri";
-import { useGetMeetupByIdQuery } from "../../features/meetupApi";
+import {
+  useGetMeetupByIdQuery,
+  useUpdateMeetupMutation,
+} from "../../features/meetupApi";
 import MeetupDetailsDisplay from "./MeetupDetailsPageStyle";
 
 function SpecificMeetup() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading, isError, isSuccess } = useGetMeetupByIdQuery(id);
+  const [showModal, setShowModal] = useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;
