@@ -41,8 +41,6 @@ function OtherJob() {
     setIsOwner(job?.job?.postedBy?.id === storedUser?.id);
   }, [job, id, storedUser]);
 
-  console.log(`data unkwon : ${isOwner}`);
-
   const handleDelete = async () => {
     try {
       const response = await deleteJob(id);
@@ -124,28 +122,24 @@ function OtherJob() {
           </DescriptionSection>
           <StyledMargin direction="vertical" margin="1.8rem" />
 
-          {!isOwner && (
-            <AppliedSection>
+          {isOwner ? (
+            <AppliedSection onClick={handleAppliers}>
               {job?.job.applicants.length} {t("applied")}
             </AppliedSection>
-          )}
-
-          {isOwner && (
-            <AppliedSection onClick={handleAppliers}>
+          ) : (
+            <AppliedSection>
               {job?.job.applicants.length} {t("applied")}
             </AppliedSection>
           )}
 
           <StyledMargin direction="vertical" margin="35rem" />
 
-          {!isOwner && (
+          {isOwner ? (
+            <button onClick={handleDelete}>{t("delete_job_button")}</button>
+          ) : (
             <OtherPageButton onClick={handleApplyButton}>
               {t("send_resume")}
             </OtherPageButton>
-          )}
-
-          {isOwner && (
-            <button onClick={handleDelete}>{t("delete_job_button")}</button>
           )}
         </StyledMyJobPage>
       )}
