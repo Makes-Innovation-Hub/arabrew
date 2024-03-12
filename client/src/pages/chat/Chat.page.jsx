@@ -63,6 +63,7 @@ const Chat = () => {
   const handleSendMsg = async () => {
     // socket.emit("new_message", data);
     console.log("message: ", msgText);
+    if (!msgText) return;
     const response = await addMessage({ chatId, content: msgText });
     console.log(response);
     // console.log(data);

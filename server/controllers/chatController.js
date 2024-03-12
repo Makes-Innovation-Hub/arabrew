@@ -151,11 +151,8 @@ export const getUserChatsList = async (req, res, next) => {
           // latestMessage(messages)?.translated_Content[senderLang];
           console.log("chat info", chat);
           return {
-            userId,
-            users,
-            receiverUser,
-            senderUser,
             chatId: chat._id,
+            chatHub: chat.hub,
             avatar: receiverUser.avatar,
             name: receiverUser.name,
             lastMessageContent,

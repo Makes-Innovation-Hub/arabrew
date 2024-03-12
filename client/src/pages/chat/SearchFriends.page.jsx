@@ -39,7 +39,7 @@ const SearchFriends = () => {
     <>
       <Header
         leftIcon={
-          <Link to="/conversation">
+          <Link to="/conversation?hub=hobbies">
             <ArrowLeft />
           </Link>
         }

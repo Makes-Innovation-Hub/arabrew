@@ -28,12 +28,8 @@ function ChatDisplayArea({ messages }) {
 
   return (
     <ChatsContainer key={Date.now()}>
-      {messages.map((message) => (
-        <MessageBox
-          message={message}
-          loggedUser={loggedUser}
-          key={message._id}
-        />
+      {messages.map((message, index) => (
+        <MessageBox message={message} loggedUser={loggedUser} key={index} />
       ))}
       {isPopupDisplaying && <PopupBubble onClickFn={clickHandler} />}
     </ChatsContainer>

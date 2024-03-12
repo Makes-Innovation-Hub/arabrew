@@ -2,24 +2,17 @@ import React, { Component } from "react";
 import { DisplayChatsStyle, ProfileChat, ContentChat } from "../styles";
 import { Link } from "react-router-dom";
 
-export const ConversationDisplay = ({
-  profile,
-  nameCon,
-  contentCon,
-  userId,
-  chatId,
-}) => {
-  console.log("chat id", chatId);
+export const ConversationDisplay = ({ chat }) => {
   return (
     <Link
-      to={`/chat-page/${chatId}`}
+      to={`/chat-page/${chat.chatId}?hub=${chat.chatHub}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <DisplayChatsStyle>
-        <ProfileChat profile={profile} />
+        <ProfileChat profile={chat.avatar} />
         <ContentChat>
-          <p>{nameCon}</p>
-          <p>{contentCon}</p>
+          <p>{chat.name}</p>
+          <p>{chat.lastMessageContent}</p>
         </ContentChat>
       </DisplayChatsStyle>
     </Link>
