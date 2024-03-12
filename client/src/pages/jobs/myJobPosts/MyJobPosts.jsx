@@ -42,7 +42,7 @@ function MyJobPosts() {
   }
 
   const handleClick = (jobId) => {
-    navigate(`/MyPostedJob/${jobId}`);
+    navigate(`/otherJob/${jobId}`);
   };
 
   return (
