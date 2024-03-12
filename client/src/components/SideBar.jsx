@@ -47,7 +47,6 @@ export default function SideBar({ openSideBar }) {
       localStorage.setItem("lang", "en");
     }
 
-    // Set the language for i18n
     const langKey = whichLang === 2 ? "ar" : whichLang === 1 ? "he" : "en";
     i18n.changeLanguage(langKey);
   }, [whichLang, i18n]);
@@ -83,7 +82,12 @@ export default function SideBar({ openSideBar }) {
         </DisplayMe>
         <UlSideBar>
           <LinkSideBar>
-            <LiSideBar onClick={() => navigate("/chooseHub")}>
+            <LiSideBar
+              onClick={() => {
+                navigate("/chooseHub");
+                openSideBar(false);
+              }}
+            >
               <HomeIcon />
               {t("home")}
             </LiSideBar>

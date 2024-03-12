@@ -51,6 +51,21 @@
     "post_job_button": "פרסם משרה",
     "modal_max_character_error": "התיאור לא יכול להכיל יותר מ-500 תווים",
     "modal_max_character_error_title_company": "התיאור לא יכול להכיל יותר מ-30 תווים",
-    "select": "בחר"
+    "select": "בחר",
+    "open_jobs": "משרות פתוחות",
+    "error_fetching_jobs": "שגיאה באיחול המשרות",
+    "user_not_found": "משתמש לא נמצא. אנא התחבר שוב.",
+    "error_fetching_job_details": "שגיאה באיחול פרטי המשרה",
+    "my_post_job_title": "הפרסומים שלי",
+    "my_posted_job_page": "עמוד המשרה שפרסמתי",
+    "applied": "נגיש",
+    "send_resume": "שלח קורות חיים",
+    "meetups": "פגישות",
+    "no_upcoming_meetups": "אין פגישות קרובות",
+    "error_fetching_meetup_details": "שגיאה באיחול פרטי הפגישה.",
+    "meetup_page": "דף פגישה",
+    "no_meetups_posted": "לא פורסמו פגישות",
+    "my_meetups_posts": "פגישות שלי",
+    "delete_meetup_button": "מחק מפגש"
   }
 }
