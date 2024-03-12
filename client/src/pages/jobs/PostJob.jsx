@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../../components";
 import {
   StyledPage,
@@ -16,7 +16,11 @@ import { addDetail } from "../../features/userRegister/userRegisterSlice";
 import StyledWorkModelDropDown from "./StyledWorkModelDropDown";
 import Modal from "../../styles/Modal/Modal";
 import { StyledTextArea } from "../../styles/BioPage/StyledTextArea";
-import { useCreateJobMutation } from "../../features/jobStore/jobAPI";
+import {
+  useCreateJobMutation,
+  useGetJobByIdQuery,
+  useUpdateJobMutation,
+} from "../../features/jobStore/jobAPI";
 import { addJobDetail } from "../../features/jobStore/JobSlice";
 import { useTranslation } from "react-i18next";
 import { MeetupButton } from "../../styles/Meetup/MeetupStyledPage";
@@ -25,13 +29,18 @@ import { JopPostButton } from "./myPostedJobspage/StyledMyJobPage";
 function PostJob() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const JobId = search.split("=")[1];
   const [isMaxError, setIsMaxError] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
   const [isDetailAdded, setIsDetailAdded] = useState(false);
   const { t, i18n } = useTranslation();
+  const [isJobId, setIsJobId] = useState(false);
 
   const [createJob, { isSuccess, isError, error }] = useCreateJobMutation();
+  const { data, isSuccess2 } = useGetJobByIdQuery(JobId);
+  const [updateJob] = useUpdateJobMutation();
 
   const [jobTitleInput, setJobTitleInput] = useState({
     field: "jobTitle",
@@ -91,6 +100,21 @@ function PostJob() {
     }
   }, [jobTitleCharacterCount, companyNameCharacterCount]);
 
+  useEffect(() => {
+    setIsJobId(!!JobId);
+    if (data) {
+      const { title, company, city, description, model } = data.job;
+      setJobTitleInput({ ...jobTitleInput, value: title });
+      setCompanyNameInput({ ...companyNameInput, value: company });
+      setWorkModelInput(model);
+      setCityInput({ ...cityInput, value: city });
+      setWorkDescriptionInputInput({
+        ...workDescriptionInput,
+        value: description,
+      });
+    }
+  }, [JobId, data]);
+
   const handlePost = async () => {
     if (
       !jobTitleInputValue ||
@@ -124,14 +148,36 @@ function PostJob() {
     const lang = i18n.language;
     return lang === "he" || lang === "ar" ? "rtl" : "ltr";
   };
+  const handleUpdateJob = async (e) => {
+    try {
+      const updatedData = {
+        title: jobTitleInput.value,
+        company: companyNameInput.value,
+        city: cityInput.value,
+        model: workModelInput.value,
+        description: workDescriptionInput.value,
+      };
+      const response = await updateJob({
+        jobId: JobId,
+        jobUpdates: updatedData,
+      });
+      console.log("Job updated successfully:", response.data);
+      navigate(`/otherJob/${JobId}`);
+    } catch (error) {
+      console.error("Error updating Job:", error);
+    }
+  };
+  const handleBack = () => {
+    window.history.back();
+  };
 
   return (
     <div dir={getTextDirection()}>
       <Header
         leftIcon={
-          <Link to="/work">
+          <div onClick={handleBack}>
             <ArrowLeft />
-          </Link>
+          </div>
         }
         title={t("post_job")}
       />
@@ -246,9 +292,15 @@ function PostJob() {
           />
         )}
         <StyledMargin direction="vertical" margin="3rem" />
-        <JopPostButton onClick={handlePost} text={t("post_job")}>
-          Post Job
-        </JopPostButton>
+        {isJobId ? (
+          <JopPostButton onClick={handleUpdateJob} text={t("post_job")}>
+            Update
+          </JopPostButton>
+        ) : (
+          <JopPostButton onClick={handlePost} text={t("post_job")}>
+            Post Job
+          </JopPostButton>
+        )}
       </StyledPage>
     </div>
   );

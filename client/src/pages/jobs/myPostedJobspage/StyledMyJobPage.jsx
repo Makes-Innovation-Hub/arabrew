@@ -212,3 +212,6 @@ export const JopPostButton = styled.button`
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
   }
 `;
+export const UpdateSection = styled.div`
+  margin-left: 92%;
+`;
