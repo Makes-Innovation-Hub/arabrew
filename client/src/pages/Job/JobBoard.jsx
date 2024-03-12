@@ -1,37 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetAllJobsQuery } from "../../features/jobStore/jobAPI";
 import Header from "../../components/Header";
-import SideBar from "../../components/SideBar";
 import { StyledMargin, StyledPage } from "../../styles";
 import { ArrowLeft } from "../../assets";
 import { JobList, JobItem } from "./StyledJobBoard";
+import { useTranslation } from "react-i18next";
 
 export default function JobBoardPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  // const [isError, setIsError] = useState (false);
-  // const [isLoading, setIsLoading]= useState (true);
 
-  // Fetch all jobs
-  // const   jobs  = useGetAllJobsQuery();
   const { data, isLoading, isError, isSuccess } = useGetAllJobsQuery();
-  // console.log(data);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}...</div>;
   }
   const jobs = Array.isArray(data.data) ? data.data : [];
-  console.log(jobs);
 
-  // useEffect(() => {
-  //   refetch(); // refetch jobs when the component updated.....
-  // }, [refetch]);
+  if (isLoading) return <div>{t("loading")}...</div>;
+  if (isError) return <div>{t("error_fetching_jobs")}</div>;
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching jobs</div>;
-
-  //  to navigate to job details....
   const goToJobDetails = (jobId) => {
     navigate(`/otherjob/${jobId}`);
   };
@@ -45,11 +35,11 @@ export default function JobBoardPage() {
               <ArrowLeft />
             </Link>
           }
-          title={"Job Board"}
+          title={t("job_board")}
         />
       </StyledMargin>
       <StyledPage>
-        <h1>Open Jobs</h1>
+        <h1>{t("open_jobs")}</h1>
         <JobList>
           {jobs.map((job) => (
             <JobItem key={job._id} onClick={() => goToJobDetails(job._id)}>

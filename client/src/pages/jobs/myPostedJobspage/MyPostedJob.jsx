@@ -1,3 +1,4 @@
+//component that not used
 import React from "react";
 import { StyledMargin, StyledPage, StyledTitle } from "../../../styles";
 import { Header } from "../../../components";
@@ -23,19 +24,20 @@ import {
   useGetJobByIdQuery,
   useDeleteJobMutation,
 } from "../../../features/jobStore/jobAPI";
+import { useTranslation } from "react-i18next";
 
 function MyPostedJob() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
   const [deleteJob] = useDeleteJobMutation();
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   } else if (isError) {
-    return <div>Error fetching job details</div>;
+    return <div>{t("error_fetching_job_details")}</div>;
   }
 
-  // console.log(job)
   const handleAppliers = () => {
     navigate(`/appliers/${job?.job.id}`);
   };
@@ -65,7 +67,7 @@ function MyPostedJob() {
               <ArrowLeft />
             </Link>
           }
-          title={"My Posted Job Page"}
+          title={t("my_posted_job_page")}
         />
       </StyledMargin>
       {isSuccess && (
@@ -99,7 +101,7 @@ function MyPostedJob() {
           <StyledMargin direction="vertical" margin="1.8rem" />
 
           <AppliedSection onClick={handleAppliers}>
-            {job?.job.applicants.length} Applied
+            {job?.job.applicants.length} {t("applied")}
           </AppliedSection>
 
           <button onClick={handleDelete}>Delete</button>

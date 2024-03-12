@@ -4,6 +4,12 @@ export const MeetupWrapper = styled.div`
   padding: 15px 0px;
   margin-bottom: 20px;
 `;
+export const TitleContainer = styled.div`
+  display: flex;
+  /* gap: 70px; */
+  justify-content: space-between;
+  cursor: pointer;
+`;
 
 export const Title = styled.h3`
   color: #161616;
@@ -107,7 +113,7 @@ export const AttendButton = styled.button`
   width: 80%;
   margin: 8px;
   padding: 16px 8px 16px 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -115,6 +121,30 @@ export const AttendButton = styled.button`
   gap: 8px;
   margin: 80px 20px;
   cursor: pointer;
+`;
+export const UpdateButton = styled.button`
+  background-color: ${({ bg }) => bg || "#50924E"};
+  color: white;
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  width: 80%;
+  padding: 16px 8px 16px 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 0px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
+  }
 `;
 export const AttendeesPageStyle = styled.div`
   display: flex;
@@ -135,4 +165,11 @@ export const AttendeesPageName = styled.h1`
   font-size: 15px;
   font-weight: 500px;
   line-height: 18px;
+`;
+export const ButtonSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column; /* Change to column */
+  justify-content: flex-start; /* Align buttons to the top */
+  align-items: flex-start; /* Align buttons to the left */
+  gap: 0; /* Remove the gap between buttons */
 `;
