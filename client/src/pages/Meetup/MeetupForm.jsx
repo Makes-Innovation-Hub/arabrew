@@ -121,102 +121,102 @@ const MeetupForm = () => {
     const lang = i18n.language;
     return lang === "he" || lang === "ar" ? "rtl" : "ltr";
   }, [localStorage.getItem("lang")]);
-};
 
-const handleBack = () => {
-  window.history.back();
-};
+  const handleBack = () => {
+    window.history.back();
+  };
 
-return (
-  <div dir={getTextDirection()}>
-    <StyledMargin direction="vertical" margin="5%">
-      <Header
-        leftIcon={
-          <div onClick={handleBack}>
-            <ArrowLeft />
-          </div>
-        }
-        title={t("post_meetup")}
-        rightIcon={
-          <Link to="/">
-            <ChatIcon />
-          </Link>
-        }
-      />
-    </StyledMargin>
-    <StyledPage>
-      <MeetupFormWrapper>
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <h3>{t("add_title")}</h3>
-            <MeetupInput
-              type="text"
-              placeholder={t("write_here")}
-              value={title}
-              onChange={handleTitleChange}
-              maxLength={30}
-              required
-            />
-            <p style={{ marginRight: "auto", color: "#666" }}>
-              {remainingChars} {t("character")}
-            </p>
-          </div>
-          <div>
-            <h3>{t("add_date")}</h3>
-            <MeetupInput
-              type="date"
-              placeholder="WED,  JAN 22"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <h3>{t("add_hour")}</h3>
-            <MeetupInput
-              type="time"
-              placeholder="09:00 PM GMT+2"
-              value={time}
-              onChange={(e) => settime(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <h3>{t("location")}</h3>
-            <MeetupInput
-              type="text"
-              placeholder={t("location")}
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          <div>
-            <h3>{t("cost")}</h3>
-            <MeetupInput
-              type="text"
-              placeholder={t("cost_holder")}
-              value={price}
-              onChange={(e) => setprice(e.target.value)}
-            />
-          </div>
-          <div>
-            <h3>{t("add_event_description")}</h3>
-            <MeetupTextArea
-              placeholder={t("add_event_description")}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </div>
-          {isMeetingId ? (
-            <UpdateButton onClick={handleUpdateMeetup}>Update</UpdateButton>
-          ) : (
-            <MeetupButton type="submit">{t("post_meetup")}</MeetupButton>
-          )}
-        </form>
-      </MeetupFormWrapper>
-    </StyledPage>
-  </div>
-);
+  return (
+    <div dir={getTextDirection()}>
+      <StyledMargin direction="vertical" margin="5%">
+        <Header
+          leftIcon={
+            <div onClick={handleBack}>
+              <ArrowLeft />
+            </div>
+          }
+          title={t("post_meetup")}
+          rightIcon={
+            <Link to="/">
+              <ChatIcon />
+            </Link>
+          }
+        />
+      </StyledMargin>
+      <StyledPage>
+        <MeetupFormWrapper>
+          <form onSubmit={handleFormSubmit}>
+            <div>
+              <h3>{t("add_title")}</h3>
+              <MeetupInput
+                type="text"
+                placeholder={t("write_here")}
+                value={title}
+                onChange={handleTitleChange}
+                maxLength={30}
+                required
+              />
+              <p style={{ marginRight: "auto", color: "#666" }}>
+                {remainingChars} {t("character")}
+              </p>
+            </div>
+            <div>
+              <h3>{t("add_date")}</h3>
+              <MeetupInput
+                type="date"
+                placeholder="WED,  JAN 22"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <h3>{t("add_hour")}</h3>
+              <MeetupInput
+                type="time"
+                placeholder="09:00 PM GMT+2"
+                value={time}
+                onChange={(e) => settime(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <h3>{t("location")}</h3>
+              <MeetupInput
+                type="text"
+                placeholder={t("location")}
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div>
+              <h3>{t("cost")}</h3>
+              <MeetupInput
+                type="text"
+                placeholder={t("cost_holder")}
+                value={price}
+                onChange={(e) => setprice(e.target.value)}
+              />
+            </div>
+            <div>
+              <h3>{t("add_event_description")}</h3>
+              <MeetupTextArea
+                placeholder={t("add_event_description")}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
+            {isMeetingId ? (
+              <UpdateButton onClick={handleUpdateMeetup}>Update</UpdateButton>
+            ) : (
+              <MeetupButton type="submit">{t("post_meetup")}</MeetupButton>
+            )}
+          </form>
+        </MeetupFormWrapper>
+      </StyledPage>
+    </div>
+  );
+};
 
 export default MeetupForm;

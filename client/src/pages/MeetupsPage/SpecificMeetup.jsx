@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import React, { useState } from "react";
 import { StyledMargin, UpcomingStyledPage } from "../../styles";
 import { Header } from "../../components";
 import { Link, useNavigate, useParams } from "react-router-dom";
