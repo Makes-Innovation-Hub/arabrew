@@ -10,6 +10,7 @@ import {
   OtherPageButton,
   ProfileSection,
   SecondSection,
+  SendButton,
   StyledImg,
   StyledJobText,
   StyledMyJobPage,

@@ -48,7 +48,7 @@ export const meetupApi = createApi({
     updateMeetup: builder.mutation({
       query: ({ meetupId, meetupData }) => ({
         url: `/meetup/${meetupId}`,
-        method: "PUT",
+        method: "PATCH",
         body: meetupData,
       }),
       invalidatesTags: ["Meetup"],
