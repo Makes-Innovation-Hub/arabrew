@@ -83,3 +83,13 @@ export const TimeIcon = () => (
     </svg>
   </TimeIconWrapper>
 );
+export const UpdateButton = styled.button`
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #50924e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
