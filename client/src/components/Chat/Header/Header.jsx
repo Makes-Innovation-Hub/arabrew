@@ -4,8 +4,8 @@ import { HeaderWrapper } from "../../../styles/Chat/Header/HeaderWrapper";
 import { ImageWrapper } from "../../../styles/Chat/Header/ImageWrapper";
 import { useNavigate } from "react-router-dom";
 
-export default function Header({ reciever }) {
-  const { img, name } = reciever;
+export default function Header({ receiver }) {
+  const { img, name } = receiver;
   const navigate = useNavigate();
   return (
     <HeaderWrapper>
@@ -19,7 +19,7 @@ export default function Header({ reciever }) {
         <img
           src={img}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          alt="reciever img"
+          alt="receiver img"
         />
       </ImageWrapper>
       <label style={{ color: "#FFFFFF", fontWeight: "1000" }}>{name}</label>

@@ -7,17 +7,22 @@ export const ConversationDisplay = ({
   nameCon,
   contentCon,
   userId,
+  chatId,
 }) => {
+  console.log("chat id", chatId);
   return (
-    <DisplayChatsStyle>
-      <Link to={`/profiled?type=hobbies&userId=${userId}`}>
+    <Link
+      to={`/chat-page/${chatId}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      <DisplayChatsStyle>
         <ProfileChat profile={profile} />
-      </Link>
-      <ContentChat>
-        <p>{nameCon}</p>
-        <p>{contentCon}</p>
-      </ContentChat>
-    </DisplayChatsStyle>
+        <ContentChat>
+          <p>{nameCon}</p>
+          <p>{contentCon}</p>
+        </ContentChat>
+      </DisplayChatsStyle>
+    </Link>
   );
 };
 

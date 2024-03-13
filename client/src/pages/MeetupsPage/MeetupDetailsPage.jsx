@@ -1,78 +1,61 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../../components/Header";
-import { Link } from "react-router-dom";
+import { ArrowLeft } from "../../assets";
+import { UpcomingStyledPage, StyledMargin } from "../../styles";
+import MeetupDetailsDisplay from "./MeetupDetailsPageStyle.jsx";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   useGetMeetupByIdQuery,
   useAttendMeetupMutation,
+  useDeleteMeetupMutation,
 } from "../../features/meetupApi";
-import { ArrowLeft } from "../../assets";
-import { UpcomingStyledPage, StyledMargin } from "../../styles";
-import { MeetupDetailsDisplay } from "./MeetupDetailsPageStyle";
 
 const MeetupDetailsPage = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const { meetupId } = useParams();
   const { data, error, isLoading } = useGetMeetupByIdQuery(meetupId);
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [isAttending, setIsAttending] = useState(false);
-
+  const [isOwner, setIsOwner] = useState(false);
   const [attendMeetup] = useAttendMeetupMutation();
+  const [deleteMeetup] = useDeleteMeetupMutation();
 
   useEffect(() => {
-    // Retrieve the stored attendance status from local storage
-    const storedStatus = localStorage.getItem(`meetup_attendance_${meetupId}`);
-
-    // Set initial state based on the stored status or the user's attendance status
     setIsAttending(
-      storedStatus === "attended" ||
-        (data && data.data && data.data.isAttending)
+      data?.data?.attendees.some((user) => user.id === storedUser?.id)
     );
-  }, [data, meetupId]);
+    setIsOwner(data?.data?.owner?.id === storedUser?.id);
+  }, [data, meetupId, storedUser, setIsAttending]);
 
   const handleAttendButtonClick = async () => {
+    // Toggle attendance status
     try {
-      // isAttending value
-      const newIsAttending = !isAttending;
-
-      // Call the mutation with the updated isAttending value and the user token in headers
-      const response = await attendMeetup({
-        meetupId,
-        isAttending: newIsAttending,
-      });
-      console.log(response);
-
-      // Check for success status in the response
-      if (response.error) {
-        console.error("Error updating attendance:", response.error);
-        console.error("Error data:", response.error.data);
-        console.error("Original status:", response.error.originalStatus);
-        return;
-      }
-
-      // Log the attendance status
-      console.log(
-        `Attendance status: ${newIsAttending ? "Attended" : "Not Attended"}`
-      );
-
-      // Update the local state with the new isAttending value
-      setIsAttending(newIsAttending);
-
-      // Store the updated status in local storage
-      localStorage.setItem(
-        `meetup_attendance_${meetupId}`,
-        newIsAttending ? "attended" : "cancelled"
-      );
+      await attendMeetup({ meetupId, isAttending: !isAttending });
+      setIsAttending(!isAttending);
     } catch (error) {
       console.error("Error updating attendance:", error);
     }
   };
 
+  const handleDeleteButtonClick = async () => {
+    try {
+      await deleteMeetup({ meetupId });
+      navigate("/My-meetups-page");
+    } catch (error) {
+      console.error("Error deleting meetup:", error);
+    }
+  };
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("loading")}</div>;
   }
 
   if (error) {
     console.error(error);
-    return <div>Error occurred while fetching meetup details.</div>;
+    return <div>{t("error_fetching_meetup_details")}</div>;
   }
 
   return (
@@ -84,12 +67,13 @@ const MeetupDetailsPage = () => {
               <ArrowLeft />
             </Link>
           }
-          title="Meetup Page"
+          title={t("meetup_page")}
         />
       </StyledMargin>
       <UpcomingStyledPage>
         {data && data.data && (
           <MeetupDetailsDisplay
+            key={data.data._id}
             title={data.data.title}
             date={data.data.date}
             time={data.data.time}
@@ -99,7 +83,14 @@ const MeetupDetailsPage = () => {
             isAttending={isAttending}
             attendees={data.data.attendees}
             onAttendClick={handleAttendButtonClick}
+            meetupId={meetupId}
+            isOwner={isOwner}
           />
+        )}
+        {isOwner && (
+          <button onClick={handleDeleteButtonClick}>
+            {t("delete_meetup_button")}
+          </button>
         )}
       </UpcomingStyledPage>
     </div>

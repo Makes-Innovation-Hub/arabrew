@@ -6,5 +6,7 @@ export const ChatsDisplay = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-top: 3rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+  min-height: 100vh;
+  gap: 2rem;
 `;

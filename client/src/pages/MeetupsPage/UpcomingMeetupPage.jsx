@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 import SideBar from "../../components/SideBar";
@@ -9,23 +9,21 @@ import {
   UpcomingDisplay,
   CenteredText,
 } from "../../styles";
-import { SmallGlass, ArrowLeft } from "../../assets";
-import {
-  useGetAllMeetupsQuery,
-  useGetMyMeetupsQuery,
-} from "../../features/meetupApi";
+import { ArrowLeft } from "../../assets";
+import { useGetAllMeetupsQuery } from "../../features/meetupApi";
+import { useTranslation } from "react-i18next";
 
 function MyMeetups() {
+  const { t } = useTranslation();
   const [isSideBar, setIsSideBar] = useState(false);
   const { data, error, isLoading } = useGetAllMeetupsQuery();
   const navigation = useNavigate();
-  console.log(data);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>{t("loading")}</div>;
 
   if (error) {
     console.log(error);
-    return <div>Error occurred while fetching meetups.</div>;
+    return <div>{t("error_fetching_meetups")}</div>;
   }
 
   const handleNavigation = (meetupId) => {
@@ -46,15 +44,14 @@ function MyMeetups() {
               <ArrowLeft />
             </Link>
           }
-          title="Meetups"
+          title={t("meetups")}
         />
       </StyledMargin>
       <UpcomingStyledPage>
-        <CenteredText>Upcoming Meetups</CenteredText>
+        <CenteredText>{t("upcoming_meetups")}</CenteredText>
 
         {Array.isArray(data.data) && data.data.length !== 0 ? (
           <MeetupListStyle>
-            {/* <div> */}
             {data?.data?.map((meetup, i) => (
               <UpcomingDisplay
                 meetupId={meetup.id}
@@ -67,11 +64,10 @@ function MyMeetups() {
                 ownerId={meetup.owner}
               />
             ))}
-            {/* </div> */}
           </MeetupListStyle>
         ) : (
           <CenteredText>
-            <div>No upcoming meetups</div>
+            <div>{t("no_upcoming_meetups")}</div>
           </CenteredText>
         )}
       </UpcomingStyledPage>
