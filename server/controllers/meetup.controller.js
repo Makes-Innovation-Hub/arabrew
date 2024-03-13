@@ -19,7 +19,7 @@ export const getAllMeetups = async (req, res, next) => {
   try {
     const meetups = await Meetup.find();
     // if no meetups found
-    if (!meetups || meetups.length < 1) {
+    if (!meetups) {
       res.status(404);
       throw new Error("Db is Empty, or minor Error");
     }
