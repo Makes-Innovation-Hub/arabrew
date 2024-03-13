@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 import { useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import Header from "../../components/Chat/Header/Header.jsx";
 import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 import {
   useAddMessageMutation,
+  useCreateChatMutation,
   useGetChatByIdQuery,
 } from "../../features/chatDataApi.js";
 
@@ -20,6 +21,7 @@ const ENDPOINT =
 let socket;
 
 const Chat = () => {
+  const [searchParams] = useSearchParams();
   const params = useParams();
   const chatId = params.chatId;
   const [messages, setMessages] = useState([]);
@@ -47,6 +49,7 @@ const Chat = () => {
   //   [usersArr, originLang]
   // );
   const [addMessage] = useAddMessageMutation(params.chatId, msgText);
+  const [createChat] = useCreateChatMutation();
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
       console.log(data);
@@ -58,6 +61,15 @@ const Chat = () => {
   const handleChange = (e) => setMsgText(e.target.value);
 
   const handleSendMsg = async () => {
+    if (searchParams.get("new") === "true") {
+      await createChat({
+        user1Id: loggedUser.id,
+        user2Id: searchParams.get("receiver"),
+        hub: searchParams.get("hub"),
+        message: msgText,
+      });
+      return;
+    }
     if (!msgText) return;
     socket.emit("new_message", msgText, chatId, loggedUser, receiver);
     // console.log("message: ", msgText);
