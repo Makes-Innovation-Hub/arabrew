@@ -18,6 +18,7 @@ import {
   StyledName,
   StyledUnderName,
   Title,
+  UpdateSection,
 } from "../myPostedJobspage/StyledMyJobPage";
 import { Header } from "../../../components";
 import {
@@ -26,6 +27,8 @@ import {
   useDeleteJobMutation,
 } from "../../../features/jobStore/jobAPI";
 import { useTranslation } from "react-i18next";
+import { PiNotePencilBold } from "react-icons/pi";
+import { TitleContainer } from "../../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 
 function OtherJob() {
   const { t } = useTranslation();
@@ -64,7 +67,6 @@ function OtherJob() {
         jobId: job.job.id,
       });
       console.log("Job application successful:", data);
-      //   navigate('')
     } catch (error) {
       console.log("error applying to job", error);
     }
@@ -78,6 +80,9 @@ function OtherJob() {
 
   const handleAppliers = () => {
     navigate(`/appliers/${job?.job.id}`);
+  };
+  const handleUpdateJob = async () => {
+    navigate(`/postJob?JobId=${id}`);
   };
 
   return (
@@ -94,6 +99,15 @@ function OtherJob() {
       </StyledMargin>
       {isSuccess && (
         <StyledMyJobPage>
+          <UpdateSection>
+            {isOwner && (
+              <PiNotePencilBold
+                size={22}
+                onClick={handleUpdateJob}
+                color="green"
+              />
+            )}
+          </UpdateSection>
           <Center>
             <Title>{job?.job?.title}</Title>
           </Center>

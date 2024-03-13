@@ -65,7 +65,7 @@ const jobApi = createApi({
       invalidatesTags: ["Job"],
     }),
     updateJob: builder.mutation({
-      query: ({ jobId, ...jobUpdates }) => ({
+      query: ({ jobId, jobUpdates }) => ({
         url: `/job/${jobId}`,
         method: "PATCH",
         body: jobUpdates,
