@@ -16,7 +16,7 @@ const FriendsList = ({ friendsArr, loggedUser, originLang }) => {
         userDetails={userDetails}
         chatPage={`/chat-page/${
           loggedUser.id + _id
-        }?hub=hobbies&new=true&receiver=${_id}`}
+        }?hub=hobbies&new=true&receiver=${_id}&avatar=${avatar}`}
       />
     );
   });

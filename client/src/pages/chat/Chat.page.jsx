@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import io from "socket.io-client";
-import { genChatId } from "../../helpers/genChatId.jsx";
 import { useSelector } from "react-redux";
 import { ChatLayout } from "../../styles/Chat/ChatLayout.jsx";
 import { InputArea } from "../../components/index.js";
 import ChatDisplayArea from "../../components/Chat/ChatDisplayArea/ChatDisplayArea.jsx";
 
 import Header from "../../components/Chat/Header/Header.jsx";
-import { useGetChatByNamesQuery } from "../../features/userDataApi.js";
 import {
-  useAddMessageMutation,
   useCreateChatMutation,
   useGetChatByIdQuery,
 } from "../../features/chatDataApi.js";
@@ -32,32 +24,14 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [msgText, setMsgText] = useState("");
-  // const state = useLocation().state;
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
-  const { data, error, isSuccess, isLoading } = useGetChatByIdQuery(
-    params.chatId
-  );
+  const { data, isSuccess, isLoading } = useGetChatByIdQuery(params.chatId);
   console.log(chatId);
-  // const { sender, receiver, originLang, targetLang } = params;
-  // const usersArr = [sender, receiver];
-
-  // const chatData = {
-  //   chatId: genChatId(usersArr),
-  //   sender: sender,
-  //   reciever: reciever,
-  //   originLang: originLang,
-  //   targetLang: targetLang,
-  //   content: msgText,
-  // };
-  // const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
-  //   [usersArr, originLang]
-  // );
-  // const [addMessage] = useAddMessageMutation();
   const [createChat] = useCreateChatMutation();
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
-      console.log(data);
+      console.log("data:", data);
       setMessages((prev) => [...data.chat.messages]);
       setReceiver(data.receiverUser);
     }
@@ -78,10 +52,6 @@ const Chat = () => {
     }
     if (!msgText) return;
     socket.emit("new_message", msgText, chatId, loggedUser, receiver);
-    // console.log("message: ", msgText);
-    // const response = await addMessage({ chatId, content: msgText });
-    // console.log(response);
-    // console.log(data);
     setMsgText("");
   };
 
@@ -101,18 +71,25 @@ const Chat = () => {
     socket = io(ENDPOINT);
     const chatData = { chatId, sender: loggedUser, receiver };
     socket.emit("room_setup", chatData);
-    // socket.on("message_to_receiver", (newMsg) => {
-    //   setMessages((prev) => [...prev, newMsg]);
-    // });
-    socket.on("message_to_sender", (newMsg) => {
-      setMessages((prev) => [...prev, newMsg]);
+    socket.on("send_message", (newMsg) => {
+      setMessages((prev) => {
+        // Check if the message already exists to avoid duplicates
+        const messageExists = prev.some(
+          (message) => message._id === newMsg._id
+        );
+        return messageExists ? prev : [...prev, newMsg];
+      });
     });
-    // return () =>socket.on("disconnect",()=>console.log(`${sender} successfully disconnected from chat: ${chatId}`))
   }, [chatId, loggedUser, receiver]);
-
+  console.log("avatar", searchParams.get("avatar"));
   return (
     <ChatLayout>
-      <Header receiver={{ name: receiver?.name, img: receiver?.avatar }} />
+      <Header
+        receiver={{
+          name: receiver?.name,
+          img: receiver?.avatar || searchParams.get("avatar"),
+        }}
+      />
       {isLoading && <h2>LOADING...</h2>}
       {/* {isSuccess && <ChatDisplayArea messages={messages} />} */}
       <ChatDisplayArea messages={messages} />
