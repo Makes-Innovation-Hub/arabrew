@@ -79,7 +79,7 @@ const SearchFriends = () => {
           <FriendsList
             friendsArr={data}
             originLang={originLang}
-            userName={loggedUser.name}
+            loggedUser={loggedUser}
           />
         )}
       </StyledPage>

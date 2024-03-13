@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import io from "socket.io-client";
 import { genChatId } from "../../helpers/genChatId.jsx";
 import { useSelector } from "react-redux";
@@ -48,7 +53,7 @@ const Chat = () => {
   // const { data, isSuccess, isLoading, isError, error } = useGetChatByNamesQuery(
   //   [usersArr, originLang]
   // );
-  const [addMessage] = useAddMessageMutation(params.chatId, msgText);
+  // const [addMessage] = useAddMessageMutation();
   const [createChat] = useCreateChatMutation();
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
@@ -59,16 +64,17 @@ const Chat = () => {
   }, [data, isSuccess, isLoading]);
 
   const handleChange = (e) => setMsgText(e.target.value);
-
+  const navigate = useNavigate();
   const handleSendMsg = async () => {
     if (searchParams.get("new") === "true") {
-      await createChat({
+      const res = await createChat({
         user1Id: loggedUser.id,
         user2Id: searchParams.get("receiver"),
         hub: searchParams.get("hub"),
         message: msgText,
       });
-      return;
+      console.log(res);
+      if (res.data) navigate(`/chat-page/${res.data.id}`);
     }
     if (!msgText) return;
     socket.emit("new_message", msgText, chatId, loggedUser, receiver);
@@ -95,9 +101,9 @@ const Chat = () => {
     socket = io(ENDPOINT);
     const chatData = { chatId, sender: loggedUser, receiver };
     socket.emit("room_setup", chatData);
-    socket.on("message_to_receiver", (newMsg) => {
-      setMessages((prev) => [...prev, newMsg]);
-    });
+    // socket.on("message_to_receiver", (newMsg) => {
+    //   setMessages((prev) => [...prev, newMsg]);
+    // });
     socket.on("message_to_sender", (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
     });
@@ -108,8 +114,8 @@ const Chat = () => {
     <ChatLayout>
       <Header receiver={{ name: receiver?.name, img: receiver?.avatar }} />
       {isLoading && <h2>LOADING...</h2>}
-      {isSuccess && <ChatDisplayArea messages={messages} />}
-      {/* <ChatDisplayArea messages={messages} /> */}
+      {/* {isSuccess && <ChatDisplayArea messages={messages} />} */}
+      <ChatDisplayArea messages={messages} />
       <InputArea
         typedMsg={msgText}
         handleChange={handleChange}
