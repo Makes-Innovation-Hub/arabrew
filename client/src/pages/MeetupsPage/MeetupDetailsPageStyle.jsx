@@ -69,7 +69,13 @@ const MeetupDetailsDisplay = ({
     <MeetupWrapper>
       <TitleContainer>
         <Title>{title}</Title>
-        {isOwner && <PiNotePencilBold size={22} onClick={handleUpdateMeetup} />}
+        {isOwner && (
+          <PiNotePencilBold
+            size={22}
+            onClick={handleUpdateMeetup}
+            color="green"
+          />
+        )}
       </TitleContainer>
 
       <StyledRow>

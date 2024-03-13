@@ -197,3 +197,21 @@ export const SendButton = styled.button`
   margin: 80px 20px;
   cursor: pointer;
 `;
+
+export const JopPostButton = styled.button`
+  width: 34rem;
+  height: 5rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  background-color: ${({ bg }) => bg || "#50924E"};
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
+  }
+`;
+export const UpdateSection = styled.div`
+  margin-left: 92%;
+`;
