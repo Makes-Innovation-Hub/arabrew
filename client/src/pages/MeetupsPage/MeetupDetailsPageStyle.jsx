@@ -12,6 +12,9 @@ import {
   AttendeesAvatarIcon,
   AttendButton,
   AboutmeText,
+  UpdateButton,
+  ButtonSectionContainer,
+  TitleContainer,
 } from "../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 import {
   MyMeetupDescriptionSection,
@@ -20,6 +23,10 @@ import {
   StyledRow,
 } from "./StyledSpecificMeetup";
 import { StyledMargin } from "../../styles";
+import { OtherPageButton } from "../jobs/myPostedJobspage/StyledMyJobPage";
+import { GrUpdate } from "react-icons/gr";
+import { useUpdateMeetupMutation } from "../../features/meetupApi";
+import { PiNotePencilBold } from "react-icons/pi";
 
 const MeetupDetailsDisplay = ({
   title,
@@ -35,6 +42,10 @@ const MeetupDetailsDisplay = ({
   isOwner,
 }) => {
   const navigate = useNavigate();
+
+  const handleUpdateMeetup = async () => {
+    navigate(`/MeetupForm?MeetupId=${meetupId}`);
+  };
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -56,7 +67,16 @@ const MeetupDetailsDisplay = ({
 
   return (
     <MeetupWrapper>
-      <Title>{title}</Title>
+      <TitleContainer>
+        <Title>{title}</Title>
+        {isOwner && (
+          <PiNotePencilBold
+            size={22}
+            onClick={handleUpdateMeetup}
+            color="green"
+          />
+        )}
+      </TitleContainer>
 
       <StyledRow>
         <IoCalendarNumberOutline />
@@ -102,12 +122,20 @@ const MeetupDetailsDisplay = ({
           </Link>
         ))}
       </AttendeesAvatarIcon>
+      <StyledMargin direction="vertical" margin="6rem" />
 
-      {!isOwner && (
-        <AttendButton isAttending={isAttending} onClick={onAttendClick}>
-          {isAttending ? "Cancel Attend" : "Attend"}
-        </AttendButton>
-      )}
+      <ButtonSectionContainer>
+        {!isOwner && (
+          <AttendButton isAttending={isAttending} onClick={onAttendClick}>
+            {isAttending ? "Cancel Attend" : "Attend"}
+          </AttendButton>
+        )}
+        {/* {isOwner && (
+          < UpdateButton onClick={handleUpdateMeetup}>
+            <GrUpdate />Update
+          </ UpdateButton>
+        )} */}
+      </ButtonSectionContainer>
     </MeetupWrapper>
   );
 };
