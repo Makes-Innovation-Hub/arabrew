@@ -6,7 +6,12 @@ import { ArrowLeft } from "../../../assets";
 import {
   AppliedSection,
   Center,
+  DSection,
+  DeleteButton,
+  DeleteTitle,
   DescriptionSection,
+  EDSection,
+  EditButton,
   FirstSection,
   OtherPageButton,
   ProfileSection,
@@ -29,7 +34,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { PiNotePencilBold } from "react-icons/pi";
 import { TitleContainer } from "../../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
-
+import DropboxChooser from "react-dropbox-chooser";
+const APP_KEY = "84w4r8ek13oc73c";
 function OtherJob() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -39,6 +45,15 @@ function OtherJob() {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const [applyToJob] = useApplyToJobMutation();
   const [isOwner, setIsOwner] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleDeleteConfirmation = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
+  };
 
   useEffect(() => {
     setIsOwner(job?.job?.postedBy?.id === storedUser?.id);
@@ -59,13 +74,14 @@ function OtherJob() {
       console.error("Error deleting job:", error);
     }
   };
-  const handleApplyButton = async () => {
+  const handleApplyButton = async (file) => {
     try {
       const { data } = await applyToJob({
         userId: storedUser.id,
         resume: storedUser.userDetails.resume,
         jobId: job.job.id,
       });
+      console.log(file);
       console.log("Job application successful:", data);
     } catch (error) {
       console.log("error applying to job", error);
@@ -99,15 +115,6 @@ function OtherJob() {
       </StyledMargin>
       {isSuccess && (
         <StyledMyJobPage>
-          <UpdateSection>
-            {isOwner && (
-              <PiNotePencilBold
-                size={22}
-                onClick={handleUpdateJob}
-                color="green"
-              />
-            )}
-          </UpdateSection>
           <Center>
             <Title>{job?.job?.title}</Title>
           </Center>
@@ -149,7 +156,22 @@ function OtherJob() {
           <StyledMargin direction="vertical" margin="35rem" />
 
           {isOwner ? (
-            <button onClick={handleDelete}>{t("delete_job_button")}</button>
+            showConfirmation ? (
+              <DSection>
+                <DeleteTitle>Are you sure you want to delete?</DeleteTitle>
+                <EDSection>
+                  <EditButton onClick={handleCancelDelete}>No</EditButton>
+                  <DeleteButton onClick={handleDelete}>Yes</DeleteButton>
+                </EDSection>
+              </DSection>
+            ) : (
+              <EDSection>
+                <EditButton onClick={handleUpdateJob}>Edit</EditButton>
+                <DeleteButton onClick={handleDeleteConfirmation}>
+                  {t("delete_job_button")}
+                </DeleteButton>
+              </EDSection>
+            )
           ) : (
             <OtherPageButton onClick={handleApplyButton}>
               {t("send_resume")}

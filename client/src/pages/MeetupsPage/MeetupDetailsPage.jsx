@@ -11,6 +11,7 @@ import {
   useAttendMeetupMutation,
   useDeleteMeetupMutation,
 } from "../../features/meetupApi";
+import { OtherPageButton } from "../jobs/myPostedJobspage/StyledMyJobPage.jsx";
 
 const MeetupDetailsPage = () => {
   const navigate = useNavigate();
