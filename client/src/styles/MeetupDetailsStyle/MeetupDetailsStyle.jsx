@@ -29,8 +29,9 @@ export const HeaderText = styled.h2`
   font-weight: 700;
   line-height: 15px;
   letter-spacing: 0em;
-  text-align: left;
-  margin-bottom: 10px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 15px;
 `;
 
 export const InfoText = styled.p`
@@ -131,7 +132,7 @@ export const UpdateButton = styled.button`
   font-size: 14px;
   line-height: 22px;
   text-align: center;
-  width: 80%;
+  width: 35%;
   padding: 16px 8px 16px 8px;
   border-radius: 8px;
   display: flex;
@@ -144,6 +145,30 @@ export const UpdateButton = styled.button`
   transition: background-color 0.3s;
   &:hover {
     background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
+  }
+`;
+export const DeleteButton = styled.button`
+  background-color: ${({ bg }) => bg || "#E81B42"};
+  color: white;
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  width: 35%;
+  padding: 16px 8px 16px 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 0px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${({ hoverBg }) => hoverBg || "#af112e"};
   }
 `;
 export const AttendeesPageStyle = styled.div`
@@ -166,10 +191,18 @@ export const AttendeesPageName = styled.h1`
   font-weight: 500px;
   line-height: 18px;
 `;
+
 export const ButtonSectionContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Change to column */
-  justify-content: flex-start; /* Align buttons to the top */
-  align-items: flex-start; /* Align buttons to the left */
-  gap: 0; /* Remove the gap between buttons */
+  flex-direction: row; /* Change to row */
+  justify-content: flex-start; /* Align buttons to the start */
+  align-items: flex-start; /* Align buttons to the top */
+  gap: 1px; /* Add some gap between buttons */
+`;
+
+export const HeaderTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
 `;
