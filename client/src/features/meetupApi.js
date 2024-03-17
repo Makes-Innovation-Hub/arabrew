@@ -33,7 +33,10 @@ export const meetupApi = createApi({
       }),
       invalidatesTags: ["Meetup"],
       transformResponse: (response) => {
-        return response;
+        console.log("response from rtk", response);
+      },
+      transformErrorResponse: (response) => {
+        console.log("response from rtk", response);
       },
     }),
     getAllMeetups: builder.query({

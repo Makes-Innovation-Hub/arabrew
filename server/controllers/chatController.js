@@ -106,9 +106,11 @@ export const getChatById = async (req, res, next) => {
 //$ @route   GET /api/chat/open-conversations/?hub="work"||"hobbies"
 //! @access  NOT SET YET
 export const getUserChatsList = async (req, res, next) => {
+  console.log("entering");
   try {
     const userId = req.user.id;
-    const hub = req.query.hub || "";
+    const hub = req.query.hub;
+    console.log("my hub" + hub);
     if (!userId || !hub) {
       res.status(STATUS_CODES.VALIDATION_ERROR);
       throw new Error("Must Provide userId and hub");

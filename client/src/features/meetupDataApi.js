@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 
-
 const meetupDataApi = createApi({
   reducerPath: "meetupDataApi",
   baseQuery: fetchBaseQuery({

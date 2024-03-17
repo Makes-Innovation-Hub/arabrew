@@ -23,7 +23,10 @@ import {
 } from "../../features/jobStore/jobAPI";
 import { addJobDetail } from "../../features/jobStore/JobSlice";
 import { useTranslation } from "react-i18next";
-import { MeetupButton } from "../../styles/Meetup/MeetupStyledPage";
+import {
+  MeetupButton,
+  MeetupTextArea,
+} from "../../styles/Meetup/MeetupStyledPage";
 import { JopPostButton } from "./myPostedJobspage/StyledMyJobPage";
 
 function PostJob() {
@@ -265,7 +268,7 @@ function PostJob() {
           <StyledPageTitle>{t("add_job_description")}</StyledPageTitle>
         </StyledMargin>
         <StyledMargin direction="vertical" margin="1.8rem" />
-        <StyledTextArea
+        <MeetupTextArea
           value={workDescriptionValue}
           placeholder={t("write_here_job_description")}
           maxLength={500}
@@ -275,7 +278,7 @@ function PostJob() {
               value: e.target.value,
             })
           }
-        ></StyledTextArea>
+        ></MeetupTextArea>
         <StyledMargin direction="vertical" margin="2.6rem" />
         <Flex>
           <StyledMargin direction="horizontal" margin="25rem" />
