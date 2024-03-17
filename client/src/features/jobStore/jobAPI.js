@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
-const port = import.meta.env.VITE_SERVER_PORT;
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   // console.log("storedUser: ", storedUser);

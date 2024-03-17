@@ -11,6 +11,7 @@ import {
   useAttendMeetupMutation,
   useDeleteMeetupMutation,
 } from "../../features/meetupApi";
+import { OtherPageButton } from "../jobs/myPostedJobspage/StyledMyJobPage.jsx";
 
 const MeetupDetailsPage = () => {
   const navigate = useNavigate();
@@ -85,12 +86,8 @@ const MeetupDetailsPage = () => {
             onAttendClick={handleAttendButtonClick}
             meetupId={meetupId}
             isOwner={isOwner}
+            handleDeleteMeetup={handleDeleteButtonClick}
           />
-        )}
-        {isOwner && (
-          <button onClick={handleDeleteButtonClick}>
-            {t("delete_meetup_button")}
-          </button>
         )}
       </UpcomingStyledPage>
     </div>

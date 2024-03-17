@@ -6,6 +6,8 @@ import { StyledMargin, StyledPage } from "../../styles";
 import { ArrowLeft } from "../../assets";
 import { JobList, JobItem } from "./StyledJobBoard";
 import { useTranslation } from "react-i18next";
+import { Center } from "../jobs/myPostedJobspage/StyledMyJobPage";
+import { Title } from "../../styles/UpcomingStyledPage";
 
 export default function JobBoardPage() {
   const { t } = useTranslation();
@@ -21,7 +23,6 @@ export default function JobBoardPage() {
 
   if (isLoading) return <div>{t("loading")}...</div>;
   if (isError) return <div>{t("error_fetching_jobs")}</div>;
-
   const goToJobDetails = (jobId) => {
     navigate(`/otherjob/${jobId}`);
   };
@@ -40,16 +41,22 @@ export default function JobBoardPage() {
       </StyledMargin>
       <StyledPage>
         <h1>{t("open_jobs")}</h1>
-        <JobList>
-          {jobs.map((job) => (
-            <JobItem key={job._id} onClick={() => goToJobDetails(job._id)}>
-              <h2>{job.title}</h2>
-              <p>{job.company}</p>
-              <p>{job.city}</p>
-              <p>({job.model})</p>
-            </JobItem>
-          ))}
-        </JobList>
+        {data.data.length === 0 ? (
+          <Center>
+            <Title>No open job at the moment.</Title>
+          </Center>
+        ) : (
+          <JobList>
+            {jobs?.map((job) => (
+              <JobItem key={job._id} onClick={() => goToJobDetails(job._id)}>
+                <h2>{job.title}</h2>
+                <p>{job.company}</p>
+                <p>{job.city}</p>
+                <p>({job.model})</p>
+              </JobItem>
+            ))}
+          </JobList>
+        )}
       </StyledPage>
     </div>
   );

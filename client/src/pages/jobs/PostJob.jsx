@@ -141,7 +141,7 @@ function PostJob() {
     };
     try {
       const result = await createJob(jobDetails).unwrap();
-      navigate(`/myPostedJob/${result.newJob.id}`);
+      navigate(`/otherJob/${result.newJob.id}`);
     } catch (error) {
       console.log("error creating job", error);
     }
