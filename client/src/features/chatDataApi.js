@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const port = import.meta.env.VITE_SERVER_PORT;
-const baseUrl = `http://localhost:${port}/api/new-chat`;
-
+// const baseUrl = `http://localhost:${port}/api/new-chat`;
+const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const token = storedUser.token;
@@ -43,7 +43,7 @@ export const chatApi = createApi({
       providesTags: ["chat"],
     }),
     getUserChatsList: builder.query({
-      query: (hub) => `/chat/existing/?hub=${hub}`,
+      query: (hub) => `/api/new-chat/chat/existing/?hub=${hub}`,
       providesTags: ["chat"],
     }),
     addMessage: builder.mutation({

@@ -16,7 +16,7 @@ const getToken = () => {
 const jobApi = createApi({
   reducerPath: "jobApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseUrl}:${port}/api`,
+    baseUrl: `${baseUrl}/api`,
     tagTypes: ["Job"],
     prepareHeaders: (headers) => {
       // Call your function to get the authentication token

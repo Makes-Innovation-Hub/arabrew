@@ -21,10 +21,10 @@ export const MeetupInput = styled.input`
 `;
 
 export const MeetupTextArea = styled.textarea`
-  width: 100%;
+  width: 90%;
   height: 229px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 `;

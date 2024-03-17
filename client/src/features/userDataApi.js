@@ -13,7 +13,7 @@ const getToken = () => {
 };
 const userDataApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseUrl}:${port}/api`,
+    baseUrl: `${baseUrl}/api`,
     tagTypes: ["User"],
     prepareHeaders: (headers) => {
       const token = getToken();
