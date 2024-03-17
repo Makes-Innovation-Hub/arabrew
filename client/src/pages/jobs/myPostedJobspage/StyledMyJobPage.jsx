@@ -215,3 +215,68 @@ export const JopPostButton = styled.button`
 export const UpdateSection = styled.div`
   margin-left: 92%;
 `;
+
+export const EDSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  cursor: pointer;
+`;
+export const DSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  cursor: pointer;
+`;
+
+export const EditButton = styled.button`
+  border-radius: 0.6rem;
+  border: none;
+  width: 112px;
+  height: 48px;
+  padding: 16px, 8px, 16px, 8px;
+  cursor: pointer;
+  background-color: ${({ bg }) => bg || "#50924E"};
+  /* position: fixed; */
+  /* left: 50%; */
+  /* transform: translateX(10%); */
+  bottom: 2rem;
+  color: #fff;
+  font-style: italic;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${({ hoverBg }) => hoverBg || "#396d37"};
+  }
+`;
+
+export const DeleteButton = styled.button`
+  border-radius: 0.6rem;
+  border: none;
+  width: 112px;
+  height: 48px;
+  padding: 16px, 8px, 16px, 8px;
+  cursor: pointer;
+  background-color: ${({ bg }) => bg || "#E81B42"};
+  /* position: fixed; */
+  /* left: 50%; */
+  /* transform: translateX(10%); */
+  bottom: 2rem;
+  color: #fff;
+  font-style: italic;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${({ hoverBg }) => hoverBg || "#E81B42c3"};
+  }
+`;
+export const DeleteTitle = styled.h1`
+  color: #161616;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+`;
