@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const port = import.meta.env.VITE_SERVER_PORT;
-const baseUrl = `http://localhost:${port}/api/new-chat`;
+const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 
 const getToken = () => {
   const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
