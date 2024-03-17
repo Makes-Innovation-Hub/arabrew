@@ -19,7 +19,7 @@ const getAllJobs = async (req, res, next) => {
       .populate("postedBy")
       .populate("applicants.user")
       .lean();
-    if (!jobs || jobs.length < 1) {
+    if (!jobs) {
       res.status(STATUS_CODES.NOT_FOUND);
       throw new Error("Jobs are yet to be posted");
       // return errorLogger("DB is empty, general error", req, res, next);
