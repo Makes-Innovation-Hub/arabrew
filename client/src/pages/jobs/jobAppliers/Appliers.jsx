@@ -92,7 +92,7 @@ function Appliers() {
                   </svg>
                 </SecondRow>
                 <StyledIconDiv>
-                  <StyledIconImg src="https://s3-alpha-sig.figma.com/img/f9a0/eea2/7bbbc8e094e25903c33d7fe5215626af?Expires=1709510400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ax--m958Zm4xBfkCzJzxg~grkLZEPo1-Km0lOkaJL9B~43-cXS5tzRHdYmX9-Spp4G9Wi-iU4KqQweUms1IV2z2Mb8tinLXfLZYH~M8Rd-RCwXUsGaJJ97DRlFZq5e2v1sdRaxoBgR5gdkkdhn80Vp6a2IIqsoMbsPhCzL2oMV7f7na3~2HHW0boKXiw09CaErkqKA29H2B1nqyzuQbcjRozLTOBcx2Ha~F0EBW9f29oYTBVJw1877JMnJ2kutkHhpa~f~YIjN8kgSIdI8l1FHj-18uHVU0jFTdD4gk3cK9VLJASC6HHdx68ZoWT8k376gSVZbjZde9N-awD8G0xPQ__" />
+                  <StyledIconImg src="https://s3-alpha-sig.figma.com/img/f9a0/eea2/7bbbc8e094e25903c33d7fe5215626af?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gQeJefyFKKZ1VcU8lszdNxkimeVsocrOGpQzpxoJmCMjdbMieDrVQ-2BaKzBiEBhXXH1xbxIB-ph1pYpgHwtuH9ILB47IqwU4JgNB8IfGJPXQYBElZOf63k91TyJnC-uWZsZONCX3Ia3j4c37qR48KG2AcoqiGRnkxcf7IL~PGa098NQBLS66TAk7wwZ6mXO4I2bkkmFGPOJCzqp61P3QMgBfTAMzmmG-D-hyNAJbL1LTreXtefVtURKzBZ5tev~j8MyDExbVjmrbEzz5uox09Az0B-HmkicozCV7NY~8Q-1pZDgonrMQepCJhCAMLMngrHvtLS1nuIK0kyIZFYR3g__" />
                 </StyledIconDiv>
               </Container>
             ))}
