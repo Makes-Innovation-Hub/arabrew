@@ -86,12 +86,8 @@ const MeetupDetailsPage = () => {
             onAttendClick={handleAttendButtonClick}
             meetupId={meetupId}
             isOwner={isOwner}
+            handleDeleteMeetup={handleDeleteButtonClick}
           />
-        )}
-        {isOwner && (
-          <OtherPageButton onClick={handleDeleteButtonClick}>
-            {t("delete_meetup_button")}
-          </OtherPageButton>
         )}
       </UpcomingStyledPage>
     </div>
