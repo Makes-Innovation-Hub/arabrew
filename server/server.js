@@ -41,7 +41,7 @@ const server = app.listen(
 );
 
 const socket_io = new Server(server, {
-  pingTimeout: 60000,
+  // pingTimeout: 120000000,
   cors: {
     origin: "*",
   },
@@ -50,25 +50,29 @@ const socket_io = new Server(server, {
 socket_io.on("connection", (socket) => {
   console.log("🟢🟢 Socket.io is active 🟢🟢");
   socket.on("room_setup", (chatData) => {
+    console.log(1);
     if (!chatData.chatId) return;
     const { chatId, sender, receiver } = chatData;
     socket.join(chatId);
-    access_chatCollection([sender, receiver])
-      .then((isSuccess) => {
-        if (!isSuccess)
-          throw new Error("error by finding chat , in room_setup");
-        socket.join(chatId);
-      })
-      .catch((err) => console.error(err));
+    // access_chatCollection([sender, receiver])
+    //   .then((isSuccess) => {
+    //     console.log(2);
+    //     if (!isSuccess)
+    //       throw new Error("error by finding chat , in room_setup");
+    //     socket.join(chatId);
+    //   })
+    //   .catch((err) => console.error(err));
   });
 
   socket.on("new_message", (message, chatId, sender, receiver) => {
+    console.log(3);
     CheckAndTranslateMsg(
       message,
       sender?.userDetails.nativeLanguage,
       receiver?.userDetails.nativeLanguage
     )
       .then(async (result) => {
+        console.log(4);
         if (result.isProfanity) return socket.emit("send_message", result);
         const { translatedMsg } = result;
         const content_HE =
@@ -80,10 +84,12 @@ socket_io.on("connection", (socket) => {
           sender: sender.id,
           originalContent: message,
           date: new Date(),
-          translatedContent: { HE: content_HE, AR: content_AR },
+          translatedContent: { HE: content_HE, AR: translatedMsg },
         };
         chat.messages.push(newMessage);
+        console.log(5);
         await chat.save();
+        console.log(6);
         socket
           .to(chatId)
           .emit("send_message", chat.messages[chat.messages.length - 1]);
