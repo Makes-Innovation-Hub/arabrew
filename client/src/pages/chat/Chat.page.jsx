@@ -13,6 +13,7 @@ import {
 } from "../../features/chatDataApi.js";
 
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
+
 let socket;
 
 const Chat = () => {
