@@ -72,6 +72,7 @@ const Chat = () => {
     const chatData = { chatId, sender: loggedUser, receiver };
     socket.emit("room_setup", chatData);
     socket.on("send_message", (newMsg) => {
+      console.log("New Message", newMsg);
       setMessages((prev) => {
         // Check if the message already exists to avoid duplicates
         const messageExists = prev.some(

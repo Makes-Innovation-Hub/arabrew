@@ -69,7 +69,7 @@ socket_io.on("connection", (socket) => {
       receiver?.userDetails.nativeLanguage
     )
       .then(async (result) => {
-        if (result.isProfanity) return socket.emit("message_to_sender", result);
+        if (result.isProfanity) return socket.emit("send_message", result);
         const { translatedMsg } = result;
         const content_HE =
           sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
@@ -82,10 +82,11 @@ socket_io.on("connection", (socket) => {
           date: new Date(),
           translatedContent: { HE: content_HE, AR: content_AR },
         };
-        socket.to(chatId).emit("message_to_sender", newMessage);
         chat.messages.push(newMessage);
         await chat.save();
-        socket.to(chatId).emit("message_to_receiver", newMessage);
+        socket
+          .to(chatId)
+          .emit("send_message", chat.messages[chat.messages.length - 1]);
       })
       .catch((err) => console.error(err));
   });
