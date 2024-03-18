@@ -9,7 +9,7 @@ export const Global = styled.div`
   font-family: "Poppins", sans-serif;
 
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 
   background-color: #50924e;
   color: #fff;

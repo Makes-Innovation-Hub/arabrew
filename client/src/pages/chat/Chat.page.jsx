@@ -12,8 +12,7 @@ import {
   useGetChatByIdQuery,
 } from "../../features/chatDataApi.js";
 
-const ENDPOINT =
-  import.meta.env.VITE_SERVER_BASE_URL + ":" + import.meta.env.VITE_SERVER_PORT;
+const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
 let socket;
 
