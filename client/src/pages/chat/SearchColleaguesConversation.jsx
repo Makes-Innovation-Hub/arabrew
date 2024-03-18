@@ -62,21 +62,7 @@ function SearchColleaguesConversation() {
             <div>Conversation</div>
             <ChatsDisplay>
               {chats.map((chat, i) => {
-                return (
-                  <ConversationDisplay
-                    key={i}
-                    nameCon={chat.name}
-                    contentCon={
-                      chat?.lastCon
-                        ? chat.lastCon[
-                            `content_${loggedUser.userDetails.nativeLanguage}`
-                          ]
-                        : ""
-                    }
-                    profile={chat.avatar}
-                    userId={chat.userId}
-                  />
-                );
+                return <ConversationDisplay key={i} chat={chat} />;
               })}
             </ChatsDisplay>
             <BlockDiv />

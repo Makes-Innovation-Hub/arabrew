@@ -153,11 +153,8 @@ export const getUserChatsList = async (req, res, next) => {
           // latestMessage(messages)?.translated_Content[senderLang];
           console.log("chat info", chat);
           return {
-            userId,
-            users,
-            receiverUser,
-            senderUser,
             chatId: chat._id,
+            chatHub: chat.hub,
             avatar: receiverUser.avatar,
             name: receiverUser.name,
             lastMessageContent,
@@ -196,6 +193,10 @@ export const addMessage = async (req, res, next) => {
     }
     let sender = req.user.id;
     let originalContent = req.body.content;
+    if (!originalContent) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Missing Content");
+    }
     console.log("add message req body", req.body);
     let newMessage = {
       sender,
