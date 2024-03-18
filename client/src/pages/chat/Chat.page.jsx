@@ -13,7 +13,6 @@ import {
 } from "../../features/chatDataApi.js";
 
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
-
 let socket;
 
 const Chat = () => {
@@ -35,23 +34,24 @@ const Chat = () => {
       setReceiver(data.receiverUser);
     }
   }, [data, isSuccess, isLoading]);
-
+  console.log("bla bla", data);
   const handleChange = (e) => setMsgText(e.target.value);
   const navigate = useNavigate();
-  const handleSendMsg = async () => {
+  const handleSendMsg = async (text) => {
+    console.log(text);
     if (searchParams.get("new") === "true") {
       const res = await createChat({
         user1Id: loggedUser.id,
         user2Id: searchParams.get("receiver"),
         hub: searchParams.get("hub"),
-        message: msgText,
+        message: text,
       });
       console.log(res);
       if (res.data) navigate(`/chat-page/${res.data.id}`);
     }
-    if (!msgText) return;
-    socket.emit("new_message", msgText, chatId, loggedUser, receiver);
-    setMsgText("");
+    if (!text) return;
+    socket.emit("new_message", text, chatId, loggedUser, receiver);
+    // setMsgText("");
   };
 
   const addSuggestionToMsgs = (newSuggestions) => {
@@ -67,6 +67,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!chatId) return;
+    console.log("hello client");
     socket = io(ENDPOINT);
     const chatData = { chatId, sender: loggedUser, receiver };
     socket.emit("room_setup", chatData);
