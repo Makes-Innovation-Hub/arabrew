@@ -10,12 +10,11 @@ const getToken = () => {
 };
 
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
-const port = import.meta.env.VITE_SERVER_PORT;
 
 export const meetupApi = createApi({
   reducerPath: "meetupApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseUrl}:${port}/api`,
+    baseUrl: `${baseUrl}/api`,
     tagTypes: ["Meetup"],
     prepareHeaders: (headers) => {
       const token = getToken();
@@ -34,7 +33,10 @@ export const meetupApi = createApi({
       }),
       invalidatesTags: ["Meetup"],
       transformResponse: (response) => {
-        return response;
+        console.log("response from rtk", response);
+      },
+      transformErrorResponse: (response) => {
+        console.log("response from rtk", response);
       },
     }),
     getAllMeetups: builder.query({

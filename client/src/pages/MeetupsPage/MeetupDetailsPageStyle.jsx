@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { RiPriceTag2Line } from "react-icons/ri";
@@ -15,6 +15,8 @@ import {
   UpdateButton,
   ButtonSectionContainer,
   TitleContainer,
+  DeleteButton,
+  HeaderTextContainer,
 } from "../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 import {
   MyMeetupDescriptionSection,
@@ -23,9 +25,7 @@ import {
   StyledRow,
 } from "./StyledSpecificMeetup";
 import { StyledMargin } from "../../styles";
-import { OtherPageButton } from "../jobs/myPostedJobspage/StyledMyJobPage";
 import { GrUpdate } from "react-icons/gr";
-import { useUpdateMeetupMutation } from "../../features/meetupApi";
 import { PiNotePencilBold } from "react-icons/pi";
 
 const MeetupDetailsDisplay = ({
@@ -40,8 +40,10 @@ const MeetupDetailsDisplay = ({
   onAttendClick,
   meetupId,
   isOwner,
+  handleDeleteMeetup,
 }) => {
   const navigate = useNavigate();
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleUpdateMeetup = async () => {
     navigate(`/MeetupForm?MeetupId=${meetupId}`);
@@ -65,17 +67,23 @@ const MeetupDetailsDisplay = ({
     navigate(`/Attendeespage/${meetupId}`);
   };
 
+  const handleDeleteConfirmation = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    handleDeleteMeetup();
+    setShowConfirmation(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowConfirmation(false);
+  };
+
   return (
     <MeetupWrapper>
       <TitleContainer>
         <Title>{title}</Title>
-        {isOwner && (
-          <PiNotePencilBold
-            size={22}
-            onClick={handleUpdateMeetup}
-            color="green"
-          />
-        )}
       </TitleContainer>
 
       <StyledRow>
@@ -122,7 +130,7 @@ const MeetupDetailsDisplay = ({
           </Link>
         ))}
       </AttendeesAvatarIcon>
-      <StyledMargin direction="vertical" margin="6rem" />
+      <StyledMargin direction="vertical" margin="4rem" />
 
       <ButtonSectionContainer>
         {!isOwner && (
@@ -130,11 +138,27 @@ const MeetupDetailsDisplay = ({
             {isAttending ? "Cancel Attend" : "Attend"}
           </AttendButton>
         )}
-        {/* {isOwner && (
-          < UpdateButton onClick={handleUpdateMeetup}>
-            <GrUpdate />Update
-          </ UpdateButton>
-        )} */}
+        {isOwner && (
+          <>
+            {showConfirmation ? (
+              <HeaderTextContainer>
+                <HeaderText>Are you sure you want to delete?</HeaderText>
+
+                <ButtonSectionContainer>
+                  <UpdateButton onClick={handleDeleteCancel}>No</UpdateButton>
+                  <DeleteButton onClick={handleDeleteConfirm}>Yes</DeleteButton>
+                </ButtonSectionContainer>
+              </HeaderTextContainer>
+            ) : (
+              <>
+                <UpdateButton onClick={handleUpdateMeetup}>Edit</UpdateButton>
+                <DeleteButton onClick={handleDeleteConfirmation}>
+                  Delete
+                </DeleteButton>
+              </>
+            )}
+          </>
+        )}
       </ButtonSectionContainer>
     </MeetupWrapper>
   );
