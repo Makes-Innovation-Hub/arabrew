@@ -81,11 +81,7 @@ function SearchColleaguesPage() {
                 <StyledIconDiv
                   onClick={() =>
                     navigate(
-                      `/chat-page/${
-                        loggedUser.id + colleague?._id
-                      }?hub=work&new=true&receiver=${colleague?._id}&avatar=${
-                        colleague?.avatar
-                      }`
+                      `/chat-page/${loggedUser.id}?hub=work&new=true&receiver=${colleague?._id}&avatar=${colleague?.avatar}&name= ${colleague?.name}`
                     )
                   }
                 >

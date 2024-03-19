@@ -26,20 +26,17 @@ const Chat = () => {
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
   const { data, isSuccess, isLoading } = useGetChatByIdQuery(params.chatId);
-  console.log(chatId);
   const [createChat] = useCreateChatMutation();
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
-      console.log("data:", data);
       setMessages((prev) => [...data.chat.messages]);
       setReceiver(data.receiverUser);
     }
   }, [data, isSuccess, isLoading]);
-  console.log("bla bla", data);
+
   const handleChange = (e) => setMsgText(e.target.value);
   const navigate = useNavigate();
   const handleSendMsg = async (text) => {
-    console.log(text);
     if (searchParams.get("new") === "true") {
       const res = await createChat({
         user1Id: loggedUser.id,
@@ -68,9 +65,14 @@ const Chat = () => {
 
   useEffect(() => {
     if (!chatId) return;
-    console.log("hello client");
+
     socket = io(ENDPOINT);
-    const chatData = { chatId, sender: loggedUser, receiver };
+    const chatData = {
+      chatId,
+      sender: loggedUser,
+      receiver,
+      hub: searchParams.get("hub"),
+    };
     socket.emit("room_setup", chatData);
     socket.on("send_message", (newMsg) => {
       console.log("New Message", newMsg);
@@ -83,12 +85,11 @@ const Chat = () => {
       });
     });
   }, [chatId, loggedUser, receiver]);
-  console.log("avatar", searchParams.get("avatar"));
   return (
     <ChatLayout>
       <Header
         receiver={{
-          name: receiver?.name,
+          name: receiver?.name || searchParams.get("name"),
           img: receiver?.avatar || searchParams.get("avatar"),
         }}
       />
