@@ -12,6 +12,7 @@ import {
   addMessageToChat,
 } from "./utils/chat_socketIo.js";
 import { requestLogger } from "./middleware/logger.js";
+import ChatCollection from "./models/chat.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,7 +41,7 @@ const server = app.listen(
 );
 
 const socket_io = new Server(server, {
-  pingTimeout: 60000,
+  // pingTimeout: 120000000,
   cors: {
     origin: "*",
   },
@@ -49,42 +50,49 @@ const socket_io = new Server(server, {
 socket_io.on("connection", (socket) => {
   console.log("🟢🟢 Socket.io is active 🟢🟢");
   socket.on("room_setup", (chatData) => {
-    const { chatId, sender, reciever } = chatData;
-    access_chatCollection([sender, reciever])
-      .then((isSuccess) => {
-        if (!isSuccess)
-          throw new Error("error by finding chat , in room_setup");
-        socket.join(chatId);
-      })
-      .catch((err) => console.error(err));
+    console.log(1);
+    if (!chatData.chatId) return;
+    const { chatId, sender, receiver } = chatData;
+    socket.join(chatId);
+    // access_chatCollection([sender, receiver])
+    //   .then((isSuccess) => {
+    //     console.log(2);
+    //     if (!isSuccess)
+    //       throw new Error("error by finding chat , in room_setup");
+    //     socket.join(chatId);
+    //   })
+    //   .catch((err) => console.error(err));
   });
-  socket.on("new_message", (newMsg) => {
-    const { chatId, content, sender, reciever, originLang, targetLang } =
-      newMsg;
-    CheckAndTranslateMsg(content, originLang, targetLang)
-      .then((result) => {
-        if (result.isProfanity) return socket.emit("message_to_sender", result);
+
+  socket.on("new_message", (message, chatId, sender, receiver) => {
+    console.log(3);
+    CheckAndTranslateMsg(
+      message,
+      sender?.userDetails.nativeLanguage,
+      receiver?.userDetails.nativeLanguage
+    )
+      .then(async (result) => {
+        console.log(4);
+        if (result.isProfanity) return socket.emit("send_message", result);
         const { translatedMsg } = result;
-        const content_HE = originLang === "HE" ? content : translatedMsg;
-        const content_AR = originLang === "AR" ? content : translatedMsg;
-        addMessageToChat(sender, reciever, content_AR, content_HE)
-          .then((savedMsg) => {
-            if (!savedMsg) throw new Error("failed adding new MSg (server.js)");
-            //*send the message back to the sender
-            const savedMsg_sender = Object.assign({}, savedMsg);
-            savedMsg_sender.content = savedMsg_sender["content_" + originLang];
-            delete savedMsg_sender["content_" + originLang];
-            delete savedMsg_sender["content_" + targetLang];
-            socket.emit("message_to_sender", savedMsg_sender);
-            //*send the message to the reciever
-            const savedMsg_reciever = Object.assign({}, savedMsg);
-            savedMsg_reciever.content =
-              savedMsg_reciever["content_" + targetLang];
-            delete savedMsg_reciever["content_" + targetLang];
-            delete savedMsg_reciever["content_" + originLang];
-            socket.in(chatId).emit("message_to_reciever", savedMsg_reciever);
-          })
-          .catch((err) => console.error(err));
+        const content_HE =
+          sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
+        const content_AR =
+          sender?.userDetails.nativeLanguage === "AR" ? message : translatedMsg;
+        const chat = await ChatCollection.findById(chatId);
+        let newMessage = {
+          sender: sender.id,
+          originalContent: message,
+          date: new Date(),
+          translatedContent: { HE: content_HE, AR: translatedMsg },
+        };
+        chat.messages.push(newMessage);
+        console.log(5);
+        await chat.save();
+        console.log(6);
+        socket
+          .to(chatId)
+          .emit("send_message", chat.messages[chat.messages.length - 1]);
       })
       .catch((err) => console.error(err));
   });

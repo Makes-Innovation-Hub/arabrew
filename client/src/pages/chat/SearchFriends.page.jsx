@@ -39,7 +39,7 @@ const SearchFriends = () => {
     <>
       <Header
         leftIcon={
-          <Link to="/conversation">
+          <Link to="/conversation?hub=hobbies">
             <ArrowLeft />
           </Link>
         }
@@ -79,7 +79,7 @@ const SearchFriends = () => {
           <FriendsList
             friendsArr={data}
             originLang={originLang}
-            userName={loggedUser.name}
+            loggedUser={loggedUser}
           />
         )}
       </StyledPage>

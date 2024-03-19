@@ -131,7 +131,6 @@ export const getUsersByInterests = asyncHandler(async (req, res, next) => {
     .sortByMatching();
   sorted_matchingUsers.forEach((user) => {
     delete user.sortBy;
-    delete user._id;
   });
   res.status(200).json(sorted_matchingUsers);
 });

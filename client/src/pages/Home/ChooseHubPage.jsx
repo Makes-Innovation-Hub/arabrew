@@ -55,7 +55,7 @@ export default function ChooseHubPage() {
         </MainButton>
         <MainButton
           onClick={() => {
-            navigate("/conversation");
+            navigate("/conversation?hub=hobbies");
           }}
         >
           {t("hobbies")} - Hobbies <LaughEmoji />{" "}

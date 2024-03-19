@@ -12,7 +12,7 @@ export default function Header({ receiver }) {
       <img
         src={arrowIcon}
         onClick={() => {
-          navigate("/search-friends");
+          navigate(-1);
         }}
       />
       <ImageWrapper>

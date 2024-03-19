@@ -7,7 +7,7 @@ import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
 import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
 import { useGenerateConversationTopicsMutation } from "../../../features/conversations/conversationApi.slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const InputArea = ({
   typedMsg,
@@ -20,6 +20,12 @@ const InputArea = ({
 }) => {
   const [getSuggestions, { isSuccess, isLoading, isError, data }] =
     useGenerateConversationTopicsMutation();
+  const [text, setText] = useState("");
+  const handleOnClick = async () => {
+    console.log("sending msg");
+    await handleSendMsg(text);
+    setText("");
+  };
   console.log("input area data", typedMsg);
   useEffect(() => {
     if (isSuccess && !isLoading && !isError) {
@@ -48,11 +54,11 @@ const InputArea = ({
           <img src={CoffeeMug} />
         </RecommendedButton>
         <InputComponent
-          value={typedMsg}
-          onChange={handleChange}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Start typing..."
         />
-        <SendButton onClick={handleSendMsg}>
+        <SendButton onClick={handleOnClick}>
           <img src={PaperPlane} />
         </SendButton>
       </InputAreaContainer>
