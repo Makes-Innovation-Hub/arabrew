@@ -75,6 +75,7 @@ socket_io.on("connection", (socket) => {
         console.log(4);
         if (result.isProfanity) return socket.emit("send_message", result);
         const { translatedMsg } = result;
+        console.log("the translated Message object:", translatedMsg);
         const content_HE =
           sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
         const content_AR =
@@ -84,7 +85,7 @@ socket_io.on("connection", (socket) => {
           sender: sender.id,
           originalContent: message,
           date: new Date(),
-          translatedContent: { HE: content_HE, AR: translatedMsg },
+          translatedContent: { HE: content_HE, AR: content_AR },
         };
         chat.messages.push(newMessage);
         console.log(5);
