@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlagContainer, FlagImg, StyledMargin } from "../../../styles";
 import { Header } from "../../../components";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -24,14 +24,25 @@ import flags from "../../../assets/countriesAndFlags/by-code.json";
 function Appliers() {
   const { id } = useParams();
   const { data: job, isLoading, isError, isSuccess } = useGetJobByIdQuery(id);
+  const storedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   const navigate = useNavigate();
+  const location = useLocation();
+
   if (isLoading) {
     return <div>Loading...</div>;
   } else if (isError) {
     return <div>Error fetching job details</div>;
   }
   const handleBack = (jobId) => {
-    navigate(`/MyPostedJob/${jobId}`);
+    navigate(`/otherJob/${jobId}`);
+  };
+
+  const handleDownload = (resumeFile) => {
+    if (resumeFile) {
+      window.open(resumeFile, "_blank");
+    } else {
+      console.log("No file selected");
+    }
   };
   return (
     <div>
@@ -74,7 +85,9 @@ function Appliers() {
                     {applicant?.user?.name?.split(" ")[0]}
                   </StyledName>
                 </FirstRow>
-                <SecondRow>
+                <SecondRow
+                  onClick={() => handleDownload(applicant?.user?.resumeFile)}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
