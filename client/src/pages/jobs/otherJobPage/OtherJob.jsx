@@ -127,7 +127,7 @@ function OtherJob() {
               <ArrowLeft />
             </Link>
           }
-          title={t("my_posted_job_page")}
+          title={isOwner ? t("my_posted_job_page") : "Job Page"}
         />
       </StyledMargin>
       {isSuccess && (
