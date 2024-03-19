@@ -197,6 +197,40 @@ export const getUserByName = asyncHandler(async (req, res, next) => {
   });
 });
 
+//$ @desc    Update user
+//$ @route   PUT/api/user/update/:id
+export const updateUser = async (req, res, next) => {
+  controllerLogger("update user data", req.params, "updating user...");
+  const startTime = Date.now();
+  try {
+    // const userId = req.user._id;
+    const userId = req.params.id;
+    // const updateData = req.body;
+    const updatedUser = await User.findOneAndUpdate(
+      {
+        _id: userId,
+      },
+      {
+        ...req.body,
+      },
+      { new: true }
+    );
+    if (!updatedUser) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("User couldn't be found");
+    }
+
+    successLogger("updateUser", "Updating user succeeded");
+    timingLogger("updateUser", startTime);
+    return res.status(200).json({
+      success: true,
+      data: updatedUser,
+    });
+  } catch (error) {
+    errorLogger(error, req, res, next);
+  }
+};
+
 function generateAccessToken(userId) {
   const token = jwt.sign(
     { _id: userId.toString() },

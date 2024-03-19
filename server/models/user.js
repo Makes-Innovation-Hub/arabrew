@@ -77,6 +77,10 @@ const UserSchema = new mongoose.Schema(
         required: [true, "⛔⛔ bio missing ⛔⛔"],
       },
     },
+    resumeFile: {
+      type: String,
+      trim: true,
+    },
   },
   {
     versionKey: false,
