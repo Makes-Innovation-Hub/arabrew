@@ -52,9 +52,9 @@ socket_io.on("connection", (socket) => {
   socket.on("room_setup", (chatData) => {
     console.log(1);
     if (!chatData.chatId) return;
-    const { chatId, sender, receiver } = chatData;
+    const { chatId, sender, receiver, hub } = chatData;
     socket.join(chatId);
-    // access_chatCollection([sender, receiver])
+    // access_chatCollection([sender, receiver], hub)
     //   .then((isSuccess) => {
     //     console.log(2);
     //     if (!isSuccess)
@@ -75,6 +75,7 @@ socket_io.on("connection", (socket) => {
         console.log(4);
         if (result.isProfanity) return socket.emit("send_message", result);
         const { translatedMsg } = result;
+        console.log("the translated Message object:", typeof translatedMsg);
         const content_HE =
           sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
         const content_AR =
@@ -84,7 +85,7 @@ socket_io.on("connection", (socket) => {
           sender: sender.id,
           originalContent: message,
           date: new Date(),
-          translatedContent: { HE: content_HE, AR: translatedMsg },
+          translatedContent: translatedMsg,
         };
         chat.messages.push(newMessage);
         console.log(5);
