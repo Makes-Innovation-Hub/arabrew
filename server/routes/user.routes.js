@@ -8,6 +8,7 @@ import {
   getUser,
   getWorkUsers,
   getUserById,
+  updateUser,
 } from "../controllers/user.controllers.js";
 import { requestLogger } from "../middleware/logger.js";
 import { validateToken } from "../middleware/verifyUserToken.js";
@@ -21,4 +22,5 @@ router
   .route("/:subId/get-users")
   .get(filterByInterests, getUsersByInterests, getAllUsers);
 router.route("/:userName").get(getUserByName);
+router.put("/updateUser/:id", validateToken, updateUser);
 export default router;

@@ -72,6 +72,17 @@ const userDataApi = createApi({
     getUserChatsList: builder.query({
       query: (userName) => `/chat/logged/user/${userName}`,
     }),
+    updateUser: builder.mutation({
+      query: ({ id, userData }) => ({
+        url: `user/updateUser/${id}`,
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: userData,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 export const {
@@ -83,5 +94,6 @@ export const {
   useGetUserByIdQuery,
   useLazyGetLoggedUserQuery,
   useGetWorkUsersQuery,
+  useUpdateUserMutation,
 } = userDataApi;
 export default userDataApi;

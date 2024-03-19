@@ -280,3 +280,23 @@ export const DeleteTitle = styled.h1`
   font-weight: 700;
   line-height: 15px;
 `;
+export const StyledSendResumeButton = styled.button`
+  background-color: ${({ isApplied }) => (isApplied ? "#ff0000" : "#50924e")};
+  color: white;
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  padding: 16px 8px 16px 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  cursor: ${({ isApplied }) => (isApplied ? "not-allowed" : "pointer")};
+  pointer-events: ${({ isApplied }) => (isApplied ? "none" : "auto")};
+  &:hover {
+    opacity: ${({ isApplied }) => (isApplied ? "1" : "0.8")};
+  }
+`;
