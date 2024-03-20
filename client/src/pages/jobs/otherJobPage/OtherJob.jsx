@@ -38,7 +38,6 @@ import DropboxChooser from "react-dropbox-chooser";
 import { useUpdateUserMutation } from "../../../features/userDataApi";
 import.meta.env.VITE_SERVER_BASE_URL;
 const APP_KEY = import.meta.env.VITE_DROPBOX_APP_KEY;
-console.log(APP_KEY);
 function OtherJob() {
   const { t } = useTranslation();
   const navigate = useNavigate();
