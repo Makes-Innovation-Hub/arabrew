@@ -20,7 +20,7 @@ const Friend = ({ name, flag, img, hobbies, chatPage, userDetails }) => {
         <StyledMargin direction="horizontal" margin="1rem" />
         <StyledHeaderTitle color="#161616">{name}</StyledHeaderTitle>
         <StyledBorder>
-          <Link to={chatPage} state={{ reciverImg: img, userDetails }}>
+          <Link to={chatPage} state={{ receiverImg: img, receiverName: name }}>
             <StyledMargin direction="vertical" margin="0.75rem" />
             <MessageIcon />
           </Link>

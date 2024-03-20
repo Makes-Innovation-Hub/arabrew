@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
 import { ChatLayout } from "../../styles/Chat/ChatLayout.jsx";
@@ -22,11 +27,12 @@ const Chat = () => {
   const chatId = params.chatId;
   const [messages, setMessages] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
-  const [msgText, setMsgText] = useState("");
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
   const { data, isSuccess, isLoading } = useGetChatByIdQuery(params.chatId);
   const [createChat] = useCreateChatMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
       setMessages((prev) => [...data.chat.messages]);
@@ -34,8 +40,6 @@ const Chat = () => {
     }
   }, [data, isSuccess, isLoading]);
 
-  const handleChange = (e) => setMsgText(e.target.value);
-  const navigate = useNavigate();
   const handleSendMsg = async (text) => {
     if (searchParams.get("new") === "true") {
       const res = await createChat({
@@ -49,7 +53,6 @@ const Chat = () => {
     }
     if (!text) return;
     socket.emit("new_message", text, chatId, loggedUser, receiver);
-    // setMsgText("");
   };
 
   const addSuggestionToMsgs = (newSuggestions) => {
@@ -69,9 +72,6 @@ const Chat = () => {
     socket = io(ENDPOINT);
     const chatData = {
       chatId,
-      sender: loggedUser,
-      receiver,
-      hub: searchParams.get("hub"),
     };
     socket.emit("room_setup", chatData);
     socket.on("send_message", (newMsg) => {
@@ -89,19 +89,16 @@ const Chat = () => {
     <ChatLayout>
       <Header
         receiver={{
-          name: receiver?.name || searchParams.get("name"),
-          img: receiver?.avatar || searchParams.get("avatar"),
+          name: receiver?.name || location?.state?.receiverName,
+          img: receiver?.avatar || location?.state?.receiverImg,
         }}
       />
       {isLoading && <h2>LOADING...</h2>}
-      {/* {isSuccess && <ChatDisplayArea messages={messages} />} */}
       <ChatDisplayArea messages={messages} />
       <InputArea
-        typedMsg={msgText}
-        handleChange={handleChange}
         handleSendMsg={handleSendMsg}
-        loggedUserDetails={loggedUser.userDetails}
-        chatUserDetails={receiver}
+        loggedUserDetails={loggedUser?.userDetails}
+        receiverUserDetails={receiver?.userDetails}
         currentSuggestions={suggestions}
         setSuggestions={addSuggestionToMsgs}
       />

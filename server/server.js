@@ -50,36 +50,21 @@ const socket_io = new Server(server, {
 socket_io.on("connection", (socket) => {
   console.log("🟢🟢 Socket.io is active 🟢🟢");
   socket.on("room_setup", (chatData) => {
-    console.log(1);
     if (!chatData.chatId) return;
-    const { chatId, sender, receiver, hub } = chatData;
+    const { chatId } = chatData;
     socket.join(chatId);
-    // access_chatCollection([sender, receiver], hub)
-    //   .then((isSuccess) => {
-    //     console.log(2);
-    //     if (!isSuccess)
-    //       throw new Error("error by finding chat , in room_setup");
-    //     socket.join(chatId);
-    //   })
-    //   .catch((err) => console.error(err));
   });
 
   socket.on("new_message", (message, chatId, sender, receiver) => {
-    console.log(3);
     CheckAndTranslateMsg(
       message,
       sender?.userDetails.nativeLanguage,
       receiver?.userDetails.nativeLanguage
     )
       .then(async (result) => {
-        console.log(4);
-        if (result.isProfanity) return socket.emit("send_message", result);
+        if (result.isProfanity)
+          return socket.to(chatId).emit("send_message", result);
         const { translatedMsg } = result;
-        console.log("the translated Message object:", typeof translatedMsg);
-        const content_HE =
-          sender?.userDetails.nativeLanguage === "HE" ? message : translatedMsg;
-        const content_AR =
-          sender?.userDetails.nativeLanguage === "AR" ? message : translatedMsg;
         const chat = await ChatCollection.findById(chatId);
         let newMessage = {
           sender: sender.id,
@@ -88,9 +73,7 @@ socket_io.on("connection", (socket) => {
           translatedContent: translatedMsg,
         };
         chat.messages.push(newMessage);
-        console.log(5);
         await chat.save();
-        console.log(6);
         socket
           .to(chatId)
           .emit("send_message", chat.messages[chat.messages.length - 1]);
