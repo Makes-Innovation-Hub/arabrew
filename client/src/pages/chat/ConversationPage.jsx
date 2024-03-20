@@ -24,12 +24,8 @@ const ConversationPage = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const { search } = useLocation();
   const hub = search.split("=")[1];
-  // const username = useSelector((state) => state.userRegister.name);
-  // const loggedUser = useSelector((state) => state.userRegister);
-  // const url = useLocation();
 
   const { data: chats, error, isLoading } = useGetUserChatsListQuery(hub);
-  console.log(chats);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);

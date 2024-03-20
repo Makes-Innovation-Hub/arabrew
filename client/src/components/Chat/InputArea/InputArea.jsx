@@ -10,11 +10,9 @@ import { useGenerateConversationTopicsMutation } from "../../../features/convers
 import { useEffect, useState } from "react";
 
 const InputArea = ({
-  typedMsg,
-  handleChange,
   handleSendMsg,
   loggedUserDetails,
-  chatUserDetails,
+  receiverUserDetails,
   setSuggestions,
   currentSuggestions,
 }) => {
@@ -22,11 +20,10 @@ const InputArea = ({
     useGenerateConversationTopicsMutation();
   const [text, setText] = useState("");
   const handleOnClick = async () => {
-    console.log("sending msg");
     await handleSendMsg(text);
     setText("");
   };
-  console.log("input area data", typedMsg);
+
   useEffect(() => {
     if (isSuccess && !isLoading && !isError) {
       const suggestions = JSON.parse(data.suggestions.message.content);
@@ -45,7 +42,7 @@ const InputArea = ({
             } else {
               const suggestionObj = {
                 user1Data: loggedUserDetails,
-                user2Data: chatUserDetails,
+                user2Data: receiverUserDetails,
               };
               getSuggestions(suggestionObj);
             }

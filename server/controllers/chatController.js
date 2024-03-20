@@ -159,7 +159,11 @@ export const getUserChatsList = async (req, res, next) => {
           const receiverUser = users.find((user) => !user._id.equals(userId));
           const senderUser = users.find((user) => user._id.equals(userId));
           // const senderLang = senderUser.userDetails.nativeLanguage;
-          const lastMessageContent = latestMessage(messages)?.originalContent;
+          const lastMessageContent = latestMessage(messages)?.sender.equals(
+            userId
+          )
+            ? latestMessage(messages)?.originalContent
+            : latestMessage(messages)?.translatedContent;
           //   currently no translation return original message
           // latestMessage(messages)?.translated_Content[senderLang];
           console.log("chat info", chat);

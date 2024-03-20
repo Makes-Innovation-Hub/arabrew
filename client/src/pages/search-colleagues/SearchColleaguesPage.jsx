@@ -78,14 +78,16 @@ function SearchColleaguesPage() {
                     </StyledOccupationText>
                   </Occupation>
                 </SecondRow>
-                <StyledIconDiv
-                  onClick={() =>
-                    navigate(
-                      `/chat-page/${loggedUser.id}?hub=work&new=true&receiver=${colleague?._id}&avatar=${colleague?.avatar}&name= ${colleague?.name}`
-                    )
-                  }
-                >
-                  <StyledIconImg src="https://s3-alpha-sig.figma.com/img/f9a0/eea2/7bbbc8e094e25903c33d7fe5215626af?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kHPDssTgqd5-1N91c9oVHhAWf2ze0haMQv7hmjWiBdrDjOaz5mpBsGeQJ-3g2ZD0uJVyFdXyGW-fpKZPubzcP7Ei0LGU03BtSllEWKgNXZ1h3j5krsCHEQjTOmUh-2ed1IlzlXvDv86eoY9on0FNoyesfjV2yJ0S72Bq4E5nVlQg8EDvX11snN5pTqUZPEz1hevqArC-lljOI2RGn-qoYSnFQMfyOiVYhIXQft306PKAvAXN2Kmk8hKD4mUwY3TTg0rbv6sm0VsQbJlZd3m1-UC463anHJiDtWilH17VBmHDJ3BV2S0eRDDSDhUwbOxz8vqk61Tif~j55ZCIwJayqg__" />
+                <StyledIconDiv>
+                  <Link
+                    to={`/chat-page/${loggedUser.id}?hub=work&new=true&receiver=${colleague?._id}`}
+                    state={{
+                      receiverImg: colleague?.avatar,
+                      receiverName: colleague?.name,
+                    }}
+                  >
+                    <StyledIconImg src="/messageBox.png" />
+                  </Link>
                 </StyledIconDiv>
               </Container>
             ))}
