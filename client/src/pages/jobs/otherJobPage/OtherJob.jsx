@@ -36,7 +36,8 @@ import { PiNotePencilBold } from "react-icons/pi";
 import { TitleContainer } from "../../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 import DropboxChooser from "react-dropbox-chooser";
 import { useUpdateUserMutation } from "../../../features/userDataApi";
-const APP_KEY = "zhrevs0ovmkh5jc";
+import.meta.env.VITE_SERVER_BASE_URL;
+const APP_KEY = import.meta.env.VITE_DROPBOX_APP_KEY;
 function OtherJob() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -191,7 +192,7 @@ function OtherJob() {
             )
           ) : (
             <DropboxChooser
-              appKey={"zhrevs0ovmkh5jc"}
+              appKey={APP_KEY}
               success={handleApplyButton}
               cancel={() => console.log("closed")}
               multiselect={true}
