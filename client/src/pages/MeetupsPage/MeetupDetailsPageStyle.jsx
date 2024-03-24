@@ -41,6 +41,7 @@ const MeetupDetailsDisplay = ({
   meetupId,
   isOwner,
   handleDeleteMeetup,
+  handleMapButtonClick,
 }) => {
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -80,6 +81,10 @@ const MeetupDetailsDisplay = ({
     setShowConfirmation(false);
   };
 
+  const handleLocationClick = () => {
+    console.log("Location clicked:", location); // Log location data
+    handleMapButtonClick(location);
+  };
   return (
     <MeetupWrapper>
       <TitleContainer>
@@ -97,7 +102,7 @@ const MeetupDetailsDisplay = ({
 
       <StyledRow>
         <CiLocationOn size={18} />
-        <MyMeetupText>{location}</MyMeetupText>
+        <MyMeetupText onClick={handleLocationClick}>{location}</MyMeetupText>
       </StyledRow>
 
       <StyledMargin direction="vertical" margin="1.8rem" />

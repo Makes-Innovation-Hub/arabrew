@@ -58,6 +58,49 @@ const MeetupDetailsPage = () => {
     console.error(error);
     return <div>{t("error_fetching_meetup_details")}</div>;
   }
+  const handleMapButtonClick = async () => {
+    try {
+      const location = data?.data?.location;
+      console.log("Location clicked:", location);
+
+      if (!location) {
+        console.error("Location data not found");
+        return;
+      }
+
+      const searchText = encodeURIComponent(location);
+      const apiUrl = `https://us1.locationiq.com/v1/search.php?key=${
+        import.meta.env.VITE_LOCATION_TOKEN
+      }&q=${searchText}&format=json`;
+
+      const response = await fetch(apiUrl);
+      const responseData = await response.json();
+
+      if (responseData.length > 0) {
+        const { lat, lon } = responseData[0];
+        console.log("Latitude:", lat);
+        console.log("Longitude:", lon);
+
+        const queryParams = new URLSearchParams({ location: `${lat},${lon}` });
+        const url = `/Map?${queryParams.toString()}`;
+
+        navigate(url);
+      } else {
+        console.log("Location not found");
+      }
+    } catch (error) {
+      console.error("Error fetching geocoding data:", error);
+    }
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <div>Error fetching meetup details</div>;
+  }
 
   return (
     <div>
@@ -87,6 +130,7 @@ const MeetupDetailsPage = () => {
             meetupId={meetupId}
             isOwner={isOwner}
             handleDeleteMeetup={handleDeleteButtonClick}
+            handleMapButtonClick={handleMapButtonClick}
           />
         )}
       </UpcomingStyledPage>
