@@ -41,6 +41,11 @@ export const chatApi = createApi({
       query: (chatId) => `/chat/${chatId}`,
       providesTags: ["chat"],
     }),
+    getChatByUsersIds: builder.query({
+      query: (chatInfo) =>
+        `/chat/chat-by-users-ids/?sender=${chatInfo.sender}&receiver=${chatInfo.receiver}&hub=${chatInfo.hub}`,
+      providesTags: ["chat"],
+    }),
     getUserChatsList: builder.query({
       query: (hub) => `/chat/existing/?hub=${hub}`,
       providesTags: ["chat"],
@@ -66,6 +71,7 @@ export const chatApi = createApi({
 export const {
   useCreateChatMutation,
   useGetChatByIdQuery,
+  useGetChatByUsersIdsQuery,
   useGetUserChatsListQuery,
   useAddMessageMutation,
   useRemoveChatMutation,

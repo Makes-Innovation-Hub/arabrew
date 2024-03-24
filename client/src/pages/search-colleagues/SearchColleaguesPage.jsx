@@ -49,7 +49,7 @@ function SearchColleaguesPage() {
 
       <StyledMyJobPage height="710px">
         <Center>
-          <StyledAppliersTitle>Search Colleuges</StyledAppliersTitle>
+          <StyledAppliersTitle>Search Colleagues</StyledAppliersTitle>
         </Center>
         <StyledMargin direction="vertical" margin="2rem" />
         {isSuccess && (
@@ -80,7 +80,7 @@ function SearchColleaguesPage() {
                 </SecondRow>
                 <StyledIconDiv>
                   <Link
-                    to={`/chat-page/${loggedUser.id}?hub=work&new=true&receiver=${colleague?._id}`}
+                    to={`/chat-page/?sender=${loggedUser.id}&hub=work&receiver=${colleague?._id}`}
                     state={{
                       receiverImg: colleague?.avatar,
                       receiverName: colleague?.name,

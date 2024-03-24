@@ -3,15 +3,16 @@ import { DisplayChatsStyle, ProfileChat, ContentChat } from "../styles";
 import { Link } from "react-router-dom";
 
 export const ConversationDisplay = ({ chat }) => {
+  console.log(chat);
   return (
     <Link
-      to={`/chat-page/${chat.chatId}?hub=${chat.chatHub}`}
+      to={`/chat-page/?sender=${chat.sender._id}&receiver=${chat.receiver._id}&hub=${chat.chatHub}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <DisplayChatsStyle>
-        <ProfileChat profile={chat.avatar} />
+        <ProfileChat profile={chat.receiver.avatar} />
         <ContentChat>
-          <p>{chat.name}</p>
+          <p>{chat.receiver.name}</p>
           <p>{chat.lastMessageContent}</p>
         </ContentChat>
       </DisplayChatsStyle>

@@ -1,6 +1,7 @@
 import express from "express";
 import { validateToken } from "../middleware/verifyUserToken.js";
 import {
+  GetChatByUsersIds,
   addMessage,
   createChat,
   getChatById,
@@ -12,6 +13,7 @@ const router = express.Router();
 //  route /api/new-chat/chat/
 router.post("/chat", validateToken, createChat);
 router.get("/chat/existing", validateToken, getUserChatsList);
+router.get("/chat/chat-by-users-ids/", validateToken, GetChatByUsersIds);
 router
   .use(validateToken)
   .route("/chat/:chatId")
