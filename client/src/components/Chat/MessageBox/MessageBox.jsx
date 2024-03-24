@@ -30,7 +30,11 @@ export default function MessageBox({ message, loggedUser }) {
       }}
     >
       {/* <p>{message.isProfanity ? message.profanity : message.content}</p> */}
-      <p>{message?.originalContent}</p>
+      <p dir="rtl">
+        {message.sender === loggedUser.id
+          ? message?.originalContent
+          : message?.translatedContent}
+      </p>
     </div>
   );
 }

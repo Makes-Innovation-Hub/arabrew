@@ -1,14 +1,11 @@
+import React, { useEffect, useRef, useState } from "react";
 import MessageBox from "../MessageBox/MessageBox.jsx";
 import { ChatsContainer } from "../../../styles/Chat/ChatDisplay/ChatsContainer.jsx";
-// import { useContext } from "react";
-// import { UserContext } from "../../../contexts/loggedUser.context.jsx";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import PopupBubble from "../../../assets/PopupBubble.jsx";
 
 function ChatDisplayArea({ messages }) {
-  // console.log(messages);
-  // const { userData: contextUser } = useContext(UserContext);
+  const chatDisplayRef = useRef();
   const [isPopupDisplaying, setIsPopupDisplaying] = useState(() => {
     const currentIsFirst = sessionStorage.getItem("isFirst");
     if (currentIsFirst === undefined) {
@@ -21,19 +18,23 @@ function ChatDisplayArea({ messages }) {
     return true;
   });
   const loggedUser = useSelector((state) => state.userRegister);
+
+  useEffect(() => {
+    // Scroll to the bottom after each render
+    if (chatDisplayRef.current) {
+      chatDisplayRef.current.scrollTop = chatDisplayRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   const clickHandler = () => {
     setIsPopupDisplaying(false);
     sessionStorage.setItem("isFirst", false);
   };
 
   return (
-    <ChatsContainer key={Date.now()}>
-      {messages.map((message) => (
-        <MessageBox
-          message={message}
-          loggedUser={loggedUser}
-          key={message._id}
-        />
+    <ChatsContainer ref={chatDisplayRef} key={Date.now()}>
+      {messages.map((message, index) => (
+        <MessageBox message={message} loggedUser={loggedUser} key={index} />
       ))}
       {isPopupDisplaying && <PopupBubble onClickFn={clickHandler} />}
     </ChatsContainer>

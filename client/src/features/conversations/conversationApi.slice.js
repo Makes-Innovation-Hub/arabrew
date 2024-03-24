@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
-const port = import.meta.env.VITE_SERVER_PORT;
 
 const conversationApi = createApi({
   reducerPath: "conversationApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${baseUrl}:${port}/api/chat/conversation/generateTopics`,
+    baseUrl: `${baseUrl}/api/chat/conversation/generateTopics`,
   }),
   endpoints: (builder) => ({
     generateConversationTopics: builder.mutation({

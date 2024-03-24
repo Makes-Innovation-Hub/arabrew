@@ -5,15 +5,16 @@ import {
   isProfanity,
   sendPromptToOpenAi,
 } from "./util.js";
-export const access_chatCollection = async (usersArr) => {
+export const access_chatCollection = async (usersArr, hub) => {
   try {
     const usersArrSwitched = [usersArr[1], usersArr[0]];
     const findChat = await Chat.findOne({
       $or: [{ users: usersArr }, { users: usersArrSwitched }],
+      hub,
     });
     const isSuccess = findChat ? true : false;
     if (!isSuccess) {
-      const newChat = await Chat.create({ users: usersArr });
+      const newChat = await Chat.create({ users: usersArr, hub });
       const isSuccess = newChat ? true : false;
       return isSuccess;
     }

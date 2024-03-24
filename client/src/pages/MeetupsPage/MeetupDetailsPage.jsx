@@ -39,6 +39,7 @@ const MeetupDetailsPage = () => {
     } catch (error) {
       console.error("Error updating attendance:", error);
     }
+    ``;
   };
 
   const handleDeleteButtonClick = async () => {

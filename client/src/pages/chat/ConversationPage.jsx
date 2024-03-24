@@ -22,12 +22,10 @@ import { addAllDetailsConnectedUser } from "../../features/userRegister/userRegi
 const ConversationPage = () => {
   const navigate = useNavigate();
   const [isSideBar, setIsSideBar] = useState(false);
-  // const username = useSelector((state) => state.userRegister.name);
-  // const loggedUser = useSelector((state) => state.userRegister);
-  // const url = useLocation();
+  const { search } = useLocation();
+  const hub = search.split("=")[1];
 
-  const { data: chats, error, isLoading } = useGetUserChatsListQuery("hobbies");
-  console.log(chats);
+  const { data: chats, error, isLoading } = useGetUserChatsListQuery(hub);
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);
@@ -60,18 +58,7 @@ const ConversationPage = () => {
             <div>Conversation</div>
             <ChatsDisplay>
               {chats.map((chat, i) => {
-                return (
-                  <ConversationDisplay
-                    key={i}
-                    nameCon={chat.name}
-                    contentCon={
-                      chat.lastMessageContent ? chat.lastMessageContent : ""
-                    }
-                    profile={chat.avatar}
-                    userId={chat.userId}
-                    chatId={chat.chatId}
-                  />
-                );
+                return <ConversationDisplay key={i} chat={chat} />;
               })}
             </ChatsDisplay>
             <BlockDiv />

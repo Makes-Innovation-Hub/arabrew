@@ -7,20 +7,23 @@ import { InputComponent } from "../../../styles/Chat/InputArea/InputComponent";
 import { InputWrapper } from "../../../styles/Chat/InputArea/InputWrapper";
 import { SendButton } from "../../../styles/Chat/InputArea/SendButton";
 import { useGenerateConversationTopicsMutation } from "../../../features/conversations/conversationApi.slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const InputArea = ({
-  typedMsg,
-  handleChange,
   handleSendMsg,
   loggedUserDetails,
-  chatUserDetails,
+  receiverUserDetails,
   setSuggestions,
   currentSuggestions,
 }) => {
   const [getSuggestions, { isSuccess, isLoading, isError, data }] =
     useGenerateConversationTopicsMutation();
-  console.log("input area data", typedMsg);
+  const [text, setText] = useState("");
+  const handleOnClick = async () => {
+    await handleSendMsg(text);
+    setText("");
+  };
+
   useEffect(() => {
     if (isSuccess && !isLoading && !isError) {
       const suggestions = JSON.parse(data.suggestions.message.content);
@@ -39,7 +42,7 @@ const InputArea = ({
             } else {
               const suggestionObj = {
                 user1Data: loggedUserDetails,
-                user2Data: chatUserDetails,
+                user2Data: receiverUserDetails,
               };
               getSuggestions(suggestionObj);
             }
@@ -48,11 +51,11 @@ const InputArea = ({
           <img src={CoffeeMug} />
         </RecommendedButton>
         <InputComponent
-          value={typedMsg}
-          onChange={handleChange}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Start typing..."
         />
-        <SendButton onClick={handleSendMsg}>
+        <SendButton onClick={handleOnClick}>
           <img src={PaperPlane} />
         </SendButton>
       </InputAreaContainer>

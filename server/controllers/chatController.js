@@ -9,6 +9,8 @@ import {
 } from "../middleware/logger.js";
 import { STATUS_CODES } from "../constants/constants.js";
 import { latestMessage } from "../utils/chat.utils.js";
+import userCollection from "../models/user.js";
+import { CheckAndTranslateMsg } from "../utils/chat_socketIo.js";
 
 //$ @desc    create new Chat (between 2 users)
 //$ @route   POST /api/chat/
@@ -44,11 +46,20 @@ export const createChat = async (req, res, next) => {
       $or: [{ users: [user1Id, user2Id] }, { users: [user2Id, user1Id] }],
       hub,
     });
+
     //if there's no existing chat with the given hub, then make a new one
     if (foundChat && foundChat.hub !== hub) {
       foundChat = undefined;
     }
     if (!foundChat) {
+      const sender = await userCollection.findById(user1Id);
+      const receiver = await userCollection.findById(user2Id);
+      const { translatedMsg } = await CheckAndTranslateMsg(
+        message,
+        sender.userDetails.nativeLanguage,
+        receiver.userDetails.nativeLanguage
+      );
+      console.log("the translated msg in chat controller  ", translatedMsg);
       foundChat = new ChatCollection();
       foundChat.users = [user1Id, user2Id];
       foundChat.hub = hub;
@@ -57,7 +68,7 @@ export const createChat = async (req, res, next) => {
         sender: req.user.id,
         originalContent: message,
         date: new Date(),
-        translatedContent: {},
+        translatedContent: translatedMsg,
       };
       foundChat.messages.push(newMessage);
       await foundChat.save();
@@ -148,16 +159,17 @@ export const getUserChatsList = async (req, res, next) => {
           const receiverUser = users.find((user) => !user._id.equals(userId));
           const senderUser = users.find((user) => user._id.equals(userId));
           // const senderLang = senderUser.userDetails.nativeLanguage;
-          const lastMessageContent = latestMessage(messages)?.originalContent;
+          const lastMessageContent = latestMessage(messages)?.sender.equals(
+            userId
+          )
+            ? latestMessage(messages)?.originalContent
+            : latestMessage(messages)?.translatedContent;
           //   currently no translation return original message
           // latestMessage(messages)?.translated_Content[senderLang];
           console.log("chat info", chat);
           return {
-            userId,
-            users,
-            receiverUser,
-            senderUser,
             chatId: chat._id,
+            chatHub: chat.hub,
             avatar: receiverUser.avatar,
             name: receiverUser.name,
             lastMessageContent,
@@ -196,6 +208,10 @@ export const addMessage = async (req, res, next) => {
     }
     let sender = req.user.id;
     let originalContent = req.body.content;
+    if (!originalContent) {
+      res.status(STATUS_CODES.VALIDATION_ERROR);
+      throw new Error("Missing Content");
+    }
     console.log("add message req body", req.body);
     let newMessage = {
       sender,

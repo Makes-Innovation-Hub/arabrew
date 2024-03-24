@@ -35,7 +35,9 @@ import { useTranslation } from "react-i18next";
 import { PiNotePencilBold } from "react-icons/pi";
 import { TitleContainer } from "../../../styles/MeetupDetailsStyle/MeetupDetailsStyle";
 import DropboxChooser from "react-dropbox-chooser";
-const APP_KEY = "84w4r8ek13oc73c";
+import { useUpdateUserMutation } from "../../../features/userDataApi";
+import.meta.env.VITE_SERVER_BASE_URL;
+const APP_KEY = import.meta.env.VITE_DROPBOX_APP_KEY;
 function OtherJob() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -46,6 +48,8 @@ function OtherJob() {
   const [applyToJob] = useApplyToJobMutation();
   const [isOwner, setIsOwner] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [updateUser] = useUpdateUserMutation();
 
   const handleDeleteConfirmation = () => {
     setShowConfirmation(true);
@@ -82,9 +86,24 @@ function OtherJob() {
         jobId: job.job.id,
       });
       console.log(file);
+
+      if (file && file.length > 0) {
+        const updateData = {
+          resumeFile: file[0].link,
+        };
+
+        const response = await updateUser({
+          id: storedUser.id,
+          userData: updateData,
+        });
+        console.log("user updated successfully:", response.data);
+      } else {
+        console.log("No file selected");
+      }
       console.log("Job application successful:", data);
     } catch (error) {
       console.log("error applying to job", error);
+      console.log("Error Updating User", error.message);
     }
   };
 
@@ -93,7 +112,6 @@ function OtherJob() {
   } else if (isError) {
     return <div>{t("error_fetching_job_details")}</div>;
   }
-
   const handleAppliers = () => {
     navigate(`/appliers/${job?.job.id}`);
   };
@@ -110,7 +128,7 @@ function OtherJob() {
               <ArrowLeft />
             </Link>
           }
-          title={t("my_posted_job_page")}
+          title={isOwner ? t("my_posted_job_page") : "Job Page"}
         />
       </StyledMargin>
       {isSuccess && (
@@ -173,9 +191,24 @@ function OtherJob() {
               </EDSection>
             )
           ) : (
-            <OtherPageButton onClick={handleApplyButton}>
-              {t("send_resume")}
-            </OtherPageButton>
+            <DropboxChooser
+              appKey={APP_KEY}
+              success={handleApplyButton}
+              cancel={() => console.log("closed")}
+              multiselect={true}
+              extensions={[".pdf", ".docx"]}
+              disabled={job?.job?.applicants.some(
+                (applicant) => applicant.user.subId === storedUser.subId
+              )}
+            >
+              <OtherPageButton>
+                {job?.job?.applicants.some(
+                  (applicant) => applicant.user.subId === storedUser.subId
+                )
+                  ? "Resume Sent"
+                  : t("send_resume")}
+              </OtherPageButton>
+            </DropboxChooser>
           )}
         </StyledMyJobPage>
       )}
