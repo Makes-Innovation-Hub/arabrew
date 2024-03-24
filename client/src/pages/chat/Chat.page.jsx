@@ -15,6 +15,7 @@ import Header from "../../components/Chat/Header/Header.jsx";
 import {
   useCreateChatMutation,
   useGetChatByIdQuery,
+  useGetChatByUsersIdsQuery,
 } from "../../features/chatDataApi.js";
 
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
@@ -24,12 +25,17 @@ let socket;
 const Chat = () => {
   const [searchParams] = useSearchParams();
   const params = useParams();
-  const chatId = params.chatId;
+  const [chatId, setChatId] = useState("");
   const [messages, setMessages] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
-  const { data, isSuccess, isLoading } = useGetChatByIdQuery(params.chatId);
+  const { data, isSuccess, isLoading, isError } = useGetChatByUsersIdsQuery({
+    sender: searchParams.get("sender"),
+    receiver: searchParams.get("receiver"),
+    hub: searchParams.get("hub"),
+  });
+  console.log(data);
   const [createChat] = useCreateChatMutation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,19 +43,18 @@ const Chat = () => {
     if (data && isSuccess && !isLoading) {
       setMessages((prev) => [...data.chat.messages]);
       setReceiver(data.receiverUser);
+      setChatId(data.chat.id);
     }
   }, [data, isSuccess, isLoading]);
 
   const handleSendMsg = async (text) => {
-    if (searchParams.get("new") === "true") {
+    if (isError) {
       const res = await createChat({
         user1Id: loggedUser.id,
         user2Id: searchParams.get("receiver"),
         hub: searchParams.get("hub"),
         message: text,
       });
-      console.log(res);
-      if (res.data) navigate(`/chat-page/${res.data.id}`);
     }
     if (!text) return;
     socket.emit("new_message", text, chatId, loggedUser, receiver);
@@ -67,9 +72,9 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    socket = io(ENDPOINT);
     if (!chatId) return;
 
-    socket = io(ENDPOINT);
     const chatData = {
       chatId,
     };

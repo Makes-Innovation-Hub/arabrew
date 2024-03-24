@@ -73,9 +73,43 @@ export const createChat = async (req, res, next) => {
       foundChat.messages.push(newMessage);
       await foundChat.save();
     }
-    return res.status(200).json(foundChat.toJSON());
+    return res.status(200).json({ chat: foundChat.toJSON() });
   } catch (error) {
     errorLogger(error, req, res, next);
+  }
+};
+
+//$ @desc    get chat by  users id's
+//$ @route   GET /api/chat/chat-by-users-ids/?sender='senderId&receiver='receiverId&hub='hub'
+//! @access  NOT SET YET
+export const GetChatByUsersIds = async (req, res, next) => {
+  try {
+    console.log("in GetChatByUsersIds");
+    const user1Id = req.query.sender;
+    const user2Id = req.query.receiver;
+    const hub = req.query.hub;
+    console.log(user1Id);
+    if (user1Id !== req.user.id && user2Id !== req.user.id) {
+      res.status(STATUS_CODES.UNAUTHORIZED);
+      throw new Error("User not authorized");
+    }
+    //find the chat between these two users or make a new one
+    let foundChat = await ChatCollection.findOne({
+      $or: [{ users: [user1Id, user2Id] }, { users: [user2Id, user1Id] }],
+      hub,
+    }).populate("users");
+    if (!foundChat) {
+      res.status(STATUS_CODES.NOT_FOUND);
+      throw new Error("No Chat Yet");
+    }
+
+    const receiverUser = foundChat.users.find(
+      (user) => !user._id.equals(req.user.id)
+    );
+
+    res.send({ chat: foundChat, receiverUser });
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -92,11 +126,8 @@ export const getChatById = async (req, res, next) => {
       res.status(404);
       throw new Error("No chat with this Id");
     }
-    // console.log("check request user ", req.user.id);
     if (
       chat.users.every((user) => {
-        // console.log(userId);
-        // console.log(userId.toString() !== req.user.id);
         return !user._id.equals(req.user.id);
       })
     ) {
@@ -170,8 +201,8 @@ export const getUserChatsList = async (req, res, next) => {
           return {
             chatId: chat._id,
             chatHub: chat.hub,
-            avatar: receiverUser.avatar,
-            name: receiverUser.name,
+            receiver: receiverUser,
+            sender: senderUser,
             lastMessageContent,
           };
         })
