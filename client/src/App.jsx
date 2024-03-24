@@ -37,6 +37,7 @@ import MyMeetups from "./pages/MeetupsPage/MyMeetups.jsx";
 import SpecificMeetup from "./pages/MeetupsPage/SpecificMeetup.jsx";
 import SearchColleaguesPage from "./pages/search-colleagues/SearchColleaguesPage.jsx";
 import SearchColleaguesConversation from "./pages/chat/SearchColleaguesConversation.jsx";
+import MapPage from "./pages/MapPage/MapPage.jsx";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import translations from "../Translate/i18n.js";
@@ -186,6 +187,11 @@ const router = createBrowserRouter([
   {
     path: "/Attendeespage/:id",
     element: <Attendeespage />,
+    errorElement: <>Error...</>,
+  },
+  {
+    path: "/Map",
+    element: <MapPage />,
     errorElement: <>Error...</>,
   },
 ]);
