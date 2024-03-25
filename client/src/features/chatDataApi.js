@@ -17,7 +17,6 @@ export const chatApi = createApi({
     tagTypes: ["chat"],
     prepareHeaders: (headers) => {
       const token = getToken();
-      console.log(token);
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
@@ -33,7 +32,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["chat"],
       transformResponse: (response, meta, arg) => {
-        console.log(response);
         return response;
       },
     }),

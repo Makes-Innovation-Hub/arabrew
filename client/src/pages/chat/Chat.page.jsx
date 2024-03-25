@@ -21,7 +21,7 @@ import {
 const ENDPOINT = import.meta.env.VITE_SERVER_BASE_URL;
 
 let socket;
-
+socket = io(ENDPOINT);
 const Chat = () => {
   const [searchParams] = useSearchParams();
   const params = useParams();
@@ -30,12 +30,12 @@ const Chat = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
-  const { data, isSuccess, isLoading, isError } = useGetChatByUsersIdsQuery({
-    sender: searchParams.get("sender"),
-    receiver: searchParams.get("receiver"),
-    hub: searchParams.get("hub"),
-  });
-  console.log(data);
+  const { data, isSuccess, isLoading, isError, error } =
+    useGetChatByUsersIdsQuery({
+      sender: searchParams.get("sender"),
+      receiver: searchParams.get("receiver"),
+      hub: searchParams.get("hub"),
+    });
   const [createChat] = useCreateChatMutation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,6 +49,7 @@ const Chat = () => {
 
   const handleSendMsg = async (text) => {
     if (isError) {
+      console.log(error);
       const res = await createChat({
         user1Id: loggedUser.id,
         user2Id: searchParams.get("receiver"),
@@ -57,6 +58,10 @@ const Chat = () => {
       });
     }
     if (!text) return;
+    setMessages((prev) => [
+      ...prev,
+      { sender: loggedUser.id, originalContent: text, date: new Date() },
+    ]);
     socket.emit("new_message", text, chatId, loggedUser, receiver);
   };
 
@@ -72,7 +77,6 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
     if (!chatId) return;
 
     const chatData = {
@@ -80,7 +84,8 @@ const Chat = () => {
     };
     socket.emit("room_setup", chatData);
     socket.on("send_message", (newMsg) => {
-      console.log("New Message", newMsg);
+      // console.log("New Message", newMsg);
+      // setMessages((prev) => [...prev, newMsg]);
       setMessages((prev) => {
         // Check if the message already exists to avoid duplicates
         const messageExists = prev.some(
