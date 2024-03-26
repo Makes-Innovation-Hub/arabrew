@@ -14,7 +14,7 @@ export const chatApi = createApi({
   reducerPath: "chatApi",
   baseQuery: fetchBaseQuery({
     baseUrl,
-    tagTypes: ["chat"],
+    tagTypes: ["chat", "chatMessages"],
     prepareHeaders: (headers) => {
       const token = getToken();
       if (token) {
@@ -42,7 +42,7 @@ export const chatApi = createApi({
     getChatByUsersIds: builder.query({
       query: (chatInfo) =>
         `/chat/chat-by-users-ids/?sender=${chatInfo.sender}&receiver=${chatInfo.receiver}&hub=${chatInfo.hub}`,
-      providesTags: ["chat"],
+      providesTags: ["chat", "chatMessages"],
     }),
     getUserChatsList: builder.query({
       query: (hub) => `/chat/existing/?hub=${hub}`,

@@ -12,8 +12,8 @@ export const StyledHeader = styled.div`
   font-size: 1.125rem;
   color: #ffffff;
   position: absolute;
-  @media (min-width: 700px) {
+  /* @media (min-width: 700px) {
     padding: 3rem;
     height: 12.5rem;
-  }
+  } */
 `;

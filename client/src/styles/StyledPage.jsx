@@ -14,10 +14,10 @@ export const StyledPage = styled.div`
   left: 0;
   z-index: 2;
   width: 100%;
-  @media (min-width: 1000px) {
+  /* @media (min-width: 1000px) {
     padding: 3rem;
     width: 100vw;
     border-radius: 4rem 4rem 0 0;
     top: 9rem;
-  }
+  } */
 `;

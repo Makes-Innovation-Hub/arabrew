@@ -74,7 +74,7 @@ socket_io.on("connection", (socket) => {
         };
         chat.messages.push(newMessage);
         await chat.save();
-        socket
+        socket.broadcast
           .to(chatId)
           .emit("send_message", chat.messages[chat.messages.length - 1]);
       })
