@@ -6,7 +6,7 @@ import {
   useGetMeetupByIdQuery,
   useUpdateMeetupMutation,
 } from "../../features/meetupApi";
-
+import AutocompleteDropdown from "./AutocompleteDropdown/AutocompleteDropdown"; // AutocompleteDropdown component
 import { StyledMargin, StyledPage } from "../../styles";
 
 import {
@@ -34,6 +34,7 @@ const MeetupForm = () => {
   const [description, setDescription] = useState("");
   const [remainingChars, setRemainingChars] = useState(30);
   const [isMeetingId, setIsMeetingId] = useState(false);
+  const [suggestions, setSuggestions] = useState([]); // State to manage autocomplete suggestions
 
   const [createMeetup, { isLoading, isError }] = useCreateMeetupMutation();
   const [updateMeetupMutation] = useUpdateMeetupMutation();
@@ -116,6 +117,37 @@ const MeetupForm = () => {
     setRemainingChars(30 - inputText.length);
   };
 
+  const handleLocationChange = async (e) => {
+    const currentValue = e.target.value;
+
+    // If the input becomes empty, just update the location state
+    if (!currentValue.trim()) {
+      setLocation("");
+      return;
+    }
+
+    // Fetch autocomplete data
+    try {
+      const apiKey = import.meta.env.VITE_ADDRESS_TOKEN;
+      const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
+        currentValue
+      )}&limit=5&apiKey=${apiKey}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setSuggestions(data.features);
+    } catch (error) {
+      console.error("Error fetching autocomplete data:", error);
+    }
+
+    // Update location state with the typed value
+    setLocation(currentValue);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setLocation(suggestion.properties.formatted);
+    setSuggestions([]); // Clear suggestions after selection
+  };
+
   // Set text direction to left-to-right for Hebrew or Arabic
   const getTextDirection = useCallback(() => {
     const lang = i18n.language;
@@ -186,8 +218,14 @@ const MeetupForm = () => {
                 type="text"
                 placeholder={t("location")}
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={handleLocationChange}
               />
+              {suggestions.length > 0 && (
+                <AutocompleteDropdown
+                  suggestions={suggestions}
+                  handleSuggestionClick={handleSuggestionClick}
+                />
+              )}
             </div>
             <div>
               <h3>{t("cost")}</h3>
