@@ -25,7 +25,16 @@ const ConversationPage = () => {
   const { search } = useLocation();
   const hub = search.split("=")[1];
 
-  const { data: chats, error, isLoading } = useGetUserChatsListQuery(hub);
+  const {
+    data: chats,
+    error,
+    isLoading,
+    refetch,
+  } = useGetUserChatsListQuery(hub);
+  useEffect(() => {
+    refetch();
+  }, []);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     console.log(error);

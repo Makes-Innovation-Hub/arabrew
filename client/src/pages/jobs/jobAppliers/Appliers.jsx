@@ -105,7 +105,15 @@ function Appliers() {
                   </svg>
                 </SecondRow>
                 <StyledIconDiv>
-                  <StyledIconImg src="https://s3-alpha-sig.figma.com/img/f9a0/eea2/7bbbc8e094e25903c33d7fe5215626af?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gQeJefyFKKZ1VcU8lszdNxkimeVsocrOGpQzpxoJmCMjdbMieDrVQ-2BaKzBiEBhXXH1xbxIB-ph1pYpgHwtuH9ILB47IqwU4JgNB8IfGJPXQYBElZOf63k91TyJnC-uWZsZONCX3Ia3j4c37qR48KG2AcoqiGRnkxcf7IL~PGa098NQBLS66TAk7wwZ6mXO4I2bkkmFGPOJCzqp61P3QMgBfTAMzmmG-D-hyNAJbL1LTreXtefVtURKzBZ5tev~j8MyDExbVjmrbEzz5uox09Az0B-HmkicozCV7NY~8Q-1pZDgonrMQepCJhCAMLMngrHvtLS1nuIK0kyIZFYR3g__" />
+                  <Link
+                    to={`/chat-page/?sender=${storedUser.id}&hub=work&receiver=${applicant?.user?.id}`}
+                    state={{
+                      receiverImg: applicant?.user?.avatar,
+                      receiverName: applicant?.user?.name,
+                    }}
+                  >
+                    <StyledIconImg src="/messageBox.png" />
+                  </Link>
                 </StyledIconDiv>
               </Container>
             ))}

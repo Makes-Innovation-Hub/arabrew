@@ -30,7 +30,7 @@ const Chat = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [receiver, setReceiver] = useState(null);
   const loggedUser = useSelector((state) => state.userRegister);
-  const { data, isSuccess, isLoading, isError, error } =
+  const { data, isSuccess, isLoading, isError, error, refetch } =
     useGetChatByUsersIdsQuery({
       sender: searchParams.get("sender"),
       receiver: searchParams.get("receiver"),
@@ -39,6 +39,9 @@ const Chat = () => {
   const [createChat] = useCreateChatMutation();
   const navigate = useNavigate();
   const location = useLocation();
+  useEffect(() => {
+    refetch();
+  }, [location.pathname]);
   useEffect(() => {
     if (data && isSuccess && !isLoading) {
       setMessages((prev) => [...data.chat.messages]);
@@ -85,14 +88,14 @@ const Chat = () => {
     socket.emit("room_setup", chatData);
     socket.on("send_message", (newMsg) => {
       // console.log("New Message", newMsg);
-      // setMessages((prev) => [...prev, newMsg]);
-      setMessages((prev) => {
-        // Check if the message already exists to avoid duplicates
-        const messageExists = prev.some(
-          (message) => message._id === newMsg._id
-        );
-        return messageExists ? prev : [...prev, newMsg];
-      });
+      setMessages((prev) => [...prev, newMsg]);
+      // setMessages((prev) => {
+      //   // Check if the message already exists to avoid duplicates
+      //   const messageExists = prev.some(
+      //     (message) => message._id === newMsg._id
+      //   );
+      //   return messageExists ? prev : [...prev, newMsg];
+      // });
     });
   }, [chatId, loggedUser, receiver]);
   return (
