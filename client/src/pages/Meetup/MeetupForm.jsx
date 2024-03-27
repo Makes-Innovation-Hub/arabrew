@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import {
@@ -35,6 +35,7 @@ const MeetupForm = () => {
   const [remainingChars, setRemainingChars] = useState(30);
   const [isMeetingId, setIsMeetingId] = useState(false);
   const [suggestions, setSuggestions] = useState([]); // State to manage autocomplete suggestions
+  const timeoutRef = useRef(null);
 
   const [createMeetup, { isLoading, isError }] = useCreateMeetupMutation();
   const [updateMeetupMutation] = useUpdateMeetupMutation();
@@ -110,42 +111,39 @@ const MeetupForm = () => {
       console.error("Error updating meetup:", error);
     }
   };
-
   const handleTitleChange = (e) => {
     const inputText = e.target.value;
     setTitle(inputText);
     setRemainingChars(30 - inputText.length);
   };
-
-  const handleLocationChange = async (e) => {
+  const handleLocationChange = useCallback(async (e) => {
     const currentValue = e.target.value;
-
-    // If the input becomes empty, just update the location state
     if (!currentValue.trim()) {
       setLocation("");
       return;
     }
-
-    // Fetch autocomplete data
-    try {
-      const apiKey = import.meta.env.VITE_ADDRESS_TOKEN;
-      const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
-        currentValue
-      )}&limit=5&apiKey=${apiKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSuggestions(data.features);
-    } catch (error) {
-      console.error("Error fetching autocomplete data:", error);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-
-    // Update location state with the typed value
+    timeoutRef.current = setTimeout(async () => {
+      try {
+        const apiKey = import.meta.env.VITE_ADDRESS_TOKEN;
+        const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
+          currentValue.trim()
+        )}&limit=5&apiKey=${apiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSuggestions(data.features);
+      } catch (error) {
+        console.error("Error fetching autocomplete data:", error);
+      }
+    }, 300);
     setLocation(currentValue);
-  };
+  }, []);
 
   const handleSuggestionClick = (suggestion) => {
     setLocation(suggestion.properties.formatted);
-    setSuggestions([]); // Clear suggestions after selection
+    setSuggestions([]);
   };
 
   // Set text direction to left-to-right for Hebrew or Arabic
